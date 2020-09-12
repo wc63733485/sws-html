@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--360浏览器优先以webkit内核解析-->
+    <title>慧水介绍</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main/animate.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main/style.min862f.css}" rel="stylesheet"/>
+
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link th:href="@{/ajax/libs/layui/css/layui.css}" media="all" rel="stylesheet"/>
+    <style>
+        .anchorBL {
+            display: none;
+        }
+
+
+        body .demo-class .layui-layer-btn {
+            border-top: #5b6be8
+        }
+
+        body .demo-class .layui-layer-btn a {
+            background: #5b6be8;
+            color: white;
+        }
+
+        body .demo-class .layui-layer-btn .layui-layer-btn1 {
+            background: #5b6be8;
+        }
+
+        html {
+            height: 100%
+        }
+
+        #allmap {
+            height: 100%
+        }
+
+        .layui-table-page {
+            white-space: normal;
+        }
+
+
+        body, html, #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+
+        #up-map-div {
+            width: 20%;
+            top: 2%;
+            right: 1%;
+            position: absolute;
+            z-index: 9999;
+            background-color: rgba(0,0,0,0);
+        }
+
+        .BMap_cpyCtrl {
+            display: none;
+        }
+
+        .anchorBL {
+            display: none;
+        }
+
+        .anchorTL {
+            display: none;
+        }
+
+        .anchorTR {
+            display: none;
+        }
+    </style>
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=3.0&ak=verqIYGfmG8RKl9pcoSHVwRzc05ctpca"></script>
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/sws-common.js}"></script>
+</head>
+
+
+<body>
+
+<div id="allmap">
+
+</div>
+<div id="up-map-div" style="width: 350px;">
+    <div class="layui-tab layui-tab-card" style="width: 350px;background-color: #ffffff">
+        <ul class="layui-tab-title">
+            <li class="layui-this" style="width: 25%">泵房站点</li>
+<!--            <li style="width: 20%">人员定位</li>-->
+<!--            <li style="width: 20%">报警信息</li>-->
+        </ul>
+        <div class="layui-tab-content" style="height: 100%;width: 350px;">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <input type="text" id="search" name="title" lay-verify="title" autocomplete="on"
+                               placeholder="请输入关键字"
+                               class="layui-input" style="width:200px;float: left">
+                        <button type="button" id="search_btn" class="layui-btn"
+                                style="width:80px;float: left;margin-left: 40px">查询
+                        </button>
+                    </div>
+                    <table id="demo" lay-filter="test"></table>
+                </div>
+            </div>
+            <div class="layui-tab-item">开发中</div>
+            <div class="layui-tab-item"></div>
+            <div class="left">
+                <div id="divPlugin" class="plugin"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/ajax/libs/layui/layui.js}" charset="utf-8"></script>
+<script>
+
+    var mp = new BMap.Map("allmap");
+    mp.setMapStyle({style: 'bluish'});
+    mp.enableScrollWheelZoom(true);
+    var point = new BMap.Point(113.60214, 34.767585);
+    mp.addControl(new BMap.NavigationControl());
+    mp.addControl(new BMap.ScaleControl());
+    mp.addControl(new BMap.OverviewMapControl());
+    mp.addControl(new BMap.MapTypeControl());
+    mp.centerAndZoom(point, 18);
+    mp.setCurrentCity("郑州");
+
+    // 复杂的自定义覆盖物
+    function ComplexCustomOverlay(point, text, mouseoverText, code) {
+        this._point = point;
+        this._text = text;
+        this._overText = mouseoverText;
+        this._code = code;
+    }
+
+    ComplexCustomOverlay.prototype = new BMap.Overlay();
+    ComplexCustomOverlay.prototype.initialize = function (map) {
+        this._map = map;
+        var div = this._div = document.createElement("div");
+        div.style.position = "absolute";
+        // div.style.zIndex = "-1000";
+        div.style.background = 'url("../img/GIS-TL_ergongbengfang.png") no-repeat';
+        // div.style.border = "1px solid #BC3B3A";
+        // div.style.borderRadius = "16px 16px 16px 0px"
+        div.style.color = "blcak";
+        div.style.height = "20px";
+        div.style.width = "20px";
+
+        // div.style.padding = "0px";
+        // div.style.lineHeight = "18px";
+        // div.style.whiteSpace = "nowrap";
+        div.style.MozUserSelect = "none";
+        div.style.fontSize = "12px"
+
+        var span = this._span = document.createElement("div");
+        div.after(span);
+        // span.append(document.createTextNode(this._text));
+        var that = this;
+
+        var arrow = this._arrow = document.createElement("div");
+        arrow.style.position = "absolute";
+        arrow.style.width = "0px";
+        arrow.style.display = "inline-block";
+        arrow.style.display = "inline";
+        arrow.style.height = "17px";
+        arrow.style.marginLeft = "25px";
+        arrow.style.top = "0px";
+        arrow.style.left = "0px";
+        arrow.style.overflow = "hidden";
+        div.appendChild(arrow);
+
+        div.onmouseover = function () {
+            arrow.style.width = that._overText.length * 12.5 + "px";
+            arrow.style.backgroundColor = "#6BADCA";
+            arrow.style.border = "1px solid #BC3B3A";
+            this.getElementsByTagName("div")[0].innerHTML = that._overText;
+            // arrow.style.backgroundPosition = "0px -20px";
+        }
+
+        div.onmouseout = function () {
+            arrow.style.width = "0px";
+            arrow.style.backgroundColor = "white";
+            arrow.style.border = "0px";
+            this.getElementsByTagName("div")[0].innerHTML = "";
+            // arrow.style.backgroundPosition = "0px 0px";
+        }
+        div.onclick = function () {
+
+
+            var full = layer.open({
+                type: 2 //此处以iframe举例
+                , title: that._overText
+                , area: ['925px', '800px']
+                , shade: 0.3
+                , tipsMore: false
+                , skin: 'demo-class'
+                , maxmin: false
+                , offset: [ //为了演示，随机坐标
+                    Math.random() * ($(window).height() - 650)
+                    , Math.random() * ($(window).width() - 750)
+                ]
+                , content: "./windows-pumpHouse-status.html"
+                , zIndex: layer.zIndex //重点1
+                , success: function (layero) {
+                    layer.setTop(layero); //重点2
+                }
+            });
+
+            // layer.full(full);
+        }
+        let labelPane = mp.getPanes().labelPane;
+        labelPane.style.zIndex = "-1000";
+        labelPane.style.marginLeft = "-10px";
+        labelPane.style.marginTop = "15px";
+        labelPane.appendChild(div);
+        return div;
+    }
+
+    ComplexCustomOverlay.prototype.draw = function () {
+        var map = this._map;
+        var pixel = map.pointToOverlayPixel(this._point);
+        this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+        this._div.style.top = pixel.y - 30 + "px";
+    }
+
+
+    $.ajax({
+        url: pumpHouseUrl + "/pumpHouse/listAll",
+        type: "GET",
+        dataType: 'json',
+        success: function (data) {
+            for (var a = 0; a < data.count; a++) {
+                if (data.data[a].lat != null || data.data[a].lng != null) {
+                    var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(data.data[a].lat, data.data[a].lng), data.data[a].projectName, data.data[a].projectName, data.data[a].code);
+                    mp.addOverlay(myCompOverlay);
+                }
+            }
+        }
+    });
+
+    // var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(113.60214, 34.767585), "慧水实验泵房", "慧水实验泵房", "001");
+    // mp.addOverlay(myCompOverlay);
+
+    layui.use('table', function () {
+        var table = layui.table;
+
+        //方法级渲染
+        table.render({
+            elem: '#demo'
+            , height: 312
+            , width: 320
+            , url: pumpHouseUrl + '/pumpHouse/list?search=' + document.getElementById("search").value //数据接口
+            , page: true //开启分页
+            , cols: [
+                [
+                    {field: 'projectName', title: '泵房名称', width: 230, fixed: 'left'}
+                    , {title: '操作', align: 'center', toolbar: '#barDemo'}
+                ]
+            ]
+        });
+
+        var marker;
+        table.on('tool(test)', function (obj) {
+            var data = obj.data;
+            if (obj.event === 'detail') {
+                mp.removeOverlay(marker);
+                var point = new BMap.Point(data.lat, data.lng);
+                // var myCompOverlay = new ComplexCustomOverlay(point, data.projectName, data.projectName);
+                // mp.addOverlay(myCompOverlay);
+                marker = new BMap.Marker(point);  // 创建标注
+                // marker.setZIndex(1000);
+                mp.addOverlay(marker);               // 将标注添加到地图中
+                marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+                mp.centerAndZoom(point, 17);
+            }
+        });
+
+        $('#search_btn').on('click', function () {
+            table.render({
+                elem: '#demo'
+                , height: 312
+                , width: 340
+                , url: pumpHouseUrl + '/pumpHouse/list?search=' + document.getElementById("search").value //数据接口
+                , page: true //开启分页
+                , cols: [
+                    [
+                        {field: 'projectName', title: '泵房名称', fixed: 'left'}
+                        , {fixed: 'right', width: 70, title: '操作', align: 'center', toolbar: '#barDemo'}
+                    ]
+                ]
+            });
+        });
+
+        layui.use('element', function () {
+            var $ = layui.jquery
+                , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+        });
+    });
+</script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" style="font-size: 12px ">定位</a>
+</script>
+
+</body>
+
+</html>
