@@ -13,7 +13,7 @@ body.signin {
 }
 
 .signinpanel {
-    width: 750px;
+    width: 800px;
     margin: 10% auto 0
 }
 
@@ -38,6 +38,12 @@ body.signin {
 
 .signinpanel .uname {
     background: #fff url(../img/user.png) no-repeat 95% center;
+    color: #333
+}
+
+.signinpanel .verify {
+    width: 55%;
+    float: left;
     color: #333
 }
 

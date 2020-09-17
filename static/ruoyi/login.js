@@ -1,39 +1,38 @@
-$(function() {
-	validateKickout();
+$(function () {
+    validateKickout();
     validateRule();
-	$('.imgcode').click(function() {
-		var url = ctx + "captcha/captchaImage?type=" + captchaType + "&s=" + Math.random();
-		$(".imgcode").attr("src", url);
-	});
+    $('.imgcode').click(function () {
+        var url = ctx + "captcha/captchaImage?type=" + captchaType + "&s=" + Math.random();
+        $(".imgcode").attr("src", url);
+    });
 });
 
 $.validator.setDefaults({
-    submitHandler: function() {
-		login();
+    submitHandler: function () {
+        login();
     }
 });
 
 function login() {
-	$.modal.loading($("#btnSubmit").data("loading"));
-	var username = $.common.trim($("input[name='username']").val());
+    $.modal.loading($("#btnSubmitSignIn").data("loading"));
+    var loginName = $.common.trim($("input[name='loginName']").val());
     var password = $.common.trim($("input[name='password']").val());
     $.ajax({
-        type: "post",
-        url: baseUrl + '/login',
+        type: "GET",
+        url: loginUrl + '/sign_in',
         data: {
-            "username": username,
+            "loginName": loginName,
             "password": password,
+            "sign_type": "upin",
         },
-        success: function(r) {
-            if (r.code == 0) {
-                location.href = address + '/index.html';
-            } else {
-            	$.modal.closeLoading();
-            	$('.imgcode').click();
-            	$(".code").val("");
-            	$.modal.msg(r.msg);
-            }
+        success: function (r) {
+            location.href = address + '/index.html';
+        },
+        error: function (r) {
+            $.modal.closeLoading();
+            $.modal.msg(JSON.parse(r.responseText).msg);
         }
+
     });
 }
 
@@ -41,7 +40,7 @@ function validateRule() {
     var icon = "<i class='fa fa-times-circle'></i> ";
     $("#signupForm").validate({
         rules: {
-            username: {
+            loginName: {
                 required: true
             },
             password: {
@@ -49,7 +48,7 @@ function validateRule() {
             }
         },
         messages: {
-            username: {
+            loginName: {
                 required: icon + "请输入您的用户名",
             },
             password: {
@@ -60,26 +59,26 @@ function validateRule() {
 }
 
 function validateKickout() {
-	if (getParam("kickout") == 1) {
-	    layer.alert("<font color='red'>您已在别处登录，请您修改密码或重新登录</font>", {
-	        icon: 0,
-	        title: "系统提示"
-	    },
-	    function(index) {
-	        //关闭弹窗
-	        layer.close(index);
-	        if (top != self) {
-	            top.location = self.location;
-	        } else {
-	            var url  =  location.search;
-	            if (url) {
-	                var oldUrl  = window.location.href;
-	                var newUrl  = oldUrl.substring(0,  oldUrl.indexOf('?'));
-	                self.location  = newUrl;
-	            }
-	        }
-	    });
-	}
+    if (getParam("kickout") == 1) {
+        layer.alert("<font color='red'>您已在别处登录，请您修改密码或重新登录</font>", {
+                icon: 0,
+                title: "系统提示"
+            },
+            function (index) {
+                //关闭弹窗
+                layer.close(index);
+                if (top != self) {
+                    top.location = self.location;
+                } else {
+                    var url = location.search;
+                    if (url) {
+                        var oldUrl = window.location.href;
+                        var newUrl = oldUrl.substring(0, oldUrl.indexOf('?'));
+                        self.location = newUrl;
+                    }
+                }
+            });
+    }
 }
 
 function getParam(paramName) {

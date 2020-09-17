@@ -668,7 +668,7 @@ var table = {
     		// 消息提示
             msg: function(content, type) {
             	if (type != undefined) {
-                    layer.msg(content, { icon: $.modal.icon(type), time: 1000, shift: 5 });
+                    layer.msg(content, { icon: $.modal.icon(type), time: 1500, shift: 5 });
                 } else {
                     layer.msg(content);
                 }

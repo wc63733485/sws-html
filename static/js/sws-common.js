@@ -1,5 +1,5 @@
 var address = "http://127.0.0.1"
-var baseUrl = address + ":14029"
+var loginUrl = address + ":14029/system"
 var pumpHouseUrl = address + ":14029"
 var pumpHouseUrl1 = address + ":14029/pumpHouse"
 var deviceUrl = address + ":14029/device"
