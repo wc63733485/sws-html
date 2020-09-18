@@ -33,7 +33,7 @@ function mousemoveHandler(e) {
     if (offsetX == successMoveDistance) {
         success();
     }
-    e.preventDefault();
+    // e.preventDefault();
 };
 
 function mouseupHandler(e) {
@@ -51,9 +51,9 @@ function success() {
     isSuccess = true;
     txt.innerHTML = "验证通过";
     txt.style.color = "white";
-
     slider.className = "slider active";
     icon.className = "iconfont iconchenggong";
     slider.onmousedown = null;
     document.onmousemove = null;
 };
+

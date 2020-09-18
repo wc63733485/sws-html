@@ -7,14 +7,14 @@
     <title>慧水系统首页</title>
     <!-- 避免IE使用兼容模式 -->
  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link th:href="@{favicon.ico}" rel="shortcut icon"/>
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/css/jquery.contextMenu.min.css}" rel="stylesheet"/>
-    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
-    <link th:href="@{/css/animate.css}" rel="stylesheet"/>
-    <link th:href="@{/css/style.css}" rel="stylesheet"/>
-    <link th:href="@{/css/skins.css}" rel="stylesheet"/>
-    <link th:href="@{/ruoyi/css/ry-ui.css?v=4.4.0}" rel="stylesheet"/>
+    <link href="../static/favicon.ico" rel="shortcut icon"/>
+	<link href="../static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../static/css/jquery.contextMenu.min.css" rel="stylesheet"/>
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="../static/css/animate.css" rel="stylesheet"/>
+    <link href="../static/css/style.css" rel="stylesheet"/>
+    <link href="../static/css/skins.css" rel="stylesheet"/>
+	<link href="../static/ruoyi/css/ry-ui.css" rel="stylesheet"/>
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow: hidden">
 <div id="wrapper">
@@ -36,138 +36,222 @@
             			<a class="menuItem noactive" title="个人中心" th:href="@{/system/user/profile}">
             				<div class="hide" th:text="个人中心"></div>
 					        <div class="pull-left image">
-		                    	<img th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}" th:onerror="this.src='img/profile.jpg'" class="img-circle" alt="User Image">
+<!--		                    	<img th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}" th:onerror="this.src='img/profile.jpg'" class="img-circle" alt="User Image">-->
+		                    	<img id="userAvatar" src="../static/img/profile.jpg" class="img-circle" alt="User Image">
 					        </div>
 				        </a>
-				        <div class="pull-left info">
-				          <p>[[${user.loginName}]]</p>
+				        <div id="userInfo" class="pull-left info">
+				          <p>{{loginName}}</p>
 				          <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
 				          <a th:href="@{logout}" style="padding-left:5px;"><i class="fa fa-sign-out text-danger"></i> 注销</a>
 				        </div>
 				    </div>
             	</li>
-<!--                <li>-->
-<!--                    <a class="menuItem" th:href="@{/system/main}"><i class="fa fa-home"></i> <span class="nav-label">首页</span> </a>-->
+                <li>
+                    <a class="menuItem" href="./main.html"><i class="fa fa-home"></i> <span class="nav-label">首页</span> </a>
+                </li>
+<!--                <li th:each="menu : ${menus}">-->
+<!--                	<a th:class="@{${!#strings.isEmpty(menu.url) && menu.url != '#'} ? ${menu.target}}" th:href="@{${#strings.isEmpty(menu.url)} ? |#| : ${menu.url}}">-->
+<!--                		<i class="fa fa-bar-chart-o" th:class="${menu.icon}"></i>-->
+<!--                    	<span class="nav-label" th:text="${menu.menuName}">一级菜单</span>-->
+<!--                    	<span th:class="${#strings.isEmpty(menu.url) || menu.url == '#'} ? |fa arrow|"></span>-->
+<!--                	</a>-->
+<!--                    <ul class="nav nav-second-level collapse">-->
+<!--						<li th:each="cmenu : ${menu.children}">-->
+<!--							<a th:if="${#lists.isEmpty(cmenu.children)}" th:class="${#strings.isEmpty(cmenu.target)} ? |menuItem| : ${cmenu.target}" th:utext="${cmenu.menuName}" th:href="@{${cmenu.url}}">二级菜单</a>-->
+<!--							<a th:if="${not #lists.isEmpty(cmenu.children)}" href="#">[[${cmenu.menuName}]]<span class="fa arrow"></span></a>-->
+<!--							<ul th:if="${not #lists.isEmpty(cmenu.children)}" class="nav nav-third-level">-->
+<!--								<li th:each="emenu : ${cmenu.children}">-->
+<!--								    <a th:if="${#lists.isEmpty(emenu.children)}" th:class="${#strings.isEmpty(emenu.target)} ? |menuItem| : ${emenu.target}" th:text="${emenu.menuName}" th:href="@{${emenu.url}}">三级菜单</a>-->
+<!--								    <a th:if="${not #lists.isEmpty(emenu.children)}" href="#">[[${emenu.menuName}]]<span class="fa arrow"></span></a>-->
+<!--								    <ul th:if="${not #lists.isEmpty(emenu.children)}" class="nav nav-four-level">-->
+<!--								      	<li th:each="fmenu : ${emenu.children}"><a th:if="${#lists.isEmpty(fmenu.children)}" th:class="${#strings.isEmpty(fmenu.target)} ? |menuItem| : ${fmenu.target}" th:text="${fmenu.menuName}" th:href="@{${fmenu.url}}">四级菜单</a></li>-->
+<!--								    </ul>-->
+<!--								</li>-->
+<!--							</ul>-->
+<!--						</li>-->
+<!--					</ul>-->
 <!--                </li>-->
-                <li th:each="menu : ${menus}">
-                	<a th:class="@{${!#strings.isEmpty(menu.url) && menu.url != '#'} ? ${menu.target}}" th:href="@{${#strings.isEmpty(menu.url)} ? |#| : ${menu.url}}">
-                		<i class="fa fa-bar-chart-o" th:class="${menu.icon}"></i>
-                    	<span class="nav-label" th:text="${menu.menuName}">一级菜单</span>
-                    	<span th:class="${#strings.isEmpty(menu.url) || menu.url == '#'} ? |fa arrow|"></span>
-                	</a>
+                <li>
+                    <a href="#"><i class="fa fa-desktop"></i><span class="nav-label">实例演示</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-						<li th:each="cmenu : ${menu.children}">
-							<a th:if="${#lists.isEmpty(cmenu.children)}" th:class="${#strings.isEmpty(cmenu.target)} ? |menuItem| : ${cmenu.target}" th:utext="${cmenu.menuName}" th:href="@{${cmenu.url}}">二级菜单</a>
-							<a th:if="${not #lists.isEmpty(cmenu.children)}" href="#">[[${cmenu.menuName}]]<span class="fa arrow"></span></a>
-							<ul th:if="${not #lists.isEmpty(cmenu.children)}" class="nav nav-third-level">
-								<li th:each="emenu : ${cmenu.children}">
-								    <a th:if="${#lists.isEmpty(emenu.children)}" th:class="${#strings.isEmpty(emenu.target)} ? |menuItem| : ${emenu.target}" th:text="${emenu.menuName}" th:href="@{${emenu.url}}">三级菜单</a>
-								    <a th:if="${not #lists.isEmpty(emenu.children)}" href="#">[[${emenu.menuName}]]<span class="fa arrow"></span></a>
-								    <ul th:if="${not #lists.isEmpty(emenu.children)}" class="nav nav-four-level">
-								      	<li th:each="fmenu : ${emenu.children}"><a th:if="${#lists.isEmpty(fmenu.children)}" th:class="${#strings.isEmpty(fmenu.target)} ? |menuItem| : ${fmenu.target}" th:text="${fmenu.menuName}" th:href="@{${fmenu.url}}">四级菜单</a></li>
-								    </ul>
-								</li>
+                        <li> <a>表单<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/form/button}">按钮</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/grid}">栅格</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/select}">下拉框</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/timeline}">时间轴</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/basic}">基本表单</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/cards}">卡片列表</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/jasny}">功能扩展</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/sortable}">拖动排序</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/tabs_panels}">选项卡 & 面板</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/validate}">表单校验</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/wizard}">表单向导</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/upload}">文件上传</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/datetime}">日期和时间</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/summernote}">富文本编辑器</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/duallistbox}">左右互选组件</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/autocomplete}">搜索自动补全</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/cxselect}">多级联动下拉</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/localrefresh}">Ajax局部刷新</a></li>
+							</ul>
+                        </li>
+                        <li> <a>表格<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/table/search}">查询条件</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/footer}">数据汇总</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/groupHeader}">组合表头</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/export}">表格导出</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/remember}">翻页记住选择</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/pageGo}">跳转至指定页</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/params}">自定义查询参数</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/multi}">初始多表格</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/button}">点击按钮加载表格</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/data}">直接加载表格数据</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/fixedColumns}">表格冻结列</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/event}">自定义触发事件</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/detail}">表格细节视图</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/child}">表格父子视图</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/image}">表格图片预览</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/curd}">动态增删改查</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/reorder}">表格拖拽操作</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/editable}">表格行内编辑</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/subdata}">主子表提交</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/refresh}">表格自动刷新</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/print}">表格打印配置</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/other}">表格其他操作</a></li>
+							</ul>
+                        </li>
+                        <li> <a>弹框<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/modal/dialog}">模态窗口</a></li>
+								<li><a class="menuItem" th:href="@{/demo/modal/layer}">弹层组件</a></li>
+								<li><a class="menuItem" th:href="@{/demo/modal/table}">弹层表格</a></li>
+							</ul>
+                        </li>
+                        <li> <a>操作<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/operate/table}">表格</a></li>
+								<li><a class="menuItem" th:href="@{/demo/operate/other}">其他</a></li>
+							</ul>
+                        </li>
+                        <li> <a>报表<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/report/echarts}">百度ECharts</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/peity}">peity</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/sparkline}">sparkline</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/metrics}">图表组合</a></li>
+							</ul>
+                        </li>
+                        <li> <a>图标<span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/icon/fontawesome}">Font Awesome</a></li>
+								<li><a class="menuItem" th:href="@{/demo/icon/glyphicons}">Glyphicons</a></li>
+							</ul>
+                        </li>
+                        <li>
+	                        <a href="#"><i class="fa fa-sitemap"></i>四层菜单<span class="fa arrow"></span></a>
+	                        <ul class="nav nav-third-level collapse">
+	                            <li>
+	                                <a href="#" id="damian">三级菜单1<span class="fa arrow"></span></a>
+	                                <ul class="nav nav-third-level">
+	                                    <li>
+	                                        <a href="#">四级菜单1</a>
+	                                    </li>
+	                                    <li>
+	                                        <a href="#">四级菜单2</a>
+	                                    </li>
+	                                </ul>
+	                            </li>
+	                            <li><a href="#">三级菜单2</a></li>
+	                        </ul>
+	                    </li>
+                    </ul>
+                </li>
+				<li>
+					<a href="#"><i class="fa fa-desktop"></i><span class="nav-label">实例演示</span><span class="fa arrow"></span></a>
+					<ul class="nav nav-second-level collapse">
+						<li> <a>表单<span class="fa arrow"></span></a>
+							<ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/form/button}">按钮</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/grid}">栅格</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/select}">下拉框</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/timeline}">时间轴</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/basic}">基本表单</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/cards}">卡片列表</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/jasny}">功能扩展</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/sortable}">拖动排序</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/tabs_panels}">选项卡 & 面板</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/validate}">表单校验</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/wizard}">表单向导</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/upload}">文件上传</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/datetime}">日期和时间</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/summernote}">富文本编辑器</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/duallistbox}">左右互选组件</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/autocomplete}">搜索自动补全</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/cxselect}">多级联动下拉</a></li>
+								<li><a class="menuItem" th:href="@{/demo/form/localrefresh}">Ajax局部刷新</a></li>
 							</ul>
 						</li>
+						<li> <a>表格<span class="fa arrow"></span></a>
+							<ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/table/search}">查询条件</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/footer}">数据汇总</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/groupHeader}">组合表头</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/export}">表格导出</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/remember}">翻页记住选择</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/pageGo}">跳转至指定页</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/params}">自定义查询参数</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/multi}">初始多表格</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/button}">点击按钮加载表格</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/data}">直接加载表格数据</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/fixedColumns}">表格冻结列</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/event}">自定义触发事件</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/detail}">表格细节视图</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/child}">表格父子视图</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/image}">表格图片预览</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/curd}">动态增删改查</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/reorder}">表格拖拽操作</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/editable}">表格行内编辑</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/subdata}">主子表提交</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/refresh}">表格自动刷新</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/print}">表格打印配置</a></li>
+								<li><a class="menuItem" th:href="@{/demo/table/other}">表格其他操作</a></li>
+							</ul>
+						</li>
+						<li> <a>弹框<span class="fa arrow"></span></a>
+							<ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/modal/dialog}">模态窗口</a></li>
+								<li><a class="menuItem" th:href="@{/demo/modal/layer}">弹层组件</a></li>
+								<li><a class="menuItem" th:href="@{/demo/modal/table}">弹层表格</a></li>
+							</ul>
+						</li>
+						<li> <a>操作<span class="fa arrow"></span></a>
+							<ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/operate/table}">表格</a></li>
+								<li><a class="menuItem" th:href="@{/demo/operate/other}">其他</a></li>
+							</ul>
+						</li>
+						<li> <a>报表<span class="fa arrow"></span></a>
+							<ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/report/echarts}">百度ECharts</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/peity}">peity</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/sparkline}">sparkline</a></li>
+								<li><a class="menuItem" th:href="@{/demo/report/metrics}">图表组合</a></li>
+							</ul>
+						</li>
+						<li> <a>图标<span class="fa arrow"></span></a>
+							<ul class="nav nav-third-level">
+								<li><a class="menuItem" th:href="@{/demo/icon/fontawesome}">Font Awesome</a></li>
+								<li><a class="menuItem" th:href="@{/demo/icon/glyphicons}">Glyphicons</a></li>
+							</ul>
+						</li>
+						<li>
+							<a class="menuItem" href="./main.html"><i class="fa fa-sitemap"></i>四层菜单</a>
+						</li>
 					</ul>
-                </li>
-<!--                <li th:if="${demoEnabled}">-->
-<!--                    <a href="#"><i class="fa fa-desktop"></i><span class="nav-label">实例演示</span><span class="fa arrow"></span></a>-->
-<!--                    <ul class="nav nav-second-level collapse">-->
-<!--                        <li> <a>表单<span class="fa arrow"></span></a>-->
-<!--                            <ul class="nav nav-third-level">-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/button}">按钮</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/grid}">栅格</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/select}">下拉框</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/timeline}">时间轴</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/basic}">基本表单</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/cards}">卡片列表</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/jasny}">功能扩展</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/sortable}">拖动排序</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/tabs_panels}">选项卡 & 面板</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/validate}">表单校验</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/wizard}">表单向导</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/upload}">文件上传</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/datetime}">日期和时间</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/summernote}">富文本编辑器</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/duallistbox}">左右互选组件</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/autocomplete}">搜索自动补全</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/cxselect}">多级联动下拉</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/form/localrefresh}">Ajax局部刷新</a></li>-->
-<!--							</ul>-->
-<!--                        </li>-->
-<!--                        <li> <a>表格<span class="fa arrow"></span></a>-->
-<!--                            <ul class="nav nav-third-level">-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/search}">查询条件</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/footer}">数据汇总</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/groupHeader}">组合表头</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/export}">表格导出</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/remember}">翻页记住选择</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/pageGo}">跳转至指定页</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/params}">自定义查询参数</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/multi}">初始多表格</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/button}">点击按钮加载表格</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/data}">直接加载表格数据</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/fixedColumns}">表格冻结列</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/event}">自定义触发事件</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/detail}">表格细节视图</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/child}">表格父子视图</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/image}">表格图片预览</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/curd}">动态增删改查</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/reorder}">表格拖拽操作</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/editable}">表格行内编辑</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/subdata}">主子表提交</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/refresh}">表格自动刷新</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/print}">表格打印配置</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/table/other}">表格其他操作</a></li>-->
-<!--							</ul>-->
-<!--                        </li>-->
-<!--                        <li> <a>弹框<span class="fa arrow"></span></a>-->
-<!--                            <ul class="nav nav-third-level">-->
-<!--								<li><a class="menuItem" th:href="@{/demo/modal/dialog}">模态窗口</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/modal/layer}">弹层组件</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/modal/table}">弹层表格</a></li>-->
-<!--							</ul>-->
-<!--                        </li>-->
-<!--                        <li> <a>操作<span class="fa arrow"></span></a>-->
-<!--                            <ul class="nav nav-third-level">-->
-<!--								<li><a class="menuItem" th:href="@{/demo/operate/table}">表格</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/operate/other}">其他</a></li>-->
-<!--							</ul>-->
-<!--                        </li>-->
-<!--                        <li> <a>报表<span class="fa arrow"></span></a>-->
-<!--                            <ul class="nav nav-third-level">-->
-<!--								<li><a class="menuItem" th:href="@{/demo/report/echarts}">百度ECharts</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/report/peity}">peity</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/report/sparkline}">sparkline</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/report/metrics}">图表组合</a></li>-->
-<!--							</ul>-->
-<!--                        </li>-->
-<!--                        <li> <a>图标<span class="fa arrow"></span></a>-->
-<!--                            <ul class="nav nav-third-level">-->
-<!--								<li><a class="menuItem" th:href="@{/demo/icon/fontawesome}">Font Awesome</a></li>-->
-<!--								<li><a class="menuItem" th:href="@{/demo/icon/glyphicons}">Glyphicons</a></li>-->
-<!--							</ul>-->
-<!--                        </li>-->
-<!--                        <li>-->
-<!--	                        <a href="#"><i class="fa fa-sitemap"></i>四层菜单<span class="fa arrow"></span></a>-->
-<!--	                        <ul class="nav nav-third-level collapse">-->
-<!--	                            <li>-->
-<!--	                                <a href="#" id="damian">三级菜单1<span class="fa arrow"></span></a>-->
-<!--	                                <ul class="nav nav-third-level">-->
-<!--	                                    <li>-->
-<!--	                                        <a href="#">四级菜单1</a>-->
-<!--	                                    </li>-->
-<!--	                                    <li>-->
-<!--	                                        <a href="#">四级菜单2</a>-->
-<!--	                                    </li>-->
-<!--	                                </ul>-->
-<!--	                            </li>-->
-<!--	                            <li><a href="#">三级菜单2</a></li>-->
-<!--	                        </ul>-->
-<!--	                    </li>-->
-<!--                    </ul>-->
-<!--                </li>-->
+				</li>
             </ul>
         </div>
     </nav>
@@ -188,7 +272,7 @@
                     <li class="dropdown user-menu">
 						<a href="javascript:void(0)" class="dropdown-toggle" data-hover="dropdown">
 							<img th:src="(${#strings.isEmpty(user.avatar)}) ? @{/img/profile.jpg} : @{${user.avatar}}" th:onerror="this.src='img/profile.jpg'" class="user-image">
-							<span class="hidden-xs">[[${#strings.defaultString(user.userName, '-')}]]</span>
+							<span class="hidden-xs">{{userName}}</span>
 						</a>
 						<ul class="dropdown-menu">
 							<li class="mt5">
@@ -236,28 +320,28 @@
 
         <div class="row mainContent" id="content-main">
             <iframe class="RuoYi_iframe" name="iframe0" width="100%" height="100%" th:data-id="@{/system/main}"
-                    th:src="@{/system/main}" frameborder="0" seamless></iframe>
+                    src="./main.html" frameborder="0" seamless></iframe>
         </div>
         <div class="footer">
-            <div class="pull-right">© [[${copyrightYear}]] sws Copyright </div>
+            <div class="pull-right">© 2020 sws Copyright </div>
         </div>
     </div>
     <!--右侧部分结束-->
 </div>
 <!-- 全局js -->
-<script th:src="@{/js/jquery.min.js}"></script>
-<script th:src="@{/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
-<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
-<script th:src="@{/js/jquery.contextMenu.min.js}"></script>
-<script th:src="@{/ajax/libs/blockUI/jquery.blockUI.js}"></script>
-<script th:src="@{/ajax/libs/layer/layer.min.js}"></script>
-<script th:src="@{/ruoyi/js/ry-ui.js?v=4.4.0}"></script>
-<script th:src="@{/ruoyi/js/common.js?v=4.4.0}"></script>
-<script th:src="@{/ruoyi/index.js}"></script>
-<script th:src="@{/ajax/libs/fullscreen/jquery.fullscreen.js}"></script>
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="../static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="../static/js/jquery.contextMenu.min.js"></script>
+<script src="../static/ajax/libs/blockUI/jquery.blockUI.js"></script>
+<script src="../static/ajax/libs/layer/layer.min.js"></script>
+<script src="../static/ruoyi/js/ry-ui.js?v=4.4.0"></script>
+<script src="../static/ruoyi/js/common.js?v=4.4.0"></script>
+<script src="../static/ruoyi/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="../static/ajax/libs/fullscreen/jquery.fullscreen.js"></script>
 <script th:inline="javascript">
-var ctx = [[@{/}]];
 // 皮肤缓存
 var skin = storage.get("skin");
 // history（表示去掉地址的#）否则地址以"#"形式展示

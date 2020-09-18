@@ -1,10 +1,10 @@
 $(function () {
     validateKickout();
     validateRule();
-    $('.imgcode').click(function () {
-        var url = ctx + "captcha/captchaImage?type=" + captchaType + "&s=" + Math.random();
-        $(".imgcode").attr("src", url);
-    });
+    // $('.imgcode').click(function () {
+    //     var url = ctx + "captcha/captchaImage?type=" + captchaType + "&s=" + Math.random();
+    //     $(".imgcode").attr("src", url);
+    // });
 });
 
 $.validator.setDefaults({
@@ -14,23 +14,42 @@ $.validator.setDefaults({
 });
 
 function login() {
+
+    if (!isSuccess){
+        $.modal.msg("请通过验证");
+        return
+    }
     $.modal.loading($("#btnSubmitSignIn").data("loading"));
     var loginName = $.common.trim($("input[name='loginName']").val());
     var password = $.common.trim($("input[name='password']").val());
     $.ajax({
-        type: "GET",
-        url: loginUrl + '/sign_in',
+        type: "POST",
+        url: loginUrl + '/sign_in_password',
         data: {
             "loginName": loginName,
             "password": password,
-            "sign_type": "upin",
         },
         success: function (r) {
-            location.href = address + '/index.html';
+            sessionStorage.setItem("public_profile", (JSON.parse(r)).user);
+            sessionStorage.setItem("token", (JSON.parse(r)).token);
+            location.href = './index.html';
         },
         error: function (r) {
+            var parse = JSON.parse(r.responseText);
             $.modal.closeLoading();
-            $.modal.msg(JSON.parse(r.responseText).msg);
+            $.modal.msg(parse.msg);
+            bgColor.style.width = 0 + "px";
+            slider.style.left = 0 + "px";
+            bgColor.style.transition = "width 0.8s linear";
+            slider.style.transition = "left 0.8s linear";
+            isSuccess = false;
+            txt.innerHTML = "按住滑块，拖动到最右边";
+            txt.style.color = "#9c9c9c";
+            slider.className = "slider";
+            icon.className = "iconfont icondoubleright";
+            slider.onmousedown = mousedownHandler;
+            document.onmousemove = null;
+            document.onmouseup = null;
         }
 
     });

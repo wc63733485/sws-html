@@ -9,8 +9,22 @@ layer.config({
 
 var isMobile = false;
 var sidebarHeight = isMobile ? '100%' : '96%';
+var user = JSON.parse(sessionStorage.getItem("public_profile"));
 
 $(function() {
+
+    new Vue({
+        el: '#wrapper',
+        data: {
+            userName: user.userName,
+            loginName: user.loginName
+        }
+    })
+
+    if (user.avatar!=undefined&&user.avatar!="") {
+        $('#userAvatar').attr("src","../static/img"+user.avatar)
+    }
+
     // MetsiMenu
     $('#side-menu').metisMenu();
 
@@ -51,6 +65,7 @@ $(function() {
     }
 
 });
+
 
 $(window).bind("load resize", function() {
     isMobile = $.common.isMobile() || $(window).width() < 769;

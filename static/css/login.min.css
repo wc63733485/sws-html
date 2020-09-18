@@ -13,7 +13,7 @@ body.signin {
 }
 
 .signinpanel {
-    width: 800px;
+    width: 750px;
     margin: 10% auto 0
 }
 
@@ -42,7 +42,7 @@ body.signin {
 }
 
 .signinpanel .verify {
-    width: 55%;
+    width: 50%;
     float: left;
     color: #333
 }

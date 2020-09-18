@@ -2,8 +2,13 @@
  * 通用方法封装处理
  * Copyright (c) 2019 ruoyi 
  */
+
+
 $(function() {
-	
+	if (user==undefined||user==""||user==null) {
+		location.href = './login.html';
+		return;
+	}
 	//  layer扩展皮肤
 	if (window.layer !== undefined) {
 		layer.config({
@@ -373,73 +378,7 @@ function checkpwd(chrtype, password) {
 	return true;
 }
 
-// 日志打印封装处理
-var log = {
-    log: function(msg) {
-        console.log(msg);
-    },
-    info: function(msg) {
-        console.info(msg);
-    },
-    warn: function(msg) {
-        console.warn(msg);
-    },
-    error: function(msg) {
-        console.error(msg);
-    }
-};
 
-// 本地缓存处理
-var storage = {
-    set: function(key, value) {
-        window.localStorage.setItem(key, value);
-    },
-    get: function(key) {
-        return window.localStorage.getItem(key);
-    },
-    remove: function(key) {
-        window.localStorage.removeItem(key);
-    },
-    clear: function() {
-        window.localStorage.clear();
-    }
-};
-
-// 主子表操作封装处理
-var sub = {
-    editColumn: function() {
-    	var count = $("#" + table.options.id).bootstrapTable('getData').length;
-    	var params = new Array();
-    	for (var dataIndex = 0; dataIndex <= count; dataIndex++) {
-    		var columns = $('#' + table.options.id + ' tr[data-index="' + dataIndex + '"] td');
-    		var obj = new Object();
-    		for (var i = 0; i < columns.length; i++) {
-    			var inputValue = $(columns[i]).find('input');
-    			var selectValue = $(columns[i]).find('select');
-    			var key = table.options.columns[i].field;
-    			if ($.common.isNotEmpty(inputValue.val())) {
-    				obj[key] = inputValue.val();
-    			} else if ($.common.isNotEmpty(selectValue.val())) {
-    				obj[key] = selectValue.val();
-    			} else {
-    				obj[key] = "";
-    			}
-    		}
-    		params.push({ index: dataIndex, row: obj });
-    	}
-    	$("#" + table.options.id).bootstrapTable("updateRow", params);
-    },
-    delColumn: function(column) {
-    	sub.editColumn();
-    	var subColumn = $.common.isEmpty(column) ? "index" : column;
-    	var ids = $.table.selectColumns(subColumn);
-        if (ids.length == 0) {
-            $.modal.alertWarning("请至少选择一条记录");
-            return;
-        }
-        $("#" + table.options.id).bootstrapTable('remove', { field: subColumn, values: ids });
-    }
-};
 
 /** 设置全局ajax处理 */
 $.ajaxSetup({
@@ -455,3 +394,86 @@ $.ajaxSetup({
         }
     }
 });
+
+function add0(m) {
+	return m < 10 ? '0' + m : m
+}
+
+function format(shijianchuo) {
+	var time = new Date(shijianchuo);
+	var y = time.getFullYear();
+	var m = time.getMonth() + 1;
+	var d = time.getDate();
+	var h = time.getHours();
+	var mm = time.getMinutes();
+	var s = time.getSeconds();
+	return y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
+}
+
+function formatNoYear(shijianchuo) {
+	var time = new Date(shijianchuo);
+	var h = time.getHours();
+	var mm = time.getMinutes();
+	var s = time.getSeconds();
+	return add0(h) + ':' + add0(mm) + ':' + add0(s);
+}
+
+
+function formatGetH(shijianchuo) {
+	var time = new Date(shijianchuo);
+	var h = time.getHours();
+	return add0(h);
+}
+
+function formatTotTimestamp(dateString) {
+
+	var date = dateString.replace(/-/g,'/');
+
+	var timestamp = new Date(date).getTime();
+
+	return timestamp;
+}
+
+function formatStringTotTimestamp(dateString) {
+
+	var date = dateString.replace('年','/').replace('月','/').replace('日','/');
+
+	var timestamp = new Date(date).getTime();
+
+	return timestamp;
+}
+
+function cleanInput(array) {
+
+	for (var i = 0;i<array.length;i++){
+		alert($("#"+array[i]).val(""))
+	}
+}
+
+function verifyInputNoEmpty(array) {
+
+	for (var i = 0;i<array.length;i++){
+		var value = $("#"+array[i]).val();
+		if(value==undefined||value==null||value.length<1){
+			alert("error");
+			return false;
+		}
+	}
+}
+
+function showLog(str) {
+	if (!log) log = $("#log");
+	log.append("<li class='" + className + "'>" + str + "</li>");
+	if (log.children("li").length > 8) {
+		log.get(0).removeChild(log.children("li")[0]);
+	}
+}
+
+function getTime() {
+	var now = new Date(),
+		h = now.getHours(),
+		m = now.getMinutes(),
+		s = now.getSeconds(),
+		ms = now.getMilliseconds();
+	return (h + ":" + m + ":" + s + " " + ms);
+}
