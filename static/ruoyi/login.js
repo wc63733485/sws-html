@@ -30,28 +30,27 @@ function login() {
             "password": password,
         },
         success: function (r) {
-            sessionStorage.setItem("public_profile", (JSON.parse(r)).user);
-            sessionStorage.setItem("token", (JSON.parse(r)).token);
-            location.href = './index.html';
+            if (r.code == 201){
+                sessionStorage.setItem("public_profile", JSON.stringify(r.data.user));
+                sessionStorage.setItem("token", r.data.token);
+                location.href = './index.html';
+            }else {
+                $.modal.closeLoading();
+                $.modal.msg(r.msg);
+                bgColor.style.width = 0 + "px";
+                slider.style.left = 0 + "px";
+                bgColor.style.transition = "width 0.8s linear";
+                slider.style.transition = "left 0.8s linear";
+                isSuccess = false;
+                txt.innerHTML = "按住滑块，拖动到最右边";
+                txt.style.color = "#9c9c9c";
+                slider.className = "slider";
+                icon.className = "iconfont icondoubleright";
+                slider.onmousedown = mousedownHandler;
+                document.onmousemove = null;
+                document.onmouseup = null;
+            }
         },
-        error: function (r) {
-            var parse = JSON.parse(r.responseText);
-            $.modal.closeLoading();
-            $.modal.msg(parse.msg);
-            bgColor.style.width = 0 + "px";
-            slider.style.left = 0 + "px";
-            bgColor.style.transition = "width 0.8s linear";
-            slider.style.transition = "left 0.8s linear";
-            isSuccess = false;
-            txt.innerHTML = "按住滑块，拖动到最右边";
-            txt.style.color = "#9c9c9c";
-            slider.className = "slider";
-            icon.className = "iconfont icondoubleright";
-            slider.onmousedown = mousedownHandler;
-            document.onmousemove = null;
-            document.onmouseup = null;
-        }
-
     });
 }
 

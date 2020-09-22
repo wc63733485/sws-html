@@ -11,8 +11,29 @@ var isMobile = false;
 var sidebarHeight = isMobile ? '100%' : '96%';
 var user = JSON.parse(sessionStorage.getItem("public_profile"));
 
-$(function() {
+var html = ""
+function apendCMenu(r, jsId, menuId) {
+    for (var i = 0; i < r.data.length; i++) {
+        if (r.data[i].parentId == 0) {
+            var icon = "<i class='" + r.data[i].icon + "'></i> ";
+            var menuName = r.data[i].menuName;
+            if (r.data[i].menuType == "C") {
+                var ahref = "<a  href='" + r.data[i].url + "' class='menuItem'>" + icon + "<cite>" + menuName + "</cite></a>";
+                $('#'+jsId).append("<li>" + ahref + "</li>")
+            }
+            if (r.data[i].menuType == "M") {
+                var menuType = "<ul class='nav nav-second-level' id='" + r.data[i].menuId + "'></ul>"
+                var ahref = "<a href='#' >" + icon + "<span class='nav-label'>" + menuName + "</span><span class='fa arrow'></span></a>"+menuType;
+                $('#'+jsId).append("<li>" + ahref + "</li>")
+                // apendCMenu(r, r.data[i].menuId, r.data[i].menuId)
+            }
+        }
+    }
+    console.info(html)
+    $('#side-menu').append(html)
+};
 
+$(function() {
     new Vue({
         el: '#wrapper',
         data: {
@@ -21,12 +42,46 @@ $(function() {
         }
     })
 
-    if (user.avatar!=undefined&&user.avatar!="") {
-        $('#userAvatar').attr("src","../static/img"+user.avatar)
-    }
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "http://127.0.0.1:14029/system/getMenu/" + user.userId,
+            headers: {
+                'token': sessionStorage.getItem("token"),
+            },
+            success: function (r) {
+                for (var i = 0; i < r.data.length; i++) {
+                    if (r.data[i].parentId == 0) {
+                        var icon = "<i class='" + r.data[i].icon + "'></i> ";
+                        var menuName = r.data[i].menuName;
+                        if (r.data[i].menuType == "C") {
+                            var ahref = "<a  href='" + r.data[i].url + "' class='menuItem'>" + icon + "<cite>" + menuName + "</cite></a>";
+                            html=html+"<li>" + ahref + "</li>"
+                        }
+                        if (r.data[i].menuType == "M") {
+                            var menuType = "<ul class='nav nav-second-level collapse' id='" + r.data[i].menuId + "'></ul>"
+                            var ahref = "<a href='#' >" + icon + "<span class='nav-label'>" + menuName + "</span><span class='fa arrow'></span></a>"+menuType;
+                            html=html+ "<li>" + ahref + "</li>"
+                            apendCMenu(r, r.data[i].menuId, r.data[i].menuId)
+                        }
+                    }
+                }
+            },
+        });
+    });
+
+
+    // 头像
+    // if (user.avatar!=undefined&&user.avatar!="") {
+    //     $('#userAvatar').attr("src","../static/img"+user.avatar)
+    // }
+
+    // $('#side-menu').append("<li><a href='#'><i class='fa fa-bar-chart-o'></i><span class='nav-label'>一级菜单<span class=\"fa arrow\"></span></span></a><ul class='nav nav-second-level collapse' id='1'></ul></li>")
+    // $('#2').append("<a href='#'><li><i class='fa fa-bar-chart-o'></i><span class='nav-label'>二级菜单</span><span class=\"fa arrow\"></span></li></a>")
 
     // MetsiMenu
     $('#side-menu').metisMenu();
+
 
     // 固定菜单栏
     $('.sidebar-collapse').slimScroll({
