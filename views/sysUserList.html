@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>后台用户管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../static/libs/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/layuiadmin/style/admin.css" media="all">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-fluid" style="float: left;width: 17%;height: 96%;padding-right: 5px;">
+    <div class="layui-card" style="height: 100%"></div>
+</div>
+<div class="layui-fluid" style="float: right;width: 80%;height: 96%;padding-left: 5px;">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="text-align: left;width: 50px">登录名</label>
+                    <div class="layui-input-block" style="margin-left:80px">
+                        <input type="text" name="userName" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="text-align: left;width: 50px">手机号</label>
+                    <div class="layui-input-block" style="margin-left:80px">
+                        <input type="text" name="telphone" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="text-align: left;width: 50px">项目名</label>
+                    <div class="layui-input-block" style="margin-left:80px">
+                        <input type="text" name="projectId" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="text-align: left;width: 50px">角色名</label>
+                    <div class="layui-input-block" style="margin-left:80px">
+                        <select name="role">
+                            <option value="0">管理员</option>
+                            <option value="1">超级管理员</option>
+                            <option value="2">纠错员</option>
+                            <option value="3">采购员</option>
+                            <option value="4">推销员</option>
+                            <option value="5">运营人员</option>
+                            <option value="6">编辑</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-admin" lay-submit lay-filter="LAY-user-back-search">
+                        <span style="text-align:center;display:block;"><i
+                                class="layui-icon layui-icon-search layuiadmin-button-btn"
+                                style="font-size: 14px;"> 搜 索</i></span>
+                    </button>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-admin" style="background-color: orangered;">
+                        <span style="text-align:center;display:block;"><i
+                                class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 14px;"> 重 置</i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-card-body">
+<!--            <div style="padding-bottom: 10px;">-->
+<!--                <button class="layui-btn layuiadmin-btn-admin" data-type="batchdel">删除</button>-->
+<!--                <button class="layui-btn layuiadmin-btn-admin" data-type="add">添加</button>-->
+<!--            </div>-->
+
+            <table id="user_table" lay-filter="user_table"></table>
+
+        </div>
+    </div>
+</div>
+
+<script src="../static/libs/sws-common.js"></script>
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+</script>
+<script src="../static/layuiadmin/layui/layui.js"></script>
+<script>
+    layui.use(['table'], function () {
+        var $ = layui.$
+            , table = layui.table
+
+        //方法级渲染
+        table.render({
+            elem: '#user_table'
+            // ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+            ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                title: '提示'
+                ,layEvent: 'LAYTABLE_TIPS'
+                ,icon: 'layui-icon-tips'
+            }]
+            , url: wxUrl + '/list'
+            , headers: {
+                'token': sessionStorage.getItem("token"),
+            }
+            , cols: [[
+                {type: 'checkbox', fixed: 'left'}
+                , {field: 'nickname', title: '微信昵称', width: 120, align: 'center'}
+                , {
+                    field: 'subscribe_time', title: '关注时间', width: 200, align: 'center', templet: function (res) {
+                        return format(parseInt(res.subscribe_time + "000"))
+                    }
+                }
+                , {field: 'country', title: '国家', width: 120, align: 'center'}
+            ]]
+            , id: 'userTable'
+            , response: {
+                statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+            }
+            , page: true
+            , limit: 10
+            , limits: [8, 10, 20, 50, 100, 200]
+            , height: 'full-178'
+        });
+
+        table.on('toolbar(user_table)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：'+ data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选': '未全选');
+                    break;
+            };
+        });
+
+        //头工具栏事件
+        table.on('tool(user_table)', function(obj){
+
+        });
+
+        var $ = layui.$, active = {
+            reload: function () {
+                //执行重载
+                table.reload('userTable', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {
+                        nickname: ""
+                    }
+                }, 'data');
+            },
+            search: function () {
+                var searchReload = $('#nickname');
+
+                //执行重载
+                table.reload('userTable', {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    }
+                    , where: {
+                        nickname: searchReload.val()
+                    }
+                }, 'data');
+            }
+        };
+
+
+
+        $('.layui-btn.layuiadmin-btn-admin').on('click', function () {
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+    });
+</script>
+</body>
+</html>
+

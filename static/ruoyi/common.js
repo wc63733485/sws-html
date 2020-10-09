@@ -6,7 +6,7 @@ var user = JSON.parse(sessionStorage.getItem("public_profile"));
 
 $(function() {
 	if (user==undefined||user==""||user==null) {
-		location.href = './login.html';
+		location.href = './login1.html';
 		return;
 	}
 	//  layer扩展皮肤
