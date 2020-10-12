@@ -4,9 +4,11 @@
  */
 var user = JSON.parse(sessionStorage.getItem("public_profile"));
 
+
+
 $(function() {
 	if (user==undefined||user==""||user==null) {
-		location.href = './login1.html';
+		location.href = './login.html';
 		return;
 	}
 	//  layer扩展皮肤

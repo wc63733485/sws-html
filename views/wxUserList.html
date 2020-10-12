@@ -21,6 +21,9 @@
             height: auto !important;
             white-space: normal;
         }
+        .layui-table-tool {
+            min-height: 59px;
+        }
     </style>
 </head>
 <body>
@@ -62,7 +65,7 @@
     </div>
 </div>
 
-<script src="../static/layuiadmin/layui/layui.js"></script>
+<script src="../static/libs/layui/layui.js"></script>
 <script src="../static/libs/sws-common.js"></script>
 <script>
 
@@ -73,7 +76,7 @@
         //方法级渲染
         table.render({
             elem: '#LAY-user-back-manage'
-            , toolbar: false
+            , toolbar: true
             , headers: {
                 'token': sessionStorage.getItem("token"),
             }

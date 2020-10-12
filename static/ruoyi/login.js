@@ -24,7 +24,7 @@ function login() {
     var password = $.common.trim($("input[name='password']").val());
     $.ajax({
         type: "POST",
-        url: loginUrl + '/sign_in_password',
+        url: sysUrl + '/sign_in_password',
         data: {
             "loginName": loginName,
             "password": password,
