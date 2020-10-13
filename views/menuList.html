@@ -61,14 +61,14 @@
 
         <div class="layui-card-body">
 
-            <table class="layui-table" lay-skin="line" >
+            <table class="layui-table" lay-skin="line">
                 <colgroup>
                     <col width="1">
-                    <col width="100">
-                    <col width="100">
                     <col width="200">
                     <col width="100">
                     <col width="150">
+                    <col width="100">
+                    <col width="100">
                     <col width="100">
                     <col width="100">
                     <col width="200">
@@ -76,8 +76,8 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th>菜单ID</th>
                     <th>菜单名称</th>
+                    <th>排序ID</th>
                     <th>请求地址</th>
                     <th>打开方式</th>
                     <th>菜单类型</th>
@@ -87,46 +87,46 @@
                 </tr>
                 </thead>
                 <tbody id="menu-tbody">
-<!--                <tr>-->
-<!--                    <td><input type="radio" name="sex" value="男" title="男" checked=""><i-->
-<!--                            class="layui-icon layui-icon-right"></i> 贤心-->
-<!--                    </td>-->
-<!--                    <td>汉族</td>-->
-<!--                    <td>1989-10-14</td>-->
-<!--                    <td>人生似修行</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td><input type="radio" name="sex" value="女" title="女"><i class="layui-icon layui-icon-right"></i>-->
-<!--                        张爱玲-->
-<!--                    </td>-->
-<!--                    <td>汉族</td>-->
-<!--                    <td>1920-09-30</td>-->
-<!--                    <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td><input type="radio" name="sex" value="男2" title="男2" checked="">&nbsp;&nbsp;&nbsp;<i-->
-<!--                            class="layui-icon layui-icon-right"></i>&nbsp;&nbsp;&nbsp;Helen Keller-->
-<!--                    </td>-->
-<!--                    <td>拉丁美裔</td>-->
-<!--                    <td>1880-06-27</td>-->
-<!--                    <td> Life is either a daring adventure or nothing.</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td><input type="radio" name="sex" value="男2" title="男2" checked=""><i-->
-<!--                            class="layui-icon layui-icon-right"></i> Helen Keller-->
-<!--                    </td>-->
-<!--                    <td>汉族</td>-->
-<!--                    <td>1103-北宋崇宁二年</td>-->
-<!--                    <td>教科书再滥改，也抹不去“民族英雄”的事实</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td><input type="radio" name="sex" value="男2" title="男2" checked=""><i-->
-<!--                            class="layui-icon layui-icon-right"></i> Helen Keller-->
-<!--                    </td>-->
-<!--                    <td>华夏族（汉族）</td>-->
-<!--                    <td>公元前-372年</td>-->
-<!--                    <td>猿强，则国强。国强，则猿更强！</td>-->
-<!--                </tr>-->
+                <!--                <tr>-->
+                <!--                    <td><input type="radio" name="sex" value="男" title="男" checked=""><i-->
+                <!--                            class="layui-icon layui-icon-right"></i> 贤心-->
+                <!--                    </td>-->
+                <!--                    <td>汉族</td>-->
+                <!--                    <td>1989-10-14</td>-->
+                <!--                    <td>人生似修行</td>-->
+                <!--                </tr>-->
+                <!--                <tr>-->
+                <!--                    <td><input type="radio" name="sex" value="女" title="女"><i class="layui-icon layui-icon-right"></i>-->
+                <!--                        张爱玲-->
+                <!--                    </td>-->
+                <!--                    <td>汉族</td>-->
+                <!--                    <td>1920-09-30</td>-->
+                <!--                    <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>-->
+                <!--                </tr>-->
+                <!--                <tr>-->
+                <!--                    <td><input type="radio" name="sex" value="男2" title="男2" checked="">&nbsp;&nbsp;&nbsp;<i-->
+                <!--                            class="layui-icon layui-icon-right"></i>&nbsp;&nbsp;&nbsp;Helen Keller-->
+                <!--                    </td>-->
+                <!--                    <td>拉丁美裔</td>-->
+                <!--                    <td>1880-06-27</td>-->
+                <!--                    <td> Life is either a daring adventure or nothing.</td>-->
+                <!--                </tr>-->
+                <!--                <tr>-->
+                <!--                    <td><input type="radio" name="sex" value="男2" title="男2" checked=""><i-->
+                <!--                            class="layui-icon layui-icon-right"></i> Helen Keller-->
+                <!--                    </td>-->
+                <!--                    <td>汉族</td>-->
+                <!--                    <td>1103-北宋崇宁二年</td>-->
+                <!--                    <td>教科书再滥改，也抹不去“民族英雄”的事实</td>-->
+                <!--                </tr>-->
+                <!--                <tr>-->
+                <!--                    <td><input type="radio" name="sex" value="男2" title="男2" checked=""><i-->
+                <!--                            class="layui-icon layui-icon-right"></i> Helen Keller-->
+                <!--                    </td>-->
+                <!--                    <td>华夏族（汉族）</td>-->
+                <!--                    <td>公元前-372年</td>-->
+                <!--                    <td>猿强，则国强。国强，则猿更强！</td>-->
+                <!--                </tr>-->
                 </tbody>
             </table>
 
@@ -140,23 +140,127 @@
     $(function () {
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:14029/system/menu/list",
+            url: "http://127.0.0.1:14029/system/menu/getByPid/0",
+            headers: {
+                'token': sessionStorage.getItem("token"),
+            },
+            success: function (r) {
+                var html = "";
+                for (var i = 0; i < r.data.length; i++) {
+                    var menuType = "";
+                    var target = "";
+                    if (r.data[i].target == "menuItem") {
+                        target = "页签";
+                    } else if (r.data[i].target == "menuBlank") {
+                        target = "新窗口";
+                    }
+                    if (r.data[i].menuType == "M") {
+                        menuType = "目录";
+                        var h = "<tr id='" + r.data[i].menuId + "' onclick='openMenu(" + r.data[i].menuId + ",0)'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'></td>" +
+                            "<td><b><i class='layui-icon layui-icon-right' style='font-size: 13px;'></i>&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
+                            "<td>" + r.data[i].orderNum + "</td>" +
+                            "<td>" + r.data[i].url + "</td>" +
+                            "<td>" + target + "</td>" +
+                            "<td>" + menuType + "</td>" +
+                            "<td>" + r.data[i].visible + "</td>" +
+                            "<td>" + r.data[i].perms + "</td>" +
+                            "<td>" + r.data[i].remark + "</td></tr>"
+                    } else if (r.data[i].menuType == "C") {
+                        menuType = "菜单";
+                        var h = "<tr id='" + r.data[i].menuId + "' onclick='onCheck(" + r.data[i].menuId + ")'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'></td>" +
+                            "<td><b><i class='layui-icon layui-icon-right' style='font-size: 13px;'></i>&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
+                            "<td>" + r.data[i].orderNum + "</td>" +
+                            "<td>" + r.data[i].url + "</td>" +
+                            "<td>" + target + "</td>" +
+                            "<td>" + menuType + "</td>" +
+                            "<td>" + r.data[i].visible + "</td>" +
+                            "<td>" + r.data[i].perms + "</td>" +
+                            "<td>" + r.data[i].remark + "</td></tr>"
+                        html = html + h;
+                    } else if (r.data[i].menuType == "F") {
+                        menuType = "按钮";
+                        var h = "<tr id='" + r.data[i].menuId + "' onclick='onCheck(" + r.data[i].menuId + ")'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'></td>" +
+                            "<td><b><i class='layui-icon layui-icon-right' style='font-size: 13px;'></i>&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
+                            "<td>" + r.data[i].orderNum + "</td>" +
+                            "<td>" + r.data[i].url + "</td>" +
+                            "<td>" + target + "</td>" +
+                            "<td>" + menuType + "</td>" +
+                            "<td>" + r.data[i].visible + "</td>" +
+                            "<td>" + r.data[i].perms + "</td>" +
+                            "<td>" + r.data[i].remark + "</td></tr>"
+                        html = html + h;
+                    }
+                    html = html + h;
+                }
+                $("#menu-tbody").html(html);
+            }
+        })
+    })
+
+    var afterHtml = "";
+
+    var obj = new Object();
+
+    function openMenu(menuId, c) {
+        $("#input" + menuId + "").attr("checked", "checked")
+        obj[menuId] = 1
+        // if (afterTarget[menuId]==1){
+        //     console.info("123")
+        // }
+        console.info(obj)
+
+        var block = "";
+        if (c == 0) {
+            block = "&nbsp;&nbsp;&nbsp;&nbsp;"
+        } else if (c == 1) {
+            block = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+        } else if (c == 2) {
+            block = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+        } else if (c == 3) {
+            block = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+        }
+        $.ajax({
+            type: "GET",
+            url: "http://127.0.0.1:14029/system/menu/getByPid/" + menuId,
             headers: {
                 'token': sessionStorage.getItem("token"),
             },
             success: function (r) {
                 for (var i = 0; i < r.data.length; i++) {
-                    console.info(r.data[i].icon);
-                    var html ="<tr><td><input type='radio' name='sex' value='男1' title='男1' checked=''></td>" +
-                        "<td><b><i class='layui-icon layui-icon-right' style='font-size: 13px;'></i>&nbsp;<i class='"+r.data[i].icon+"' style='font-size: 12px;'></i>&nbsp;</b>贤心</td>" +
-                        "<td>汉族1</td>" +
-                        "<td>1989-10-14</td>" +
-                        "<td>人生似修行</td></tr>"
-                    $("#menu-tbody").html(html)
+                    var menuType = "";
+                    if (r.data[i].menuType == "M") {
+                        menuType = "目录";
+                    } else if (r.data[i].menuType == "C") {
+                        menuType = "菜单";
+                    } else if (r.data[i].menuType == "F") {
+                        menuType = "按钮";
+                    }
+                    var target = "";
+                    if (r.data[i].target == "menuItem") {
+                        target = "页签";
+                    } else if (r.data[i].target == "menuBlank") {
+                        target = "新窗口";
+                    }
+                    var h = "<tr id='" + r.data[i].menuId + "' onclick='openMenu(" + r.data[i].menuId + ",1)'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'></td>" +
+                        "<td>" + block + "<b><i class='layui-icon layui-icon-right' style='font-size: 13px;'></i>&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
+                        "<td>" + r.data[i].orderNum + "</td>" +
+                        "<td>" + r.data[i].url + "</td>" +
+                        "<td>" + target + "</td>" +
+                        "<td>" + menuType + "</td>" +
+                        "<td>" + r.data[i].visible + "</td>" +
+                        "<td>" + r.data[i].perms + "</td>" +
+                        "<td>" + r.data[i].remark + "</td></tr>"
+                    afterHtml = afterHtml + h;
                 }
+                $("#" + menuId + "").after(afterHtml)
+                afterHtml = "";
             }
         })
-    })
+    }
+
+    function onCheck(menuId) {
+        $("#input" + menuId + "").attr("checked", "checked")
+    }
 </script>
 </body>
 </html>
