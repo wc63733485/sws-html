@@ -18,13 +18,14 @@
             padding: 0;
         }
 
-        .layui-table-cell {
-            height: auto !important;
-            white-space: normal;
+        .layui-card-header.layuiadmin-card-header-auto {
+            padding-top: 10px;
+            padding-bottom: 5px;
+            height: auto;
         }
 
-        .layui-table-tool {
-            min-height: 59px;
+        .layui-btn-sm i {
+            font-size: 12px !important;
         }
     </style>
 </head>
@@ -34,23 +35,32 @@
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label" style="text-align: left;width: 50px">微信名</label>
-                    <div class="layui-input-block" style="margin-left:80px">
+                    <label class="layui-form-label" style="text-align: left;width: 60px">菜单名称</label>
+                    <div class="layui-input-block" style="margin-left:90px">
                         <input type="text" id="nickname" name="nickname" placeholder="请输入" autocomplete="off"
                                class="layui-input">
                     </div>
                 </div>
-
-
                 <div class="layui-inline">
-                    <button class="layui-btn layuiadmin-btn-admin" data-type="search">
+                    <label class="layui-form-label" style="text-align: left;width: 60px">菜单类型</label>
+                    <div class="layui-input-block" style="margin-left:90px">
+                        <select name="roleId">
+                            <option value="" selected></option>
+                            <option value="0">菜单</option>
+                            <option value="1">目录</option>
+                            <option value="2">按钮</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin" data-type="search">
                         <span style="text-align:center;display:block;"><i
                                 class="layui-icon layui-icon-search layuiadmin-button-btn"
-                                style="font-size: 14px;"> 搜 索</i></span>
+                                style="font-size: 14px;"> 查 询</i></span>
                     </button>
                 </div>
                 <div class="layui-inline">
-                    <button class="layui-btn layuiadmin-btn-admin" data-type="reload"
+                    <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin" data-type="reload"
                             style="background-color: orangered;">
                         <span style="text-align:center;display:block;"><i
                                 class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 14px;"> 重 置</i></span>
@@ -60,22 +70,52 @@
         </div>
 
         <div class="layui-card-body">
+            <div class="layui-form-item" style="margin-bottom: 0px">
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" data-type="search">
+                        <span style="text-align:center;display:block;"><i
+                                class="layui-icon layui-icon-search layuiadmin-button-btn"
+                                style="font-size: 14px;"> 新 增</i></span>
+                    </button>
+                </div>
 
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" data-type="reload"
+                            style="background-color: orangered;">
+                        <span style="text-align:center;display:block;"><i
+                                class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 14px;"> 删 除</i></span>
+                    </button>
+                </div>
+
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" data-type="reload"
+                            style="background-color: orangered;">
+                        <span style="text-align:center;display:block;"><i
+                                class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 14px;"> 修 改</i></span>
+                    </button>
+                </div>
+
+                <div class="layui-inline" style="float: right">
+                    <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" data-type="reload"
+                            style="background-color: orangered;">
+                        <span style="text-align:center;display:block;"><i
+                                class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 14px;"> 刷 新</i></span>
+                    </button>
+                </div>
+            </div>
             <table class="layui-table" lay-skin="line">
                 <colgroup>
-                    <col width="1">
-                    <col width="200">
+                    <col width="250">
+                    <col width="70">
+                    <col width="180">
+                    <col width="80">
+                    <col width="80">
                     <col width="100">
+                    <col width="180">
                     <col width="150">
-                    <col width="100">
-                    <col width="100">
-                    <col width="100">
-                    <col width="100">
-                    <col width="200">
                 </colgroup>
                 <thead>
                 <tr>
-                    <th></th>
                     <th>菜单名称</th>
                     <th>排序ID</th>
                     <th>请求地址</th>
@@ -87,46 +127,6 @@
                 </tr>
                 </thead>
                 <tbody id="menu-tbody">
-                <!--                <tr>-->
-                <!--                    <td><input type="radio" name="sex" value="男" title="男" checked=""><i-->
-                <!--                            class="layui-icon layui-icon-right"></i> 贤心-->
-                <!--                    </td>-->
-                <!--                    <td>汉族</td>-->
-                <!--                    <td>1989-10-14</td>-->
-                <!--                    <td>人生似修行</td>-->
-                <!--                </tr>-->
-                <!--                <tr>-->
-                <!--                    <td><input type="radio" name="sex" value="女" title="女"><i class="layui-icon layui-icon-right"></i>-->
-                <!--                        张爱玲-->
-                <!--                    </td>-->
-                <!--                    <td>汉族</td>-->
-                <!--                    <td>1920-09-30</td>-->
-                <!--                    <td>于千万人之中遇见你所遇见的人，于千万年之中，时间的无涯的荒野里…</td>-->
-                <!--                </tr>-->
-                <!--                <tr>-->
-                <!--                    <td><input type="radio" name="sex" value="男2" title="男2" checked="">&nbsp;&nbsp;&nbsp;<i-->
-                <!--                            class="layui-icon layui-icon-right"></i>&nbsp;&nbsp;&nbsp;Helen Keller-->
-                <!--                    </td>-->
-                <!--                    <td>拉丁美裔</td>-->
-                <!--                    <td>1880-06-27</td>-->
-                <!--                    <td> Life is either a daring adventure or nothing.</td>-->
-                <!--                </tr>-->
-                <!--                <tr>-->
-                <!--                    <td><input type="radio" name="sex" value="男2" title="男2" checked=""><i-->
-                <!--                            class="layui-icon layui-icon-right"></i> Helen Keller-->
-                <!--                    </td>-->
-                <!--                    <td>汉族</td>-->
-                <!--                    <td>1103-北宋崇宁二年</td>-->
-                <!--                    <td>教科书再滥改，也抹不去“民族英雄”的事实</td>-->
-                <!--                </tr>-->
-                <!--                <tr>-->
-                <!--                    <td><input type="radio" name="sex" value="男2" title="男2" checked=""><i-->
-                <!--                            class="layui-icon layui-icon-right"></i> Helen Keller-->
-                <!--                    </td>-->
-                <!--                    <td>华夏族（汉族）</td>-->
-                <!--                    <td>公元前-372年</td>-->
-                <!--                    <td>猿强，则国强。国强，则猿更强！</td>-->
-                <!--                </tr>-->
                 </tbody>
             </table>
 
@@ -137,6 +137,11 @@
 <script src="../static/libs/layui/layui.js"></script>
 <script src="../static/libs/sws-common.js"></script>
 <script>
+    layui.use(['table'], function () {
+        var $ = layui.$
+            , table = layui.table
+    });
+
     $(function () {
         $.ajax({
             type: "GET",
@@ -150,14 +155,14 @@
                     var menuType = "";
                     var target = "";
                     if (r.data[i].target == "menuItem") {
-                        target = "页签";
+                        target = "<button type='button' class='layui-btn layui-btn-radius layui-btn-xs' style='background-color: #1ab394'>页签</button>";
                     } else if (r.data[i].target == "menuBlank") {
-                        target = "新窗口";
+                        target = "<button type='button' class='layui-btn layui-btn-radius layui-btn-xs' style='background-color: orangered'>新窗口</button>";
                     }
                     if (r.data[i].menuType == "M") {
-                        menuType = "目录";
-                        var h = "<tr id='" + r.data[i].menuId + "' onclick='openMenu(" + r.data[i].menuId + ",0)'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'></td>" +
-                            "<td><b><i class='layui-icon layui-icon-right' style='font-size: 13px;'></i>&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
+                        menuType = "<button type='button' class='layui-btn layui-btn-xs layui-btn-normal'>目录</button>";
+                        var h = "<tr id='" + r.data[i].menuId + "' onclick='openMenu(" + r.data[i].menuId + ",0)'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'>" +
+                            "<b>&nbsp;&nbsp;<i id='icon" + r.data[i].menuId + "' class='layui-icon layui-icon-triangle-r' style='font-size: 13px;'></i>&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
                             "<td>" + r.data[i].orderNum + "</td>" +
                             "<td>" + r.data[i].url + "</td>" +
                             "<td>" + target + "</td>" +
@@ -166,9 +171,9 @@
                             "<td>" + r.data[i].perms + "</td>" +
                             "<td>" + r.data[i].remark + "</td></tr>"
                     } else if (r.data[i].menuType == "C") {
-                        menuType = "菜单";
-                        var h = "<tr id='" + r.data[i].menuId + "' onclick='onCheck(" + r.data[i].menuId + ")'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'></td>" +
-                            "<td><b><i class='layui-icon layui-icon-right' style='font-size: 13px;'></i>&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
+                        menuType = "<button type='button' class='layui-btn layui-btn-xs'>菜单</button>";
+                        var h = "<tr id='" + r.data[i].menuId + "' onclick='onCheck(" + r.data[i].menuId + ")'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'>" +
+                            "<b>&nbsp;&nbsp;&nbsp;&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
                             "<td>" + r.data[i].orderNum + "</td>" +
                             "<td>" + r.data[i].url + "</td>" +
                             "<td>" + target + "</td>" +
@@ -178,9 +183,9 @@
                             "<td>" + r.data[i].remark + "</td></tr>"
                         html = html + h;
                     } else if (r.data[i].menuType == "F") {
-                        menuType = "按钮";
-                        var h = "<tr id='" + r.data[i].menuId + "' onclick='onCheck(" + r.data[i].menuId + ")'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'></td>" +
-                            "<td><b><i class='layui-icon layui-icon-right' style='font-size: 13px;'></i>&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
+                        menuType = "<button type='button' class='layui-btn layui-btn-xs layui-btn-warm'>按钮</button>";
+                        var h = "<tr id='" + r.data[i].menuId + "' onclick='onCheck(" + r.data[i].menuId + ")'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'>" +
+                            "<b>&nbsp;&nbsp;&nbsp;&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
                             "<td>" + r.data[i].orderNum + "</td>" +
                             "<td>" + r.data[i].url + "</td>" +
                             "<td>" + target + "</td>" +
@@ -203,59 +208,85 @@
 
     function openMenu(menuId, c) {
         $("#input" + menuId + "").attr("checked", "checked")
-        obj[menuId] = 1
-        // if (afterTarget[menuId]==1){
-        //     console.info("123")
-        // }
-        console.info(obj)
 
-        var block = "";
-        if (c == 0) {
-            block = "&nbsp;&nbsp;&nbsp;&nbsp;"
-        } else if (c == 1) {
-            block = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-        } else if (c == 2) {
-            block = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-        } else if (c == 3) {
-            block = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-        }
-        $.ajax({
-            type: "GET",
-            url: "http://127.0.0.1:14029/system/menu/getByPid/" + menuId,
-            headers: {
-                'token': sessionStorage.getItem("token"),
-            },
-            success: function (r) {
-                for (var i = 0; i < r.data.length; i++) {
-                    var menuType = "";
-                    if (r.data[i].menuType == "M") {
-                        menuType = "目录";
-                    } else if (r.data[i].menuType == "C") {
-                        menuType = "菜单";
-                    } else if (r.data[i].menuType == "F") {
-                        menuType = "按钮";
-                    }
-                    var target = "";
-                    if (r.data[i].target == "menuItem") {
-                        target = "页签";
-                    } else if (r.data[i].target == "menuBlank") {
-                        target = "新窗口";
-                    }
-                    var h = "<tr id='" + r.data[i].menuId + "' onclick='openMenu(" + r.data[i].menuId + ",1)'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'></td>" +
-                        "<td>" + block + "<b><i class='layui-icon layui-icon-right' style='font-size: 13px;'></i>&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
-                        "<td>" + r.data[i].orderNum + "</td>" +
-                        "<td>" + r.data[i].url + "</td>" +
-                        "<td>" + target + "</td>" +
-                        "<td>" + menuType + "</td>" +
-                        "<td>" + r.data[i].visible + "</td>" +
-                        "<td>" + r.data[i].perms + "</td>" +
-                        "<td>" + r.data[i].remark + "</td></tr>"
-                    afterHtml = afterHtml + h;
-                }
-                $("#" + menuId + "").after(afterHtml)
-                afterHtml = "";
+        if (obj.hasOwnProperty(menuId)) {
+            for (var i = 0; i < obj[menuId].length; i++) {
+                $("#" + obj[menuId][i] + "").remove()
             }
-        })
+            delete obj[menuId]
+            $("#icon" + menuId + "").attr("class", "layui-icon layui-icon-triangle-r")
+        } else {
+            var block = "&nbsp;&nbsp;&nbsp;&nbsp;";
+            if (c == 1) {
+                block = block + block;
+            } else if (c == 2) {
+                block = block + block + block;
+            } else if (c == 3) {
+                block = block + block + block + block;
+            }
+            $.ajax({
+                type: "GET",
+                url: "http://127.0.0.1:14029/system/menu/getByPid/" + menuId,
+                headers: {
+                    'token': sessionStorage.getItem("token"),
+                },
+                success: function (r) {
+                    var ch = [];
+                    for (var i = 0; i < r.data.length; i++) {
+                        var menuType = "";
+                        var target = "";
+                        if (r.data[i].target == "menuItem") {
+                            target = "<button type='button' class='layui-btn layui-btn-radius layui-btn-xs' style='background-color: #1ab394'>页签</button>";
+                        } else if (r.data[i].target == "menuBlank") {
+                            target = "<button type='button' class='layui-btn layui-btn-radius layui-btn-xs' style='background-color: orangered'>新窗口</button>";
+                        }
+                        if (r.data[i].menuType == "M") {
+                            menuType = "<button type='button' class='layui-btn layui-btn-xs layui-btn-normal'>目录</button>";
+                            var h = "<tr id='" + r.data[i].menuId + "' onclick='openMenu(" + r.data[i].menuId + ",1)'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'>" +
+                                "&nbsp;&nbsp;&nbsp;&nbsp;" + block + "<b><i class='layui-icon layui-icon-triangle-r' style='font-size: 13px;'></i>&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
+                                "<td>" + r.data[i].orderNum + "</td>" +
+                                "<td>" + r.data[i].url + "</td>" +
+                                "<td>" + target + "</td>" +
+                                "<td>" + menuType + "</td>" +
+                                "<td>" + r.data[i].visible + "</td>" +
+                                "<td>" + r.data[i].perms + "</td>" +
+                                "<td>" + r.data[i].remark + "</td></tr>"
+                            afterHtml = afterHtml + h;
+                        } else if (r.data[i].menuType == "C") {
+                            menuType = "<button type='button' class='layui-btn layui-btn-xs'>菜单</button>";
+                            var h = "<tr id='" + r.data[i].menuId + "' onclick='openMenu(" + r.data[i].menuId + ",1)'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'>" +
+                                "&nbsp;&nbsp;&nbsp;&nbsp;" + block + "<b>&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
+                                "<td>" + r.data[i].orderNum + "</td>" +
+                                "<td>" + r.data[i].url + "</td>" +
+                                "<td>" + target + "</td>" +
+                                "<td>" + menuType + "</td>" +
+                                "<td>" + r.data[i].visible + "</td>" +
+                                "<td>" + r.data[i].perms + "</td>" +
+                                "<td>" + r.data[i].remark + "</td></tr>"
+                            afterHtml = afterHtml + h;
+                        } else if (r.data[i].menuType == "F") {
+                            menuType = "<button type='button' class='layui-btn layui-btn-xs layui-btn-warm'>按钮</button>";
+                            var h = "<tr id='" + r.data[i].menuId + "' onclick='openMenu(" + r.data[i].menuId + ",1)'><td><input id='input" + r.data[i].menuId + "' type='radio' name='menuId' value='1'>" +
+                                "&nbsp;&nbsp;&nbsp;&nbsp;" + block + "<b>&nbsp;<i class='" + r.data[i].icon + "' style='font-size: 12px;'></i>&nbsp;</b>" + r.data[i].menuName + "</td>" +
+                                "<td>" + r.data[i].orderNum + "</td>" +
+                                "<td>" + r.data[i].url + "</td>" +
+                                "<td>" + target + "</td>" +
+                                "<td>" + menuType + "</td>" +
+                                "<td>" + r.data[i].visible + "</td>" +
+                                "<td>" + r.data[i].perms + "</td>" +
+                                "<td>" + r.data[i].remark + "</td></tr>"
+                            afterHtml = afterHtml + h;
+                        }
+                        // afterHtml = afterHtml + h;
+                        ch.push(r.data[i].menuId)
+                    }
+                    obj[menuId] = ch
+                    $("#" + menuId + "").after(afterHtml)
+                    $("#icon" + menuId + "").attr("class", "layui-icon layui-icon-triangle-d")
+                    afterHtml = "";
+                }
+            })
+        }
     }
 
     function onCheck(menuId) {
