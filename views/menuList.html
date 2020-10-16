@@ -24,9 +24,6 @@
             height: auto;
         }
 
-        .layui-btn-sm i {
-            font-size: 12px !important;
-        }
     </style>
 </head>
 <body>
@@ -53,14 +50,14 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin" data-type="search">
+                    <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin"  style="background-color: #1ab394"  data-type="search">
                         <span style="text-align:center;display:block;"><i
                                 class="layui-icon layui-icon-search layuiadmin-button-btn"
                                 style="font-size: 14px;"> 查 询</i></span>
                     </button>
                 </div>
                 <div class="layui-inline">
-                    <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin" data-type="reload"
+                    <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin" style="background-color: #f8ac59" data-type="reload"
                             style="background-color: orangered;">
                         <span style="text-align:center;display:block;"><i
                                 class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 14px;"> 重 置</i></span>
@@ -72,34 +69,38 @@
         <div class="layui-card-body">
             <div class="layui-form-item" style="margin-bottom: 0px">
                 <div class="layui-inline">
-                    <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" data-type="search">
+                    <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="background-color:#1E9FFF" data-type="reload">
                         <span style="text-align:center;display:block;"><i
-                                class="layui-icon layui-icon-search layuiadmin-button-btn"
-                                style="font-size: 14px;"> 新 增</i></span>
+                                class="fa fa-edit fa-lg" style="font-size: 14px;"> 修改选中</i></span>
                     </button>
                 </div>
 
                 <div class="layui-inline">
-                    <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" data-type="reload"
-                            style="background-color: orangered;">
+                    <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="background-color:#f49ba5" data-type="reload">
                         <span style="text-align:center;display:block;"><i
-                                class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 14px;"> 删 除</i></span>
-                    </button>
-                </div>
-
-                <div class="layui-inline">
-                    <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" data-type="reload"
-                            style="background-color: orangered;">
-                        <span style="text-align:center;display:block;"><i
-                                class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 14px;"> 修 改</i></span>
+                                class="fa fa-trash-o" style="font-size: 14px;"> 删除选中</i></span>
                     </button>
                 </div>
 
                 <div class="layui-inline" style="float: right">
                     <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" data-type="reload"
-                            style="background-color: orangered;">
+                            style="background-color: #23c6c8;">
                         <span style="text-align:center;display:block;"><i
-                                class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 14px;"> 刷 新</i></span>
+                                class="layui-icon layui-icon-refresh" style="font-size: 14px;"> 刷新</i></span>
+                    </button>
+                </div>
+                <div class="layui-inline" style="float: right">
+                    <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" data-type="reload"
+                            style="background-color: #23c6c8;">
+                        <span style="text-align:center;display:block;"><i
+                                class="fa fa-folder-open-o" style="font-size: 14px;"> 展开/折叠</i></span>
+                    </button>
+                </div>
+                <div class="layui-inline" style="float: right">
+                    <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="background-color:#6bd9c2" data-type="search">
+                        <span style="text-align:center;display:block;"><i
+                                class="fa fa-plus-square-o fa-lg"
+                                style="font-size: 14px;"> 新增</i></span>
                     </button>
                 </div>
             </div>
@@ -145,7 +146,7 @@
     $(function () {
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:14029/system/menu/getByPid/0",
+            url: sysUrl+"/menu/getByPid/0",
             headers: {
                 'token': sessionStorage.getItem("token"),
             },

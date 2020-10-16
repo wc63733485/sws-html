@@ -38,8 +38,17 @@
                 </div>
                 <div class="m-b"></div>
                 <h4>欢迎进入 <strong>慧水后台管理系统</strong></h4>
-                <ul class="m-b">
-                </ul>
+                <div style="height: 10px" >
+                </div>
+                <div class="layui-carousel" id="test1">
+                    <div carousel-item>
+                        <div style="background: url('../static/img/bg2.jpg') no-repeat;width: 100%;height: 100%"></div>
+                        <div style="background: url('../static/img/bg5.jpg') no-repeat;width: 100%;height: 100%"></div>
+                        <div style="background: url('../static/img/bg3.jpg') no-repeat;width: 100%;height: 100%"></div>
+                        <div style="background: url('../static/img/bg4.jpg') no-repeat;width: 100%;height: 100%"></div>
+                        <div style="background: url('../static/img/bg1.jpg') no-repeat;width: 100%;height: 100%"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-5">
@@ -59,7 +68,9 @@
 
                             <div id="box" name="box" onselectstart="return false;">
                                 <div class="bgColor"></div>
-                                <div class="txt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;按住滑块，拖动到最右边</div>
+                                <div class="txt">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;按住滑块，拖动到最右边
+                                </div>
                                 <div class="slider"><i class="iconfont icondoubleright"></i></div>
                             </div>
 
@@ -70,7 +81,8 @@
                                 <label style="margin-top: 20px">&nbsp;&nbsp;&nbsp;</label>
                             </div>
 
-                            <button class="btn btn-success btn-block" id="btnSubmitSignIn" data-loading="正在验证登录，请稍后...">登录
+                            <button class="btn btn-success btn-block" id="btnSubmitSignIn" data-loading="正在验证登录，请稍后...">
+                                登录
                             </button>
                         </form>
                     </div>
@@ -78,21 +90,22 @@
                         <form id="signupFormPhone" autocomplete="off">
                             <h4 class="no-margins">登录：</h4>
                             <p class="m-t-md">欢迎使用慧水二次供水管理平台</p>
-                            <input type="text" name="phoneNumber" class="form-control uname" placeholder="手机号" value=""/>
-                            <input type="text" name="verify" class="form-control verify" placeholder="验证码" value=""/>
+                            <input type="text" name="phoneNumber" id="phoneNumber" class="form-control uname" placeholder="手机号"
+                                   value=""/>
 
-                            <div style="float: right">
-                                <button class="btn btn-primary btn-block" id="asd" data-loading="正在验证登录，请稍后...">获取验证码
-                                </button>
+                            <div style="float: left;width: 55%">
+                                <input type="text" name="verify" class="form-control verify"
+                                       placeholder="验证码"
+                                       value=""/>
                             </div>
-                            <div style="float: right">
-                                <label style="margin-top: 20px">密码找回</label>
-                            </div>
-                            <div style="float: right">
-                                <label style="margin-top: 20px">&nbsp;&nbsp;&nbsp;</label>
+                            <div style="float: right;width: 40%">
+                                <div class="btn btn-primary btn-block" id="verifyBlock" onclick="getVerify()" style="text-align: center;padding: 6px 0px;">获取验证码
+                                </div>
+                                <label style="margin-top: 20px;float: right">密码找回</label>
                             </div>
 
-                            <button class="btn btn-success btn-block" id="btnSubmitVerify" data-loading="正在验证登录，请稍后...">登录
+                            <button class="btn btn-success btn-block" id="btnSubmitVerify" data-loading="正在验证登录，请稍后...">
+                                登录
                             </button>
                         </form>
                     </div>
@@ -123,9 +136,17 @@
 <script src="../static/libs/hk/slideHuaKuai.js"></script>
 <script src="../static/libs/layui/layui.js"></script>
 <script>
-    layui.use('element', function () {
+    layui.use(['element', 'carousel'], function () {
         var $ = layui.jquery
             , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test1'
+            , width: '100%' //设置容器宽度
+            // , arrow: 'always' //始终显示箭头
+        });
     });
 </script>
 </body>

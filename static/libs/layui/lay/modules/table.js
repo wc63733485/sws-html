@@ -111,13 +111,13 @@
             o && n.html(i(o).render(a))
         }
         var r = {
-            filter: {title: "筛选列", layEvent: "LAYTABLE_COLS", icon: "layui-icon-cols"},
-            exports: {title: "导出", layEvent: "LAYTABLE_EXPORT", icon: "layui-icon-export"},
-            print: {title: "打印", layEvent: "LAYTABLE_PRINT", icon: "layui-icon-print"}
+            filter: {title: "筛选列", layEvent: "LAYTABLE_COLS", icon: "layui-icon-cols",text:"筛选",color:"#23c6c8"},
+            exports: {title: "导出", layEvent: "LAYTABLE_EXPORT", icon: "layui-icon-export",text:"导出",color:"#23c6c8"},
+            print: {title: "打印", layEvent: "LAYTABLE_PRINT", icon: "layui-icon-print",text:"打印",color:"#23c6c8"}
         }, d = [];
         "object" == typeof a.defaultToolbar && layui.each(a.defaultToolbar, function (e, t) {
             var i = "string" == typeof t ? r[t] : t;
-            i && d.push('<div class="layui-btn layuiadmin-btn-admin" style="background-color: #23c6c8;" title="' + i.title + '" lay-event="' + i.layEvent + '"><i class="layui-icon ' + i.icon + '"></i></div>')
+            i && d.push('<div class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="background-color: '+i.color+';" title="' + i.title + '" lay-event="' + i.layEvent + '"><i class="layui-icon ' + i.icon + '"></i>'+i.text+'</div>')
         }), e.layTool.find(".layui-table-tool-self").html(d.join(""))
     }, j.prototype.setParentCol = function (e, t) {
         var i = this, a = i.config, l = i.layHeader.find('th[data-key="' + a.index + "-" + t + '"]'),
@@ -361,7 +361,7 @@
             p = a.elem.attr("lay-filter");
         i.layTool.on("click", "*[lay-event]", function (e) {
             var o = t(this), c = o.attr("lay-event"), s = function (e) {
-                var l = t(e.list), n = t('<ul class="layui-table-tool-panel"></ul>');
+                var l = t(e.list), n = t('<ul class="layui-table-tool-panel" ></ul>');
                 n.html(l), a.height && n.css("max-height", a.height - (i.layTool.outerHeight() || 50)), o.find(".layui-table-tool-panel")[0] || o.append(n), i.renderForm(), n.on("click", function (e) {
                     layui.stope(e)
                 }), e.done && e.done(n, l)
@@ -392,7 +392,7 @@
                 case"LAYTABLE_EXPORT":
                     r.ie ? l.tips("导出功能不支持 IE，请用 Chrome 等高级浏览器导出", this, {tips: 3}) : s({
                         list: function () {
-                            return ['<li data-type="csv">导出到 Csv 文件</li>', '<li data-type="xls">导出到 Excel 文件</li>'].join("")
+                            return ['<li data-type="csv" style="color: #666666">导出到 Csv 文件</li>', '<li data-type="xls" style="color: #666666" >导出到 Excel 文件</li>'].join("")
                         }(), done: function (e, l) {
                             l.on("click", function () {
                                 var e = t(this).data("type");

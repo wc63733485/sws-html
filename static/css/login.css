@@ -4,8 +4,8 @@ html {
 
 body.signin {
 	height: auto;
-	/*background: url(../img/login-background.jpg) no-repeat center fixed;*/
-	background: deepskyblue;
+	background: url(../img/login-background.jpg) no-repeat center fixed;
+	/*background: deepskyblue;*/
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -43,7 +43,7 @@ body.signin {
 }
 
 .signinpanel .verify {
-	width: 50%;
+	width: 100%;
 	float: left;
 	color: #333
 }

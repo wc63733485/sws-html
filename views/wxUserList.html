@@ -24,6 +24,11 @@
         .layui-table-tool {
             min-height: 59px;
         }
+        .layui-card-header.layuiadmin-card-header-auto {
+            padding-top: 10px;
+            padding-bottom: 5px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -39,16 +44,15 @@
                     </div>
                 </div>
 
-
                 <div class="layui-inline">
-                    <button class="layui-btn layuiadmin-btn-admin" data-type="search">
+                    <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin" style="background-color: #1ab394" lay-submit lay-filter="LAY-user-back-search">
                         <span style="text-align:center;display:block;"><i
                                 class="layui-icon layui-icon-search layuiadmin-button-btn"
-                                style="font-size: 14px;"> 搜 索</i></span>
+                                style="font-size: 14px;"> 查 询</i></span>
                     </button>
                 </div>
                 <div class="layui-inline">
-                    <button class="layui-btn layuiadmin-btn-admin" data-type="reload"
+                    <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin" style="background-color: #f8ac59" data-type="reload"
                             style="background-color: orangered;">
                         <span style="text-align:center;display:block;"><i
                                 class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 14px;"> 重 置</i></span>
@@ -80,7 +84,7 @@
             , headers: {
                 'token': sessionStorage.getItem("token"),
             }
-            , defaultToolbar: ['filter']
+            , defaultToolbar: ['exports', 'print','filter']
             , url: weChatUserUrl + '/list'
             , cols: [[
                 {field: 'nickname', title: '微信昵称', width: 120, align: 'center'}

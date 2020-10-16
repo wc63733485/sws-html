@@ -25,29 +25,19 @@
     </style>
 </head>
 <body>
-<div class="layui-fluid" style="float: left;width: 17%;height: 96%;padding-right: 5px;">
-    <div class="layui-card" style="height: 100%"></div>
-</div>
-<div class="layui-fluid" style="float: right;width: 80%;height: 96%;padding-left: 5px;">
+
+<div class="layui-fluid" style="float: right;width: 98%;height: 96%;padding-left: 5px;">
     <div class="layui-card">
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label" style="text-align: left;width: 50px;">登录名</label>
-                    <div class="layui-input-block" style="margin-left:80px">
-                        <input type="text" name="username" placeholder="请输入" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label" style="text-align: left;width: 50px">手机号</label>
-                    <div class="layui-input-block" style="margin-left:80px">
-                        <input type="text" name="telphone" placeholder="请输入" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label" style="text-align: left;width: 50px">项 目</label>
-                    <div class="layui-input-block" style="margin-left:80px">
-                        <input type="text" name="projectId" placeholder="请输入" autocomplete="off" class="layui-input">
+                    <label class="layui-form-label" style="text-align: left;width: 60px;padding: 9px 15px">角色名称</label>
+                    <div class="layui-input-block" style="margin-left:90px">
+                        <select name="roleId">
+                            <option value="0">管理员</option>
+                            <option value="1">超级管理员</option>
+                            <option value="2">其他</option>
+                        </select>
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -68,13 +58,7 @@
         </div>
 
         <div class="layui-card-body">
-<!--            <div style="padding-bottom: 10px;">-->
-<!--                <button class="layui-btn layuiadmin-btn-admin" data-type="batchdel">删除</button>-->
-<!--                <button class="layui-btn layuiadmin-btn-admin" data-type="add">添加</button>-->
-<!--            </div>-->
-
             <table class="layui-hide" id="user_table" lay-filter="user_table"></table>
-
         </div>
     </div>
 </div>
@@ -100,14 +84,14 @@
             ,text: {
                 none: '暂无相关数据' //默认：无数据
             }
-            , url: sysUrl + '/user/list'
+            , url: sysUrl + '/role/list'
             , headers: {
                 'token': sessionStorage.getItem("token"),
             }
             ,defaultToolbar: [{ //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
-                title: '新增用户'
+                title: '新增角色'
                 ,color: '#6bd9c2'
-                ,text: '新增用户'
+                ,text: '新增角色'
                 ,layEvent: 'addUser'
                 ,icon: 'layui-icon-username'
             },'filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
@@ -121,11 +105,12 @@
             ,title: '用户数据表'
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'userId', title: '用户ID', width: 75, align: 'center'}
-                , {field: 'userName', title: '用户昵称', width: 100, align: 'center'}
-                , {field: 'email', title: '用户邮箱', width: 180, align: 'center'}
-                , {field: 'phonenumber', title: '手机号码', width: 120, align: 'center'}
-                , {field: 'status', title: '帐号状态', width: 100, align: 'center', templet: function (res) {
+                , {field: 'roleId', title: '角色ID', width: 80, align: 'center'}
+                , {field: 'roleName', title: '角色名称', width: 150, align: 'center'}
+                , {field: 'roleSort', title: '显示顺序', width: 120, align: 'center'}
+                , {field: 'dataScope', title: '数据范围', width: 200, align: 'center'}
+                , {field: 'delFlag', title: '删除标志', width: 120, align: 'center'}
+                , {field: 'status', title: '角色状态', width: 120, align: 'center', templet: function (res) {
                         if (res.status == 0) {
                             return '正常';
                         } else if (res.status == 1) {
@@ -134,15 +119,14 @@
                             return '-';
                         }
                     }}
-                , {field: 'loginDate', title: '最后登陆时间', width: 180, align: 'center'}
-                , {field: 'loginIp', title: '最后登陆IP', width: 150, align: 'center'}
-                , {title: '操作', align: 'center', width: 180,toolbar: '#oper'}
+                , {field: 'roleKey', title: '角色权限', width: 200, align: 'center'}
                 , {field: 'remark', title: '备注', align: 'center'}
             ]]
             , id: 'userTable'
             , response: {
                 statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
             }
+            , skin:"line"
             , page: true
             , limit: 10
             , limits: [8, 10, 20, 50, 100, 200]
@@ -210,10 +194,6 @@
         });
 
     });
-</script>
-<script type="text/html" id="oper">
-    <a class="layui-btn layui-btn-xs" lay-event="detail">修改密码</a>
-    <a class="layui-btn layui-btn-xs" lay-event="edit">分配角色</a>
 </script>
 </body>
 </html>
