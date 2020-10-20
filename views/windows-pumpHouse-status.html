@@ -7,11 +7,11 @@
     <title>慧水介绍</title>
     <link rel="shortcut icon" href="favicon.ico">
 
-    <link th:href="@{/ajax/libs/layui/css/layui.css}" media="all"
+    <link href="../static/libs/layui/css/layui.css" media="all"
           rel="stylesheet"/>
-    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
-    <link th:href="@{/dist/jbox/jBox.all.css}">
-    <link th:href="@{/css/jbox/Demo.css}">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="../static/libs/jbox/jBox.all.css">
+    <link href="../static/css/jbox/Demo.css">
     <style>
         html, body {
             height: 99%;
@@ -42,54 +42,61 @@
         .layui-tab-content {
             padding: 1px;
         }
-        a:hover{ text-decoration: underline;}
+
+        a:hover {
+            text-decoration: underline;
+        }
 
     </style>
-    <script th:src="@{/js/jquery.min.js}"></script>
-    <script th:src="@{/dist/jbox/jBox.all.js}"></script>
-    <script th:src="@{/js/sws-common.js}"></script>
+    <script src="../static/libs/jquery.min.js"></script>
+    <script src="../static/libs/jbox/jBox.all.js"></script>
+    <script src="../static/libs/sws-common.js"></script>
 </head>
 
 <body style="background-color: #f0f2f5">
 
 
-<div style="float: top;margin: 1%;width: 98%;height: 38.5%;">
-    <div style="float: left;margin: 1%;width: 36%;height: 48%;background-color: #fff;box-shadow: 0 1px 4px 0 rgba(0,0,0,.08)">
-        <div style="padding: 10px;height: 100%">
-            <span style="float:left;width:100%;font-weight: 600;font-size:15px;color: #111">设备预警&nbsp;&nbsp;<i
+<div style="float: top;margin: 1%;width: 98%;height: 45.5%;">
+    <div style="float: left;margin: 1%;width: 36%;height: 55%;background-color: #fff;box-shadow: 0 1px 4px 0 rgba(0,0,0,.08)">
+        <div style="padding: 3%;height: 100%">
+            <span style="float:left;width:100%;font-weight: 600;font-size:13px;color: #111">设备预警&nbsp;&nbsp;<i
                     class="layui-icon layui-icon-tips" id="icon-tips" onmouseenter="tipsEn('icon-tips')"
                     onmouseleave="tipsLv('icon-tips')" style="font-size: 12px;color: #847f9f"></i></span>
-            <div style="float:left;width:25%;margin-top:5%;margin-left:8%;font-size: 12px;color: #111">正在报警</div>
-            <div style="float:left;width:25%;margin-top:5%;margin-left:8%;font-size: 12px;color: #111">历史报警</div>
-            <div style="float:left;width:25%;margin-top:5%;margin-left:8%;font-size: 12px;color: #111">预警事件</div>
+            <div style="float:left;width:25%;margin-top:5%;margin-left:8%;font-size: 11px;color: #111">正在报警</div>
+            <div style="float:left;width:25%;margin-top:5%;margin-left:8%;font-size: 11px;color: #111">历史报警</div>
+            <div style="float:left;width:25%;margin-top:5%;margin-left:8%;font-size: 11px;color: #111">预警事件</div>
 
-            <div style="float:left;width:21%;margin-top:6%;margin-left:14%;font-size: 30px;"><a href="#">0</a></div>
-            <div style="float:left;width:20%;margin-top:6%;margin-left:10%;font-size: 30px;"><a href="#" style="color: #d93026">1</a></div>
-            <div style="float:left;width:15%;margin-top:6%;margin-left:15%;font-size: 30px;"><a href="#" style="color: #d93026">1</a></div>
+            <div style="float:left;width:21%;margin-top:6%;margin-left:14%;font-size: 25px;"><a href="#">0</a></div>
+            <div style="float:left;width:20%;margin-top:6%;margin-left:10%;font-size: 25px;"><a href="#"
+                                                                                                style="color: #d93026">1</a>
+            </div>
+            <div style="float:left;width:15%;margin-top:6%;margin-left:15%;font-size: 25px;"><a href="#"
+                                                                                                style="color: #d93026">1</a>
+            </div>
         </div>
     </div>
-    <div style="float: left;margin: 1%;width: 60%;height: 48%;background-color: #fff;box-shadow: 0 1px 4px 0 rgba(0,0,0,.08)">
-        <div style="padding: 10px;height: 12%">
-            <span style="float:left;width:100%;font-weight: 600;font-size:15px;color: #111">资源详情</span>
+    <div style="float: left;margin: 1%;width: 60%;height: 55%;background-color: #fff;box-shadow: 0 1px 4px 0 rgba(0,0,0,.08)">
+        <div style="padding: 3%;height: 12%">
+            <span style="float:left;width:100%;font-weight: 600;font-size:13px;color: #111">资源详情</span>
         </div>
-        <div style="padding: 15px;height: 88%;">
+        <div style="padding-left: 10px;padding-right: 10px;height: 70%;">
             <table style="width: 100%;height: 100%">
-                <tr style="background-color: #fafafa;border: #ffffff solid 0px;font-size: 12px;color: #555;text-align: left;font-weight: 400;height: 24%">
+                <tr style="background-color: #fafafa;border: #ffffff solid 0px;font-size: 12px;color: #555;text-align: left;font-weight: 400;height: 10%">
                     <td>设备产品号</td>
                     <td>质保时间</td>
                     <td>联网状态</td>
                 </tr>
-                <tr style="border-top: #ebebeb solid 1px;font-size: 12px;color: #555;text-align: left;font-weight: 400;height: 24%">
+                <tr style="border-top: #ebebeb solid 1px;font-size: 11px;color: #555;text-align: left;font-weight: 400;height: 15%">
                     <td><a href="#" style="color: #0070cc">HS123505004210</a></td>
                     <td>2020-12-31</td>
                     <td><span class="layui-badge-dot layui-bg-green"></span>&nbsp;&nbsp;已连接</td>
                 </tr>
-                <tr style="border-top: #ebebeb solid 1px;font-size: 12px;color: #555;text-align: left;font-weight: 400;height: 24%">
+                <tr style="border-top: #ebebeb solid 1px;font-size: 11px;color: #555;text-align: left;font-weight: 400;height: 15%">
                     <td><a href="#" style="color: #0070cc">HS123505004213</a></td>
                     <td>2020-12-31</td>
                     <td><span class="layui-badge-dot layui-bg-green"></span>&nbsp;&nbsp;已连接</td>
                 </tr>
-                <tr style="border-top: #ebebeb solid 1px;font-size: 12px;color: #555;text-align: left;font-weight: 400;height: 24%">
+                <tr style="border-top: #ebebeb solid 1px;font-size: 11px;color: #555;text-align: left;font-weight: 400;height: 15%">
                     <td><a href="#" style="color: #0070cc">HS123505004230</a></td>
                     <td>2020-01-31</td>
                     <td><span class="layui-badge-dot"></span>&nbsp;&nbsp;未连接</td>
@@ -98,30 +105,36 @@
         </div>
     </div>
     <div style="float: left;margin: 1%;width: 36%;height: 98%;background-color: #fff;box-shadow: 0 1px 4px 0 rgba(0,0,0,.08)">
-        <div style="padding: 10px;height: 100%">
-            <span style="float:left;width:100%;font-weight: 600;font-size:15px;color: #111">工单及维保记录</span>
+        <div style="padding: 3%;height: 100%">
+            <span style="float:left;width:100%;font-weight: 600;font-size:13px;color: #111">工单及维保记录</span>
 
         </div>
     </div>
     <div style="float: right;margin: 1%;width: 60%;height: 98%;background-color: #fff;box-shadow: 0 1px 4px 0 rgba(0,0,0,.08)">
-        <div style="padding: 10px;height: 12%">
-            <span style="float:left;width:100%;font-weight: 600;font-size:15px;color: #111">泵房监控</span>
+        <div style="padding: 3%;height: 75%;float: top;">
+            <span style="float:left;width:100%;font-weight: 600;font-size:13px;color: #111">泵房监控</span>
 
-        </div>
-        <div style="float: left;margin: 2%;width: 18%;height: 96%">
-            <button type="button" class="layui-btn" style="width: 100%">东南角-1</button><br><br>
-            <button type="button" class="layui-btn" style="width: 100%">门口</button><br><br>
-            <button type="button" class="layui-btn" style="width: 100%">设备1</button><br><br>
-            <button type="button" class="layui-btn" style="width: 100%">设备2</button><br><br>
-        </div>
-        <div style="float: right;margin: 2%;width: 74%;height: 96%">
-            <live-player id="playerN1" aspect="16:9" video-url="http://39.102.45.137/rtp/06148853/hls.m3u8"
-                         live="true"></live-player>
+            <div style="float: left;width: 18%;height: 80%;margin-top: 6%">
+                <button type="button" class="layui-btn layui-btn-sm" style="width: 100%">东南角</button>
+                <br><br>
+                <button type="button" class="layui-btn layui-btn-sm" style="width: 100%">门口</button>
+                <br><br>
+                <button type="button" class="layui-btn layui-btn-sm" style="width: 100%">设备1</button>
+                <br><br>
+                <button type="button" class="layui-btn layui-btn-sm" style="width: 100%">设备2</button>
+                <br><br>
+            </div>
+            <div style="float: right;width: 70%;height: 107%;margin-right: 4%;margin-top: -3%">
+<!--                <live-player id="playerN1" aspect="16:9" video-url="http://39.102.45.137/rtp/06148853/hls.m3u8"-->
+<!--                             live="true"></live-player>-->
+                <iframe src="http://125.40.19.253:10000/play.html?serial=37010200491320000004&code=37010200491320000004&iframe=yes&aspect=fullscreen" width="96.2%" height="100%" style="margin-left: 1.8%;margin-top: 2%;" allowfullscreen
+                        allow="autoplay; fullscreen"></iframe>
+            </div>
         </div>
     </div>
 </div>
 
-<div style="float: bottom;margin: 1%;width: 98%;height: 47.5%;overflow-y:hidden">
+<div style="float: bottom;margin-right: 2%;margin-left: 2%;width: 96%;height: 55.5%;overflow-y:hidden">
 
     <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
         <ul class="layui-tab-title">
@@ -144,8 +157,8 @@
                     </div>
                 </div>
             </div>
-            <div class="layui-tab-item" >
-                <table class="layui-hide" id="LAY_table_info" ></table>
+            <div class="layui-tab-item">
+                <table class="layui-hide" id="LAY_table_info"></table>
             </div>
             <div class="layui-tab-item">内容3</div>
             <div class="layui-tab-item">内容4</div>
@@ -157,7 +170,7 @@
 </div>
 
 
-<script th:src="@{/ajax/libs/layui/layui.js}" charset="utf-8"></script>
+<script src="../static/libs/layui/layui.js"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
 
@@ -197,12 +210,11 @@
         //常规轮播
         carousel.render({
             elem: '#test1'
-            ,width: '100%'
-            ,height: '220px'
-            ,interval: 2000
+            , width: '100%'
+            , height: '160px'
+            , interval: 2000
             , arrow: 'always'
         });
-
 
 
         $('.site-demo-active').on('click', function () {
@@ -220,8 +232,8 @@
         /* Tooltip */
         new jBox('Tooltip', {
             attach: '#icon-tips',
-            height: 30,
-            content: '<div style="font-size: 12px;font-weight: 400;float: top;">该泵房报警情况</div>'
+            height: 20,
+            content: '<div style="font-size: 11px;width: 120%;text-align: center;line-height:20px;float: top;box-shadow: 2px 2px 2px 0 rgba(1,1,1,.2);background-color: white">该泵房报警情况</div>'
         });
 
         $.ajax({

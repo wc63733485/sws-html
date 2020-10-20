@@ -199,7 +199,7 @@
                 },
                 error: function (e, t) {
                     if (e.status==401){
-                        location.href = './login.html';
+                        layer.msg("请刷新或重新登录",{icon:0})
                         return;
                     }
                     i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()

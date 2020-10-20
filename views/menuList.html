@@ -227,7 +227,7 @@
             }
             $.ajax({
                 type: "GET",
-                url: "http://127.0.0.1:14029/system/menu/getByPid/" + menuId,
+                url: sysUrl+"/menu/getByPid/" + menuId,
                 headers: {
                     'token': sessionStorage.getItem("token"),
                 },

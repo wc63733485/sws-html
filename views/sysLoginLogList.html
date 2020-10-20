@@ -31,13 +31,9 @@
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label" style="text-align: left;width: 60px;padding: 9px 15px">角色名称</label>
-                    <div class="layui-input-block" style="margin-left:90px">
-                        <select name="roleId">
-                            <option value="0">管理员</option>
-                            <option value="1">超级管理员</option>
-                            <option value="2">其他</option>
-                        </select>
+                    <label class="layui-form-label" style="text-align: left;width: 60px;padding: 9px 15px">登录名</label>
+                    <div class="layui-input-block" style="margin-left:80px">
+                        <input type="text" name="loginName" placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -58,20 +54,12 @@
         </div>
 
         <div class="layui-card-body">
-            <table class="layui-hide" id="user_table" lay-filter="user_table"></table>
+            <table class="layui-hide" id="loginLog_table" lay-filter="loginLog_table"></table>
         </div>
     </div>
 </div>
 
 <script src="../static/libs/sws-common.js"></script>
-<script type="text/html" id="toolbarDemo">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="background-color:#1E9FFF" lay-event="changeData">                        <span style="text-align:center;display:block;"><i
-                class="fa fa-edit fa-lg" style="font-size: 14px;"> 修改选中</i></span></button>
-        <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="background-color:#f49ba5" lay-event="deleteDatas"><span style="text-align:center;display:block;"><i
-                class="fa fa-trash-o" style="font-size: 14px;"> 删除选中</i></span></button>
-    </div>
-</script>
 <script src="../static/libs/layui/layui.js"></script>
 <script>
     layui.use(['table'], function () {
@@ -80,29 +68,22 @@
 
         //方法级渲染
         table.render({
-            elem: '#user_table'
+            elem: '#loginLog_table'
             ,text: {
                 none: '暂无相关数据' //默认：无数据
             }
-            , url: sysUrl + '/role/list'
+            , url: logUrl + '/login/list'
             , headers: {
                 'token': sessionStorage.getItem("token"),
             }
-            ,defaultToolbar: [{ //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
-                title: '新增角色'
-                ,color: '#6bd9c2'
-                ,text: '新增角色'
-                ,layEvent: 'addUser'
-                ,icon: 'layui-icon-username'
-            },'filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+            ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '刷新'
                 ,color: '#23c6c8'
                 ,text: '刷新'
                 ,layEvent: 'refresh'
                 ,icon: 'layui-icon-refresh'
             }]
-            ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-            ,title: '用户数据表'
+            ,title: '登录日志'
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'roleId', title: '角色ID', width: 80, align: 'center'}
@@ -133,7 +114,7 @@
             , height: 'full-115'
         });
 
-        table.on('toolbar(user_table)', function(obj){
+        table.on('toolbar(loginLog_table)', function(obj){
             var checkStatus = table.checkStatus(obj.config.id);
             switch(obj.event){
                 case 'deleteDatas':

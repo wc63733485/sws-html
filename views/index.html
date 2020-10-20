@@ -65,7 +65,7 @@
                     </a>
                 </div>
                 <ul class="nav navbar-top-links navbar-right welcome-message">
-					<li><a title="视频教程" href="http://www.huishui.com/wisdom.html" target="_blank"><i class="fa fa-star-half-full"></i> 智慧水务</a></li>
+<!--					<li><a title="视频教程" href='../views/main.html?token=' target="_blank"><i class="fa fa-star-half-full"></i> 指挥平台水务</a></li>-->
 	                <li><a title="全屏显示" href="javascript:void(0)" id="fullScreen"><i class="fa fa-arrows-alt"></i> 全屏显示</a></li>
                     <li class="dropdown user-menu">
 						<a href="javascript:void(0)" class="dropdown-toggle" data-hover="dropdown">
@@ -118,7 +118,7 @@
 
         <div class="row mainContent" id="content-main">
             <iframe class="RuoYi_iframe" name="iframe0" width="100%" height="100%"
-                    src="wxUserList.html" frameborder="0" seamless></iframe>
+                    src="main.html" frameborder="0" seamless></iframe>
         </div>
         <div class="footer">
             <div class="pull-right">© 2020 sws Copyright </div>
@@ -127,6 +127,7 @@
     <!--右侧部分结束-->
 </div>
 <!-- 全局js -->
+<script src="../static/libs/sws-common.js"></script>
 <script src="../static/libs/jquery.min.js"></script>
 <script src="../static/libs/bootstrap.min.js"></script>
 <script src="../static/libs/plugins/metisMenu/jquery.metisMenu.js"></script>
@@ -140,6 +141,9 @@
 <script src="../static/libs/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="../static/ruoyi/index.js"></script>
 <script>
+    $(function() {
+
+    });
 // // 皮肤缓存
 // var skin = storage.get("skin");
 // // history（表示去掉地址的#）否则地址以"#"形式展示
@@ -191,7 +195,7 @@
 // 	    $('a[href$="' + url + '"]').parent("li").addClass("selected").parents("li").addClass("active").end().parents("ul").addClass("in");
 // 	}
 // }
-
+//
 // $(function() {
 // 	if($.common.equals("history", mode) && window.performance.navigation.type == 1) {
 // 		var url = storage.get('publicPath');

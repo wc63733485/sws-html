@@ -98,36 +98,7 @@ function loginByPhone() {
     var phoneNumber = $.common.trim($("input[name='phoneNumber']").val());
     var verify = $.common.trim($("input[name='verify']").val());
     layer.alert("未开放")
-    // $.ajax({
-    //     type: "POST",
-    //     url: sysUrl + '/sign_in_password',
-    //     data: {
-    //         "loginName": loginName,
-    //         "password": password,
-    //     },
-    //     success: function (r) {
-    //         if (r.code == 201){
-    //             sessionStorage.setItem("public_profile", JSON.stringify(r.data.user));
-    //             sessionStorage.setItem("token", r.data.token);
-    //             location.href = './index.html';
-    //         }else {
-    //             $.modal.closeLoading();
-    //             $.modal.msg(r.msg);
-    //             bgColor.style.width = 0 + "px";
-    //             slider.style.left = 0 + "px";
-    //             bgColor.style.transition = "width 0.8s linear";
-    //             slider.style.transition = "left 0.8s linear";
-    //             isSuccess = false;
-    //             txt.innerHTML = "按住滑块，拖动到最右边";
-    //             txt.style.color = "#9c9c9c";
-    //             slider.className = "slider";
-    //             icon.className = "iconfont icondoubleright";
-    //             slider.onmousedown = mousedownHandler;
-    //             document.onmousemove = null;
-    //             document.onmouseup = null;
-    //         }
-    //     },
-    // });
+
 }
 
 function validateRule() {

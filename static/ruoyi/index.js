@@ -88,7 +88,7 @@ $(function () {
     $('#side-menu').metisMenu();
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:14029/system/getMenu/" + user.userId,
+        url: sysUrl+"/getMenu/" + user.userId,
         headers: {
             'token': sessionStorage.getItem("token"),
         },
