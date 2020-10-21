@@ -177,6 +177,12 @@
 
     function tipsEn(id) {
         $("#" + id).css("color", "#111")
+        new jBox('Tooltip', {
+            attach: '#icon-tips',
+            height: 20,
+            animation: 'zoomIn',
+            content: '<div style="font-size: 11px;width: 120%;text-align: center;line-height:20px;float: top;box-shadow: 2px 2px 2px 0 rgba(1,1,1,.2);background-color: white">该泵房报警情况</div>'
+        });
     }
 
     function tipsLv(id) {
@@ -229,7 +235,6 @@
 
     $(document).ready(function () {
 
-        /* Tooltip */
         new jBox('Tooltip', {
             attach: '#icon-tips',
             height: 20,

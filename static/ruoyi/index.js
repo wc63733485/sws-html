@@ -312,7 +312,7 @@ $(function () {
                 });
                 // 选项卡菜单不存在
                 if (flag) {
-                    var str = '<a href="javascript:;" class="active menuTab" data-id="' + dataUrl + '">' + menuName + ' <i class="fa fa-times-circle"></i></a>';
+                    var str = '<a href="javascript:;" class="active menuTab" data-id="' + dataUrl + '">' + menuName + ' <i class="layui-icon layui-unselect layui-icon-close"></i></a>';
                     $('.menuTab').removeClass('active');
 
                     // 添加选项卡对应的iframe

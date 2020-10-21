@@ -227,8 +227,8 @@ body.body-small .navbar-top-links li:last-child {
 
 .minimalize-styl-2 {
     padding: 4px 12px;
-    margin: 12px 5px 5px 15px;
-    font-size: 14px;
+    margin: 5px 5px 5px 12px;
+    font-size: 20px;
     float: left;
 }
 
@@ -3279,12 +3279,12 @@ body.body-small .footer.fixed {
 
 .content-tabs .roll-left {
     left: 0;
-    border-right: solid 1px #eee;
+    border-right: solid 0px #eee;
 }
 
 .content-tabs .roll-right {
     right: 0;
-    border-left: solid 1px #eee;
+    border-left: solid 0px #eee;
 }
 
 .content-tabs button {
@@ -3314,7 +3314,8 @@ nav.page-tabs .page-tabs-content {
     display: block;
     float: left;
     border-right: solid 1px #eee;
-    padding: 0 15px;
+    padding: 0 12px;
+    color: black;
 }
 
 .page-tabs a i:hover {
@@ -6574,9 +6575,7 @@ body.rtls .top-navigation .footer.fixed, body.rtls.top-navigation .footer.fixed 
 .rtls .ltr-support {
     direction: ltr;
 }
-.page-tabs a {
-    color: #999;
-}
+
 
 .page-tabs a i {
     color: #ccc;
@@ -6586,9 +6585,10 @@ body.rtls .top-navigation .footer.fixed, body.rtls.top-navigation .footer.fixed 
 
 .page-tabs a.active {
 	background: #eaedf1;
+    border-top: solid 2px #0d8ddb;
 	color: #23508e;
-}
-.page-tabs a.active:hover,
+}.page-tabs a.active
+:hover,
 .page-tabs a.active i:hover {
 	background: #eaedf1;
 	color: #23508e;
@@ -6872,8 +6872,8 @@ body.rtls .top-navigation .footer.fixed, body.rtls.top-navigation .footer.fixed 
 }
 
 .menuTab {
-    -webkit-transition: all .3s ease-out 0s;
-    transition: all .3s ease-out 0s;
+    -webkit-transition: all .05s ease-out 0s;
+    transition: all .05s ease-out 0s;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio : 2) {

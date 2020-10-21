@@ -73,54 +73,36 @@
         </div>
 
         <div class="layui-card-body">
-            <!--            <div style="padding-bottom: 10px;">-->
-            <!--                <button class="layui-btn layuiadmin-btn-admin" data-type="batchdel">删除</button>-->
-            <!--                <button class="layui-btn layuiadmin-btn-admin" data-type="add">添加</button>-->
-            <!--            </div>-->
 
-            <table class="layui-hide" id="user_table" lay-filter="user_table"></table>
+
+            <table class="layui-hide" id="LAY_table_device" lay-filter="LAY_table_device"></table>
 
         </div>
     </div>
 </div>
 
 <script src="../static/libs/sws-common.js"></script>
-<script type="text/html" id="toolbarDemo">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="background-color:#1E9FFF"
-                lay-event="changeData">                        <span style="text-align:center;display:block;"><i
-                class="fa fa-edit fa-lg" style="font-size: 14px;"> 修改选中</i></span></button>
-        <button class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="background-color:#f49ba5"
-                lay-event="deleteDatas"><span style="text-align:center;display:block;"><i
-                class="fa fa-trash-o" style="font-size: 14px;"> 删除选中</i></span></button>
-    </div>
-</script>
 <script src="../static/libs/jquery.min.js"></script>
 <script src="../static/libs/layui/layui.js"></script>
-<script src="../static/libs/jbox/jBox.all.js"></script>
+
 <script>
 
     layui.use(['table'], function () {
         var $ = layui.$
             , table = layui.table
 
+
         //方法级渲染
         table.render({
-            elem: '#user_table'
+            elem: '#LAY_table_device'
             , text: {
                 none: '暂无相关数据' //默认：无数据
             }
-            , url: sysUrl + '/user/list'
+            , url: 'http://127.0.0.1:9021/deviceWarn/list'
             , headers: {
                 'token': sessionStorage.getItem("token"),
             }
-            , defaultToolbar: [{ //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
-                title: '新增用户'
-                , color: '#6bd9c2'
-                , text: '新增用户'
-                , layEvent: 'addUser'
-                , icon: 'layui-icon-username'
-            }, 'filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+            , defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '刷新'
                 , color: '#23c6c8'
                 , text: '刷新'
@@ -130,53 +112,61 @@
             , toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
             , title: '用户数据表'
             , cols: [[
-                {type: 'checkbox', fixed: 'left'}
-                , {field: 'userId', title: '用户ID', width: 75, align: 'center'}
-                , {field: 'userName', title: '用户昵称', width: 100, align: 'center'}
-                , {field: 'email', title: '用户邮箱', width: 180, align: 'center'}
-                , {field: 'phonenumber', title: '手机号码', width: 120, align: 'center'}
+                {checkbox: true, fixed: true}
+                , {field: 'dataName', title: '报警字段', width: 120, align: 'center', fixed: true}
+                , {field: 'number', title: '当前数值', width: 120, align: 'center'}
+                , {field: 'iotcode', title: '网关编号', align: 'center', width: 150, align: 'center'}
                 , {
-                    field: 'status', title: '帐号状态', width: 100, align: 'center', templet: function (res) {
-                        if (res.status == 0) {
-                            return '正常';
-                        } else if (res.status == 1) {
-                            return '停用';
-                        } else {
-                            return '-';
+                    field: 'level', title: '报警级别', align: 'center', width: 100, templet: function (res) {
+                        if (res.level == 1) {
+                            return '<span style="color: #f49ba5">一级</span>';
+                        } else if (res.level == 1) {
+                            return '<span style="color: orange">二级</span>';
+                        } else if (res.level == 3) {
+                            return '<span style="color: orangered">三级</span>';
                         }
                     }
                 }
-                , {field: 'loginDate', title: '最后登陆时间', width: 180, align: 'center'}
-                , {field: 'loginIp', title: '最后登陆IP', width: 150, align: 'center'}
+                , {field: 'id', title: 'ID', align: 'center', width: 80}
                 , {
-                    title: '操作', align: 'center', width: 215, templet: function (res) {
-                        var result= "";
-                        if (res.userName == "超级账号") {
-                            result =  "<a class='layui-btn layui-btn-xs' lay-event='detail' style='background-color: #f49ba5'><i class='fa fa-trash-o'>删除</i></a>" +
-                                   "<a class='layui-btn layui-btn-xs' lay-event='edit' style='background-color: #23c6c8'><i class='fa fa-edit fa-lg'>修改</i></a>" +
-                                   "<a class='layui-btn layui-btn-xs' id='otherOper' style='background-color: #6bd9c2'><i class='layui-icon layui-icon-add-circle'> 其他</i></a>"
+                    field: 'source', title: '来源', align: 'center', width: 120, templet: function (res) {
+                        if (res.source == "platform") {
+                            return '平台报警'
+                        } else if (res.source == "device") {
+                            return '设备报警'
                         }
-                        return result;
+                        return res.source;
                     }
-                }, {field: 'remark', title: '备注', align: 'center'}
+                }
+                , {field: 'warnNumber', title: '报警数值', align: 'center', width: 100}
+                , {field: 'date', title: '日期', align: 'center', width: 200}
+                , {
+                    field: 'status',
+                    title: '状态',
+                    align: 'center',
+                    align: 'center',
+                    width: 120,
+                    templet: function (res) {
+                        if (res.status == 0) {
+                            return '<span style="color: orangered"><i class="layui-icon layui-icon-close"> 未处理</i></span>';
+                        } else {
+                            return '<span style="color: #1ab394"><i class="layui-icon layui-icon-ok"> 已处理</i></span>';
+                        }
+                    }
+                }
+                , {field: 'remark', title: '备注', align: 'center'}
             ]]
-            , id: 'userTable'
-            , response: {
-                statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+            , id: 'reload'
+            // , response: {
+            //     statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+            // }
+            , where: {
+                search: ''
             }
             , page: true
-            , limit: 10
-            , limits: [8, 10, 20, 50, 100, 200]
+            , limit: 14
+            , limits: [10, 20, 50, 100, 200]
             , height: 'full-115'
-            , done: function (res, curr, count) {
-                new jBox('Tooltip', {
-                    width: 210,
-                    closeOnMouseleave: true,
-                    animation: 'zoomIn',
-                    attach: '#otherOper',
-                    content: "<div><a class='layui-btn layui-btn-xs' lay-event='detail' style='background-color: #1e9fff'><i class='layui-icon layui-icon-survey'> 修改密码</i></a><a class='layui-btn layui-btn-xs' lay-event='detail' style='background-color: #1e9fff'><i class='layui-icon layui-icon-auz'> 分配角色</i></a></div>"
-                });
-            }
         });
 
 
