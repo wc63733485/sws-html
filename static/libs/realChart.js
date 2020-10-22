@@ -9,7 +9,7 @@ var beginTime;
 
 function getDeviceData2(treeNode, data) {
     $.ajax({
-        url: "http://127.0.0.1:9021/deviceData/getDeviceData?id=" + treeNode.id,
+        url: "http://39.96.74.32:9021/deviceData/getDeviceData?id=" + treeNode.id,
         type: "GET",
         dataType: 'json',
         success: function (r) {
@@ -19,9 +19,9 @@ function getDeviceData2(treeNode, data) {
                 $("#stime" + a).html(t)
                 if (data.data[a].isOnOffData == "1") {
                     if (m[data.data[a].dataName] == "1") {
-                        $("#2" + data.data[a].dataName).html("<img src='assets/images/icon/run.png'  alt='运行'>")
+                        $("#2" + data.data[a].dataName).html("<img src='../static/img/run.png'  alt='运行'>")
                     } else {
-                        $("#2" + data.data[a].dataName).html("<img src='assets/images/icon/stop.png'  alt='停止' >")
+                        $("#2" + data.data[a].dataName).html("<img src='../static/img/stop.png'  alt='停止' >")
                     }
                 } else {
                     $("#2" + data.data[a].dataName).html(m[data.data[a].dataName])
@@ -235,7 +235,7 @@ function getDeviceData2(treeNode, data) {
 
 function getDeviceData3(treeNode, data) {
     $.ajax({
-        url: "http://127.0.0.1:9021/deviceData/getDeviceData?id=" + treeNode.id,
+        url: "http://39.96.74.32:9021/deviceData/getDeviceData?id=" + treeNode.id,
         type: "GET",
         dataType: 'json',
         success: function (r) {
@@ -245,9 +245,9 @@ function getDeviceData3(treeNode, data) {
                 $("#stime" + a).html(t)
                 if (data.data[a].isOnOffData == "1") {
                     if (m[data.data[a].dataName] == "1") {
-                        $("#2" + data.data[a].dataName).html("<img src='assets/images/icon/run.png'  alt='运行'>")
+                        $("#2" + data.data[a].dataName).html("<img src='../static/img/run.png'  alt='运行'>")
                     } else {
-                        $("#2" + data.data[a].dataName).html("<img src='assets/images/icon/stop.png'  alt='停止' >")
+                        $("#2" + data.data[a].dataName).html("<img src='../static/img/stop.png'  alt='停止' >")
                     }
                 } else {
                     $("#2" + data.data[a].dataName).html(m[data.data[a].dataName])
@@ -265,7 +265,7 @@ var tableRefresh;
 //绘制表格,加载数据基础信息（不包含参数）
 function addTable(treeId, treeNode) {
     $.ajax({
-            url: "http://127.0.0.1:9021/deviceUnit/getDeviceRealParm?IOTCode=" + treeNode.id,
+            url: "http://39.96.74.32:9021/deviceUnit/getDeviceRealParm?IOTCode=" + treeNode.id,
             type: "GET",
             dataType: 'json',
             success: function (data) {
@@ -282,7 +282,7 @@ function addTable(treeId, treeNode) {
                         + '</td><td id="' + treeNode.id + data.data[a].dataName + '">' + '-'
                         + ' </td><td>' + data.data[a].unit
                         + '</td><td  id="time' + treeNode.id + a + '">' + '-'
-                        + '</td><td>' + data.data[a].warnNumber
+                        + '</td><td>' + '-'
                         + '</td><td>' + warnbutton
                         + '</td></tr>'
                 }
@@ -303,7 +303,7 @@ function addTable(treeId, treeNode) {
 function getDeviceData(treeNode, data) {
 
     $.ajax({
-        url: "http://127.0.0.1:9021/deviceData/getDeviceData?IotCode=" + treeNode.id,
+        url: "http://39.96.74.32:9021/deviceData/getDeviceData?IotCode=" + treeNode.id,
         type: "GET",
         dataType: 'json',
         success: function (r) {
@@ -315,15 +315,15 @@ function getDeviceData(treeNode, data) {
                 $("#time" + treeNode.id + a).html(t)
                 if (data.data[a].isOnOffData == "1" && data.data[a].isAlarmData != "1") {
                     if (r.data[data.data[a].dataName] == "1") {
-                        $("#" + treeNode.id + data.data[a].dataName).html("<img src='assets/images/icon/run.png'  alt='运行'>")
+                        $("#" + treeNode.id + data.data[a].dataName).html("<img src='../static/img/run.png'  alt='运行'>")
                     } else {
-                        $("#" + treeNode.id + data.data[a].dataName).html("<img src='assets/images/icon/stop.png'  alt='停止' >")
+                        $("#" + treeNode.id + data.data[a].dataName).html("<img src='../static/img/stop.png'  alt='停止' >")
                     }
                 } else if (data.data[a].isOnOffData == "1" && data.data[a].isAlarmData == "1") {
                     if (r.data[data.data[a].dataName] == "1") {
-                        $("#" + treeNode.id + data.data[a].dataName).html("<img src='assets/images/icon/alarm6.png'  alt='报警'>")
+                        $("#" + treeNode.id + data.data[a].dataName).html("<img src='../static/img/alarm6.png'  alt='报警'>")
                     } else {
-                        $("#" + treeNode.id + data.data[a].dataName).html("<img src='assets/images/icon/alarm5.png'  alt='正常' >")
+                        $("#" + treeNode.id + data.data[a].dataName).html("<img src='../static/img/alarm5.png'  alt='正常' >")
                     }
                 } else {
                     $("#" + treeNode.id + data.data[a].dataName).html(r.data[data.data[a].dataName])
@@ -342,7 +342,7 @@ function chartView(parm1, parm2, parm3, parm4) {
     var timeData = [];
     //获取最近的50条参数
     $.ajax({
-        url: "http://127.0.0.1:9021/deviceData/getDeviceInitDataByDataName?deviceId=" + parm1 + "&dataName=" + parm4,
+        url: "http://39.96.74.32:9021/deviceData/getDeviceInitDataByDataName?deviceId=" + parm1 + "&dataName=" + parm4,
         type: "GET",
         dataType: 'json',
         success: function (r) {
@@ -387,7 +387,7 @@ function chartView(parm1, parm2, parm3, parm4) {
         var timeArray = [];
         var dataArray = [];
         $.ajax({
-            url: "http://127.0.0.1:9021/deviceData/findDataByTime",
+            url: "http://39.96.74.32:9021/deviceData/findDataByTime",
             type: "GET",
             data: data,
             dataType: 'json',
@@ -612,7 +612,7 @@ function chartView(parm1, parm2, parm3, parm4) {
         var powerFrequencyArray = [];
 
         $.ajax({
-            url: "http://127.0.0.1:9021/deviceData/findMuDataByTime",
+            url: "http://39.96.74.32:9021/deviceData/findMuDataByTime",
             type: "GET",
             data: data,
             dataType: 'json',
@@ -858,7 +858,7 @@ function getDeviceDataByDataName(startTime, parm1, parm2, parm3, parm4, newData,
     var realChart = echarts.init(document.getElementById('realChart'));
 
     $.ajax({
-        url: "http://127.0.0.1:9021/deviceData/getDeviceDataByDataName?deviceId=" + parm1 + "&dataName=" + parm4 + "&beginTime=" + startTime,
+        url: "http://39.96.74.32:9021/deviceData/getDeviceDataByDataName?deviceId=" + parm1 + "&dataName=" + parm4 + "&beginTime=" + startTime,
         type: "GET",
         dataType: 'json',
         success: function (r) {

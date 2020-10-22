@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/fabupro.css" />
+	</head>
+	<body onload="loaded()">
+		<section id="wrap">
+			<div id="scroller">
+			<p class="base_msg">基本信息</p>
+			<div class="pic">
+				<form>
+					<input name="file" type="file" style="display:none;" onchange="previewImage(this)" id="previewImg" />
+					<input type="submit" />
+				</form>
+				<div id="preview">	
+					 <img id="imghead" border="0" src="img/fapro/fapro.png" ;">
+				</div>
+			</div>
+			<ul class="choose_list">
+				<li class="item1 city_choose">
+					<span>*</span>
+					<span>所在城市</span>
+					<span class="right"></span>
+					<span id="city">深圳</span>
+				</li>
+				<li  class="item1 mechanism-type">
+					<span>*</span>
+					<span>机构类型</span>
+					<span class="right"></span>
+					<span id="organizationtype">银行</span>
+				</li>
+				<li  class="item1">
+					<span>*</span>
+					<span id="proname">机构名称</span>
+					<input class="organizationname" placeholder="请输入机构简称" id="r">
+				</li>
+				<li  class="item1">
+					<span>*</span>
+					<span id="proname">产品名称</span>
+					<input class="pro_name" type="text" placeholder="请输入产品名称" id="r">
+				</li>
+				<li  class="item1 product_type">
+					<span>*</span>
+					<span>产品类型</span>
+					<span class="right"></span>
+					<span class="pro_type">信用贷：月供贷</span>
+				</li>
+				<li  class="item1 menudown" style="display: none;">
+					<span>*</span>
+					<span class="housecar"></span>
+					<span class="right"></span>
+					<span class="type_housecar"></span>
+				</li>
+				<li class="num_list item1">
+					<p>
+						<span>*</span>
+						<select class="ratetype"><option>综合月息</option><option>月利率</option></select>
+					</p>
+					<p>
+						<input id="ratetype_minimum" class="minimum" type="text"></input>
+						<span id="dao1">到</span>
+						<input id="ratetype_max" class="max" type="text"></input>
+						<span>%</span>
+					</p>
+				</li>
+				<li class="item1 pay_type">
+					<span>*</span>
+					<span>还款方式(可多选)</span>
+					<span class="right"></span>
+					<span class="pay_metod">等额本息</span>
+				</li>
+				<li class="num_list item1">
+					<p>
+						<span>*</span>
+						<span>贷款额度</span>
+					</p>
+					<p>
+						<input id="minlendinglimit" class="minimum" type="text"></input>
+							<span>到</span>
+						<input id="maxlendinglimit" class="max" type="text"></input>
+						<span>万元</span>
+					</p>
+				</li>
+				<li class="num_list item1">
+					<p>
+						<span>*</span>
+						<span>贷款期限</span>
+					</p>
+					<p>
+						<input id="mincreditperiod" class="minimum" type="text"></input>
+							<span id="dao3">到</span>
+						<input id="maxcreditperiod" class="max" type="text"></input>
+						<select style="margin-left: 0.5rem;"><option>年</option><option>月</option></select>
+					</p>
+				</li>
+				<li class="item1 paytime">
+					<span>*</span>
+					<span>放款时间</span>
+					<span class="approvalloanday" id="right"></span>
+				</li>
+			</ul>
+			<h3 class="title">产品特色</h3>
+			<ul class="item">
+				<li id="add" class="add clearfix" style="height: auto;">
+					<p>
+						<span>*</span>
+						<span>特色优势</span>
+					</p>
+					<p>
+						5个特色标签
+					</p>
+				</li>
+			</ul>
+			<h3 class="title">准入职业</h3>
+			<ul class="item">
+				<li class="clearfix job_type">
+					<p>
+						<span>*</span>
+						<span>职业类型</span>
+					</p>
+					<p style="width: auto;padding-right: 1.2rem;">
+						未添加
+					</p>
+				</li>
+				<li class="clearfix job_T" style="height: auto;">
+					<p>
+						<span></span>
+						<span>特殊职业准入</span>
+					</p>
+					<p >
+						未添加
+					</p>
+				</li>
+			</ul>
+			<h3 class="title">产品描述</h3>
+			<ul class="item">
+				<li class="projs">
+					<p>
+						<span></span>
+						<span>产品简述</span>
+					</p>
+					<p>
+						未添加
+					</p>
+				</li>
+				<li class="applyprocess">
+					<p>
+						<span>*</span>
+						<span>申请流程</span>
+					</p>
+					<p>
+						未添加
+					</p>
+				</li>
+				<li class="applyconditon">
+					<p>
+						<span>*</span>
+						<span>申请条件</span>
+					</p>
+					<p>
+						未添加
+					</p>
+				</li>
+				<li class="needdata">
+					<p>
+						<span>*</span>
+						<span>所需材料</span>
+					</p>
+					<p>
+						未添加
+					</p>
+				</li>
+			</ul>
+			<h3 class="title more">更多</h3>
+			<ul class="item morelist">
+				<li class="beforepay">
+					<p>
+						<span></span>
+						<span>提前还款</span>
+					</p>
+					<p>
+						未添加
+					</p>
+				</li>
+				<li class="lixi">
+					<p>
+						<span></span>
+						<span>利息说明</span>
+					</p>
+					<p>
+						未添加
+					</p>
+				</li>
+				<li class="about_pay">
+					<p>
+						<span></span>
+						<span>相关费用</span>
+					</p>
+					<p>
+						未添加
+					</p>
+				</li>
+				<li class="success_ex">
+					<p>
+						<span></span>
+						<span>成功案例</span>
+					</p>
+					<p>
+						未添加
+					</p>
+				</li>
+				<li class="problem_pub">
+					<p>
+						<span></span>
+						<span>常见问题</span>
+					</p>
+					<p>
+						未添加
+					</p>
+				</li>
+			</ul>
+			</div>
+		</section>
+		<div class="footer">马上发布</div>
+		<section></section>
+		<div class="mask-all">
+			<ul class="mechanism-choose">
+				<li>银行</li>
+				<li>小额贷款公司</li>
+				<li>消费金额公司</li>
+				<li>互联网金融公司</li>
+				<li>现金担保公司</li>
+				<li>其他</li>
+				<li>取消</li>
+			</ul>
+		</div>
+		<div class="mask-all1">
+			<div class="main">
+				<div class="title1">
+					<span class="active">信用贷款</span>
+					<span>抵押贷款</span>
+					<span>现金业务</span>
+				</div>
+				<div class="loan-type">
+					<ul class="clearfix">
+						<li>护照贷</li>
+						<li>月供贷</li>
+						<li>装修贷</li>
+						<li>业主贷</li>
+						<li>租赁贷</li>
+						<li>工薪贷</li>
+						<li>公积金贷</li>
+						<li>个税贷</li>
+						<li>社保贷</li>
+						<li>学历贷</li>
+						<li>保单贷</li>
+					</ul>
+					<ul style="display: none;" class="clearfix">
+						<li class="house_loan">房产抵押</li>
+						<li class="house_loan">按揭房二押</li>
+						<li class="car_loan">汽车押证</li>
+						<li class="car_loan">汽车押车</li>
+						<li>典当</li>
+					</ul>
+					<ul style="display: none;" class="clearfix">
+						<li>额度赎楼</li>
+						<li>现金赎楼</li>
+						<li>垫资过桥</li>
+						<li>短拆|空放</li>
+						<li style="width: 3.8rem;">企业大额拆借</li>
+					</ul>
+				</div>
+				<div class="choose">
+					<span>取消</span>
+					<span>确定</span>
+				</div>
+			</div>
+		</div>
+		<div class="mask-all2">
+			<ul>
+				<li>
+					<span class="choose"></span>
+					<span>等额本息</span>
+				</li>
+				<li>
+					<span class="no_choose"></span>
+					<span>等额本金</span>
+				</li>
+				<li>
+					<span class="no_choose"></span>
+					<span>等额等息</span>
+				</li>
+				<li>
+					<span class="no_choose"></span>
+					<span>先息后本 </span>
+				</li>
+				<li>
+					<span class="no_choose"></span>
+					<span>随借随还</span>
+				</li>
+				<li>
+					<span class="no_choose"></span>
+					<span>分期还本</span>
+				</li>
+				<li>
+					<span class="no_choose"></span>
+					<span>到期还本付息</span>
+				</li>
+				<li>
+					<span class="off">取消</span>
+					<span  class="sure">确定</span>
+				</li>
+			</ul>
+		</div>
+		<div class="type_house">
+			<p class="title">选择合适该产品的房产类型</p>
+			<div class="list">
+				<ul class="clearfix">
+					<li class="active">不限</li>
+					<li>商品住宅</li>
+					<li>商住两用房</li>
+					<li>别墅</li>
+					<li>写字楼</li>
+					<li>商铺</li>
+					<li>厂房</li>
+					<li>福利房</li>
+					<li>小产权房</li>
+					<li>军产房</li>
+					<li>自建房</li>
+					<li>其他房产</li>
+				</ul>
+			</div>
+			<div class="save1">保存</div>
+		</div>
+		<div class="advantage">
+			<p class="title">选择合产品特色，最多5个</p>
+			<div class="list">
+				<ul class="clearfix">
+					<li class="active">当天放款</li>
+					<li>不看征信</li>
+					<li>不上征信</li>
+					<li>征信差可做</li>
+					<li>不看社保</li>
+					<li>不限行业</li>
+					<li>不看流水</li>
+					<li>白户可做</li>
+					<li>黑名单可做</li>
+					<li>有小额可做</li>
+					<li>负债高可做</li>
+					<li>不用上门考察</li>
+					<li>不需配偶签字</li>
+				</ul>
+			</div>
+			<div class="save">保存</div>
+		</div>
+	<!--<div id="mian_area">
+		<div class="box">
+			<div class="city">
+				<span>所在城市</span>
+				<span>深圳</span>
+			</div>
+			<div class="area">
+				<span>所在区域</span>
+				<span class="areadetial">福田区</span>
+				<ul class="list">
+					<li class="active">全部</li>
+					<li>罗湖区</li>
+					<li>福田区</li>
+					<li>盐田区</li>
+					<li>南山区</li>
+					<li>宝安区</li>
+					<li>龙岗区</li>
+					<li>龙华新区</li>
+					<li>光明新区</li>
+					<li>坪山新区</li>
+					<li>南澳大鹏新区</li>
+				</ul>
+			</div>
+		</div>
+		<div class="save">保存</div>
+	</div>-->
+	<!--<section id="applyprocess">
+		<div class="default_process">
+			<span class="choose"></span>
+			<span>默认流程</span>
+			<div class="default_process_detial">
+				<span>申请贷款</span>
+				<span>电话初审</span>
+				<span>门店办理</span>
+				<span>审批放款</span>
+			</div>
+		</div>
+		<div class="custom_process">自定义流程</div>
+		<div class="save">保存</div>
+	</section>-->
+	<section id="applyconditon">
+		<div class="add_condition">添加申请条件</div>
+		<div id="boxconditon" class="clearfix">
+			
+		</div>
+		<div class="save">保存</div>
+		<div class="mask_all">
+			<div class="edtion_box">
+				<textarea class="edtion" placeholder="请输入条件"></textarea>
+				<p>
+					<span class="off">取消</span>
+					<span class="sure">确定</span>
+				</p>
+			</div>
+		</div>
+	</section>
+	<section id="needdata">
+		<ul class="list">
+			<li>选择所需材料</li>
+			<li>添加所需材料</li>
+			<!--<li><span>1.</span>身份证</li>-->
+		</ul>
+		<div class="mask_all">
+			<div class="edtion_box">
+				<textarea class="edtion" placeholder="请输入所需材料"></textarea>
+				<p>
+					<span class="off">取消</span>
+					<span class="sure">确定</span>
+				</p>
+			</div>
+		</div>
+		<div id="save">保存</div>
+		<section id="list_box">
+			<div class="list_box">
+				<ul class="list1 clearfix">
+					<li>身份证</li>
+					<li>婚姻证明</li>
+					<li>户口本</li>
+					<li>房产证</li>
+					<li>营业执照</li>
+					<li>公积金卡</li>
+					<li>银行卡</li>
+					<li>社保卡</li>
+					<li>工作收入证明</li>
+					<li class="last">近一年银行流水</li>
+				</ul>
+			</div>
+			<div class="save">保存</div>
+		</section>
+	</section>
+	<section id="lixi">
+			<textarea class="write" placeholder="请输入内容"></textarea>
+			<div class="save">保存</div>
+	</section>
+	<section id="beforepay">
+			<textarea class="write" placeholder="请输入内容"></textarea>
+			<div class="save">保存</div>
+	</section>
+	<section id="about_pay">
+			<textarea class="write" placeholder="请输入内容"></textarea>
+			<div class="save">保存</div>
+	</section>
+	<section id="success_ex">
+			<textarea class="write" placeholder="请输入内容"></textarea>
+			<div class="save">保存</div>
+	</section>
+	<section id="commonproblem">
+		<div id="problem">
+			<p>添加常见问题</p>
+			<ul class="list">
+				<li>问题：我是国企员工，工资打卡4000以上，工作三年</li>
+				<li>问题：我是国企员工，工资打卡4000以上，工作</li>
+			</ul>
+		</div>
+		<div class="save">保存</div>
+		<div class="mask_all">
+			<div class="edtion_box">
+				<textarea class="edtion" placeholder="请输入问题"></textarea>
+				<p>
+					<span class="off">取消</span>
+					<span class="sure">确定</span>
+				</p>
+			</div>
+		</div>
+	</section>
+	<section id="job_T">
+		<p>
+			<span class="off">取消</span>
+			<span class="on">确定</span>
+		</p>
+		<ul>
+			<li>
+				<span class="no_choose"></span>
+				<span>房地产销售员</span>
+			</li>
+			<li>
+				<span class="no_choose"></span>
+				<span>投资/担保/信贷从业人员</span>
+			</li>
+			<li>
+				<span class="no_choose"></span>
+				<span>律师</span>
+			</li>
+			<li>
+				<span class="no_choose"></span>
+				<span>公检法人事</span>
+			</li>
+			<li>
+				<span class="no_choose"></span>
+				<span>自由职业</span>
+			</li>
+			<li>
+				<span class="no_choose"></span>
+				<span>无工作社保</span>
+			</li>
+		</ul>
+	</section>
+	<section id="job_type">
+		<p>
+			<span class="off">取消</span>
+			<span class="on">确定</span>
+		</p>
+		<ul>
+			<li>
+				<span class="no_choose"></span>
+				<span>标薪人士</span>
+			</li>
+			<li>
+				<span class="no_choose"></span>
+				<span>优良职业</span>
+			</li>
+			<li>
+				<span class="no_choose"></span>
+				<span>自雇人士</span>
+			</li>
+		</ul>
+	</section>
+	<section id="pay_time">
+		<ul>
+			<li>当天</li>
+			<li>1-3天</li>
+			<li>3-5天</li>
+			<li>5-7天</li>
+			<li>7-10天</li>
+			<li>10-15天</li>
+			<li>15-20天</li>
+			<li>20-30天</li>
+			<li>自定义</li>
+			<li>取消</li>
+		</ul>
+		<div class="edtion_box">
+			<textarea class="edtion" placeholder="请输入放款时间"></textarea>
+			<p>
+				<span class="off">取消</span>
+				<span class="sure">确定</span>
+			</p>
+		</div>
+	</section>
+</body>
+</html>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/iscroll.js"></script>
+<script src="js/demoUtils.js"></script>
+<script src="js/common.js"></script>
+<script src="js/fapro.js"></script>
+<script src="js/jquery.uploadify.min.js"></script>
+	<script>
+		var id = sessionStorage.getItem('advier_sign')
+//		 图片上传
+		$("#imghead").on("tap",function(){
+			$('#previewImg').trigger("click");
+		})
+////			$("#btn_img").uploadify({
+//				auto:true,
+//				fileObjName:'pic',
+//				fileTypeExts:'*.jpg;*.jpeg',
+//				method:'post',
+//				multi:false,
+//				buttonClass:'btn-primary',
+//				swf:'/js/plugins/uploadify/uploadify.swf',
+//				uploader:'/uploadProductFile.do;jsessionid=${sessionId}',
+//				fileTypeDesc:'产品名称',
+//				buttonText:'上传产品名称',
+//				overrideEvents:["onUploadSuccess","onSelect"],
+//				onUploadSuccess:function(file,data){
+//					$("#imgImg").attr("src",data);
+//					$("#img").val(data);
+//					buttonText:'btn-primary';
+//				}
+//			});
+		function previewImage(file){
+          var div = document.getElementById('preview');
+              div.innerHTML ='<img id=imghead onclick=$("#previewImg").click()>';
+              var img = document.getElementById('imghead');
+              var reader = new FileReader();
+              reader.readAsDataURL(file.files[0]);
+              	console.log(file.files[0]); 
+              	var file = file.files[0];
+              	console.log(file)
+              reader.onload = function(e){
+              	img.src = e.target.result;
+              	$.ajax({
+              		type:"post",
+              		url:"http://192.168.1.128:8888/uploadFile.do",
+              		data:{file:e.target.result},
+              		dataType:'json',
+              		success:function(data){
+              			console.log(data)
+              		},
+              		async:true
+              	});
+             }
+             
+       }
+       $("input").on('focus',function(e){
+       	e.stopPropagation();
+       	$(".footer").css('display','none');
+       	$("#wrap").css('bottom',0);
+       })
+        $("textarea").on('focus',function(e){
+	       	e.stopPropagation();
+	       	$(".footer").css('display','none');
+	       	$("#wrap").css('bottom',0);
+       })
+        $("textarea").on('blur',function(e){
+	       	e.stopPropagation();
+	       	$(".footer").css('display','block');
+	       	$("#wrap").css('bottom','2rem');
+       })
+       $("input").on('blur',function(e){
+       	e.stopPropagation();
+       	$(".footer").css('display','block');
+       	$("#wrap").css('bottom','2rem');
+       })
+       $("#wrap").on('touchstart',function(e){
+       	e.stopPropagation();
+       	$("input").trigger('blur');
+       })
+</script>
+

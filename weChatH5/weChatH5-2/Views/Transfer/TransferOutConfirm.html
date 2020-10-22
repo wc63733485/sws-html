@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0">
+	
+<title>转出</title>
+
+<link href="../../Theme/css/base.css" rel="stylesheet">
+<link href="../../Theme/css/trade.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+	<div class="header-return">
+	    <a href="javascript:history.go(-1);"></a>
+	</div>
+	
+	<div class="logo">转出</div>
+	
+	<div class="header-btn">
+		<a href="TransferOutRecord.html">转出记录</a>
+	</div>
+</header>
+
+<section class="container">
+	<div class="trade-people">
+		<div class="trade-people-photo">
+			<img src="../../Theme/images/member.png">
+		</div>
+		
+		<div class="trade-people-name">
+			<h3>AAAA(838457)</h3>
+		</div>
+	</div>
+	
+	<div class="trade-form">
+		<div class="form-widget">
+			<form action="TransferOutConfirm.html" method="get">
+				<div class="form-box">
+					<div class="form-group">
+						<label class="form-label">转出金额</label>
+
+						<div class="form-control">
+							<input placeholder="请输入转出金额" class="primary-input">
+						</div>
+						
+						<div class="choose-unit" onClick="showpop('#ChooseUnit');">
+							<span>RMB[中国]</span>
+						</div>
+					</div>
+					
+					<div class="transfer-number">
+						<span>支付余额：</span>
+						<h3>0.000</h3>
+					</div>
+				</div>
+				<div class="clr"></div>
+				
+				<div class="form-box">
+					<div class="form-group">
+						<label class="form-label">手机末4位</label>
+
+						<div class="form-control">
+							<input placeholder="请输入对方手机号手机末4位">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-submit">
+					<button type="submit" class="form-submit-btn">确认转出</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+<div id="ChooseUnit" class="popup">
+    <div class="popup-box">
+        <div class="popup-box-title">选择货币</div>
+        
+        <div class="popup-box-content">
+            <div class="choose-list">
+				<ul>
+					<li>
+						<input type="radio">
+						<label>英国[GBP]</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>澳大利亚[AUD]</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>印度[INR]</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>泰国[THB]</label>
+					</li>
+				</ul>
+			</div>
+        </div>
+        
+        <div class="popup-submit">
+            <button class="cancle-btn">取消</button>
+			<button type="submit" class="confirm-btn">确认</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../Theme/js/jquery-1.11.2.min.js"></script>
+<script src="../../Theme/js/main.js"></script>
+</body>
+</html>

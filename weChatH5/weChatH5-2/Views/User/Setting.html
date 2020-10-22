@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0">
+	
+<title>设置</title>
+
+<link href="../../Theme/css/base.css" rel="stylesheet">
+<link href="../../Theme/css/user.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+	<div class="header-return">
+	    <a href="javascript:history.go(-1);"></a>
+	</div>
+	
+	<div class="logo">设置</div>
+</header>
+
+<section class="container">
+	<div class="setting-menu setting-photo" onclick="showtab('#photo');">
+		<div class="setting-img">
+			<img src="../../Theme/images/member.png">
+		</div>
+
+		<h1>UID:833800</h1>
+		
+		<div class="user-level">
+			<h3>信用</h3>
+			<i></i>
+			<i></i>
+			<i></i>
+			<i></i>
+			<i></i>
+		</div>
+
+		<span>更换头像</span>
+	</div>
+	
+	<div class="setting-menu">
+		<a href="SettingName.html" class="setting-menu-1">
+			<i></i>
+			<h3>昵称</h3>
+			
+			<span>Lily</span>
+		</a>
+
+		<a href="javascript:void();" onClick="showpop('#lang');" class="setting-menu-2">
+			<i></i>
+			<h3>多语言</h3>
+			
+			<span>中文</span>
+		</a>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="setting-menu">
+		<a href="../Wallet/MyBankcard.html" class="setting-menu-3">
+			<i></i>
+			<h3>我的银行卡</h3>
+			
+			<span>3张</span>
+		</a>
+
+		<a href="../Wallet/MyAssets.html" class="setting-menu-4">
+			<i></i>
+			<h3>我的资产</h3>
+		</a>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="setting-menu">
+		<a href="SettingPW.html" class="setting-menu-5">
+			<i></i>
+			<h3>登录密码</h3>
+			
+			<span>保护中</span>
+		</a>
+
+		<a href="SettingPayPW.html" class="setting-menu-6">
+			<i></i>
+			<h3>支付密码</h3>
+			
+			<span>保护中</span>
+		</a>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="setting-menu">
+		<!--没有开店铺的时候显示这个-->
+		<!--<a href="ApplyShop.html" class="setting-menu-9">
+			<i></i>
+			<h3>我的店铺</h3>
+		</a>-->
+		
+		<a href="ShopInfo.html" class="setting-menu-9">
+			<i></i>
+			<h3>我的店铺</h3>
+		</a>
+		
+		<a href="ShopProduct.html" class="setting-menu-16">
+			<i></i>
+			<h3>产品管理</h3>
+		</a>
+		
+		<a href="ShopOrder.html" class="setting-menu-17">
+			<i></i>
+			<h3>店铺订单</h3>
+		</a>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="setting-menu">
+		<a href="../Shop/MyOrder.html" class="setting-menu-10">
+			<i></i>
+			<h3>我买到的宝贝</h3>
+		</a>
+
+		<a href="MyAddress.html" class="setting-menu-11">
+			<i></i>
+			<h3>收货地址管理</h3>
+		</a>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="setting-menu">
+		<a href="../Article/Announce.html" class="setting-menu-7">
+			<i></i>
+			<h3>公告</h3>
+			
+			<em class="remind"></em>
+		</a>
+
+		<a href="MyMessage.html" class="setting-menu-8">
+			<i></i>
+			<h3>系统消息</h3>
+		</a>
+	</div>
+	<div class="clr"></div>
+
+	<div class="setting-menu">
+		<a href="FeedBack.html" class="setting-menu-12">
+			<i></i>
+			<h3>投诉建议</h3>
+		</a>
+
+		<a href="Share.html" class="setting-menu-13">
+			<i></i>
+			<h3>分享</h3>
+		</a>
+
+		<a href="" class="setting-menu-14">
+			<i></i>
+			<h3>版本</h3>
+			
+			<span>1.2.2<em class="new-version">新版本</em></span>
+			
+		</a>
+
+		<a href="../Article/ArticleDetails.html" class="setting-menu-15">
+			<i></i>
+			<h3>关于</h3>
+		</a>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="logout">
+		<a href="../Login/Login.html">退出登录</a>
+	</div>
+</section>
+
+<!--修改头像弹窗-->
+<div id="photo" class="slide-warp" onclick="hidetab(this);" style="z-index: 10000; display: none; bottom: -100%;">
+    <div class="slide-box">
+        <ul>    
+			<li>
+				<a href="javascript:;">手机拍照</a>
+			</li>
+
+			<li>
+				<a href="javascript:;">相册选择图片</a>
+			</li>
+		</ul>
+		
+		<ul>
+			<li class="cancle">
+				<a href="javascript:;">取消</a>
+			</li>
+        </ul>
+    </div>
+</div>
+	
+<!--选择语言弹窗-->
+<div id="lang" class="popup">
+    <div class="popup-box">
+        <div class="popup-box-title">选择语言</div>
+        
+        <div class="popup-box-content">
+            <form>
+                <div class="choose-list">
+                    <ul>
+                        <li>
+                            <input type="radio">
+                            <label>English</label>
+                        </li>
+                        
+                        <li>
+                            <input type="radio">
+                            <label>简体中文</label>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        
+        <div class="popup-submit">
+            <button class="cancle-btn">取消</button>
+			<button type="submit" class="confirm-btn">确认</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../Theme/js/jquery-1.11.2.min.js"></script>
+<script src="../../Theme/js/main.js"></script>
+</body>
+</html>

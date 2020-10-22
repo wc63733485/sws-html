@@ -34,28 +34,28 @@
 
         .ztree li span.button.pIcon01_ico_open {
             margin-right: 2px;
-            background: url(assets/images/icon/gongsi.png) no-repeat scroll 0 0 transparent;
+            background: url(../static/img/gongsi.png) no-repeat scroll 0 0 transparent;
             vertical-align: top;
             *vertical-align: middle
         }
 
         .ztree li span.button.pIcon01_ico_close {
             margin-right: 2px;
-            background: url(assets/images/icon/gongsi.png) no-repeat scroll 0 0 transparent;
+            background: url(../static/img/gongsi.png) no-repeat scroll 0 0 transparent;
             vertical-align: top;
             *vertical-align: middle
         }
 
         .ztree li span.button.pIcon02_ico_open, .ztree li span.button.pIcon02_ico_close {
             margin-right: 2px;
-            background: url(assets/images/icon/House.png) no-repeat scroll 0 0 transparent;
+            background: url(../static/img/House.png) no-repeat scroll 0 0 transparent;
             vertical-align: top;
             *vertical-align: middle
         }
 
         .ztree li span.button.icon01_ico_docu {
             margin-right: 2px;
-            background: url(assets/images/icon/kongzhigui.png) no-repeat scroll 0 0 transparent;
+            background: url(../static/img/kongzhigui.png) no-repeat scroll 0 0 transparent;
             vertical-align: top;
             *vertical-align: middle
         }
@@ -247,7 +247,7 @@
         },
         async: {
             enable: true,
-            url: "http://127.0.0.1:9021/company/getCompanyTree",
+            url: "http://39.96.74.32:9021/company/getCompanyTree",
             autoParam: ["id", "name", "level"],
             dataFilter: filter
         },
@@ -309,7 +309,7 @@
 
     function statisData() {
         $.ajax({
-                url: "http://127.0.0.1:9021/deviceUnit/getDeviceStatisParm?deviceId=" + ptreeNode.id,
+                url: "http://39.96.74.32:9021/deviceUnit/getDeviceStatisParm?deviceId=" + ptreeNode.id,
                 type: "GET",
                 dataType: 'json',
                 success: function (data) {
@@ -333,7 +333,7 @@
 
     function setData() {
         $.ajax({
-                url: "http://127.0.0.1:9021/deviceUnit/getDeviceSetParm?deviceId=" + ptreeNode.id,
+                url: "http://39.96.74.32:9021/deviceUnit/getDeviceSetParm?deviceId=" + ptreeNode.id,
                 type: "GET",
                 dataType: 'json',
                 success: function (data) {

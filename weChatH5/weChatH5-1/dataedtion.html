@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>资料编辑</title>
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/dataedtion.css" />
+	</head>
+	<body>
+		<section id="edtion">
+			<div class="edtion_top">
+				<img src="img/fapro/edtiontouxiang.png" />
+				<p>头像未认证</p>
+			</div>
+			<ul>
+				<li>
+					<span>姓名：</span>
+					<input class="name_edtion" type="text" placeholder="请输入姓名">
+				</li>
+				<li class="sever_area">
+					<span>服务区域：</span>
+					<span>点击选择</span>
+				</li>
+				<li class="business_area">
+					<span>业务范围：</span>
+					<span>点击选择</span>
+				</li>
+				
+				<li class="advantage">
+					<span>领域优势：</span>
+					<span>点击编辑</span>
+				</li>
+			</ul>
+			<div class="save">保存</div>
+		</section>
+	</body>
+</html>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script>
+//	var area = sessionStorage.getItem('xxrz_city');//区域
+	var business_area = sessionStorage.getItem('loan_Tyep');//业务范围
+	var advantage_edtion = sessionStorage.getItem("advantage_edtion")//领域优势
+	var head_src = sessionStorage.getItem('head_src');//头像
+	if(head_src){
+		$('.edtion_top img').attr('src',head_src);
+	}
+//	if(area){
+//		$('.sever_area').find('span').eq(1).html(area);
+//	}
+	if(business_area){
+		var arr = business_area.split(',');
+		var str = '';
+		if(arr.length>3){
+			arr.length = 3;
+			for(var i = 0;i<arr.length;i++){
+				str +=arr[i] + " ";
+			}
+			$(".business_area").find('span').eq(1).html(str);
+		}
+		$(".business_area").find('span').eq(1).html(business_area);
+	}
+	if(advantage_edtion){
+		$(".advantage").find('span').eq(1).html(advantage_edtion);
+	}
+	//编辑姓名
+	$(".name_edtion").on('focus',function(e){
+		e.stopPropagation();
+		$(".save").css('display','none');
+	})
+	$(".name_edtion").on('blur',function(e){
+		e.stopPropagation();
+		$(".save").css('display','block');
+	})
+	//编辑头像
+	$('.edtion_top img').on('touchstart',function(e){
+		e.stopPropagation();
+		window.location.href = 'headpic.html';
+	})
+	//服务区域
+	$(".sever_area").on('click',function(e){
+		e.stopPropagation();
+		window.location.href = 'service.html';
+		
+	})
+	//业务范围
+	$(".business_area").on('click',function(e){
+		e.stopPropagation();
+		window.location.href = 'yewufanwei.html';
+	})
+	//领域优势
+	$('.advantage').on('click',function(e){
+		e.stopPropagation();
+		window.location.href = 'advantagearea.html';
+	})
+</script>

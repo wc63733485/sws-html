@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/homechose.css" />
+	</head>
+	<body onload="loaded()">
+		<section id="wrap">
+			<div id="scroller">
+				<p class="title">选择合适该产品的房产类型</p>
+				<div class="list">
+					<ul class="clearfix">
+						<li class="active">不限</li>
+						<li>商品住宅</li>
+						<li>商住两用房</li>
+						<li>别墅</li>
+						<li>写字楼</li>
+						<li>商铺</li>
+						<li>厂房</li>
+						<li>福利房</li>
+						<li>小产权房</li>
+						<li>军产房</li>
+						<li>自建房</li>
+						<li>其他房产</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		<div class="save">保存</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/commo.js"></script>
+	<script>
+		$(".list li").on('tap',function(e){
+			e.stopPropagation();
+			$(this).addClass('active').siblings().removeClass('active');
+		})
+		$('.save').on('click',function(e){
+			e.stopPropagation();
+			var value = $(".list").find('.active').html();
+		
+		})
+	</script>
+</html>

@@ -1,0 +1,308 @@
+.pro-type {
+  width: 100%;
+  height: 1.5rem;
+  background-color: #fff;
+  color: #666666;
+  line-height: 1.18rem;
+  padding-top: 0.3rem;
+  margin-bottom: 0.36rem;
+  font-size: 0;
+}
+.pro-type .section {
+  float: left;
+  border-right: 1px solid #ccc;
+  box-sizing: border-box;
+  text-align: center;
+}
+.pro-type .section img {
+  width: 0.52rem;
+  height: 0.34rem;
+  padding-right: 0.28rem;
+  margin-top: 0.4rem;
+  margin-left: 0.1rem;
+}
+.pro-type .section span {
+  font-size: 0.48rem;
+}
+.pro-type .section1 {
+  width: 3.76rem;
+}
+.pro-type .section2 {
+  width: 4.28rem;
+}
+.pro-type .section3 {
+  width: 4.32rem;
+}
+.pro-type .section4 {
+  width: 2.58rem;
+  border: none;
+}
+.mask-ul {
+  z-index: 1000;
+  width: 15rem;
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 1.9rem;
+  text-align: center;
+  font-size: 0.56rem;
+  color: #666666;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.mask-ul li {
+  width: 100%;
+  background-color: #fff;
+  line-height: 1.8rem;
+  border-bottom: 0.04rem solid #cccccc;
+}
+.mask-all {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: none;
+  position: absolute;
+  left: 0;
+}
+.mask-all1 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: none;
+  position: absolute;
+  left: 0;
+}
+.mask-all2 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: none;
+  position: absolute;
+  left: 0;
+}
+.mask-all3 {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: none;
+  position: absolute;
+  left: 0;
+}
+.choose .mask-ul {
+  display: block;
+}
+.project-list li {
+  width: 100%;
+  height: 4.4rem;
+  background-color: #fff;
+  margin-bottom: 0.2rem;
+}
+.project-list li .top {
+  height: 3.28rem;
+  border-bottom: 1px dashed #ccc;
+}
+.project-list li .top img {
+  width: 2.6rem;
+  height: 2.6rem;
+  float: left;
+  border: 1px solid #ccc;
+  margin-left: 0.24rem;
+  margin-top: 0.2rem;
+}
+.project-list li .top .mid {
+  float: left;
+  width: 7.2rem;
+  margin-left: 0.46rem;
+}
+.project-list li .top .mid p {
+  font-size: 0.44rem;
+  color: #999999;
+  line-height: 1rem;
+}
+.project-list li .top .mid p span:first-of-type {
+  margin-right: 0.1rem;
+}
+.project-list li .top .mid p span:last-of-type {
+  float: right;
+}
+.project-list li .top .mid p:first-of-type {
+  font-size: 0.6rem;
+  color: #7f7f7f;
+  line-height: 1.04rem;
+  margin-top: 0.12rem;
+}
+.project-list li .top .right {
+  float: right;
+  width: 3.6rem;
+  border-left: 1px solid #ccc;
+  margin-top: 0.1rem;
+  padding-left: 0.2rem;
+}
+.project-list li .top .right p {
+  width: 3.6rem;
+  margin: 0;
+  line-height: 1.6rem;
+  font-size: 0.48rem;
+  color: #999;
+  text-align: center;
+}
+.project-list li .top .right p:first-of-type {
+  font-size: 0.56rem;
+  color: #ff7400;
+  line-height: 1.08rem;
+  margin-top: 0.4rem;
+}
+.project-list li .down {
+  height: 1.06rem;
+}
+.project-list li .down span {
+  color: #059659;
+  border: 1px solid #059659;
+  padding: 0 0.32rem;
+  margin-right: 0.72rem;
+  font-size: 0.44rem;
+  vertical-align: middle;
+}
+.project-list li .down span:first-of-type {
+  margin-left: 0.74rem;
+}
+#wrap {
+  position: absolute;
+  top: 1.84rem;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  overflow: hidden;
+}
+#wrap #scroller {
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+.mask-div {
+  z-index: 1000;
+  width: 15rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 2.16rem;
+  bottom: 0;
+  display: none;
+}
+.mask-div .mask-top {
+  background-color: #fff;
+  border-bottom: 1px solid #b5b5b5;
+}
+.mask-div .title {
+  font-size: 0.52rem;
+  color: #666666;
+  line-height: 1.36rem;
+  text-indent: 0.54rem;
+  text-align: left;
+}
+.mask-div ul {
+  margin-left: 0.48rem;
+}
+.mask-div li {
+  float: left;
+  font-size: 0.48rem;
+  color: #666666;
+  line-height: 0.78rem;
+  padding: 0 0.66rem;
+  border: 1px solid #b5b5b5;
+  border-radius: 0.1rem;
+  margin-right: 0.7rem;
+  margin-bottom: 0.52rem;
+}
+.mask-div .mask-mid {
+  background-color: #fff;
+  border-bottom: 1px solid #b5b5b5;
+}
+.mask-div .mask-mid ul {
+  margin-left: 0.48rem;
+}
+.mask-div .mask-mid li {
+  float: left;
+  font-size: 0.48rem;
+  color: #666666;
+  line-height: 0.78rem;
+  padding: 0 0.5rem;
+  border: 1px solid #b5b5b5;
+  border-radius: 0.1rem;
+  margin-right: 0.6rem;
+  margin-bottom: 0.52rem;
+}
+.mask-div .mask-down {
+  background-color: #fff;
+  border-bottom: 1px solid #b5b5b5;
+}
+.mask-div .mask-down ul {
+  margin-left: 0.48rem;
+}
+.mask-div .mask-down li {
+  float: left;
+  font-size: 0.48rem;
+  color: #666666;
+  line-height: 0.78rem;
+  padding: 0 0.5rem;
+  border: 1px solid #b5b5b5;
+  border-radius: 0.1rem;
+  margin-right: 0.7rem;
+  margin-bottom: 0.52rem;
+}
+.mask-div .mask-btn {
+  height: 2rem;
+  font-size: 0.64rem;
+  line-height: 2rem;
+  border-bottom: 1px dashed #9e9e9e;
+  text-align: center;
+}
+.mask-div .mask-btn span:first-of-type {
+  width: 50%;
+  float: left;
+  background-color: #fff;
+  color: #666666;
+}
+.mask-div .mask-btn span {
+  float: right;
+  width: 50%;
+  background-color: #059659;
+  color: #fff;
+}
+.active {
+  background-color: #059659;
+  color: #fff !important;
+}
+#pullDown,
+#pullUp,
+.pulldown-tips {
+  height: 0.8rem;
+  line-height: 0.8rem;
+  text-align: center;
+  font-size: 0.6rem;
+}
+.pulldown-tips {
+  position: absolute;
+  top: -0.8rem;
+  left: 0;
+  width: 100%;
+  font-size: 0.6rem;
+}
+.pullUp-tips {
+  position: absolute;
+  bottom: -0.8rem;
+  left: 0;
+  width: 100%;
+  font-size: 0.6rem;
+  text-align: center;
+}
+#pullUp {
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  width: 100%;
+}

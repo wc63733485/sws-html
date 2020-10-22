@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0">
+	
+<title>现金交易</title>
+
+<link href="../../Theme/css/rangeslider.css" rel="stylesheet" type="text/css">
+<link href="../../Theme/css/base.css" rel="stylesheet">
+<link href="../../Theme/css/trade.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+	<div class="header-return">
+	    <a href="javascript:history.go(-1);"></a>
+	</div>
+	
+	<div class="logo header-open-arrow" onClick="showpop('#coin');">发布 VPay 出售订单</div>
+	
+	<div class="header-btn">
+		<a href="../Region/Region.html">中国</a>
+	</div>
+</header>
+
+<section class="container">
+	<div class="balance">
+		<ul>
+			<li>
+				<span>VPay资产</span>
+				<h3>100</h3>					
+			</li>
+
+			<li>
+				<span>余额</span>
+				<h3>888</h3>					
+			</li>
+		</ul>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="release-form">
+		<div class="form-widget">
+			<form action="" method="get">
+				<div class="form-box">
+					<div class="form-group">
+						<label class="form-label">当前价格</label>
+
+						<div class="form-control">
+							<input value="38.9950" class="primary-input" readonly>
+						</div>
+					</div>
+					
+					<div class="form-group" style="border: none;">
+						<label class="form-label">出售价格</label>
+
+						<div class="form-control">
+							<input id="price" value="38.9950" readonly>
+						</div>
+					</div>
+                    
+                    <div class="sell-price">
+                        <div class="sell-price-bar">
+                            <input type="range" min="0.00" max="10.00" step="0.01" value="0.00" data-rangeslider>
+                            
+                            <output class="sell-price-text"></output>
+                            <span>%</span>
+                        </div>
+                    </div>
+					
+					<div class="form-group">
+						<label class="form-label">出售数量</label>
+
+						<div class="form-control">
+							<input placeholder="0">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="form-label">购买总额</label>
+
+						<div class="form-control">
+							<input value="0" readonly>
+						</div>
+					</div>
+				</div>
+				
+				<div class="form-tips">单笔交易金额范围：100~100000</div>
+
+				<div class="form-submit">
+					<button type="submit" class="form-submit-btn red-btn" disabled>发布</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+<!--选择币种弹窗-->
+<div id="coin" class="popup">
+    <div class="popup-box">
+        <div class="popup-box-content">
+            <div class="choose-list">
+				<ul>
+					<li>
+						<input type="radio">
+						<label>VPay</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>令</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>比特币</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>莱特币</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>以太坊</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>狗狗币</label>
+					</li>
+				</ul>
+			</div>
+        </div>
+        
+        <div class="popup-submit">
+            <button class="cancle-btn">取消</button>
+			<button type="submit" class="confirm-btn">确认</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../Theme/js/jquery-1.11.2.min.js"></script>
+<script src="../../Theme/js/rangeslider.min.js"></script>
+<script src="../../Theme/js/main.js"></script>
+<script>
+	//滑动条
+	$(function() {
+		
+        var $document   = $(document);
+        var selector    = '[data-rangeslider]';
+        var $inputRange = $(selector);
+
+        // Example functionality to demonstrate a value feedback
+        // and change the output's value.
+        function valueOutput(element) {
+            var value = element.value;
+            var output = element.parentNode.getElementsByTagName('output')[0];
+
+            output.innerHTML = value;
+			
+			var nowP = 38.9950*value*0.01
+			document.getElementById("price").value = nowP + 38.9950;
+        }
+
+        // Initial value output
+        for (var i = $inputRange.length - 1; i >= 0; i--) {
+            valueOutput($inputRange[i]);
+        };
+
+        // Update value output
+        $document.on('input', selector, function(e) {
+            valueOutput(e.target);
+        });
+
+        // Initialize the elements
+        $inputRange.rangeslider({
+            polyfill: false
+        });
+	});
+</script>
+</body>
+</html>

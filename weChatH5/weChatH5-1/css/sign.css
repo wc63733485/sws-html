@@ -1,0 +1,98 @@
+.logo {
+  width: 8.22rem;
+  height: 2.46rem;
+  margin: 0 auto;
+  background: url(../img/sign/logo.jpg) no-repeat;
+  background-size: cover;
+  margin-top: 1.38rem;
+}
+form {
+  height: 3.2rem;
+  margin-top: 1.8rem;
+}
+form input {
+  width: 13.44rem;
+  height: 1.04rem;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background-color: #f2f2f2;
+  float: right;
+  outline: none;
+  font-size: 0.52rem;
+}
+form input:first-of-type {
+  margin-bottom: 1.14rem;
+}
+form label:first-of-type {
+  width: 0.48rem;
+  height: 0.88rem;
+  display: inline-block;
+  margin-left: 0.56rem;
+  margin-top: 0.1rem;
+  background: url(../img/sign/phone.jpg) no-repeat;
+  background-size: cover;
+  margin-bottom: 1.14rem;
+}
+form label:last-of-type {
+  width: 0.72rem;
+  height: 0.76rem;
+  display: inline-block;
+  background: url(../img/sign/pass.jpg) no-repeat;
+  background-size: cover;
+  margin-left: 0.52rem;
+  margin-top: 0.2rem;
+}
+form .view {
+  width: 0.92rem;
+  height: 0.56rem;
+  background: url(../img/sign/view.jpg) no-repeat;
+  background-size: cover;
+  position: absolute;
+  right: 0.52rem;
+}
+.sign {
+  width: 14rem;
+  height: 2rem;
+  background-color: #059659;
+  text-align: center;
+  color: #fff;
+  line-height: 2rem;
+  margin: 0 auto;
+  font-size: 0.76rem;
+  margin-top: 1.68rem;
+  border-radius: 0.2rem;
+}
+.sign-last {
+  width: 14rem;
+  height: 1.08rem;
+  margin: 0 auto;
+  margin-top: 0.1rem;
+}
+.sign-last a {
+  font-size: 0.52rem;
+  color: #666666;
+  line-height: 1.08rem;
+}
+.sign-last a:first-of-type {
+  float: left;
+}
+.sign-last a:last-of-type {
+  float: right;
+}
+::-webkit-input-placeholder {
+  font-size: 0.48rem;
+}
+#wrap {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+#wrap #scroller {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}

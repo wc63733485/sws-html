@@ -27,7 +27,7 @@ function loginByPassword() {
             if (r.code == 201) {
                 sessionStorage.setItem("public_profile", JSON.stringify(r.data.user));
                 sessionStorage.setItem("token", r.data.token);
-                location.href = './index.html';
+                location.href = weclome;
             } else {
                 $.modal.closeLoading();
                 $.modal.msg(r.msg);

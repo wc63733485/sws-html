@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/myself2.css" />
+	</head>
+	<body onload="loaded()">
+		<section id="wrap">
+			<div id="scroller">
+				<div class="myself">
+					<div>
+						<p class="detion_person">
+							<img src="img/sign/person.jpg" />
+						</p>
+						<p>
+							<span>用户名</span>
+							<img src="img/sign/edit.png"/>
+						</p>
+					</div>
+					<ul class="myself1 clearfix">
+						<li>
+							<p>20000</p>
+							<p>积分</p>
+						</li>
+						<li>
+							<p>20</p>
+							<p>关注</p>
+						</li>
+						<li>
+							<p>20</p>
+							<p>粉丝</p>
+						</li>
+					</ul>
+				</div>
+				<ul class="list">
+					<li>
+						<span class="advier"></span>
+						<span>我的产品</span>
+						<img src="img/sign/right.png" />
+					</li>
+					<li>
+						<span class="advier"></span>
+						<span>发布产品</span>
+						<img src="img/sign/right.png" />
+					</li>
+					<li>
+						<span class="advier"></span>
+						<span>我的订单</span>
+						<img src="img/sign/right.png" />
+					</li>
+					<li>
+						<span class="advier"></span>
+						<span>我的消息</span>
+						<img src="img/sign/right.png" />
+					</li>
+					<li>
+						<span class="advier"></span>
+						<span>我要认证</span>
+						<img src="img/sign/right.png" />
+					</li>
+					<li>
+						<span class="advier"></span>
+						<span>开通会员</span>
+						<img src="img/sign/right.png" />
+					</li>
+					<li>
+						<span class="advier"></span>
+						<span>积分中心</span>
+						<img src="img/sign/right.png" />
+					</li>
+					<li>
+						<span class="advier"></span>
+						<span>我的收藏</span>
+						<img src="img/sign/right.png" />
+					</li>
+					<li>
+						<span class="advier"></span>
+						<span>意见反馈</span>
+						<img src="img/sign/right.png" />
+					</li>
+				</ul>
+			</div>
+		</section>
+		<div class="exit">退出</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/commo.js"></script>
+	<script>
+		sessionStorage.getItem('advier_sign')
+		//头像编辑
+		$(".detion_person").on('tap',function(e){
+			e.stopPropagation();
+			window.location.href = 'dataedtion.html';
+		})
+		$('.list li:first-of-type').on("tap",function(){
+			window.location.href = 'myproduct.html';
+		})
+		$('.list li').eq(1).on("tap",function(){
+			window.location.href = 'fabupro.html';
+		})
+		$('.list li').eq(2).on("tap",function(){
+			window.location.href = 'myorder.html';
+		})
+		$('.list li').eq(3).on("tap",function(){
+			window.location.href = 'msg.html';
+		})
+		$('.list li').eq(4).on("tap",function(){
+			window.location.href = 'xxrz.html';
+		})
+		$('.list li').eq(5).on("tap",function(){
+			window.location.href = 'openmember.html';
+		})
+		$('.list li').eq(6).on("tap",function(){
+			window.location.href = 'integralcenter.html';
+		})
+		$('.list li').eq(7).on("tap",function(){
+			window.location.href = 'myshoucang.html';
+		})
+		$('.list li').eq(8).on("tap",function(){
+			window.location.href = 'opinion.html';
+		})
+		$('.exit').on('click',function(e){
+			e.stopPropagation();
+			window.history.go(-1);
+		})
+	</script>
+</html>

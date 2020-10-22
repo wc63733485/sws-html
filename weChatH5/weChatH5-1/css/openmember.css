@@ -1,0 +1,99 @@
+#wrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 2rem;
+  overflow: hidden;
+}
+#wrap #scroller {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.name_box {
+  height: 2.1rem;
+  width: 100%;
+  background-color: #fff;
+  margin-bottom: 0.6rem;
+  padding-top: 0.7rem;
+}
+.name_box .name_box1 {
+  width: 14.56rem;
+  margin-left: 0.44rem;
+}
+.name_box .name_box1 img {
+  width: 1.4rem;
+  height: 1.4rem;
+  float: left;
+  margin-right: 0.28rem;
+}
+.name_box .name_box1 p {
+  float: left;
+  width: 12rem;
+  line-height: 0.76rem;
+  height: 0.76rem;
+  font-size: 0.6rem;
+  color: #4f4f4f;
+}
+.name_box .name_box1 p .name {
+  float: left;
+}
+.name_box .name_box1 p .member {
+  float: left;
+  width: 0.64rem;
+  height: 0.56rem;
+  background: url(../img/fapro/member.png) no-repeat;
+  background-size: cover;
+  margin-left: 0.24rem;
+}
+.name_box .name_box1 .state {
+  width: 6rem;
+  float: left;
+  color: #999999;
+  line-height: 0.62rem;
+  font-size: 0.48rem;
+}
+.list li {
+  height: 2rem;
+  background-color: #fff;
+  margin-bottom: 0.04rem;
+  font-size: 0.56rem;
+  line-height: 2rem;
+}
+.list li .month {
+  float: left;
+  color: #4f4f4f;
+  margin-left: 0.44rem;
+  margin-right: 8.4rem;
+}
+.list li p {
+  float: right;
+  margin-right: 0.28rem;
+}
+.list li p span:first-of-type {
+  color: #f9b054;
+}
+.list li p span:last-of-type {
+  color: #fff;
+  background-color: #f9b054;
+  line-height: 0.82rem;
+  padding: 0 0.4rem;
+  border-radius: 0.1rem;
+  margin-left: 0.6rem;
+}
+.explain {
+  line-height: 1.18rem;
+  font-size: 0.6rem;
+  color: #999999;
+  font-weight: 700;
+  text-indent: 0.44rem;
+  margin-top: 0.28rem;
+}
+.text {
+  line-height: 1rem;
+  font-size: 0.5rem;
+  color: #999999;
+  text-indent: 0.44rem;
+}

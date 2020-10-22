@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/calculator.css" />
+	</head>
+	<body onload="loaded()">
+		<section id="wrap">
+			<div id="scroller">
+				<ul class="list">
+					<li class="item">
+						<span>贷款金额</span>
+						<p>
+							<input type="text" placeholder="请输入金额" />
+							<span>元</span>
+						</p>
+					</li>
+					<li class="item">
+						<span>贷款期限</span>
+						<span class="choose">选择</span>
+					</li>
+					<li class="item">
+						<span>年利率</span>
+						<span class="choose">选择</span>
+					</li>
+					<li class="item">
+						<span>还款方式</span>
+						<span class="choose">选择</span>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<div class="start">开始计算</div>
+		<div class="mask_all">
+			<ul>
+				<li>36个月</li>
+				<li>24个月</li>
+				<li>18个月</li>
+				<li>12个月</li>
+				<li>9个月</li>
+				<li>6个月</li>
+				<li>3个月</li>
+				<li>1个月</li>
+				<li>取消</li>
+			</ul>
+		</div>
+		<div class="mask_all1">
+			<ul>
+				<li>某某贷款10.8%</li>
+				<li>某某贷款10.8%</li>
+				<li>某某贷款10.8%</li>
+				<li>某某贷款10.8%</li>
+				<li>某某贷款10.8%</li>
+				<li>某某贷款10.8%</li>
+				<li>某某贷款10.8%</li>
+				<li>某某贷款10.8%</li>
+				<li>取消</li>
+			</ul>
+		</div>
+		<div class="mask_all2">
+			<ul>
+				<li>到期还本付息</li>
+				<li>分期还本</li>
+				<li>随借随还</li>
+				<li>先息后本</li>
+				<li>等本等息</li>
+				<li>等额本息</li>
+				<li>取消</li>
+			</ul>
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/commo.js"></script>
+	<script>
+		//贷款期限选择
+		$('.list li:nth-of-type(2)').on('tap',function(e){
+			var This = $(this);
+			e.stopPropagation();
+			$('.mask_all').css('display','block');
+			$('.mask_all li').on('click',function(e){
+				e.stopPropagation();
+				var lastHtml = $('.mask_all li:last-of-type').html();
+				var thisHtml = $(this).html();
+				$('.mask_all').css("display",'none');
+				if(lastHtml != thisHtml){
+					This.find('.choose').html(thisHtml);
+				}
+			})
+			
+		})
+		//年利率选择
+		$('.list li:nth-of-type(3)').on('tap',function(e){
+			var This = $(this);
+			e.stopPropagation();
+			$('.mask_all1').css('display','block');
+			$('.mask_all1 li').on('click',function(e){
+				e.stopPropagation();
+				var lastHtml = $('.mask_all1 li:last-of-type').html();
+				var thisHtml = $(this).html();
+				$('.mask_all1').css("display",'none');
+				if(lastHtml != thisHtml){
+					This.find('.choose').html(thisHtml);
+				}
+			})
+			
+		})
+		//还款方式
+		$('.list li:nth-of-type(4)').on('tap',function(e){
+			var This = $(this);
+			e.stopPropagation();
+			$('.mask_all2').css('display','block');
+			$('.mask_all2 li').on('click',function(e){
+				e.stopPropagation();
+				var lastHtml = $('.mask_all2 li:last-of-type').html();
+				var thisHtml = $(this).html();
+				$('.mask_all2').css("display",'none');
+				if(lastHtml != thisHtml){
+					This.find('.choose').html(thisHtml);
+				}
+			})
+			
+		})
+	</script>
+</html>

@@ -1,0 +1,85 @@
+#wrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 2rem;
+}
+#wrap #scroller {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+#wrap #scroller .explain {
+  width: 13.64rem;
+  height: 1.9rem;
+  font-size: 0.5rem;
+  color: #999999;
+  margin: 0 auto;
+  margin-top: 0.4rem;
+  line-height: 0.62rem;
+}
+#wrap #scroller .explain dt {
+  width: 2.6rem;
+  height: 1.88rem;
+  float: left;
+}
+#wrap #scroller .pic {
+  width: 13.64rem;
+  height: 15.6rem;
+  margin: 0 auto;
+  margin-top: 0.94rem;
+}
+#wrap #scroller .pic .pic-top {
+  height: 6.52rem;
+}
+#wrap #scroller .pic .pic-top p {
+  float: left;
+  width: 6.52rem;
+  height: 6.52rem;
+  font-size: 0.6rem;
+  color: #999999;
+  text-align: center;
+}
+#wrap #scroller .pic .pic-top p:first-of-type {
+  margin-right: 0.5rem;
+  background-color: #fff;
+  background-size: 1.54rem 2.8rem;
+  text-align: center;
+}
+#wrap #scroller .pic .pic-top p:first-of-type img {
+  width: 6.5rem;
+  height: 6.5rem;
+}
+#wrap #scroller .pic .pic-top p:last-of-type {
+  background-color: #fff;
+  text-align: center;
+}
+#wrap #scroller .pic .pic-top p:last-of-type img {
+  width: 6.5rem;
+  height: 6.5rem;
+}
+#wrap #scroller .pic .pic-down {
+  height: 7.5rem;
+  background-color: #fff;
+  margin-top: 0.68rem;
+  font-size: 0.6rem;
+  color: #999999;
+}
+#wrap #scroller .pic .pic-down img {
+  width: 13.54rem;
+  height: 7.5rem;
+}
+.save {
+  background-color: #059659;
+  height: 2rem;
+  font-size: 0.76rem;
+  line-height: 2rem;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: #fff;
+}

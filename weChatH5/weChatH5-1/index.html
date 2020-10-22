@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script>
+        var scale = 1 / window.devicePixelRatio;
+        document.write('<meta name="viewport" content="width=device-width,initial-scale=' + scale + ',minimum-scale=' + scale + ',maximum-scale=' + scale + ',user-scalable=no" />');
+        var html = document.getElementsByTagName("html")[0];
+        var iWidth = html.getBoundingClientRect().width;
+        html.style.fontSize = iWidth / 15 + "px";
+    </script>
+    <title>123</title>
+    <meta name="keywords" content="1"/>
+    <meta name="description" content="1"/>
+    <meta name="author" content="1"/>
+    <meta name="copyright" content="1"/>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <link rel="stylesheet" href="css/public.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/swiper-3.4.1.min.css"/>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/handlebars-v4.0.5.js"></script>
+</head>
+<body onload="loaded()">
+<header class="header">
+    <a class="logo" href="javascript:;"></a>
+    <a class="address" href="javascript:;">sws</a>
+    <form>
+        <input class="search show" type="search"/>
+    </form>
+</header>
+<section id="wrap">
+    <div id="scroller">
+        <div class="assessment">
+            <span class="sprites"></span>
+            <span>近期报警记录</span>
+        </div>
+        <div class="assessment-describe"></div>
+        <div class="find-title">
+            <span class="sprites"></span>
+            <span>实时参数</span>
+
+            <a href="javascript:;">查看其他设备>></a>
+
+        </div>
+        <div>
+            <ul id="creditLoan" class="credit-loan-list credit clearfix">
+                <li>
+                    <p class="p1">装修贷</p>
+                    <img src="img/logo/shuazi.png"/>
+                    <div>
+                        <p>
+                            <span class="monthly">0.29%</span>
+                            <span>月息</span>
+                        </p>
+                        <p class="quota">有按揭深房</p>
+                    </div>
+                </li>
+                <li>
+                    <p class="p1">工薪贷</p>
+                    <img src="img/logo/kabao.png"/>
+                    <div>
+                        <p>
+                            <span class="monthly">0.29%</span>
+                            <span>月息</span>
+                        </p>
+                        <p class="quota">正常工作半年</p>
+                    </div>
+                </li>
+                <li>
+                    <p class="p1">月供贷 </p>
+
+
+                    <img src="img/logo/yuegongtu.png"/>
+                    <div>
+                        <p>
+                            <span class="monthly">0.33%</span>
+                            <span>月息</span>
+                        </p>
+                        <p class="quota">房产按揭一个月以上</p>
+                    </div>
+                </li>
+                <li>
+                    <p class="p1">担保贷</p>
+                    <img src="img/logo/danbaotu.png"/>
+                    <div>
+                        <p>
+                            <span class="monthly">0.29%</span>
+                            <span>月息</span>
+                        </p>
+                        <p class="quota">有按揭深房</p>
+                    </div>
+                </li>
+
+            </ul>
+            <ul id="mortgage_loan" class="credit-loan-list clearfix">
+                <li>
+                    <p id="p1" class="p1">抵押房产</p>
+                    <img src="img/logo/fangchantu.png"/>
+                    <div>
+                        <p>
+                            <span class="mortgage_monthly">0.29%</span>
+                            <span>月息</span>
+                        </p>
+                        <p class="mortgage_quota">有按揭深房</p>
+                    </div>
+                </li>
+                <li>
+                    <p id="p1" class="p1">按揭房二押</p>
+                    <img src="img/logo/anjietu.png"/>
+                    <div>
+                        <p>
+                            <span class="mortgage_monthly">0.29%</span>
+                            <span>月息</span>
+                        </p>
+                        <p class="mortgage_quota">有按揭深房</p>
+                    </div>
+                </li>
+                <li>
+                    <p id="p1" class="p1">汽车押证</p>
+                    <img src="img/logo/zhengjiantu.png"/>
+                    <div>
+                        <p>
+                            <span class="mortgage_monthly">0.29%</span>
+                            <span>月息</span>
+                        </p>
+                        <p class="mortgage_quota">有按揭深房</p>
+                    </div>
+                </li>
+                <li>
+                    <p id="p1" class="p1">汽车押车</p>
+                    <img src="img/logo/qichetu.png"/>
+                    <div>
+                        <p>
+                            <span class="mortgage_monthly">0.29%</span>
+                            <span>月息</span>
+                        </p>
+                        <p class="mortgage_quota">有按揭深房</p>
+                    </div>
+                </li>
+            </ul>
+            <p class="more">
+                <a class="more-pro" href="javascript:;" >点击查看更多详细参数</a>
+            </p>
+        </div>
+    </div>
+</section>
+<ul class="footer">
+    <li>
+        <img src="img/footer/shouye2.png"/></br>
+        <a href="javascript:;">首页</a>
+    </li>
+    <li>
+        <img src="img/footer/zhaodaikuan1.png"/></br>
+        <a href="javascript:;">找贷款</a>
+    </li>
+    <li>
+        <img src="img/footer/zhaoguwen1.png"/></br>
+        <a href="javascript:;">找顾问</a>
+    </li>
+    <li>
+        <img src="img/footer/gerenzhongxin.png"/><br/>
+        <a href="javascript:;">个人中心</a>
+    </li>
+</ul>
+<script src="js/swiper-3.4.1.min.js"></script>
+<script src="js/iscroll.js"></script>
+<script src="js/demoUtils.js"></script>
+<script src="js/common.js"></script>
+<script src="js/public.js"></script>
+<script>
+    document.addEventListener('touchstart', function (ev) {
+        ev.preventDefault();
+    });
+    var header = "http://192.168.1.128:8888";
+    getAjax(header + "/indexApi.do");
+
+    function getAjax(url, data) {
+        $.ajax({
+            type: "get",
+            url: url,//后端接口
+            contentType: "application/x-www-form-urlencoded;charset=utf-8",
+            cache: false,
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var arr1 = [];
+                //信用贷
+                for (var i = 0; i < data.creditLoan.length; i++) {
+
+
+                    console.log(i)
+                    if (data.creditLoan[i] == null) {
+
+                        $("#creditLoan").find("li").eq(i).html("暂无产品");
+                        $("#creditLoan li").eq(i).css('text-align', 'center')
+                        $("#creditLoan li").eq(i).css('line-height', '4rem')
+
+                    } else {
+                        var monthly = data.creditLoan[i].minrate;
+                        arr1.push(data.creditLoan[i].minrate);
+                        var minQuota = data.creditLoan[i].minlendinglimit;
+                        var maxQuota = data.creditLoan[i].maxlendinglimit;
+                        $(".quota").eq(i).html(minQuota + "-" + maxQuota + "万元");
+                        $(".monthly").eq(i).html(monthly + "%");
+                    }
+                }
+                var min = arr1.sort(function (a, b) {
+                    return a - b;
+                })[0];
+                $(".credit_min").html(min + "%");
+                var arr2 = [];
+
+                //抵押贷
+                for (var j = 0; j < data.mortgageLoan.length; j++) {
+                    if (data.mortgageLoan[j] == null) {
+                        $(".mortgage-loan").find("li").eq(j).html("暂无产品");
+                        $(".mortgage-loan li").eq(j).css('text-align', 'center')
+                        $(".mortgage-loan li").eq(j).css('line-height', '4rem')
+                    } else {
+                        var monthly = data.mortgageLoan[j].minrate;
+                        arr2.push(data.mortgageLoan[j].minrate);
+                        var minQuota = data.mortgageLoan[j].minlendinglimit;
+                        var maxQuota = data.mortgageLoan[j].maxlendinglimit;
+                        $(".mortgage_quota").eq(j).html(minQuota + "-" + maxQuota + "万元");
+                        $(".mortgage_monthly").eq(j).html(monthly + "%");
+                    }
+                }
+                var min2 = arr2.sort(function (a, b) {
+                    return a - b;
+                })[0];
+                $(".mortgageLoan_min").html(min2 + "%");
+                //推荐顾问
+                var str = "";
+                for (var i = 0; i < data.loanConsultant.length; i++) {
+                    str += "<li data-id ='" + data.loanConsultant[i].id + "'>";
+                    str += "<img src=' http://192.168.1.128:8888" + data.loanConsultant[i].img + "'/>";
+                    str += "<div class='adviser-right'>";
+                    str += "<div class='adviser-top1'>";
+                    str += "<div class='adviser-top-left'>";
+                    str += "<p>" + data.loanConsultant[i].disName + "</p>";
+                    str += "<p>" + data.loanConsultant[i].campanyName + "|行业经验<span>" + data.loanConsultant[i].experience + "</span>年</p>";
+                    str += "</div>";
+                    str += "<div class='adviser-top-right'>";
+                    str += "<p>";
+                    str += "<span>关注量:</span>";
+                    str += "<span>" + data.loanConsultant[i].attentionDegree + "</span>";
+                    str += "</p>";
+                    str += "<p>";
+                    str += "<span>咨询量:</span>";
+                    str += "<span>" + data.loanConsultant[i].clickNumber + "</span>";
+                    str += "</p>";
+                    str += "</div>";
+                    str += "</div>";
+                    str += "<p id='adviser-down'>业务范围:" + data.loanConsultant[i].businessscope + "</p>";
+                    str += "</div>";
+                    str += "</li>";
+                }
+                $(".adviser-list").html(str);
+                loaded();
+            },
+            async: true
+        });
+    }
+
+    //轮播图
+    var mySwiper = new Swiper('.swiper-container', {
+        loop: true,
+        pagination: '.swiper-pagination',
+        autoplay: 3000
+    });
+    var swiper = new Swiper('.swiper-container1', {
+        pagination: '.swiper-pagination',
+        slidesPerView: 4,
+        paginationClickable: true,
+        spaceBetween: 0
+    });
+    //轮播下面的导航
+    $('.nav li').on('tap', function (ev) {
+        $(this).find('p').toggle();
+        $(this).siblings().find('p').css('display', 'none');
+    })
+    $('body').on('touchstart', function (event) {
+        $('.nav p').css('display', 'none');
+    })
+    //贷款评估
+    $('.assessment-describe').on('tap', function (e) {
+        e.stopPropagation();
+    })
+    //进入信用贷页面
+    $('.loan').on('tap', function (e) {
+        e.stopPropagation();
+        var value = $(this).find(".credit").html();
+        window.location.href = 'zhaodaikuan.html?type=' + value;
+        sessionStorage.removeItem('typeDetail');
+        sessionStorage.setItem('type', value);
+
+    })
+    //具体
+    $("#creditLoan li").on('tap', function (e) {
+        e.stopPropagation();
+        if ($(this).html() == '暂无产品') {
+            return;
+        }
+        var value = $(this).find('.p1').html();
+        window.location.href = 'zhaodaikuan.html?typeDetail=' + value;
+        sessionStorage.setItem('typeDetail', value);
+        var value = $(".credit-loan").find('.credit').html();
+        sessionStorage.setItem('type', value);
+//	  			sessionStorage.removeItem('type');
+    })
+    $("#mortgage_loan li").on("tap", function (e) {
+        e.stopPropagation();
+        if ($(this).html() == '暂无产品') {
+            return;
+        }
+        var value = $(this).find('.p1').html();
+        var value = $(".mortgage-loan").find('.credit').html();
+        window.location.href = 'zhaodaikuan.html?typeDetail=' + value;
+        sessionStorage.setItem('typeDetail', value);
+        sessionStorage.setItem('type', value);
+    })
+    //顾问详情
+    $('.adviser-list').delegate('li', 'tap', function (e) {
+        e.stopPropagation();
+        var id = $(this).attr('data-id');
+        sessionStorage.setItem('advierditial', id);
+        window.location.href = 'guwendetial.html?id=' + id;
+    })
+    //更多顾问
+    $('.more-adviser').on('tap', function () {
+        window.location.href = "zhaoguwen.html";
+    })
+    //更多贷款
+    $(".more-pro").on('touchstart', function () {
+        window.location.href = "zhaodaikuan.html";
+        sessionStorage.removeItem('type');
+        sessionStorage.removeItem('typeDetail');
+    })
+
+</script>
+<script>
+    $(function() {
+
+        //公告轮播
+        var adtimer;
+        var wrap = $(".announce-box ul");
+        var len = $(".announce-box ul li").length;
+        if(len>1){
+            $(".announce-box").hover(function(){
+                    clearInterval(adtimer);
+                },
+                function(){
+                    adtimer = setInterval(function(){
+                        var first = wrap.find("li:first");
+                        var HEIGHT = first.height();
+                        first.animate({
+                            marginTop:-HEIGHT+'px'
+                        },500,function(){
+                            first.css('marginTop',0).appendTo(wrap);
+                        })
+                    },2500)
+                }).trigger('mouseleave');
+        }
+
+        //var num = 0;
+//		var width = 0;
+//		var length = $('.announce-box ul li').length;
+//
+//		for(var i=0; i<length; i++){
+//			width += $('.announce-box ul li').eq(i).width();
+//		}
+//
+//		function goLeft() {
+//
+//			if (num == -parseInt(width)) {
+//				num = 0;
+//			}
+//			num -= 1;
+//			$(".announce-box ul").css({
+//				marginLeft: num
+//			})
+//		}
+//
+//		//设置滚动速度
+//		var timer = setInterval(goLeft, 30);
+//
+//		//设置鼠标经过时滚动停止
+//		$(".announce-box ul").hover(function() {
+//			clearInterval(timer);
+//		},
+//		function() {
+//			timer = setInterval(goLeft, 30);
+//		});
+
+        //顶部滚动效果
+        //$(window).scroll(function(){
+//
+//			if ($(window).scrollTop() >= 20){
+//				$("#fixedBg").addClass('user-header-fixed');
+//			}
+//			else{
+//				$("#fixedBg").removeClass('user-header-fixed');
+//			}
+//		});
+    });
+
+
+    //暂未开放
+    $(function(){
+        $('.no-open').click(function(){
+            $('.popup').fadeIn();
+
+            var h = ($(window).height() - $('.popup-box').height())/2;
+            $('.popup-box').css('margin-top',h);
+        });
+
+        $('.confirm-btn').click(function(){
+            $('.popup').fadeOut();
+        });
+    });
+</script>
+</body>
+</html>

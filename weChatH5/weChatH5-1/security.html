@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/security.css" />
+	</head>
+	<body onload="loaded()">
+		<section id="wrap">
+			<div id="scroller">
+				<ul class="list">
+					<li>
+						<span>修改密码</span>
+						<span class="right"></span>
+					</li>
+					<li>
+						<span>修改绑定手机</span>
+						<span class="right"></span>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/commo.js"></script>
+</html>

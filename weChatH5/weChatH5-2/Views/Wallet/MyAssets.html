@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0">
+	
+<title>我的资产</title>
+
+<link href="../../Theme/css/base.css" rel="stylesheet">
+<link href="../../Theme/css/user.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+	<div class="header-return">
+	    <a href="javascript:history.go(-1);"></a>
+	</div>
+	
+	<div class="logo">我的资产</div>
+</header>
+
+<section class="container">
+	<div class="assets-balance">
+		<ul>
+			<li>
+				<p>余额</p>
+				<h3>1000000.00000000000000</h3>
+			</li>
+			
+			<li>
+				<p id="ChooseUnit" class="assets-unit">
+					<span>RMB[中国]</span>
+				</p>
+				<h3>800</h3>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="assets-title">数字资产</div>
+	<div class="assets-list">
+		<ul>
+			<li>
+				<span>Vpay</span>
+				<h3>100.00000</h3>
+			</li>
+			
+			<li>
+				<span>比特币</span>
+				<h3>100.00000</h3>
+			</li>
+			
+			<li>
+				<span>莱特币</span>
+				<h3>100.00000</h3>
+			</li>
+			
+			<li>
+				<span>以太坊</span>
+				<h3>100.00000</h3>
+			</li>
+			
+			<li>
+				<span>狗狗币</span>
+				<h3>100.00000</h3>
+			</li>
+			
+			<li>
+				<span>令</span>
+				<h3>100.00000</h3>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="assets-title">其他</div>
+	<div class="assets-list">
+		<ul>
+			<li>
+				<span>积分</span>
+				<h3>100.00000</h3>
+			</li>
+			
+			<li>
+				<span>V宝</span>
+				<h3>100.00000</h3>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="form-tips">
+		说明：资产的统计包含可用资产加冻结资产。
+	</div>
+</section>
+
+<!--选择货币单位弹窗-->
+<div class="popup">
+    <div class="popup-box">
+        <div class="popup-box-title">选择货币</div>
+        
+        <div class="popup-box-content">
+            <div class="choose-list">
+				<ul>
+					<li>
+						<input type="radio">
+						<label>英国[GBP]</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>澳大利亚[AUD]</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>印度[INR]</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>泰国[THB]</label>
+					</li>
+				</ul>
+			</div>
+        </div>
+        
+        <div class="popup-submit">
+            <button class="cancle-btn">取消</button>
+			<button type="submit" class="confirm-btn">确认</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../Theme/js/jquery-1.11.2.min.js"></script>
+<script>
+	
+	//选择货币单位
+	$(function(){
+		$('#ChooseUnit').click(function(){
+			$('.popup').fadeIn();				  
+		});	
+		
+		$('.cancle-btn').click(function(){
+			$('.popup').fadeOut();				  
+		});
+	});
+
+</script>
+</body>
+</html>

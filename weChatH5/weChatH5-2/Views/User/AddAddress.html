@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0">
+	
+<title>新建地址</title>
+
+<link href="../../Theme/css/base.css" rel="stylesheet">
+<link href="../../Theme/css/user.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+	<div class="header-return">
+	    <a href="javascript:history.go(-1);"></a>
+	</div>
+	
+	<div class="logo">新建地址</div>
+</header>
+
+<section class="container">
+	<div class="setting-form">
+		<div class="form-widget bankcard-form">
+			<form action="MyAddress.html" method="get">
+				<div class="form-box">
+					<div class="form-group">
+						<label class="form-label">姓名</label>
+
+						<div class="form-control">
+							<input placeholder="请输入您的名字">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="form-label">手机</label>
+
+						<div class="form-control">
+							<input placeholder="请输入您的手机号码">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="form-label">选择区域</label>
+
+						<div class="form-control">
+							<div class="select-group" onClick="showpop('#address');">
+								<span>请选择省份</span>
+							</div>
+							
+							<div class="select-group" onClick="showpop('#address');">
+								<span>请选择城市</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">详细地址</label>
+
+						<div class="form-control">
+							<input placeholder="请输入街道/门牌/小区">
+						</div>
+					</div>
+				</div>
+				
+				<div class="set-default">
+					<input type="checkbox">
+					<span>设为默认收货地址</span>
+				</div>
+
+				<div class="form-submit">
+					<button type="submit" class="form-submit-btn">确定</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+<div id="address" class="popup">
+    <div class="popup-box">
+        <div class="popup-box-title">选择区域</div>
+        
+        <div class="popup-box-content">
+            <div class="choose-list">
+				<ul>
+					<li>
+						<input type="radio">
+						<label>北京</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>天津</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>山东</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>山西</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>上海</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>湖南</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>湖北</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>江西</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>附件</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>广西壮族自治区</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>广东</label>
+					</li>
+				</ul>
+			</div>
+        </div>
+        
+        <div class="popup-submit">
+            <button class="cancle-btn">取消</button>
+			<button type="submit" class="confirm-btn">确认</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../Theme/js/jquery-1.11.2.min.js"></script>
+<script src="../../Theme/js/main.js"></script>
+</body>
+</html>

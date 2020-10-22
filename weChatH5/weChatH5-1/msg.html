@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/msg.css" />
+	</head>
+	<body onload="loaded()">
+		<header class="head">
+			<span onclick="window.history.go(-1)"></span>
+			<span>信息</span>
+		</header>
+		<section id="wrap">
+			<div id="scroller">
+				<ul class="msg-list">
+					<li>
+						<img src="img/msg/touxiang1.png" />
+						<div class="msg-tet">
+							<p>某某贷款顾问</p>
+							<span>消息......</span>
+						</div>
+						<span class="time">17:05</span>
+					</li>
+					<li>
+						<img src="img/msg/touxiang2.png"/>
+						<div class="msg-tet">
+							<p>某某贷款顾问</p>
+							<span>消息......</span>
+						</div>
+						<span class="time">17:05</span>
+					</li>
+					<li>
+						<img src="img/msg/touxiang3.png" />
+						<div class="msg-tet">
+							<p>某某贷款顾问</p>
+							<span>消息......</span>
+						</div>
+						<span class="time">17:05</span>
+					</li>
+					<li>
+						<img src="img/msg/touxiang4.png" />
+						<div class="msg-tet">
+							<p>某某贷款顾问</p>
+							<span>消息......</span>
+						</div>
+						<span class="time">17:05</span>
+					</li>
+					<li>
+						<img src="img/msg/touxiang5.png" />
+						<div class="msg-tet">
+							<p>某某贷款顾问</p>
+							<span>消息......</span>
+						</div>
+						<span class="time">17:05</span>
+					</li>
+					<li>
+						<img src="img/msg/touxiang6.png" />
+						<div class="msg-tet">
+							<p>某某贷款顾问</p>
+							<span>消息......</span>
+						</div>
+						<span class="time">17:05</span>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</body>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/commo.js"></script>
+</html>

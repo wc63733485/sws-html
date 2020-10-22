@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<meta name="format-detection" content="telephone=yes">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/public.css" />
+		<link rel="stylesheet" href="css/zhaoguwen.css" />
+	</head>
+	<body>
+		<header class="header">
+			<a class="logo" href="javascript:;"></a>
+			<a class="address" href="javascript:;">深圳</a>
+			<form>
+				<input class="search show" type="text" />
+			</form>
+		</header>
+		<ul class="pro-type clearfix">
+			<li class="section section1">
+				<span>全部区域</span>
+				<img src="img/icon/xiangxia.png" />
+					<ul class="mask-ul">
+						<li>全部区域</li>
+						<li>福田区</li>
+						<li>南山区</li>
+						<li>罗湖区</li>
+					</ul>
+			</li>
+			<li class="section section2">
+				<span>不限贷款类型</span>
+				<img src="img/icon/xiangxia.png" />
+					<ul class="mask-ul">
+						<!--<li>贷款类型</li>
+						<li>信用贷款</li>
+						<li>抵押贷款</li>
+						<li>现金业务</li>-->
+					</ul>
+			</li>
+			<li class="section section3">
+				<span>不限产品类型</span>
+				<img src="img/icon/xiangxia.png" />
+					<ul class="mask-ul">
+						<!--<li>产品类型</li>
+						<li>护照贷</li>
+						<li>装修贷</li>
+						<li>业主贷</li>
+						<li>租赁贷</li>
+						<li>工薪贷</li>
+						<li>公积金贷</li>
+						<li>个税贷</li>
+						<li>社保贷</li>
+						<li>学历贷</li>
+						<li>保单贷</li>-->
+					</ul>
+			</li>
+			<li class="section section4">
+				<span>筛选</span>
+				<img src="img/icon/xiangxia.png" />
+				<div class="mask-div">
+					<div class="mask-top">
+						<p class="clearfix">
+							<span class="active">默认</span>
+							<span>关注量</span>
+							<span>咨询量</span>
+							<span>人气</span>
+						</p>
+					</div>
+					<div class="mask-btn">
+						<span>重置</span>
+						<span>确定</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<section id="wrap">
+			<section id="scroller">
+				<div id="pullDown" class=""><div class="pullDownLabel"></div></div>  
+		        <div class="pulldown-tips">下拉刷新</div>  
+				<div class="all-pro">全部顾问<span class="adviser_num">220</span>个</div>
+				<ul class="adviser-list">
+					
+				</ul>
+				 <div class="pullUp-tips"></div>  
+				 <div id="pullUp" class="">  
+		        	<div class="pullUpLabel"></div>  
+		        </div>  
+			</section>
+		</section>
+		<ul class="footer">
+			<li>
+				<img src="img/footer/shoye1.png"/></br>
+				<a href="javascript:;">首页</a>
+			</li>
+			<li>
+				<img src="img/footer/zhaodaikuan1.png"/></br>
+				<a href="javascript:;">找贷款</a>
+			</li>
+			<li>
+				<img src="img/footer/zhaoguwen.png"/></br>
+				<a href="javascript:;">找顾问</a>
+			</li>
+			<li>
+				<img src="img/footer/gerenzhongxin.png" /><br />
+				<a href="javascript:;">个人中心</a>
+			</li>
+		</ul>
+		<div class="phone_mask">
+			<div class="phone_main">
+				<p>拨打顾问电话</p>
+				<div>130-3901-2397</div>
+				<p>
+					<a class="off" href="javascript:;">取消</span>
+					<a href="tel:1309012397">确定</span>
+				</p>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/commo.js"></script>
+	<script src="js/public.js"></script>
+	<script src="js/iscroll-probe.js"></script>
+	<script>
+			var data = null;
+			var currentPage = 1;
+			var nextPage = 0;
+			var pageSize = 3;
+			var header = "http://rk3mvt.natappfree.cc";
+			data = {
+				pageSizez:3
+			}
+			getAjax(header+"/loanConsultantList.do",data);
+			function getAjax(url,data){
+				$.ajax({
+					type:"get",
+					url:url,//后端接口
+					contentType: "application/x-www-form-urlencoded;charset=utf-8", 
+					cache:false,
+					dataType:"json",
+					data:data,
+					success:function(data){
+						currentPage = data.currentPage;
+						nextPage = data.nextPage;
+						pageSize = data.pageSize;
+						console.log(data)
+						var str = "";
+						$(".adviser_num").html(data.totalCount);
+						for(var i=0;i<data.listData.length;i++){
+							str += "<li data-id= "+data.listData[i].id+">"
+							str +="<img src=' http://192.168.1.128:8888"+ data.listData[i].img +"'/>";
+								str +="<div class='adviser-top'>"
+									str +="<div class='adviser-right'>"
+										str +="<div class='adviser-right1'>"
+											str +="<p>"+data.listData[i].disName+"</p>"
+											str +="<p>"+data.listData[i].campanyName+" | 行业经验<span>"+data.listData[i].experience+"</span>年</p>"
+										str +="</div>"
+										str +="<div class='adviser-right2'>"
+											str +="<p>"
+												str +="<span>关注量:</span>"
+												str +="<span>"+data.listData[i].attentionDegree+"</span>"
+											str +="</p>"
+											str +="<p>"
+												str +="<span>咨询量:</span>"
+												str +="<span>"+data.listData[i].clickNumber+"</span>"
+											str +="</p>"
+										str +="</div>"
+									str +="</div>"
+								str +="</div>"
+								str +="<div class='adviser-down'>"
+									str +="<p>业务范围："+data.listData[i].businessscope+"</p>"
+									str +="<p>领域优势："+data.listData[i].advantage+"</p>"
+									str +="<p class='clearfix'>"
+										str +="<span class = 'apply_money'>申请贷款</span>"
+										str +="<a href ='tel:13039012397' class='phone'>电话咨询</a>"
+									str +="</p>"
+								str +="</div>"
+							str +="</li>"
+						}
+						$('.adviser-list').html(str);
+						loaded();
+					}
+				});
+			}
+		//地区选择
+		$('.section1').on('click',function(e){
+			e.stopPropagation();
+			$(this).siblings().find('.mask-ul').css('display','none');
+			$(this).siblings().find('.mask-div').css('display','none');
+			$(this).find('.mask-ul').toggle();
+		})
+		$('.section1 .mask-ul').delegate('li','click',function(e){
+				e.stopPropagation()
+				$(this).parent().css('display','none');
+				$('.section1 span').html($(this).html());
+				var value = $(this).html();
+				if(value == "全部区域"){
+					data = {pageSize:3};
+				}else{
+					data = {area:value,pageSize:3};
+				}
+				console.log(data);
+				getAjax(header+"/loanConsultantList.do",data);
+		})
+		//类型选择
+		$.ajax({
+				type:"get",
+				url:header+"/getCreditTypeApi.do",
+				contentType: "application/x-www-form-urlencoded;charset=utf-8", 
+				cache:false,
+				dataType:"json",
+//				data:{
+//					type:value
+//				},
+				success:function(data){
+					console.log(data)
+					var l = new liandong(data);
+				}
+		})
+		$('.section2').on('click',function(e){
+				e.stopPropagation();
+			$(this).siblings().find('.mask-ul').css('display','none');
+			$(this).siblings().find('.mask-div').css('display','none');
+			$(this).find('.mask-ul').toggle();
+			$(this).find('.mask-ul li').on('click',function(e){
+				e.stopPropagation()
+				$(this).parent().css('display','none');
+				$('.section2 span').html($(this).html());
+				$(".section3 span").html('不限产品类型');
+				type = $(this).html();
+				data={type:type,pageSize:3};
+				getAjax(header+"/loanConsultantList.do",data);
+			})
+		})
+		$('.section3').on('click',function(e){
+			e.stopPropagation();
+			$(this).siblings().find('.mask-ul').css('display','none');
+			$(this).siblings().find('.mask-div').css('display','none');
+			var spanHtml = $(".section2 span").html();
+			if(spanHtml != "不限贷款类型"){
+				$(this).find('.mask-ul').toggle();
+			}
+		})
+		$('.section3 .mask-ul').delegate('li','click',function(e){
+					e.stopPropagation()
+					$(this).parent().css('display','none');
+					$('.section3 span').html($(this).html());
+					var businessName = $(this).html();
+					data = {businessName:businessName,pageSize:3}
+					getAjax(header+"/loanConsultantList.do",data);
+		})
+		//筛选
+		$('.section4').on('click',function(e){
+			e.stopPropagation();
+			$(this).siblings().find('.mask-ul').css('display','none');
+			$(this).siblings().find('.mask-ul').css('display','none');
+				$(this).find('.mask-div').toggle();
+				$(".mask-top span").on('click',function(e){
+					e.stopPropagation();
+					$(this).addClass('active').siblings().removeClass('active');
+				})
+				$(".mask-btn span:first-of-type").on('click',function(e){
+					e.stopPropagation();
+					$(".mask-top span").removeClass('active');
+				})
+		})
+		 $(".mask-btn span:last-of-type").on('click',function(e){
+				e.stopPropagation();
+				$('.mask-div').css('display','none');
+				var value = $(".mask-top").find('.active').html();
+				var attentionDegree,consultNumber,clickNumber;
+				if(value == "关注量"){
+					data = {attentionDegree:value,pageSize:3}
+				}else if(value == "咨询量"){
+					data = {consultNumber:value,pageSize:3}
+				}else if(value == "人气"){
+					data = {clickNumber:clickNumber,pageSize:3}
+				}else if(value == "默认"){
+					data = {pageSize:3};
+				}
+				getAjax(header+"/loanConsultantList.do",data);
+		})
+		 //顾问详情
+		 $(".adviser-list").delegate('li','tap',function(e){
+		 	e.stopPropagation();
+		 	var id = $(this).attr('data-id');
+//		 	alert(id)
+		 	sessionStorage.setItem('advierditial',id);
+		 	window.location.href = 'guwendetial.html?id='+id;
+		 })
+		 //申请贷款
+		 $(".adviser-list").delegate('.apply_money','tap',function(e){
+		 	e.stopPropagation();
+		 	var id = $(this).parents('[data-id]').attr('data-id');
+		 	sessionStorage.setItem('advierditial',id);
+		 	window.location.href = 'sqdk.html?id='+id;
+		 })
+		 //电话咨询
+		 $(".adviser-list").delegate('.phone','tap',function(e){
+		 	e.stopPropagation();
+		 	$(this).trigger('click');
+		 	$(".phone_mask").css('display','block');
+		 	 $(".off").on('click',function(e){
+		 		e.stopPropagation();
+		 		$(".phone_mask").css('display','none');
+		 	})
+		 })
+		
+		function liandong(arg){
+			this.create(arg);					//入口
+		}
+		liandong.prototype={
+			create:function(arg){
+				this.sit=arg;					//保存数据
+				this.key=[];					//做key值储存池，留做渲染
+				var _self=this;
+				getKey(arg,_self);				//获取key值
+				this.showKey(this.key);			//渲染key值
+				this.keyEvent();				//点击事件
+			},
+			showKey:function(key){					//渲染key
+			var mask_ul1 = document.querySelector('.section2 .mask-ul');
+				for(index in key){
+					var msg=key[index];
+					var li=document.createElement('li');
+//					li.class='ld-key';
+					li.innerText=msg;
+					mask_ul1.appendChild(li);
+				}
+				
+			},
+			keyEvent:function(){			//li的点击事件
+				var _self=this;				//保存对象
+				var key = document.querySelector('.section2 .mask-ul');
+				var list=key.childNodes;
+				for( i in list){
+					var i=i;
+					if(list[i].nodeName=='LI'){
+						list[i].onclick=function(){
+							var k=this.innerText;
+							_self.showValue(k);
+						}
+					}
+				}
+			},
+			showValue:function(key){		//显示value值
+				var mask_ul2 = document.querySelector('.section3 .mask-ul');
+				this.clearValue(mask_ul2);
+				var value=this.sit[key];
+				for(index in value){
+					var msg=value[index];
+					var li=document.createElement('li');
+					li.class='ld-value';
+					li.innerText=msg;
+					mask_ul2.appendChild(li);
+				}		
+			},
+			clearValue:function(right){		//	清除value值
+				right.innerHTML=null;	
+			}
+		}
+		function getKey(site,obj){			//获取key，并将key值传入数组渲染
+			for(var key in site){
+				var key=key;
+				obj.key.push(key);
+				
+			}
+		}
+//		var l = new liandong(type);
+	function loaded () {  
+        var myScroll,  
+                    pullDown = $("#pullDown"),  
+                    pullUp = $("#pullUp"),  
+                    pullDownLabel = $(".pullDownLabel"),  
+                    pullUpLabel = $(".pullUpLabel"),  
+                    container = $('#list'),  
+                    loadingStep = 0;//加载状态0默认，1显示加载状态，2执行加载数据，只有当为0时才能再次加载，这是防止过快拉动刷新  
+  
+            pullDown.hide();  
+            pullUp.hide();  
+  
+            myScroll = new IScroll("#wrap", {  
+                scrollbars: false,  
+                mouseWheel: false,  
+                interactiveScrollbars: true,  
+                shrinkScrollbars: 'scale',  
+                fadeScrollbars: true,  
+                scrollY:true,  
+                probeType: 2,  
+                bindToWrapper:true  ,
+                mouseWheel: true, 
+                tap: true
+            });  
+            myScroll.on("scroll",function(){  
+            	 console.log(this.y);
+            	 console.log(loadingStep);
+            	 console.log(pullDown.attr("class")) 
+            	 console.log(pullUp.attr("class"))
+                if(loadingStep == 0 && !pullDown.attr("class").match('refresh|loading') && !pullUp.attr("class").match('refresh')){  
+                  if(this.y > 40){//下拉刷新操作
+                        $(".pulldown-tips").hide();  
+                        pullDown.addClass("refresh").show();  
+                        pullDownLabel.text("松手刷新数据");  
+                        loadingStep = 1;  
+                        myScroll.refresh();  
+                    }else if(this.y < (this.maxScrollY - 14)){//上拉加载更多  
+                        pullUp.addClass("refresh").show();  
+                        loadingStep = 1;  
+                        if(currentPage==nextPage){
+                        	console.log(1)
+                        	 pullUp.attr('class','').show();
+                        	 pullUpLabel.text("我是有底线的");
+                        	 loadingStep = 0;
+                        }else{
+                        	pullUpLabel.text("松手加载数据")
+                        	  pullUpAction();
+                        	  myScroll.refresh();
+                        }
+                    }  
+                }  
+            });  
+            myScroll.on("scrollEnd",function(){  
+                if(loadingStep == 1){  
+                    if( pullDown.attr("class").match("refresh") ){//下拉刷新操作  
+                        pullDown.removeClass("refresh").addClass("loading");  
+                        pullDownLabel.text("正在刷新");  
+                        loadingStep = 2;  
+                        pullDownAction();  
+                    }
+                }  
+            });  
+	        function pullDownAction(){  
+	                pullDown.attr('class','').hide();
+	                data.pageSize = 5;
+	                console.log(data);
+	                getAjax(header+"/loanConsultantList.do",data);
+	                myScroll.refresh();  
+	                loadingStep = 0;  
+	                $(".pulldown-tips").show();  
+	        }
+	        function pullUpAction(){
+	        	  pullUp.attr('class','').hide();
+	                if(currentPage!=nextPage ){
+	                	 data.pageSize = pageSize + 3;
+	                	 getAjax(header+"/loanConsultantList.do",data);
+	                }
+	                myScroll.refresh();  
+	                loadingStep = 0;  
+	        }  
+  
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);  
+        }  
+	</script>
+</html>

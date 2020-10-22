@@ -1,0 +1,221 @@
+#wrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 1.72rem;
+  overflow: hidden;
+}
+#wrap #scroller {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.base_msg {
+  background-color: #f2f2f2;
+  height: 1.36rem;
+  font-size: 0.6rem;
+  color: #4f4f4f;
+  line-height: 1.36rem;
+  margin-left: 0.44rem;
+}
+.pic {
+  height: 4.2rem;
+  background-color: #fff;
+  margin-bottom: 0.04rem;
+}
+.pic p {
+  width: 3.8rem;
+  height: 3.4rem;
+  margin-left: 0.38rem;
+  margin-top: 0.3rem;
+  float: left;
+  color: #999999;
+  border: 0.04rem dashed #999999;
+}
+.pic p span {
+  font-size: 0.6rem;
+  line-height: 1.06rem;
+  text-indent: 0.6rem;
+  display: block;
+}
+.pic p span:first-of-type {
+  margin-top: 0.68rem;
+}
+.choose_list li {
+  height: 1.8rem;
+  background-color: #fff;
+  margin-bottom: 1px;
+  font-size: 0.56rem;
+  color: #333333;
+  line-height: 1.7rem;
+}
+.choose_list li span:last-of-type {
+  float: right;
+  color: #999999;
+  font-size: 0.56rem;
+  margin-right: 0.8rem;
+}
+.choose_list li span:first-of-type {
+  color: #ff7400;
+  margin-left: 0.44rem;
+  line-height: 1.6rem;
+  float: left;
+  margin-top: 0.2rem;
+  margin-right: 0.36rem;
+}
+.choose_list li .right {
+  float: right;
+  background: url(../img/register/right.png) no-repeat;
+  width: 0.84rem;
+  height: 0.84rem;
+  margin-top: 0.44rem;
+  margin-right: 0.34rem;
+}
+.choose_list #r {
+  float: right;
+  color: #999999;
+  font-size: 0.56rem;
+  border: none;
+  outline: none;
+  height: 1.6rem;
+  margin-top: 0.1rem;
+}
+.choose_list #proname {
+  float: left;
+}
+.num_list p:first-of-type {
+  float: left;
+}
+.num_list p:first-of-type span:first-of-type {
+  color: #ff7400;
+  margin-left: 0.44rem;
+  line-height: 1.6rem;
+  float: left;
+  margin-top: 0.2rem;
+  margin-right: 0.36rem;
+}
+.num_list p:first-of-type #down {
+  background: url(../img/register/down.png) no-repeat;
+  width: 0.64rem;
+  height: 0.64rem;
+  display: inline-block;
+  background-size: cover;
+  margin-top: 0.5rem;
+}
+.num_list p:last-of-type {
+  width: 8.4rem;
+  float: right;
+}
+.num_list p:last-of-type span {
+  color: #999999;
+  line-height: 1.8rem;
+  margin-top: 0;
+}
+.num_list p:last-of-type span:nth-of-type(1) {
+  color: #333333;
+  margin-right: 1.4rem;
+}
+.num_list p:last-of-type span:nth-of-type(2) {
+  color: #333333;
+  font-size: 0.56rem;
+  margin-right: 1.3rem;
+}
+.num_list p:last-of-type span:last-of-type {
+  color: #333333;
+}
+#nian {
+  padding-right: 0.7rem;
+  background: url(../img/register/down.png) no-repeat 0.6rem 0.6rem;
+}
+.title {
+  height: 1.38rem;
+  background-color: #f2f2f2 ;
+  font-size: 0.6rem;
+  color: #4f4f4f;
+  line-height: 1.38rem;
+  text-indent: 0.42rem;
+  font-weight: bold;
+  margin: 0;
+}
+.more {
+  background: url(../img/register/down1.png) no-repeat 14.1rem 0.54rem;
+  background-size: 0.64rem 0.64rem;
+}
+.item {
+  font-size: 0.6rem;
+}
+.item li {
+  height: 1.8rem;
+  background-color: #fff;
+  margin-bottom: 1px;
+}
+.item P:first-of-type {
+  float: left;
+  line-height: 1.8rem;
+}
+.item P:first-of-type span:first-of-type {
+  color: #ff7400;
+  margin-left: 0.44rem;
+  line-height: 1.6rem;
+  float: left;
+  margin-top: 0.2rem;
+  margin-right: 0.36rem;
+}
+.item p:last-of-type {
+  width: 2.92rem;
+  float: right;
+  color: #999999;
+  font-size: 0.56rem;
+  line-height: 1.8rem;
+  background: url(../img/register/right.png) no-repeat 2.2rem 0.44rem;
+  background-size: 0.84rem 0.84rem;
+  margin-right: 0.32rem;
+}
+.item .add p:last-of-type {
+  width: 4.5rem;
+  float: right;
+  color: #999999;
+  font-size: 0.56rem;
+  line-height: 1.8rem;
+  background: url(../img/icon/add.png) no-repeat 3.92rem 0.56rem;
+  background-size: 0.6rem 0.6rem;
+  margin-right: 0.36rem;
+}
+.footer {
+  width: 100%;
+  background-color: #059659;
+  height: 2rem;
+  font-size: 0.72rem;
+  line-height: 2rem;
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-size: 0.56rem;
+  color: #999;
+  text-indent: 0.56rem;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-size: 0.56rem;
+  color: #999;
+  text-indent: 0.56rem;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-size: 0.56rem;
+  color: #999;
+  text-indent: 0.56rem;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-size: 0.56rem;
+  color: #999;
+  text-indent: 0.56rem;
+}

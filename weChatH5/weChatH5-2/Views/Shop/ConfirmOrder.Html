@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0">
+	
+<title>订单确认</title>
+	
+<link href="../../Theme/css/base.css" rel="stylesheet">
+<link href="../../Theme/css/shop.css" rel="stylesheet">
+</head>
+
+<body>	
+<header class="header">
+	<div class="header-return">
+		<a href="javascript:history.go(-1);"></a>
+	</div>
+
+	<div class="logo">订单确认</div>
+</header>
+
+<section class="container shopcart-container">
+	<a href="ChooseAddress.html" class="order-address">
+        <div class="order-address-text">
+            <p><label>收货地址：</label><span>广西南宁市青秀区金湖路63号金源CBD现代城2201</span></p>
+            <p><label>收&nbsp;&nbsp;货&nbsp;人：</label><span>李四</span></p>
+            <p><label>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</label><span>13978866666</span></p>
+            
+            <!--如果没有选择地址，就显示下面这句话-->
+            <!--<p>未选择收货地址</p>-->
+        </div>
+        
+        <span class="order-address-edit"></span>
+    </a>
+	<div class="clr-small"></div>
+	
+	<div class="order">
+		<div class="order-title">
+			<a href="ShopStore.html" class="order-shop fl">店铺名字</a>	            
+		</div>	 
+
+		<div class="order-product">
+			<img src="../../Theme/img/p1.jpg">
+
+			<a href="ProductDetails.html">新良原味面包粉 烘焙原料 面包机专用粉 高筋面粉 2.5kg</a>
+
+			<div class="order-price">
+				<p class="order-product-price">¥19.90</p>
+				<p>×4</p>
+			</div>
+		</div>
+		
+		<div class="order-product">
+			<img src="../../Theme/img/p2.jpg">
+
+			<a href="ProductDetails.html">新良原味面包粉 烘焙原料 面包机专用粉 高筋面粉 2.5kg</a>
+
+			<div class="order-price">
+				<p class="order-product-price">¥19.90</p>
+				<p>×4</p>
+			</div>
+		</div>
+
+		<div class="order-summary">
+			<span>实付:</span>
+			<b>¥99</b>
+			<span>(免运费)</span>
+		</div>	
+	</div>
+	
+	<div class="order">
+		<div class="order-title">
+			<a href="ShopStore.html" class="order-shop fl">店铺名字</a>	            
+		</div>	 
+
+		<div class="order-product">
+			<img src="../../Theme/img/p1.jpg">
+
+			<a href="ProductDetails.html">新良原味面包粉 烘焙原料 面包机专用粉 高筋面粉 2.5kg</a>
+
+			<div class="order-price">
+				<p class="order-product-price">¥19.90</p>
+				<p>×4</p>
+			</div>
+		</div>
+
+		<div class="order-summary">
+			<span>实付:</span>
+			<b>¥99</b>
+			<span>(免运费)</span>
+		</div>	
+	</div>
+	<div class="clr"></div>
+
+	<div class="order-confirm-details">    
+		<ul>
+			<li class="order-confirm-item">订单总计</li>
+			<li class="order-confirm-text">8888.88元</li>
+		</ul>
+		
+		<ul>
+			<li class="order-confirm-item">配送费</li>
+			<li class="order-confirm-text">包邮</li>
+		</ul>
+
+		<ul>
+			<li class="order-confirm-item">支付方式</li>
+			<li class="order-confirm-text order-confirm-arrrow" onclick="showtab('#payment');">余额支付</li>
+		</ul>
+
+		<ul>
+			<li class="order-confirm-item">给卖家留言</li>
+			<li class="order-confirm-text">
+				<input placeholder="选填：对本次交易的说明">
+			</li>
+		</ul>
+	</div>
+	<div class="clr"></div>
+</section>
+
+<div class="shopcart-toolbar">
+	<div class="shopcart-sumbit">
+		<div class="shopcart-summary">
+			<b>总计：</b><span>¥8888.00</span>
+		</div>
+
+		<a href="MyOrder.html" class="shopcart-submit-btn">确认支付</a>
+	</div>
+</div>		
+
+<!--选择支付方式弹窗-->
+<div id="payment" class="popup">
+    <div class="popup-box">
+        <div class="popup-box-title">选择语言</div>
+        
+        <div class="popup-box-content">
+            <form>
+                <div class="choose-list">
+                    <ul>
+                        <li>
+                            <input type="radio" checked>
+                            <label>余额支付</label>
+                        </li>
+                        
+                        <li>
+                            <input type="radio">
+                            <label>支付宝支付</label>
+                        </li>
+						
+						<li>
+                            <input type="radio">
+                            <label>微信支付</label>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+        
+        <div class="popup-submit">
+            <button class="cancle-btn">取消</button>
+			<button type="submit" class="confirm-btn">确认</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../Theme/js/jquery-1.11.2.min.js"></script>
+<script src="../../Theme/js/main.js"></script>
+</body>
+</html>

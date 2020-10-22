@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0">
+	
+<title>卖出</title>
+
+<link href="../../Theme/css/base.css" rel="stylesheet">
+<link href="../../Theme/css/trade.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+	<div class="header-return">
+	    <a href="javascript:history.go(-1);"></a>
+	</div>
+	
+	<div class="logo">卖出</div>
+</header>
+
+<section class="container">
+	<div class="column">
+		<ul>
+			<li>
+				<a href="" class="active">创建订单</a>
+			</li>
+			
+			<li>
+				<a href="SellOrderIncomplete.html">未完成订单</a>
+			</li>
+			
+			<li>
+				<a href="BuyOrderPay.html">确认收款</a>
+			</li>
+			
+			<li>
+				<a href="BuyOrderComplete.html">已完成订单</a>
+			</li>
+			
+			<li>
+				<a href="SellRecord.html">卖出记录</a>
+			</li>
+			
+			<li>
+				<a href="SellCenter.html">卖出中心</a>
+			</li>
+		</ul>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="bankcard-info">
+		<div class="bankcard-info-title">收款银行卡</div>
+		
+		<div class="bankcard-info-content">
+			<h3>建设银行</h3>
+			<p>用户名：张三</p>
+			<p>账号：65535435345345345435</p>
+		</div>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="choose-number">
+		<div class="choose-number-title">
+			<h3>请选择卖出金额</h3>
+			
+			<a href="../Region/Region.html">中国</a>
+		</div>
+		
+		<div class="choose-number-form">
+			<form>
+				<ul>
+					<li>
+						<input type="radio">
+						<label>500</label>
+					</li>
+
+					<li>
+						<input type="radio">
+						<label>1000</label>
+					</li>
+
+					<li>
+						<input type="radio">
+						<label>3000</label>
+					</li>
+
+					<li>
+						<input type="radio">
+						<label>5000</label>
+					</li>
+
+					<li>
+						<input type="radio">
+						<label>10000</label>
+					</li>
+
+					<li>
+						<input type="radio">
+						<label>30000</label>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
+	<div class="clr"></div>
+			
+	<div class="textarea-group">
+		<textarea placeholder="描述(注意：不能输入表情！)"></textarea>
+
+		<div class="textarea-group-tips">
+			<span class="fr">0/150</span>
+		</div>
+	</div>
+	
+	<div class="form-submit">
+		<button id="PW" type="submit" class="form-submit-btn">创建订单</button>
+	</div>
+</section>
+
+<div class="popup">
+    <div class="popup-box">
+        <div class="popup-box-title">请输入支付密码</div>
+        
+        <div class="popup-box-content">
+            <div class="enter-password">
+				<form>
+					<input type="password">
+					<input type="password">
+					<input type="password">
+					<input type="password">
+					<input type="password">
+					<input type="password">
+				</form>
+			</div>
+        </div>
+        
+        <div class="popup-submit">
+            <button class="cancle-btn">取消</button>
+			<button type="submit" class="confirm-btn">确认</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../Theme/js/jquery-1.11.2.min.js"></script>
+<script>
+	
+	//选择语言
+	$(function(){
+		$('#PW').click(function(){
+			$('.popup').fadeIn();
+			
+			var h = ($(window).height() - $('.popup-box').height())/2;
+			$('.popup-box').css('margin-top',h);
+		});	
+		
+		$('.cancle-btn').click(function(){
+			$('.popup').fadeOut();				  
+		});
+	});
+
+</script>
+</body>
+</html>

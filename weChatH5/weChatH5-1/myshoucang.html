@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的收藏</title>
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/myshoucang.css" />
+	</head>
+	<body onload="loaded()">
+			<ul class="pro-type">
+					<li class="section section1">
+						<span>全部产品</span>
+						<img src="img/icon/xiangxia.png" />
+						<ul class="mask-ul">
+							<li>平台推荐</li>
+							<li>顾问推荐</li>
+						</ul>
+					</li>
+					<li class="section section2">
+						<span>不限贷款类型</span>
+						<img src="img/icon/xiangxia.png" />
+						<ul class="mask-ul">
+							<!--<li>贷款类型</li>
+							<li>信用贷款</li>
+							<li>抵押贷款</li>
+							<li>现金业务</li>-->
+						</ul>
+					</li>
+					<li class="section section3">
+						<span>不限产品类型</span>
+						<img src="img/icon/xiangxia.png" />
+						<ul class="mask-ul">
+							<!--<li>贷款类型</li>
+							<li>信用贷款</li>
+							<li>抵押贷款</li>
+							<li>现金业务</li>-->
+						</ul>
+					</li>
+					<li class="section section4">
+						<span>筛选</span>
+						<img src="img/icon/xiangxia.png" />
+						<div class="mask-div">
+							<div class="mask-top">
+								<p class="title">房产类型</p>
+								<ul class="clearfix">
+									<li class="active">不限</li>
+									<li>商品住宅</li>
+									<li>公寓</li>
+									<li style="margin-right: 0;">商用两住房</li>
+									<li>写字楼</li>
+									<li>别墅</li>
+									<li>厂房</li>
+									<li>商铺</li>
+									<li>福利房</li>
+									<li>军产房</li>
+									<li>自建房</li>
+									<li>小产权房</li>
+									<li>其他房产</li>
+								</ul>
+							</div>
+							<div class="mask-mid">
+								<p class="title">职业类型</p>
+								<ul class="clearfix">
+									<li class="active">不限</li>
+									<li>普通公司</li>
+									<li>上市公司</li>
+									<li style="margin-right: 0;">世界500强企业</li>
+									<li>个体户</li>
+									<li>别墅</li>
+									<li>企业主</li>
+									<li style="margin-right: 0;">国企/大型企业</li>
+									<li>政府/事业单位</li>
+									<li>无固定职业</li>
+								</ul>
+							</div>
+							<div class="mask-down">
+								<p class="title">还款方式</p>
+								<ul class="clearfix">
+									<li class="active">不限</li>
+									<li>等额本息</li>
+									<li>等额本金</li>
+									<li style="margin-right: 0;">等本等息</li>
+									<li>先息后本</li>
+									<li>随借随还</li>
+									<li>分期还本</li>
+									<li style="margin-right: 0;">到期还本息</li>
+								</ul>
+							</div>
+							<div class="mask-btn">
+								<span>重置</span>
+								<span>确定</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<section id="wrap">
+					<div id="scroller">
+						<div id="pullDown" class=""><div class="pullDownLabel"></div></div>  
+		        		<div class="pulldown-tips">下拉刷新</div> 
+						<ul class="project-list">
+						<li>
+							<div class="top">
+								<img src="img/logo/bank1.png" />
+								<div class="mid">
+									<p>广发银行-月供贷</p>
+									<p>
+										<span>额度:10-50万</span>
+										<span>还款:等额本息</span>
+									</p>
+									<p>
+										<span>期限:1-5年</span>
+										<span>时间:10-20天</span>
+									</p>
+								</div>
+								<div class="right">
+									<p>0.75%</p>
+									<p>综合月息</p>
+								</div>
+							</div>
+							<div class="down">
+								<span>不上征信</span>
+								<span>不用真实装修</span>
+								<span>不看小额</span>
+							</div>
+						</li>
+						<li>
+							<div class="top">
+								<img src="img/logo/bank2.png" />
+								<div class="mid">
+									<p>建设银行-月供贷</p>
+									<p>
+										<span>额度:10-50万</span>
+										<span>还款:等额本息</span>
+									</p>
+									<p>
+										<span>期限:1-5年</span>
+										<span>时间:10-20天</span>
+									</p>
+								</div>
+								<div class="right">
+									<p>0.45%-0.75%</p>
+									<p>综合月息</p>
+								</div>
+							</div>
+							<div class="down">
+								<span>不上征信</span>
+								<span>不用真实装修</span>
+								<span>不看小额</span>
+							</div>
+						</li>
+						<li>
+							<div class="top">
+								<img src="img/logo/bank2.png" />
+								<div class="mid">
+									<p>建设银行-月供贷</p>
+									<p>
+										<span>额度:10-50万</span>
+										<span>还款:等额本息</span>
+									</p>
+									<p>
+										<span>期限:1-5年</span>
+										<span>时间:10-20天</span>
+									</p>
+								</div>
+								<div class="right">
+									<p>0.75%</p>
+									<p>综合月息</p>
+								</div>
+							</div>
+							<div class="down">
+								<span>不上征信</span>
+								<span>不用真实装修</span>
+								<span>不看小额</span>
+							</div>
+						</li>
+						<li>
+							<div class="top">
+								<img src="img/logo/bank2.png" />
+								<div class="mid">
+									<p>建设银行-月供贷</p>
+									<p>
+										<span>额度:10-50万</span>
+										<span>还款:等额本息</span>
+									</p>
+									<p>
+										<span>期限:1-5年</span>
+										<span>时间:10-20天</span>
+									</p>
+								</div>
+								<div class="right">
+									<p>0.75%</p>
+									<p>综合月息</p>
+								</div>
+							</div>
+							<div class="down">
+								<span>不上征信</span>
+								<span>不用真实装修</span>
+								<span>不看小额</span>
+							</div>
+						</li>
+						<li>
+							<div class="top">
+								<img src="img/logo/bank2.png" />
+								<div class="mid">
+									<p>建设银行-月供贷</p>
+									<p>
+										<span>额度:10-50万</span>
+										<span>还款:等额本息</span>
+									</p>
+									<p>
+										<span>期限:1-5年</span>
+										<span>时间:10-20天</span>
+									</p>
+								</div>
+								<div class="right">
+									<p>0.75%</p>
+									<p>综合月息</p>
+								</div>
+							</div>
+							<div class="down">
+								<span>不上征信</span>
+								<span>不用真实装修</span>
+								<span>不看小额</span>
+							</div>
+						</li>
+					</ul>
+					 <div class="pullUp-tips"></div>  
+					 <div id="pullUp" class="">  
+			        	<div class="pullUpLabel"></div>  
+			        </div>  
+			</div>
+		</section>
+			<div class="mask-all"></div>
+			<div class="mask-all1"></div>
+			<div class="mask-all2"></div>
+			<div class="mask-all3"></div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/commo.js"></script>
+	<script src="js/iscroll-probe.js"></script>
+	<script>
+		//平台选择
+		$('.section1').on('click',function(e){
+			e.stopPropagation();
+			$(this).siblings().find('.mask-ul').css('display','none');
+			$(this).siblings().find('.mask-div').css('display','none');
+			$(this).find('.mask-ul').toggle();
+			$(this).find('.mask-ul li').eq(0).attr('publishType',1);
+			$(this).find('.mask-ul li').eq(0).on('click',function(e){
+				e.stopPropagation()
+				$(this).parent().css('display','none');
+			})
+			$(this).find('.mask-ul li').eq(1).on('click',function(e){
+				e.stopPropagation()
+				$(this).parent().css('display','none');
+			})
+		})
+		//大类
+		$('.section2').on('click',function(e){
+				e.stopPropagation();
+			$(this).siblings().find('.mask-ul').css('display','none');
+			$(this).siblings().find('.mask-div').css('display','none');
+			$(this).find('.mask-ul').toggle();
+			
+		})
+		$('.section2 .mask-ul').delegate('li','click',function(e){
+			e.stopPropagation()
+			$(this).parent().css('display','none');
+			$('.section2 span').html($(this).html());
+			$(".section3 span").html('不限产品类型');
+			var value = $(this).html();
+		})
+		//小类
+		$('.section3').on('click',function(e){
+			e.stopPropagation();
+			$(this).siblings().find('.mask-ul').css('display','none');
+			$(this).siblings().find('.mask-div').css('display','none');
+			var spanHtml = $(".section2 span").html();
+			if(spanHtml != '不限贷款类型'){
+				$(this).find('.mask-ul').toggle();
+			}
+		})
+		$('.section3 .mask-ul').delegate('li','click',function(e){
+			e.stopPropagation()
+			$(this).parent().css('display','none');
+			$('.section3 span').html($(this).html());
+		})
+		//筛选
+		$('.section4').on('click',function(e){
+			var mortgageType,occupationtype,repaymentmethod;
+			e.stopPropagation();
+			$(this).siblings().find('.mask-ul').css('display','none');
+			$(this).siblings().find('.mask-ul').css('display','none');
+				$(this).find('.mask-div').toggle();
+				$(".mask-top li").on('click',function(e){
+					e.stopPropagation();
+					$(this).addClass('active').siblings().removeClass('active');
+					if($(this).html() != ''){
+						mortgageType = $(this).html();
+					}
+				})
+				$(".mask-mid li").on('click',function(e){
+					e.stopPropagation();
+					$(this).addClass('active').siblings().removeClass('active');
+					if($(this).html() != ''){
+						occupationtype = $(this).html();
+					}
+				})
+				$(".mask-down li").on('click',function(e){
+					e.stopPropagation();
+					$(this).addClass('active').siblings().removeClass('active');
+					if($(this).html() != ''){
+						repaymentmethod = $(this).html();
+					}
+				})
+				$(".mask-btn span:first-of-type").on('click',function(e){
+					e.stopPropagation();
+					$(".mask-div li").removeClass('active');
+				})
+				$(".mask-btn span:last-of-type").on('click',function(e){
+					e.stopPropagation();
+					data = {
+							mortgageType:mortgageType,
+							occupationtype:occupationtype,
+							repaymentmethod:repaymentmethod
+						}
+					$('.mask-div').css('display','none');
+//					getAjax(" http://192.168.1.128:8888/loanProductList.do",data);
+					
+				})
+		})
+		$.ajax({
+				type:"get",
+				url:"http://192.168.1.128:8888/getCreditTypeApi.do",
+				contentType: "application/x-www-form-urlencoded;charset=utf-8", 
+				cache:false,
+				dataType:"json",
+				success:function(data){
+					
+					var l = new liandong(data);
+				}
+		})
+		function liandong(arg){
+			this.create(arg);					//入口
+		}
+		liandong.prototype={
+			create:function(arg){
+				this.sit=arg;					//保存数据
+				this.key=[];					//做key值储存池，留做渲染
+				var _self=this;
+				getKey(arg,_self);				//获取key值
+				this.showKey(this.key);			//渲染key值
+				this.keyEvent();				//点击事件
+			},
+			showKey:function(key){					//渲染key
+			var mask_ul1 = document.querySelector('.section2 .mask-ul');
+				for(index in key){
+					var msg=key[index];
+					var li=document.createElement('li');
+//					li.class='ld-key';
+					li.innerText=msg;
+					mask_ul1.appendChild(li);
+				}
+				
+			},
+			keyEvent:function(){			//li的点击事件
+				var _self=this;				//保存对象
+				var key = document.querySelector('.section2 .mask-ul');
+				var list=key.childNodes;
+				for( i in list){
+					var i=i;
+					if(list[i].nodeName=='LI'){
+						list[i].onclick=function(){
+							var k=this.innerText;
+							_self.showValue(k);
+						}
+					}
+				}
+			},
+			showValue:function(key){		//显示value值
+				var mask_ul2 = document.querySelector('.section3 .mask-ul');
+				this.clearValue(mask_ul2);
+				var value=this.sit[key];
+				for(index in value){
+					var msg=value[index];
+					var li=document.createElement('li');
+					li.class='ld-value';
+					li.innerText=msg;
+					mask_ul2.appendChild(li);
+				}		
+			},
+			clearValue:function(right){		//	清除value值
+				right.innerHTML=null;	
+			}
+		}
+		function getKey(site,obj){			//获取key，并将key值传入数组渲染
+			for(var key in site){
+				var key=key;
+				obj.key.push(key);
+				
+			}
+		}
+		function loaded () {  
+        var myScroll,  
+                    pullDown = $("#pullDown"),  
+                    pullUp = $("#pullUp"),  
+                    pullDownLabel = $(".pullDownLabel"),  
+                    pullUpLabel = $(".pullUpLabel"),  
+                    container = $('#list'),  
+                    loadingStep = 0;//加载状态0默认，1显示加载状态，2执行加载数据，只有当为0时才能再次加载，这是防止过快拉动刷新  
+  
+            pullDown.hide();  
+            pullUp.hide();  
+  
+            myScroll = new IScroll("#wrap", {  
+                scrollbars: false,  
+                mouseWheel: false,  
+                interactiveScrollbars: true,  
+                shrinkScrollbars: 'scale',  
+                fadeScrollbars: true,  
+                scrollY:true,  
+                probeType: 2,  
+                bindToWrapper:true  ,
+                mouseWheel: true, 
+                tap: true
+            });  
+            myScroll.on("scroll",function(){  
+            	 console.log(this.y);
+            	 console.log(loadingStep);
+            	 console.log(pullDown.attr("class")) 
+            	 console.log(pullUp.attr("class"))
+                if(loadingStep == 0 && !pullDown.attr("class").match('refresh|loading') && !pullUp.attr("class").match('refresh')){  
+                  if(this.y > 40){//下拉刷新操作
+                        $(".pulldown-tips").hide();  
+                        pullDown.addClass("refresh").show();  
+                        pullDownLabel.text("松手刷新数据");  
+                        loadingStep = 1;  
+                        myScroll.refresh();  
+                    }else if(this.y < (this.maxScrollY - 14)){//上拉加载更多  
+                        pullUp.addClass("refresh").show();  
+                        loadingStep = 1;  
+                        if(currentPage==nextPage){
+                        	console.log(1)
+                        	 pullUp.attr('class','').show();
+                        	 pullUpLabel.text("我是有底线的");
+                        	 loadingStep = 0;
+                        }else{
+                        	pullUpLabel.text("松手加载数据")
+                        	  pullUpAction();
+                        	  myScroll.refresh();
+                        }
+                    }  
+                }  
+            });  
+            myScroll.on("scrollEnd",function(){  
+                if(loadingStep == 1){  
+                    if( pullDown.attr("class").match("refresh") ){//下拉刷新操作  
+                        pullDown.removeClass("refresh").addClass("loading");  
+                        pullDownLabel.text("正在刷新");  
+                        loadingStep = 2;  
+                        pullDownAction();  
+                    }
+                }  
+            });  
+	        function pullDownAction(){  
+	                pullDown.attr('class','').hide();
+	                data.pageSize = 5;
+	                console.log(data);
+//	                getAjax(header+"/loanConsultantList.do",data);
+	                myScroll.refresh();  
+	                loadingStep = 0;  
+	                $(".pulldown-tips").show();  
+	        }
+	        function pullUpAction(){
+	        	  pullUp.attr('class','').hide();
+	                if(currentPage!=nextPage ){
+	                	 data.pageSize = pageSize + 3;
+//	                	 getAjax(header+"/loanConsultantList.do",data);
+	                }
+	                myScroll.refresh();  
+	                loadingStep = 0;  
+	        }  
+  
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);  
+        }  
+	</script>
+</html>

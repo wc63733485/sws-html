@@ -1,0 +1,35 @@
+.logo1 {
+  width: 8.2rem;
+  height: 2.4rem;
+  background: url(../img/sign/logo.jpg) no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+  margin-top: 2.94rem;
+  margin-bottom: 2.98rem;
+}
+p {
+  width: 14rem;
+  height: 2rem;
+  font-size: 0.76rem;
+  background-color: #059659;
+  color: #fff;
+  line-height: 2rem;
+  margin: 0 auto;
+  margin-bottom: 1.66rem;
+  text-align: center;
+  border-radius: 0.2rem;
+}
+#wrap {
+  position: absolute;
+  left: 0;
+  top: 1.42rem;
+  bottom: 0;
+  width: 100%;
+}
+#wrap #scroller {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}

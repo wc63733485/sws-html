@@ -1,0 +1,54 @@
+#wrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 2rem;
+  overflow: hidden;
+}
+#wrap #scroller {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.list_box {
+  width: 13.9rem;
+  margin: 0 auto;
+}
+.list {
+  margin-right: -1.36rem;
+}
+.list li {
+  width: 3.56rem;
+  height: 1.9rem;
+  font-size: 0.52rem;
+  float: left;
+  color: #999999;
+  background-color: #fff;
+  text-align: center;
+  line-height: 1.9rem;
+  border-radius: 0.16rem;
+  margin-top: 0.64rem;
+  margin-right: 1.36rem;
+  position: relative;
+}
+.list li span {
+  width: 0.58rem;
+  height: 0.58rem;
+  position: absolute;
+  right: -0.3rem;
+  top: -0.3rem;
+  background-color: #ff7400;
+  border-radius: 50%;
+  color: #fff;
+  line-height: 0.58rem;
+  text-align: center;
+}
+.list .last {
+  width: 4.2rem;
+}
+.list .active {
+  background-color: #059659 ;
+  color: #fff;
+}

@@ -1,0 +1,45 @@
+.title {
+  height: 1.86rem;
+  background-color: #fff;
+  font-size: 0.64rem;
+  line-height: 1.86rem;
+  margin-bottom: 0.12rem;
+}
+.title span {
+  float: left;
+}
+.title .back {
+  width: 1.28rem;
+  height: 1.28rem;
+  background: url(../img/succse/back.png) no-repeat;
+  background-size: cover;
+  margin-left: 0.56rem;
+  margin-top: 0.32rem;
+  margin-right: 4.4rem;
+}
+.title span:nth-of-type(2) {
+  margin-right: 4.4rem;
+  color: #4f4f4f;
+}
+.title span:last-of-type {
+  color: #059659;
+}
+.down {
+  height: 8.4rem;
+  background-color: #fff;
+  text-align: center;
+}
+.down img {
+  width: 2.56rem;
+  height: 2.56rem;
+  margin-top: 1.12rem;
+}
+.down p {
+  font-size: 0.64rem;
+  color: #059659;
+  line-height: 1.98rem;
+}
+.down p:last-of-type {
+  line-height: 1.74rem;
+  color: #666666;
+}

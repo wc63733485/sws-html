@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/guwendital.css" />
+		<title></title>
+	</head>
+	<body onload="loaded()">
+		<header class="header">微融帮</header>
+		<section id="wrap">
+			<div id="scroller">
+				<section class="advier-instruce">
+					<div class="advier-top">
+						<p class="report">
+							<span></span>
+							<span>举报</span>
+						</p>
+						<div class="advier-person">
+							<img class="person" src="img/logo/touxiang1.png" />
+							<p class="advier-name">
+								<span id="advier_name">王晓娟</span>
+								<span></span>
+							</p>
+							<p class="start">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+							</p>
+						</div>
+						<div class="advier-follow">已关注</div>
+					</div>
+					<div class="advier-down">
+						<span id="experience">行业经验4年</span>
+						<span id="attentionDegree">关注量452</span>
+						<span id="clickNumber">咨询量452</span>
+					</div>
+				</section>
+				<div class="range clearfix">
+					<dl id="serarea" class="clearfix">
+						<dt>服务区域：</dt>
+					</dl>
+					<dl class="clearfix">
+						<dt id="loan_type"></dt>
+						<!--<dd>工薪贷 、</dd>
+						<dd>公积金贷 、</dd
+						<dd>业主贷、</dd>
+						<dd>租赁贷</dd>-->
+					</dl>
+					<dl class="clearfix">
+						<dt id="advan_area"></dt>
+						<!--<dd>专业办理广州范围房产抵押、</dd>
+						<dd>汽车抵押贷款、</dd>
+						<dd>无抵押工资保单贷款、</dd>
+						<dd>按揭车按揭房再贷款</dd>-->
+					</dl>
+				</div>
+				<div class="loan-nav">
+					<span class="active2">全部</span>
+					<!--<span class="active2">信用贷款</span>
+					<span>抵押贷款</span>
+					<span>现金业务</span>-->
+				</div>
+				<ul class="project-list">
+					<!--<li>
+						<div class="top">
+							<img src="img/logo/bank1.png" />
+							<div class="mid">
+								<p>广发银行-月供贷</p>
+								<p>
+									<span>额度:10-50万</span>
+									<span>还款:等额本息</span>
+								</p>
+								<p>
+									<span>期限:1-5年</span>
+									<span>时间:10-20天</span>
+								</p>
+							</div>
+							<div class="right">
+								<p>0.75%</p>
+								<p>综合月息</p>
+							</div>
+						</div>
+						<div class="down">
+							<span>不上征信</span>
+							<span>不用真实装修</span>
+							<span>不看小额</span>
+						</div>
+					</li>
+					<li>
+						<div class="top">
+							<img src="img/logo/bank2.png" />
+							<div class="mid">
+								<p>建设银行-月供贷</p>
+								<p>
+									<span>额度:10-50万</span>
+									<span>还款:等额本息</span>
+								</p>
+								<p>
+									<span>期限:1-5年</span>
+									<span>时间:10-20天</span>
+								</p>
+							</div>
+							<div class="right">
+								<p>0.75%</p>
+								<p>综合月息</p>
+							</div>
+						</div>
+						<div class="down">
+							<span>不上征信</span>
+							<span>不用真实装修</span>
+							<span>不看小额</span>
+						</div>
+					</li>
+					<li>
+						<div class="top">
+							<img src="img/logo/bank2.png" />
+							<div class="mid">
+								<p>建设银行-月供贷</p>
+								<p>
+									<span>额度:10-50万</span>
+									<span>还款:等额本息</span>
+								</p>
+								<p>
+									<span>期限:1-5年</span>
+									<span>时间:10-20天</span>
+								</p>
+							</div>
+							<div class="right">
+								<p>0.75%</p>
+								<p>综合月息</p>
+							</div>
+						</div>
+						<div class="down">
+							<span>不上征信</span>
+							<span>不用真实装修</span>
+							<span>不看小额</span>
+						</div>
+					</li>
+					<li>
+						<div class="top">
+							<img src="img/logo/bank2.png" />
+							<div class="mid">
+								<p>建设银行-月供贷</p>
+								<p>
+									<span>额度:10-50万</span>
+									<span>还款:等额本息</span>
+								</p>
+								<p>
+									<span>期限:1-5年</span>
+									<span>时间:10-20天</span>
+								</p>
+							</div>
+							<div class="right">
+								<p>0.75%</p>
+								<p>综合月息</p>
+							</div>
+						</div>
+						<div class="down">
+							<span>不上征信</span>
+							<span>不用真实装修</span>
+							<span>不看小额</span>
+						</div>
+					</li>-->
+				</ul>
+			</div>
+		</section>
+		<div class="footer">
+			<span>申请贷款</span>
+			<a href="tel:13039012397">电话咨询</span>
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/common.js"></script>
+	<script>
+		var id = sessionStorage.getItem('advierditial');
+//		alert(id)
+		var data = {
+			id:id
+		}
+		getAjax("http://192.168.1.128:8888/loanConsultantDetailApi.do",data);
+		function getAjax(url,data){
+			$.ajax({
+		  			type:"get",
+		  			url:url,
+		  			contentType: "application/x-www-form-urlencoded;charset=utf-8", 
+					cache:false,
+					data:data,
+					dataType:"json",
+					success:function(data){
+//						console.log(data);
+						$(".person").css('src','http://192.168.1.128:8888'+ data.img);
+						$("#advier_name").html(data.disName);
+						$("#experience").html("行业经验"+data.experience+"年");
+						$("#attentionDegree").html("关注量"+data.attentionDegree);
+						$("#clickNumber").html('咨询量'+data.clickNumber);
+						var str = '';
+						for(var i = 0;i<data.servicearea.length;i++){
+							str +="<dd>"+data.servicearea[i].area+"</dd>"
+						}
+						$("#serarea").append(str);
+						var html = data.businessscope;
+						var advantage = data.advantage;
+						$("#loan_type").html("贷款类型："+html);
+						$("#advan_area").html("优势领域："+advantage);
+						//贷款类型
+						var str1 = '';
+						for(var i = 0;i<data.creditType.length;i++){
+							str1 +="<span>"+data.creditType[i]+"</span>"
+						}
+						$(".loan-nav").append(str1);
+					}
+		  		});
+		}
+		//产品列表
+		ajax("http://192.168.1.128:8888/loanConsultantDetailApi.do",data);
+		function ajax(url,data){
+			$.ajax({
+		  			type:"get",
+		  			url:url,
+		  			contentType: "application/x-www-form-urlencoded;charset=utf-8", 
+					cache:false,
+					data:data,
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						var str='';
+						for(var i = 0;i<data.productVos.length;i++){
+							str+="<li data-prodetial ='"+data.productVos[i].id+"'>"
+								str+="<div class='top'>"
+									str+="<img src=' http://192.168.1.128:8888"+ data.productVos[i].img +"'/>";
+									str+="<div class='mid'>"
+										str+="<p>"+data.productVos[i].name+"</p>"
+										str+="<p>"
+											str+="<span>额度:"+data.productVos[i].minlendinglimit+"-"+data.productVos[i].maxlendinglimit+'万'+"</span>"
+											str+="<span>还款:"+data.productVos[i].repaymentmethod+"</span>"
+										str+="</p>"
+										str+="<p>"
+											str+="<span>期限:"+data.productVos[i].mincreditperiod+"-"+data.productVos[i].maxcreditperiod+'年'+"</span>"
+											str+="<span>时间:"+data.productVos[i].minapprovalloanday+"-"+data.productVos[i].maxapprovalloanday+'天'+"</span>"
+										str+="</p>"
+									str+="</div>"
+									str+="<div class='right'>"
+										str+="<p>"+data.productVos[i].minrate+'%'+"-"+data.productVos[i].maxrate+'%'+"</p>"
+										if(data.productVos[i].ratetype == 0){
+											str+="<p>综合月息</p>"
+										}else if(data.productVos[i].ratetype == 1){
+											str+="<p>月利率</p>"
+										}
+									str+="</div>"
+								str+="</div>"
+								str+="<div class='down'>"
+								if(data.productVos[i].tag != ""){
+									var arr=new Array();
+									arr=data.productVos[i].tag.split(',');
+									for(var j=0;j<arr.length;j++){
+										str+="<span>"+arr[j]+"</span>";
+									}
+								}
+								str+="</div>"
+							str+="</li>"
+						}
+						$(".project-list").html(str);
+							myScroll.refresh();
+					}
+			})
+		}
+		$(".loan-nav").delegate('span','tap',function(e){
+			e.stopPropagation();
+			$(this).addClass('active2').siblings().removeClass('active2');
+			var type = $(this).html();
+			var type = $(this).html();
+			if(type != '全部'){
+				data = {
+					id:id,
+					type:type
+				}
+			}else{
+				data = {id:id}
+			}
+			ajax("http://192.168.1.128:8888/loanConsultantDetailApi.do",data);
+		})
+		//产品详情
+		$(".project-list").delegate('li','tap',function(e){
+			var id = $(this).attr('data-prodetial');
+			window.location.href = "prodetialadvier.html";
+			sessionStorage.setItem('prodetial',id);
+			e.stopPropagation();
+			
+		})
+		//申请贷款
+		$(".footer").find('span').on('touchstart',function(e){
+			e.stopPropagation();
+			window.location.href = 'sqdk.html';
+		})
+	</script>
+	
+</html>

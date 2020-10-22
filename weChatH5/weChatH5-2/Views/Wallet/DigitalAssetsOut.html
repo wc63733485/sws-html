@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0">
+	
+<title>转出</title>
+
+<link href="../../Theme/css/base.css" rel="stylesheet">
+<link href="../../Theme/css/trade.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+	<div class="header-return">
+	    <a href="javascript:history.go(-1);"></a>
+	</div>
+	
+	<div class="logo">转出</div>
+	
+	<div class="header-btn">
+		<a href="DigitalAssetsRecord.html">记录</a>
+	</div>
+</header>
+
+<section class="container">
+	<div class="trade-form">
+		<div class="form-widget">
+			<form action="../Transfer/TransferOutConfirm.html" method="get">
+				<div class="form-box">
+					<div class="form-group">
+						<label class="form-label">VPay</label>
+
+						<div class="form-control">
+							<input placeholder="请输入转出数量(如有小数保留2位)">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="form-label">转出地址</label>
+
+						<div class="form-control">
+							<input placeholder="请输入对方手机号/UID/钱包地址">
+						</div>
+					</div>
+				</div>
+
+				<div class="form-submit">
+					<button type="submit" class="form-submit-btn">确定</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+</body>
+</html>

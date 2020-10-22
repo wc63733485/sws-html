@@ -1,0 +1,68 @@
+.head {
+  height: 1.76rem;
+  background-color: #333333;
+  color: #fff;
+  margin-bottom: 0.2rem;
+}
+.head span {
+  line-height: 1.76rem;
+  font-size: 0.56rem;
+}
+.head span:first-of-type {
+  width: 0.38rem;
+  height: 0.68rem;
+  margin-left: 0.46rem;
+  margin-top: 0.52rem;
+  margin-right: 5.88rem;
+  float: left;
+  background: url(../img/sign/back.jpg) no-repeat;
+  background-size: cover;
+}
+#wrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 1.76rem;
+  bottom: 0;
+  overflow: hidden;
+}
+#wrap #scroller {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.msg-list li {
+  background-color: #fff;
+  height: 2.14rem;
+}
+.msg-list li img {
+  width: 1.76rem;
+  height: 1.76rem;
+  float: left;
+  margin-left: 0.46rem;
+  margin-top: 0.18rem;
+}
+.msg-list li .msg-tet {
+  float: left;
+  margin-top: 0.16rem;
+  margin-left: 0.42rem;
+}
+.msg-list li .msg-tet p {
+  color: #4f4f4f;
+  font-size: 0.56rem;
+  line-height: 1.2rem;
+}
+.msg-list li .msg-tet span:first-of-type {
+  display: block;
+  font-size: 0.44rem;
+  color: #999999;
+  line-height: 0.44rem;
+}
+.msg-list li .time {
+  float: right;
+  font-size: 0.44rem;
+  color: #999;
+  margin-top: 0.54rem;
+  margin-right: 0.34rem;
+}

@@ -1,0 +1,56 @@
+#wrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 2rem;
+  overflow: hidden;
+}
+#wrap #scroller {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+#wrap #scroller .title {
+  color: #999999;
+  font-size: 0.6rem;
+  line-height: 2.2rem;
+  text-align: center;
+}
+#wrap #scroller ul {
+  margin-right: -1.6rem;
+}
+#wrap #scroller .list {
+  width: 13.6rem;
+  margin: 0 auto;
+}
+#wrap #scroller li {
+  float: left;
+  width: 3.56rem;
+  height: 1.9rem;
+  line-height: 1.9rem;
+  text-align: center;
+  background-color: #fff;
+  color: #999999;
+  font-size: 0.48rem;
+  border-radius: 0.16rem;
+  margin-right: 1.4rem;
+  margin-bottom: 0.6rem;
+}
+.active {
+  background-color: #059659 !important;
+  color: #fff !important;
+}
+.save {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2rem;
+  background-color: #059659;
+  color: #fff;
+  line-height: 2rem;
+  font-size: 0.76rem;
+  text-align: center;
+  width: 100%;
+}

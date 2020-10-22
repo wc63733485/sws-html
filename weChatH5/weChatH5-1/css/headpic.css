@@ -1,0 +1,71 @@
+#wrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 2rem;
+  overflow: hidden;
+}
+#wrap #scroller {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.example {
+  height: 1.08rem;
+  color: #999999;
+  line-height: 1.08rem;
+  font-size: 0.6rem;
+  text-indent: 0.32rem;
+}
+.box {
+  height: 8.72rem;
+  background-color: #fff;
+  padding-top: 0.58rem;
+  text-align: center;
+}
+.box .explain {
+  width: 12.9rem;
+  margin: 0 auto;
+  line-height: 0.64rem;
+  font-size: 0.48rem;
+  color: #999999;
+  margin-bottom: 0.56rem;
+}
+.box img {
+  width: 5.5rem;
+  height: 5.5rem;
+}
+.box .size {
+  line-height: 1.16rem;
+  font-size: 0.48rem;
+  color: #999999;
+}
+.box1 {
+  height: 9.3rem;
+  background-color: #fff;
+  text-align: center;
+}
+.box1 img {
+  width: 6.52rem;
+  height: 6.52rem;
+  margin-top: 1.4rem;
+}
+.box1 p {
+  color: #059659;
+  font-size: 0.56rem;
+  line-height: 1.5rem;
+}
+.submit {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.76rem;
+  background-color: #059659;
+}

@@ -1,0 +1,133 @@
+.apply_list {
+  overflow: hidden;
+}
+.apply_list li {
+  width: 20.78rem;
+  background-color: #fff;
+  margin-bottom: 1px;
+  position: relative;
+}
+.apply_list li .apply_left {
+  margin-left: 0.46rem;
+  float: left;
+}
+.apply_list li .apply_left p:first-of-type {
+  line-height: 1.86rem;
+  font-size: 0.56rem;
+  color: #4f4f4f;
+}
+.apply_list li .apply_left p:nth-of-type(2) {
+  font-size: 0.48rem;
+  line-height: 0.66rem;
+  color: #999999;
+}
+.apply_list li .apply_right {
+  float: left;
+  width: 10.5rem;
+  border-left: 1px solid #999999;
+  padding-left: 0.34rem;
+  margin-top: 0.5rem;
+  margin-left: 0.1rem;
+}
+.apply_list li .apply_right p:first-of-type {
+  height: 0.76rem;
+}
+.apply_list li .apply_right p:first-of-type span:first-of-type {
+  float: left;
+  font-size: 0.56rem;
+  color: #4f4f4f;
+  line-height: 0.76rem;
+}
+.apply_list li .apply_right p:first-of-type span:last-of-type {
+  float: right;
+  font-size: 0.48rem;
+  line-height: 0.76rem;
+  color: #999999;
+  margin-right: 0.44rem;
+}
+.apply_list li .apply_right p:last-of-type {
+  font-size: 0.48rem;
+  color: #999999;
+  text-align: right;
+  line-height: 0.66rem;
+  margin-top: 0.6rem;
+  margin-right: 0.4rem;
+}
+.hidden {
+  width: 5.78rem;
+  height: 3rem;
+  background-color: #f2f2f2;
+  float: right;
+}
+.hidden .pen {
+  float: left;
+  width: 1.28rem;
+  height: 1.28rem;
+  background: url(../img/apply/pen.png) no-repeat;
+  background-size: cover;
+  margin-left: 1rem;
+  margin-top: 0.8rem;
+}
+.hidden .del {
+  width: 1.08rem;
+  height: 1.12rem;
+  float: left;
+  background: url(../img/apply/del.png) no-repeat;
+  background-size: cover;
+  margin-left: 1.66rem;
+  margin-top: 0.94rem;
+}
+#wrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+#wrap #scroller {
+  position: absolute;
+  width: 100%;
+}
+.edition {
+  height: 1.6rem;
+  width: 15rem;
+  color: #ccc;
+  font-size: 0.56rem;
+  line-height: 1.6rem;
+  border-top: 0.04rem dashed #f2f2f2;
+  text-indent: 0.2rem;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#pullDown,
+#pullUp,
+.pulldown-tips {
+  height: 0.8rem;
+  line-height: 0.8rem;
+  text-align: center;
+  font-size: 0.6rem;
+}
+#pullUp {
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  width: 100%;
+}
+.pulldown-tips {
+  position: absolute;
+  top: -0.8rem;
+  left: 0;
+  width: 100%;
+  font-size: 0.6rem;
+}
+.pullUp-tips {
+  position: absolute;
+  bottom: -0.8rem;
+  left: 0;
+  width: 100%;
+  font-size: 0.6rem;
+  text-align: center;
+}

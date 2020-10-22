@@ -1,0 +1,152 @@
+body,
+html {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+#wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+#wrap #scroller {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.project-list li {
+  width: 100%;
+  height: 4.4rem;
+  background-color: #fff;
+  margin-bottom: 0.2rem;
+}
+.project-list li .top {
+  height: 3.28rem;
+  border-bottom: 1px dashed #ccc;
+}
+.project-list li .top img {
+  width: 2.6rem;
+  height: 2.6rem;
+  float: left;
+  border: 1px solid #ccc;
+  margin-left: 0.24rem;
+  margin-top: 0.2rem;
+}
+.project-list li .top .mid {
+  float: left;
+  width: 7.2rem;
+  margin-left: 0.46rem;
+}
+.project-list li .top .mid p {
+  font-size: 0.44rem;
+  color: #999999;
+  line-height: 1rem;
+}
+.project-list li .top .mid p span:first-of-type {
+  margin-right: 0.1rem;
+}
+.project-list li .top .mid p span:last-of-type {
+  float: right;
+}
+.project-list li .top .mid p:first-of-type {
+  font-size: 0.6rem;
+  color: #4f4f4f;
+  line-height: 1.04rem;
+  margin-top: 0.12rem;
+}
+.project-list li .top .right {
+  float: right;
+  width: 3.6rem;
+  border-left: 1px solid #ccc;
+  margin-top: 0.1rem;
+  padding-left: 0.2rem;
+}
+.project-list li .top .right p {
+  width: 3.6rem;
+  margin: 0;
+  line-height: 1.6rem;
+  font-size: 0.44rem;
+  color: #999;
+  text-align: center;
+}
+.project-list li .top .right p:first-of-type {
+  font-size: 0.56rem;
+  color: #ff7400;
+  line-height: 1.08rem;
+  margin-top: 0.4rem;
+}
+.project-list li .down {
+  height: 1.06rem;
+}
+.project-list li .down span {
+  color: #059659;
+  border: 1px solid #059659;
+  padding: 0 0.32rem;
+  margin-right: 0.72rem;
+  font-size: 0.44rem;
+  vertical-align: middle;
+}
+.project-list li .down span:first-of-type {
+  margin-left: 0.74rem;
+}
+.add {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2rem;
+  background-color: #fff;
+  font-size: 0.6rem;
+  color: #999999;
+  line-height: 2.2rem;
+}
+.add span:first-of-type {
+  width: 4rem;
+  height: 2rem;
+  float: left;
+  background: url(../img/icon/add.png) no-repeat 0.34rem 0.66rem;
+  background-size: 0.84rem 0.84rem;
+  text-indent: 1.4rem;
+}
+.add span:last-of-type {
+  float: right;
+  background: url(../img/sign/right.png) no-repeat;
+  width: 0.96rem;
+  height: 0.96rem;
+  background-size: cover;
+  margin-top: 0.7rem;
+  margin-right: 0.4rem;
+}
+#pullDown,
+#pullUp,
+.pulldown-tips {
+  height: 0.8rem;
+  line-height: 0.8rem;
+  text-align: center;
+  font-size: 0.6rem;
+}
+.pulldown-tips {
+  position: absolute;
+  top: -0.8rem;
+  left: 0;
+  width: 100%;
+  font-size: 0.6rem;
+}
+.pullUp-tips {
+  position: absolute;
+  bottom: -0.8rem;
+  left: 0;
+  width: 100%;
+  font-size: 0.6rem;
+  text-align: center;
+}
+#pullUp {
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  width: 100%;
+}

@@ -1,0 +1,58 @@
+#wrap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+}
+#wrap #scroller {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+#wrap #scroller .result_top {
+  color: #fff;
+  height: 7.44rem;
+  background-color: #059659;
+}
+#wrap #scroller .result_top .total_title {
+  line-height: 1.92rem;
+  font-size: 0.56rem;
+  text-indent: 0.68rem;
+}
+#wrap #scroller .result_top .total_detial {
+  line-height: 1.42rem;
+  font-size: 0.84rem;
+  text-indent: 0.68rem;
+}
+#wrap #scroller .result_top .list {
+  display: flex;
+  justify-content: space-around;
+  font-size: 0.56rem;
+  line-height: 0.92rem;
+  margin-top: 1.68rem;
+}
+table {
+  width: 100%;
+  font-size: 0.56rem;
+  color: #4f4f4f;
+  text-align: center;
+  background-color: #fff;
+  border-collapse: collapse;
+}
+table td {
+  padding: 0;
+}
+table thead {
+  background-color: #f2f2f2;
+}
+table thead tr {
+  line-height: 1rem;
+  color: #059659;
+}
+table tbody tr {
+  line-height: 1.6rem;
+  margin-bottom: 0.04rem;
+}

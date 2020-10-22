@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/register.css" />
+	</head>
+	<body>
+		<div class="logo"></div>
+		<form>
+			<label class="sprite"></label><input type="text" placeholder="输入手机号" />
+			<label class="sprite"></label><input type="text" placeholder="验证码" /><span>获取</span>
+			<label class="sprite"></label><input type="text" placeholder="点击输入密码(至少6位)" />
+			<span class="sprite"></span>
+		</form>
+		<p class="line">
+			<span>点击注册,即表示您同意</span>
+			<span>《法律声明及隐私政策》</span>
+		</p>
+		<p class="sign">立即注册</p>
+	</body>
+</html>

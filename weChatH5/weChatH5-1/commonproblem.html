@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/commonproblem.css" />
+	</head>
+	<body>
+		<section id="wrap">
+			<div id="scroller">
+				<p>添加常见问题</p>
+				<ul class="list">
+					<li><i>问题：我是国企员工，工资打卡4000以上，工作三年</i></li>
+					<li><i>问题：我是国企员工，工资打卡4000以上，工作</i></li>
+				</ul>
+			</div>
+		</section>
+		<div class="save">保存</div>
+	</body>
+</html>

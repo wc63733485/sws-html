@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>产品简述</title>
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/projs.css" />
+	</head>
+	<body onload="loaded()">
+		<section id="wrap">
+			<div id="scroller">
+				<textarea placeholder="请输入内容" class="write"></textarea>
+			<div>
+		</section>
+		<div class="save">保存</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/common.js"></script>
+	<script>
+		if(sessionStorage.getItem('projs')){
+			$(".write").val(sessionStorage.getItem('projs'));
+		}
+		$(".save").on('click',function(e){
+			e.stopPropagation();
+			var value = $(".write").val();
+			sessionStorage.removeItem('projs');
+			if(value){
+				sessionStorage.setItem('projs',value);
+			}
+			window.history.go(-1);
+		})
+	</script>
+</html>

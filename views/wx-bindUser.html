@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询信息绑定</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <style type="text/css">* {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }</style>
+    <style>
+        html {
+            height: 100%;
+        }
+        input[type="checkbox"] + label {
+            cursor: pointer;
+            font-size: 0.5rem;
+        }
+        [id^="checkbox-"] + label {
+            background-color: #ffffff;
+            border: 0.01rem solid #666666;
+            padding: 0.3rem;
+            border-radius: 0.15rem;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        [id^="checkbox-"] + label:active {
+        }
+        [id="checkbox-1"]:checked + label {
+            background-color: #F47164;
+            border: 0.1rem solid #F47164;
+        }
+    </style>
+</head>
+<body style="background: url('../static/img/wx-bg.jpg')no-repeat;">
+
+<div style="position: relative;margin:0 auto;width: 18rem;height: 18.8rem;margin-top: 8rem;border:0px solid black;border-radius: 0.5rem;
+box-shadow:0.05rem 0.05rem 0.1rem 0.1rem #d0d0d0;background-color: rgba(255,255,255,0.8)">
+    <div style="position: relative;color: black;text-align: center;margin-top: 15%;font-size: 0.8rem"><br><br><img src="../static/logo-lg.png" width="90" height="50"></div>
+    <div style="position: relative;margin:0 auto;width: 15rem;height: 2.5rem;margin-top: 1.5rem;border:0.1rem solid #d0d0d0;border-radius: 0.5rem">
+        <div style="width: 3rem;height: 2.5rem;float: left;border: 0rem">
+            <div style="background: url('../static/img/wx-account.png')no-repeat;width: 2rem;height: 2rem;margin: 0.25rem "></div>
+        </div>
+        <div style="width: 12rem;height: 2.5rem;float: left;border: 0rem">
+            <input style="width: 12rem;height: 2.5rem;border: 0rem" placeholder="请输入平台账号">
+        </div>
+    </div>
+    <div style="position: relative;margin:0 auto;width: 15rem;height: 2.5rem;margin-top: 1.5rem;border:0.1rem solid #d0d0d0;border-radius: 0.5rem">
+        <div style="width: 3rem;height: 2.5rem;float: left;border: 0rem">
+            <div style="background: url('../static/img/wx-pwd.png')no-repeat;width: 2rem;height: 2rem;margin: 0.25rem "></div>
+        </div>
+        <div style="width: 12rem;height: 2.5rem;float: left;border: 0rem">
+            <input style="width: 12rem;height: 2.5rem;border: 0rem" placeholder="请输入平台密码">
+        </div>
+    </div>
+    <div style="position: relative;margin:0 auto;width: 16rem;height: 2.2rem;margin-top: 1.8rem;">
+        <div style="width: 16rem;height: 2.2rem;float: right;">
+            <button style="color:white;width: 16rem;height: 2.2rem;border-width: 0.1rem;border-radius: 1.5rem; background: linear-gradient(to right, #0190de, #04aeef);">
+                平台登陆
+            </button>
+        </div>
+    </div>
+</div>
+<br>
+<div style="position: relative;margin:0 auto;width: 15rem;height: 2rem;margin-top: 1rem;text-align: center">
+    <input type="checkbox" value="0" id="checkbox-1" style="display: none;">
+    <label for="checkbox-1"></label>
+    <span class="status" style="font-size: 0.85rem">&nbsp;&nbsp;同意并遵守<a style="color: #00aced">《用户绑定协议》</a></span>
+
+</div>
+</body>
+</html>

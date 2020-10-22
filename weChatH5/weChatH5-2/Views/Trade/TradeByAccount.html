@@ -1,0 +1,603 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0">
+	
+<title>余额交易</title>
+
+<link href="../../Theme/css/base.css" rel="stylesheet">
+<link href="../../Theme/css/trade.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+	<div class="header-return">
+	    <a href="javascript:history.go(-1);"></a>
+	</div>
+	
+	<div class="logo header-open-arrow" onClick="showpop('#coin');">VPay余额交易</div>
+	
+	<div class="header-btn">
+		<a href="../Region/Region.html">中国</a>
+	</div>
+</header>
+
+<section class="container">
+	<div class="balance">
+		<ul>
+			<li>
+				<span>VPay资产</span>
+				<h3>100</h3>					
+			</li>
+
+			<li>
+				<span>余额</span>
+				<h3>888</h3>					
+			</li>
+		</ul>
+	</div>
+	
+	<div class="price-update">
+		<ul>
+			<li>
+				<span>当前价格</span>
+				<b>38.7980</b>
+			</li>
+			
+			<li>
+				<span>高</span>
+				<b>38.7987</b>
+				<i class="price-up"></i>
+			</li>
+			
+			<li>
+				<span>低</span>
+				<b>38.0171</b>
+				<i class="price-down"></i>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="trade-order">
+		<ul>
+			<li>
+				<a href="ReleaseSell.html" class="trade-order-1">
+					<i></i>
+					<span>发布出售</span>
+				</a>
+			</li>
+			
+			<li>
+				<a href="ReleaseBuy.html" class="trade-order-2">
+					<i></i>
+					<span>发布购买</span>
+				</a>
+			</li>
+			
+			<li>
+				<a href="TradeOrder.html" class="trade-order-3">
+					<i></i>
+					<span>全部订单</span>
+				</a>
+			</li>
+			
+			<li>
+				<a href="TradeRecord.html" class="trade-order-4">
+					<i></i>
+					<span>交易记录</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="chart">
+		<div class="chart-title">
+			<span class="active">5分钟</span>
+			<span>5小时</span>
+			<span>日线</span>
+		</div>
+		
+		<div class="chart-content">
+			<div class="line-chart" id="lineChart" style="display: block;"></div>
+			<div class="line-chart">
+				<div class="no-content">
+					<i></i>
+					<p>暂无数据</p>
+				</div>
+			</div>
+			<div class="line-chart">
+				<div class="no-content">
+					<i></i>
+					<p>暂无数据</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="trade-list">
+		<div class="trade-list-title">
+			<ul>
+				<li class="active">余额购买</li>
+				<li>余额出售</li>
+			</ul>
+		</div>
+		
+		<div class="trade-tab">
+            <div>
+                <div class="trade-list-content">
+                    <img src="../../Theme/images/member.png">
+                    
+                    <div class="trade-list-item">
+                        <h3>会员名字</h3>
+                        <p>限额<span>300.00000</span></p>
+                    </div>
+                    
+                    <div class="trade-list-btn">
+                        <h3>29.2538</h3>
+                        
+                        <span class="open-buy" onClick="showpop('#buy');">购买</span>
+                    </div>
+                </div>
+                
+                <div class="trade-list-content">
+                    <img src="../../Theme/images/member.png">
+                    
+                    <div class="trade-list-item">
+                        <h3>AAAA</h3>
+                        <p>限额<span>300.00000</span></p>
+                    </div>
+                    
+                    <div class="trade-list-btn">
+                        <h3>29.1478</h3>
+                        
+                        <span class="open-buy" onClick="showpop('#buy');">购买</span>
+                    </div>
+                </div>
+                
+                <div class="trade-list-content">
+                    <img src="../../Theme/images/member.png">
+                    
+                    <div class="trade-list-item">
+                        <h3>张三</h3>
+                        <p>限额<span>300.00000</span></p>
+                    </div>
+                    
+                    <div class="trade-list-btn">
+                        <h3>29.0427</h3>
+                        
+                        <span class="open-buy" onClick="showpop('#buy');">购买</span>
+                    </div>
+                </div>
+                
+                <div class="trade-list-content">
+                    <img src="../../Theme/images/member.png">
+                    
+                    <div class="trade-list-item">
+                        <h3>梦想飞扬</h3>
+                        <p>限额<span>300.00000</span></p>
+                    </div>
+                    
+                    <div class="trade-list-btn">
+                        <h3>28.8786</h3>
+                        
+                        <span class="open-buy" onClick="showpop('#buy');">购买</span>
+                    </div>
+                </div>
+                
+                <div class="trade-list-content">
+                    <img src="../../Theme/images/member.png">
+                    
+                    <div class="trade-list-item">
+                        <h3>张三</h3>
+                        <p>限额<span>300.00000</span></p>
+                    </div>
+                    
+                    <div class="trade-list-btn">
+                        <h3>29.0427</h3>
+                        
+                        <span class="open-buy" onClick="showpop('#buy');">购买</span>
+                    </div>
+                </div>
+                
+                <div class="trade-list-content">
+                    <img src="../../Theme/images/member.png">
+                    
+                    <div class="trade-list-item">
+                        <h3>梦想飞扬</h3>
+                        <p>限额<span>300.00000</span></p>
+                    </div>
+                    
+                    <div class="trade-list-btn">
+                        <h3>28.8786</h3>
+                        
+                        <span class="open-buy" onClick="showpop('#buy');">购买</span>
+                    </div>
+                </div>
+                
+                <div class="load-more">
+                    <a href="">点击加载更多</a>
+                </div>
+    
+                <!--<div class="load-no-more">
+                    <span>没有更多了</span>
+                </div>-->
+            </div>
+            
+            <div>
+                <div class="trade-list-content">
+                    <img src="../../Theme/images/member.png">
+                    
+                    <div class="trade-list-item">
+                        <h3>李四</h3>
+                        <p>限额<span>6.1000</span></p>
+                    </div>
+                    
+                    <div class="trade-list-btn">
+                        <h3>23.8634</h3>
+                        
+                        <span class="open-sell" onClick="showpop('#sell');">卖出</span>
+                    </div>
+                </div>
+				
+				<div class="trade-list-content">
+                    <img src="../../Theme/images/member.png">
+                    
+                    <div class="trade-list-item">
+                        <h3>春天的风</h3>
+                        <p>限额<span>10.0000</span></p>
+                    </div>
+                    
+                    <div class="trade-list-btn">
+                        <h3>23.9723</h3>
+                        
+                        <span class="open-sell" onClick="showpop('#sell');">卖出</span>
+                    </div>
+                </div>
+				
+				<div class="trade-list-content">
+                    <img src="../../Theme/images/member.png">
+                    
+                    <div class="trade-list-item">
+                        <h3>00213123</h3>
+                        <p>限额<span>5.0000</span></p>
+                    </div>
+                    
+                    <div class="trade-list-btn">
+                        <h3>23.5421</h3>
+                        
+                        <span class="open-sell" onClick="showpop('#sell');">卖出</span>
+                    </div>
+                </div>
+				
+				<div class="trade-list-content">
+                    <img src="../../Theme/images/member.png">
+                    
+                    <div class="trade-list-item">
+                        <h3>轻舞飞扬</h3>
+                        <p>限额<span>6.1000</span></p>
+                    </div>
+                    
+                    <div class="trade-list-btn">
+                        <h3>23.8634</h3>
+                        
+                        <span class="open-sell" onClick="showpop('#sell');">卖出</span>
+                    </div>
+                </div>
+                
+                <div class="load-no-more">
+                    <span>没有更多了</span>
+                </div>
+            </div>
+		</div>
+	</div>
+</section>
+
+<!--选择币种弹窗-->
+<div id="coin" class="popup">
+    <div class="popup-box">
+        <div class="popup-box-content">
+            <div class="choose-list">
+				<ul>
+					<li>
+						<input type="radio">
+						<label>VPay</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>令</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>比特币</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>莱特币</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>以太坊</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>狗狗币</label>
+					</li>
+				</ul>
+			</div>
+        </div>
+        
+        <div class="popup-submit">
+            <button class="cancle-btn">取消</button>
+			<button type="submit" class="confirm-btn">确认</button>
+        </div>
+    </div>
+</div>
+
+<!--购买弹窗-->
+<div id="buy" class="popup">
+    <div class="popup-box">
+		<div class="popup-box-title">向 [会员名字] 购买</div>
+		
+        <div class="popup-box-content">
+			<div class="form-widget">
+				<form action="" method="get">
+					<div class="form-box">
+						<div class="form-group">
+							<label class="form-label">限额</label>
+
+							<div class="form-control">
+								<input value="495.000" readonly>
+								
+								<span class="trade-type">VPay</span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="form-label">当前价格</label>
+
+							<div class="form-control">
+								<input value="34.1677" readonly>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="form-label">VPay</label>
+
+							<div class="form-control">
+								<input placeholder="请输入数量">
+								
+								<span class="trade-all">全额</span>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="form-label">实付金额</label>
+
+							<div class="form-control">
+								<input value="0.0000" readonly>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="form-label">支付密码</label>
+						</div>
+					</div>
+					
+					<div class="enter-password">
+                        <input type="password">
+                        <input type="password">
+                        <input type="password">
+                        <input type="password">
+                        <input type="password">
+                        <input type="password">
+					</div>
+					
+					<!--<div class="form-tips">请在3小时内线下打款到卖家账户，否则将影响您的信用值！</div>-->
+				</form>
+			</div>
+        </div>
+        
+        <div class="popup-submit">
+            <button class="cancle-btn">取消</button>
+			<button type="submit" class="confirm-btn">确认</button>
+        </div>
+    </div>
+</div>
+
+<!--出售弹窗-->
+<div id="sell" class="popup">
+    <div class="popup-box">
+		<div class="popup-box-title">向 [会员名字] 卖出</div>
+		
+        <div class="popup-box-content">
+			<div class="form-widget">
+				<form action="" method="get">
+					<div class="form-box">
+						<div class="form-group">
+							<label class="form-label">限额</label>
+
+							<div class="form-control">
+								<input value="6.1000" readonly>
+								
+								<span class="trade-type">VPay</span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="form-label">当前价格</label>
+
+							<div class="form-control">
+								<input value="23.8643" readonly>
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label class="form-label">VPay</label>
+
+							<div class="form-control">
+								<input placeholder="请输入数量">
+								
+								<span class="trade-all">全额</span>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="form-label">支付密码</label>
+						</div>
+					</div>
+					
+					<div class="enter-password">
+                        <input type="password">
+                        <input type="password">
+                        <input type="password">
+                        <input type="password">
+                        <input type="password">
+                        <input type="password">
+					</div>
+					
+					<div class="form-tips">请在3小时内确认收款，否则将影响您的信用值并且会扣除100余额保证金！</div>
+				</form>
+			</div>
+        </div>
+        
+        <div class="popup-submit">
+            <button class="cancle-btn">取消</button>
+			<button type="submit" class="confirm-btn">确认</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../Theme/js/jquery-1.11.2.min.js"></script>
+<script src="../../Theme/js/echarts-all.js"></script>
+<script src="../../Theme/js/main.js"></script>
+
+<script>
+	
+	$(function(){
+
+        //折线图选项卡
+        $(".chart-title span").click(function(){
+
+            var _index = $(this).index();
+
+            $(".line-chart").eq(_index).fadeIn().siblings().fadeOut();
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+
+		
+		//交易列表选项卡
+		$(".trade-list-title li").click(function(){
+			
+			//通过 .index()方法获取元素下标，从0开始，赋值给某个变量
+			var _index = $(this).index();
+				
+			//让内容框的第 _index 个显示出来，其他的被隐藏
+			$(".trade-tab>div").eq(_index).show().siblings().hide();
+				
+			//改变选中时候的选项框的样式，移除其他几个选项的样式
+			$(this).addClass("active").siblings().removeClass("active");
+		});
+		
+	});
+	
+</script>
+<script type="text/javascript">
+	var getOption = function(chartType) {
+		var chartOption = chartType == 'pie' ? {
+			calculable: false,
+			series: [{
+				name: '访问来源',
+				type: 'pie',
+				radius: '65%',
+				center: ['50%', '50%'],
+				data: [{
+					value: 335,
+					name: '直接访问'
+				}, {
+					value: 310,
+					name: '邮件营销'
+				}, {
+					value: 234,
+					name: '联盟广告'
+				}, {
+					value: 135,
+					name: '视频广告'
+				}, {
+					value: 1548,
+					name: '搜索引擎'
+				}]
+			}]
+		} : {
+			legend: {
+				data: ['USDT', 'QJT']
+			},
+			grid: {
+				x: 35,
+				x2: 10,
+				y: 30,
+				y2: 25
+			},
+			toolbox: {
+				show: false,
+				feature: {
+					mark: {
+						show: true
+					},
+					dataView: {
+						show: true,
+						readOnly: false
+					},
+					magicType: {
+						show: true,
+						type: ['line', 'bar']
+					},
+					restore: {
+						show: true
+					},
+					saveAsImage: {
+						show: true
+					}
+				}
+			},
+			calculable: false,
+			xAxis: [{
+				type: 'category',
+				data: ['30秒', '60秒', '90秒', '2分钟', '3分钟', '4分钟', '5分钟']
+			}],
+			yAxis: [{
+				type: 'value',
+				splitArea: {
+					show: true
+				}
+			}],
+			series: [{
+				name: 'USDT',
+				type: chartType,
+				data: [ 7.0, 23.2, 76.7, 135.6, 162.2, 32.6,  3.3]
+			}, {
+				name: 'QJT',
+				type: chartType,
+				data: [ 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7]
+			}]
+		};
+		return chartOption;
+	};
+	
+	var byId = function(id) {
+		return document.getElementById(id);
+	};
+
+	var lineChart = echarts.init(byId('lineChart'));
+	lineChart.setOption(getOption('line'));	
+</script>
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+.choose {
+  position: relative;
+  height: 1.42rem;
+  line-height: 1.42rem;
+  background-color: #fff;
+  margin-bottom: 0.04rem;
+  color: #999999;
+  font-size: 0.56rem;
+}
+.choose .all,
+.choose .status {
+  height: 1.42rem;
+  width: 50%;
+  float: left;
+  text-indent: 0.46rem;
+  background: url(../img/fapro/down2.png) no-repeat 6.4rem center;
+  background-size: 0.42rem 0.24rem;
+}
+.choose .all:first-of-type {
+  border-right: 1px solid #F2F2F2;
+  box-sizing: border-box;
+}
+#wrap {
+  position: absolute;
+  left: 0;
+  top: 1.42rem;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+#wrap #scroller {
+  width: 100%;
+  position: absolute;
+}
+.list_box {
+  width: 15rem;
+  overflow: hidden;
+}
+.list_box li {
+  width: 20.78rem;
+  height: 3.3rem;
+  background-color: #fff;
+  margin-bottom: 0.16rem;
+}
+.list_box li img {
+  float: left;
+  width: 2.76rem;
+  height: 2.76rem;
+  border: 1px solid #b5b5b5;
+  margin-left: 0.28rem;
+  margin-top: 0.22rem;
+}
+.list_box li .mid {
+  padding-top: 0.16rem;
+  width: 6rem;
+  float: left;
+  margin-left: 0.28rem;
+}
+.list_box li .mid p:first-of-type {
+  line-height: 0.98rem;
+  color: #4f4f4f;
+  font-size: 0.56rem;
+}
+.list_box li .mid p:nth-of-type(2) {
+  line-height: 0.98rem;
+  color: #4f4f4f;
+  font-size: 0.56rem;
+}
+.list_box li .mid p:last-of-type {
+  margin-top: 0.28rem;
+  line-height: 0.46rem;
+  color: #999999;
+  font-size: 0.44rem;
+}
+.list_box li .mid p:last-of-type span {
+  color: #ff7400;
+  font-size: 0.48rem;
+}
+.list_box li .right {
+  float: left;
+  text-align: right;
+  margin-right: 0.2rem;
+}
+.list_box li .right p {
+  line-height: 1.64rem;
+  color: #999999;
+  font-size: 0.44rem;
+  width: 5.4rem;
+}
+.list_box li .right span {
+  color: #ff7400;
+  line-height: 1.6rem;
+  font-size: 0.44rem;
+}
+.hidden {
+  width: 5.78rem;
+  height: 3.3rem;
+  background-color: #f2f2f2;
+  float: left;
+}
+.hidden .pen {
+  float: left;
+  width: 1.28rem;
+  height: 1.28rem;
+  background: url(../img/apply/pen.png) no-repeat;
+  background-size: cover;
+  margin-left: 1rem;
+  margin-top: 0.8rem;
+}
+.hidden .del {
+  width: 1.08rem;
+  height: 1.12rem;
+  float: left;
+  background: url(../img/apply/del.png) no-repeat;
+  background-size: cover;
+  margin-left: 1.66rem;
+  margin-top: 0.94rem;
+}
+.mask_ul {
+  display: none;
+  width: 15rem;
+  height: 40rem;
+  position: absolute;
+  left: 0;
+  top: 1.44rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+.mask_ul li {
+  background-color: #fff;
+  height: 1.44rem;
+  line-height: 1.44rem;
+  text-indent: 0.46rem;
+  color: #999999;
+  font-size: 0.6rem;
+  border-bottom: 0.04rem solid #f2f2f2;
+}
+.active {
+  background: url(../img/fapro/true.png) no-repeat 13.8rem center;
+  background-size: 0.64rem 0.44rem;
+  background-color: #fff;
+}
+#pullDown,
+#pullUp,
+.pulldown-tips {
+  height: 0.8rem;
+  line-height: 0.8rem;
+  text-align: center;
+  font-size: 0.6rem;
+}
+.pulldown-tips {
+  position: absolute;
+  top: -0.8rem;
+  left: 0;
+  width: 100%;
+  font-size: 0.6rem;
+}
+.pullUp-tips {
+  position: absolute;
+  bottom: -0.8rem;
+  left: 0;
+  width: 100%;
+  font-size: 0.6rem;
+  text-align: center;
+}
+#pullUp {
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  width: 100%;
+}

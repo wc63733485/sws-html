@@ -1,0 +1,25 @@
+#wrap {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+#wrap #scroller {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.list li {
+  background: url(../img/fapro/right.png) no-repeat 14.22rem 0.68rem;
+  background-color: #fff;
+  height: 1.98rem;
+  margin-bottom: 0.04rem;
+  font-size: 0.6rem;
+  color: #333333;
+  line-height: 1.98rem;
+  text-indent: 0.32rem;
+  background-size: 0.34rem 0.62rem;
+}

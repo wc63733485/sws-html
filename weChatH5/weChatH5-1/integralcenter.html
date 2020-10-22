@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" /> 
+		<link rel="stylesheet" href="css/integralcenter.css" /> 
+	</head>
+	<body onload="loaded()">
+		<section id="wrap">
+			<div id="scroller">
+				<div class="integral_title">
+					<p>
+						<span></span>
+						<span>6688</span>
+					</p>
+					<ul class="nav">
+						<li class="integrpay">积分兑现</li>
+						<li class="intergraldetial">积分明细</li>
+						<li>立即签到</li>
+					</ul>
+				</div>
+				<div class="role">积分规则</div>
+				<ul class="list">
+					<li>
+						<span class="sprite"></span>
+						<span>每日签到</span>
+						<span>+20</span>
+						<span></span>
+					</li>
+					<li>
+						<span class="sprite"></span>
+						<span>连续一周签到</span>
+						<span>+100</span>
+						<span></span>
+					</li>
+					<li>
+						<span class="sprite"></span>
+						<span>邀约拜访</span>
+						<span>+200</span>
+						<span></span>
+					</li>
+					<li>
+						<span class="sprite"></span>
+						<span>分享朋友圈</span>
+						<span>+500</span>
+						<span></span>
+					</li>
+					<li>
+						<span class="sprite"></span>
+						<span>邀请注册并认证</span>
+						<span>+2000</span>
+						<span></span>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/commo.js"></script>
+	<script>
+		$(".intergraldetial").on('tap',function(e){
+			e.stopPropagation();
+			window.location.href = "integraldetial.html";
+		})
+		$(".integrpay").on('tap',function(e){
+			e.stopPropagation();
+			window.location.href='inchange.html';
+		})
+	</script>
+</html>

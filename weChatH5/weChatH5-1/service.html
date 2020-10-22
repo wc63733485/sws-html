@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+			<link rel="stylesheet" href="css/reset.css" />
+			<link rel="stylesheet" href="css/service.css" />
+	</head>
+	<body onload="loaded()">
+			<div id="mian_area">
+				<div class="box">
+					<div class="city">
+						<span>所在城市</span>
+						<span>深圳</span>
+					</div>
+					<div class="area">
+						<span>所在区域</span>
+						<span class="areadetial">福田区</span>
+					</div>
+				</div>
+			</div>
+	<section id="wrap">
+		<div id="scroller">
+			<ul class="list_city">
+				
+			</ul>
+			<ul class="list">
+				
+			</ul>
+		</div>
+	</section>
+	<div class="save">保存</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/new_file.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/common.js"></script>
+	<script>
+		//选择城市
+		$(".city").on('tap',function(e){
+			e.stopPropagation();
+			$(".list_city").css('display','block');
+			$(".list").hide();
+			$(".save").hide();
+			var hight = $(".list_city").height();
+			$("#scroller").height(hight);
+			loaded();
+		})
+		$(".list_city").delegate("li",'tap',function(e){
+			e.stopPropagation();
+			$(".save").show();
+			var html = $(this).html();
+			$(".city").find("span").eq(1).html(html);
+			$(".list_city").hide();
+			var hight = $(".box").height();
+			$("#scroller").height(hight);
+			loaded();
+		})
+		$(".area").on('touchstart',function(e){
+			e.stopPropagation();
+			$(".list").css('display','block');
+		})
+		$(".save").on('click',function(e){
+			e.stopPropagation();
+			var html = $(".list").find('.active').html();
+			$(".list").css('display','none');
+			$(".areadetial").html(html);
+			sessionStorage.setItem('area',html);
+			window.history.go(-1);
+		})
+		function liandong(arg){
+			this.create(arg);	//入口
+		}
+		liandong.prototype={
+			create:function(arg){
+				this.sit=arg;					//保存数据
+				this.key=[];					//做key值储存池，留做渲染
+				var _self=this;
+				getKey(arg,_self);				//获取key值
+				this.showKey(this.key);			//渲染key值
+				this.keyEvent();				//点击事件
+			},
+			showKey:function(key){					//渲染key
+			var list_city = document.querySelector('.list_city');
+				for(index in key){
+					var msg=key[index];
+					var li=document.createElement('li');
+//					li.class='ld-key';
+					li.innerText=msg;
+					list_city.appendChild(li);
+				}
+			},
+			keyEvent:function(){			//li的点击事件
+				var _self=this;				//保存对象
+				var key = document.querySelector('.list_city');
+				var list=key.childNodes;
+				for( i in list){
+					var i=i;
+					if(list[i].nodeName=='LI'){
+						list[i].onclick=function(){
+							var k=this.innerText;
+							_self.showValue(k);
+						}
+					}
+				}
+			},
+			showValue:function(key){		//显示value值
+				var list = document.querySelector('.list');
+				this.clearValue(list);
+				var value=this.sit[key];
+				for(index in value){
+					var msg=value[index];
+					var li=document.createElement('li');
+					li.class='ld-value';
+					li.innerText=msg;
+					list.appendChild(li);
+				}
+			},
+			clearValue:function(right){		//	清除value值
+				right.innerHTML=null;	
+			}
+		}
+		function getKey(site,obj){			//获取key，并将key值传入数组渲染
+			for(var key in site){
+				var key=key;
+				obj.key.push(key);
+			}
+		}
+		var l = new liandong(data);
+	</script>
+</html>

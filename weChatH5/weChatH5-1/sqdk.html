@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>申请贷款</title>
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/sqdk.css" />
+	</head>
+	<body>
+		<section id="wrap">
+		<div class="msg_person">
+			<p class="p1">
+				<span>称呼：</span><input type="text" id="your_name"  placeholder="请输入您的姓氏"/>
+			</p>
+			<p class="p2">
+				<span>性别：</span>
+				<span class="active">先生</span>
+				<span>女士</span>
+			</p>
+			<p class="p3">
+				<span>贷款类型：</span>
+				<span>请选择</span>
+			</p>
+			<p class="p4">
+				<span>申请金额：</span>
+				<input type="text" placeholder="请输入意向额度" />
+				<span>万元</span>
+			</p>
+			<p class="p5">
+				<span>手机号码：</span>
+				<input type="text" placeholder="请输入手机号码" />
+			</p>
+			<p class="p6">
+				<span>短信验证：</span>
+				<input id="security_code" type="text" placeholder="请输入手机验证码" />
+				<span class="security_code">获取验证码</span>
+			</p>
+		</div>
+		<div class="tijiao">提交申请</div>
+		<div class="mask">
+			<ul class="loan_type">
+				<li>信用贷款</li>
+				<li>抵押贷款</li>
+				<li>现金业务</li>
+			</ul>
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script>
+		document.addEventListener('touchstart',function(e){
+			e.preventDefault();
+		});
+		//性别选择
+		$('.p2 span').on('touchstart',function(e){
+			e.stopPropagation();
+			$(this).addClass('active').siblings().removeClass('active');
+		})
+		//贷款类型选择
+		$(".p3").on("touchstart",function(e){
+			e.stopPropagation();
+			$(".mask").css('display','block');
+			$(".mask li").on("touchstart",function(e){
+				e.stopPropagation();
+				$(".mask").css('display','none');
+				$(".p3").find('span').eq(1).html($(this).html());
+				
+			})
+		})
+		$("input").on("touchstart",function(e){
+			e.stopPropagation();
+		})
+		//返回
+		$(".back").on('touchstart',function(e){
+			e.stopPropagation();
+			window.history.go(-1);
+		})
+		//提交
+		var header = "http://rk3mvt.natappfree.cc";
+		var id = sessionStorage.getItem('advierditial');
+		var name,gander,loantype,amount,phoneNumber,data;
+		var security_code  ='';
+		$(".tijiao").on('touchstart',function(e){
+			e.stopPropagation();
+			name = $("#your_name").val();
+			gander = $(".p2").find('.active').html();
+			loantype = $(".p3").find('span').eq(1).html();
+			amount = $(".p4").find('input').val();
+			phoneNumber = $('.p5').find('input').val();
+			var code = $("#security_code").val();
+			if(code==""){
+				alert('验证码不能为空');
+			}
+			if(security_code !=code){
+				alert('验证码不一致');
+			}
+			if(security_code == code&&name&&gander&&loantype&&amount&&phoneNumber){
+				$.ajax({
+					type:"post",
+					url:header+"/applicationInsert.do",
+					data:{
+						businessorId:id,
+						name:name,
+						gander:gander,
+						loantype:loantype,
+						amount:amount,
+						phoneNumber:phoneNumber
+					},
+					dataType:'json',
+					success:function(data){
+						window.location.href = 'sqcg.html';
+					},
+					async:true
+				});
+			}
+		})
+		$(".security_code").on('touchstart',function(e){
+			e.stopPropagation();
+			$.ajax({
+				type:"post",
+				url:header+"/sendCodeApi.do",
+				data:{phoneNumber:phoneNumber},
+				success:function(data){
+					var i = 60;
+					setInterval(function(){
+						i--;
+					},1000)
+					if(i == 0){
+						$(".security_code").html('重新获取');
+					}
+				$(".security_code").html(i+"s");
+				security_code = data.code;
+				},
+				async:true
+			});
+		})
+	</script>
+</html>

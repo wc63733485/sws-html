@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/advantage.css" />
+	</head>
+	<body onload="loaded()">
+		<section id="wrap">
+			<div id="scroller">
+				<p class="title">选择合产品特色，最多5个</p>
+				<div class="list">
+					<ul class="clearfix">
+						<li class="active">当天放款</li>
+						<li>不看征信</li>
+						<li>不上征信</li>
+						<li>征信差可做</li>
+						<li>不看社保</li>
+						<li>不限行业</li>
+						<li>不看流水</li>
+						<li>白户可做</li>
+						<li>黑名单可做</li>
+						<li>有小额可做</li>
+						<li>负债高可做</li>
+						<li>不用上门考察</li>
+						<li>不需配偶签字</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		<div class="save">保存</div>
+	</body>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/commo.js"></script>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/yewufanwei.css" />
+	</head>
+	<body onload="loaded()">
+		<section id="wrap">
+			<div id="scroller">
+				<div id="type">
+					<span class="active">信用贷</span>
+					<span>抵押贷款</span>
+					<span>现金业务</span>
+				</div>
+				<div id="list">
+					<ul class="clearfix">
+						<li>护照贷</li>
+						<li>月供贷</li>
+						<li>装修贷</li>
+						<li>业主贷</li>
+						<li>租赁贷</li>
+						<li>工薪贷</li>
+						<li>公积金贷</li>
+						<li>个税贷</li>
+						<li>社保贷</li>
+						<li>学历贷</li>
+						<li>保单贷</li>
+					</ul>
+					<ul class="clearfix" style="display: none;">
+						<li>房产抵押</li>
+						<li>按揭房二押</li>
+						<li>汽车押证</li>
+						<li>汽车押车</li>
+						<li>典当</li>
+					</ul>
+					<ul class="clearfix" style="display: none;">
+						<li>额度赎楼</li>
+						<li>现金赎楼</li>
+						<li>垫资|过桥</li>
+						<li>短拆|空放</li>
+						<li>企业大额拆借</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		<p class="footer"> 
+			<span>取消</span>
+			<span>确定</span>
+		</p>
+	</body>
+</html>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/iscroll.js"></script>
+<script src="js/demoUtils.js"></script>
+<script src="js/common.js"></script>
+
+<script>
+	$(document).on('touchstart',function(e){
+		e.preventDefault();
+	})
+	//大类选择
+	$("#type span").on('tap',function(e){
+		e.stopPropagation();
+		$(this).addClass('active').siblings().removeClass('active');
+		var index = $(this).index();
+		$('#list ul').hide().eq(index).show();
+	
+	})
+	//具体贷款类型选择
+	$("#list li").on('touchstart',function(e){
+		e.stopPropagation();
+		$(this).addClass('active');
+	})
+	//取消
+	$(".footer span").eq(0).on('touchstart',function(e){
+		e.stopPropagation();
+		$("#list li").removeClass("active");
+		window.history.go(-1);
+	})
+	//确定
+	$(".footer span").eq(1).on('touchstart',function(e){
+		e.stopPropagation();
+		var length = $("#list").find('.active').length;
+		for(var i = 0;i<length;i++){
+			var html = $("#list").find('.active').eq(i).html();
+			$("#list").find('.active').eq(i).html(html + " ");
+		}
+		var value = $("#list").find('.active').text();
+		sessionStorage.setItem('loan_Tyep',value);
+		window.history.go(-1);
+	})
+</script>

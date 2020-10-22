@@ -1,0 +1,119 @@
+.sprites {
+  background: url(../img/icon/sprites.png) no-repeat;
+}
+.sprite1 {
+  background: url(../img/icon/sprite1.jpg) no-repeat;
+}
+.gongju5 {
+  background: url(../img/icon/gongju5.jpg) no-repeat;
+}
+body,
+html {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+#wrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 1.56rem;
+  bottom: 1.78rem;
+  overflow: hidden;
+}
+#wrap #scroller {
+  position: absolute;
+  width: 100%;
+}
+.header {
+  width: 100%;
+  height: 1.46rem;
+  padding-top: 0.4rem;
+  background-color: #fff ;
+}
+.header .logo {
+  float: left;
+  width: 1.92rem;
+  height: 1.2rem;
+  margin-right: 0.6rem;
+  margin-left: 0.36rem;
+  background: url(../../../static/logo.png) no-repeat;
+  background-size: cover;
+}
+.header .address {
+  width: 1.52rem;
+  height: 0.98rem;
+  float: left;
+  line-height: 0.98rem;
+  font-size: 0.48rem;
+  color: #666666;
+  margin-right: 0.46rem;
+  background: url(../img/icon/xiangxia.png) no-repeat;
+  background-size: 0.44rem 0.26rem;
+  background-position: 1.06rem 0.36rem;
+}
+.header form {
+  float: left;
+  line-height: 0.98rem;
+  position: relative;
+}
+.header .search {
+  width: 9.64rem;
+  height: 0.98rem;
+  border-radius: 0.56rem;
+  border: none;
+  padding: 0;
+  vertical-align: top;
+  outline: none;
+  font-size: 0.56rem;
+  text-indent: 0.4rem;
+  padding-right: 0.4rem;
+}
+.header .show {
+  background: url(../img/icon/sousuo.png) no-repeat 0.4rem 0.2rem;
+  background-size: 0.7rem 0.7rem;
+  background-color: #eeeeee;
+}
+.header .hide {
+  background-color: #eeeeee;
+}
+.header .self-man {
+  width: 0.96rem;
+  height: 0.98rem;
+  float: left;
+  margin-left: 1rem;
+  background-size: 11rem 1.54rem;
+  background-position: -7.66rem -0.38rem;
+}
+.footer {
+  width: 100%;
+  height: 2rem;
+  z-index: 999;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+}
+.footer li {
+  float: left;
+  font-size: 0.4rem;
+  text-align: center;
+}
+.footer li img {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.36rem;
+  margin-bottom: 0.06rem;
+}
+.footer li a {
+  color: #666;
+  line-height: 0.58rem;
+}
+.footer li:nth-of-type(2) img {
+  margin-left: 0.1rem;
+}
+.footer li:nth-of-type(3) img {
+  margin-left: 0.1rem;
+}

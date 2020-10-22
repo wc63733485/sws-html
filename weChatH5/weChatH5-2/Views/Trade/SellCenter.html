@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0">
+	
+<title>卖出中心</title>
+
+<link href="../../Theme/css/base.css" rel="stylesheet">
+<link href="../../Theme/css/trade.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+	<div class="header-return">
+	    <a href="javascript:history.go(-1);"></a>
+	</div>
+	
+	<div class="logo">卖出中心</div>
+	
+	<div class="header-btn">
+		<a href="SellRecord.html">记录</a>
+	</div>
+</header>
+
+<section class="container sell-center">
+	<div class="choose-number">
+		<div class="choose-number-title">
+			<h3>点击选择匹配金额</h3>
+			
+			<a href="../Region/Region.html">中国</a>
+		</div>
+		
+		<div class="choose-number-form">
+			<form>
+				<ul>
+					<li>
+						<input type="radio">
+						<label>500</label>
+					</li>
+
+					<li>
+						<input type="radio">
+						<label>1000</label>
+					</li>
+
+					<li>
+						<input type="radio">
+						<label>3000</label>
+					</li>
+
+					<li>
+						<input type="radio">
+						<label>5000</label>
+					</li>
+
+					<li>
+						<input type="radio">
+						<label>10000</label>
+					</li>
+
+					<li>
+						<input type="radio">
+						<label>30000</label>
+					</li>
+				</ul>
+			</form>
+		</div>
+	</div>
+	
+	<!--<div class="buy-records">
+		<div class="no-content">
+			<i></i>
+			<p>暂无记录</p>
+		</div>
+	</div>-->
+	
+	<div class="sell-list">
+		<div class="sell-list-people">
+			<img src="../../Theme/images/member.png">
+		</div>
+		
+		<div class="sell-list-info">
+			<h3>会员名字</h3>
+			<div class="user-level">
+				<span>信用</span>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+			</div>
+			
+			<p>支付方式：中国建设银行</p>
+		</div>
+		
+		<div class="sell-list-price">
+			<h3>交易金额：1000</h3>
+			<p>实付金额：850.00RMB</p>
+			
+			<span class="sell-btn" onClick="showpop('#SellBox');">出售</span>
+		</div>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="sell-list">
+		<div class="sell-list-people">
+			<img src="../../Theme/images/member.png">
+		</div>
+		
+		<div class="sell-list-info">
+			<h3>m99999</h3>
+			<div class="user-level">
+				<span>信用</span>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+			</div>
+			
+			<p>支付方式：中国银行</p>
+		</div>
+		
+		<div class="sell-list-price">
+			<h3>交易金额：1000</h3>
+			<p>实付金额：850.00RMB</p>
+			
+			<span class="sell-btn" onClick="showpop('#SellBox');">出售</span>
+		</div>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="sell-list">
+		<div class="sell-list-people">
+			<img src="../../Theme/images/member.png">
+		</div>
+		
+		<div class="sell-list-info">
+			<h3>顺其自然</h3>
+			<div class="user-level">
+				<span>信用</span>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+			</div>
+			
+			<p>支付方式：中国交通银行</p>
+		</div>
+		
+		<div class="sell-list-price">
+			<h3>交易金额：1000</h3>
+			<p>实付金额：850.00RMB</p>
+			
+			<span class="sell-btn" onClick="showpop('#SellBox');">出售</span>
+		</div>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="sell-list">
+		<div class="sell-list-people">
+			<img src="../../Theme/images/member.png">
+		</div>
+		
+		<div class="sell-list-info">
+			<h3>m99999</h3>
+			<div class="user-level">
+				<span>信用</span>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+			</div>
+			
+			<p>支付方式：中国银行</p>
+		</div>
+		
+		<div class="sell-list-price">
+			<h3>交易金额：1000</h3>
+			<p>实付金额：850.00RMB</p>
+			
+			<span class="sell-btn" onClick="showpop('#SellBox');">出售</span>
+		</div>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="sell-list">
+		<div class="sell-list-people">
+			<img src="../../Theme/images/member.png">
+		</div>
+		
+		<div class="sell-list-info">
+			<h3>顺其自然</h3>
+			<div class="user-level">
+				<span>信用</span>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+			</div>
+			
+			<p>支付方式：中国交通银行</p>
+		</div>
+		
+		<div class="sell-list-price">
+			<h3>交易金额：1000</h3>
+			<p>实付金额：850.00RMB</p>
+			
+			<span class="sell-btn" onClick="showpop('#SellBox');">出售</span>
+		</div>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="sell-list">
+		<div class="sell-list-people">
+			<img src="../../Theme/images/member.png">
+		</div>
+		
+		<div class="sell-list-info">
+			<h3>m99999</h3>
+			<div class="user-level">
+				<span>信用</span>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+			</div>
+			
+			<p>支付方式：中国银行</p>
+		</div>
+		
+		<div class="sell-list-price">
+			<h3>交易金额：1000</h3>
+			<p>实付金额：850.00RMB</p>
+			
+			<span class="sell-btn" onClick="showpop('#SellBox');">出售</span>
+		</div>
+	</div>
+	<div class="clr"></div>
+	
+	<div class="sell-list">
+		<div class="sell-list-people">
+			<img src="../../Theme/images/member.png">
+		</div>
+		
+		<div class="sell-list-info">
+			<h3>顺其自然</h3>
+			<div class="user-level">
+				<span>信用</span>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+				<i></i>
+			</div>
+			
+			<p>支付方式：中国交通银行</p>
+		</div>
+		
+		<div class="sell-list-price">
+			<h3>交易金额：1000</h3>
+			<p>实付金额：850.00RMB</p>
+			
+			<span class="sell-btn" onClick="showpop('#SellBox');">出售</span>
+		</div>
+	</div>
+	<div class="clr"></div>
+</section>
+
+<!--支付密码弹窗-->
+<div id="SellBox" class="popup">
+    <div class="popup-box">
+        <div class="popup-box-title">请输入支付密码</div>
+        
+        <div class="popup-box-content">
+            <div class="enter-password">
+				<form>
+					<input type="password">
+					<input type="password">
+					<input type="password">
+					<input type="password">
+					<input type="password">
+					<input type="password">
+				</form>
+			</div>
+        </div>
+        
+        <div class="popup-submit">
+            <button class="cancle-btn">取消</button>
+			<button type="submit" class="confirm-btn">确认</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../Theme/js/jquery-1.11.2.min.js"></script>
+<script src="../../Theme/js/main.js"></script>
+</body>
+</html>

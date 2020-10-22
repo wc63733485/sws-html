@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/advantagearea.css" />
+	</head>
+	<body>
+		<textarea id="edtion" placeholder="请输入20个字以内"></textarea>
+		<div class="save">保存</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script>
+		$(".save").on("click",function(e){
+			e.stopPropagation();
+			var value = $("#edtion").val();
+			if(value){
+				sessionStorage.setItem('advantage_edtion',value)
+			}
+			window.history.go(-1);
+		})
+	</script>
+</html>

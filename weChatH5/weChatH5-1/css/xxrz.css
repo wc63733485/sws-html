@@ -1,0 +1,101 @@
+#wrap {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+#wrap #scroller {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+#wrap .title {
+  width: 100%;
+  height: 0.86rem;
+  background-color: #f2f2f2;
+  font-size: 0.52rem;
+  color: #059659;
+  line-height: 0.86rem;
+  text-indent: 0.34rem;
+}
+.list li {
+  height: 1.8rem;
+  line-height: 1.8rem;
+  margin-bottom: 0.04rem;
+  font-size: 0.6rem;
+  background-color: #fff;
+}
+.list li span {
+  margin-left: 0.32rem;
+  float: left;
+}
+.list li #year {
+  float: right;
+  margin-right: 0.42rem;
+}
+.list li .right {
+  background: url(../img/fapro/right.png) no-repeat;
+  float: right;
+  width: 0.34rem;
+  height: 0.62rem;
+  background-size: cover;
+  margin-top: 0.56rem;
+  margin-right: 0.42rem;
+}
+.list li input {
+  float: right;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  outline: none;
+  border: none;
+  font-size: 0.56rem;
+  margin-right: 0.3rem;
+  text-align: center;
+}
+.list li #abbreviation {
+  width: 8rem;
+}
+.list li .choose {
+  float: right;
+  color: #999;
+  margin-right: 0.6rem;
+}
+.submit {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2rem;
+  font-size: 0.76rem;
+  background-color: #059659;
+  text-align: center;
+  line-height: 2rem;
+  color: #fff;
+}
+::-webkit-input-placeholder {
+  /* WebKit browsers */
+  font-size: 0.56rem;
+  color: #999;
+  text-indent: 0.56rem;
+}
+:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  font-size: 0.56rem;
+  color: #999;
+  text-indent: 0.56rem;
+}
+::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  font-size: 0.56rem;
+  color: #999;
+  text-indent: 0.56rem;
+}
+:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  font-size: 0.56rem;
+  color: #999;
+  text-indent: 0.56rem;
+}

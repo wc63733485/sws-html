@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>产品详情</title>
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/detial.css" />
+	</head>
+	<body onload="loaded()">
+		<section id="wrap">
+			<div id="scroller">
+				<div class="msg">
+					<span class="samll"></span>
+					<span>该信息由广发银行提供,更新时间2017-04-21</span>
+					<span class="samll"></span>
+				</div>
+				<div class="bank_all">
+					<p class="bank_top">
+						<img src="" />
+						<span id="name">广发银行-月供贷</span>
+						<span class="samll"></span>
+						<span class="samll"></span>
+					</p>
+					<div class="bank_down">
+						<p>综合月息</p>
+						<p>0.3%-0.8%</p>
+						<p>贷款额度：<span class="money_limit">10-50万</span>  | 贷款期限：<span class="money_year">1-5年</span></p>
+						<p>还款方式：<span class="pay_money">等额本息 </span> | 放款时间：<span class="loan_time">10-20天</span></p>
+						<div class="role">
+							<!--<span>不上征信</span>
+							<span>不用真实装修</span>
+							<span>不看小额</span>-->
+						</div>
+					</div>
+				</div>
+				<div class="loan">
+					<span>贷款计算</span>
+					<!--<span>顾问推荐</span>-->
+				</div>
+				<div class="loan_list">
+					<ul class="loan_list_top">
+						<li>
+							<span>贷款金额</span>
+							<span>万</span>
+							<span>10</span>
+							
+						</li>
+						<li>
+							<span>贷款期限</span>
+							<span class="right1"></span>
+							<span>12个月</span>
+							
+						</li>
+						<li>
+							<span>综合月息</span>
+							<span class="right2"></span>
+							<span>0.3%</span>
+						</li>
+					</ul>
+					<div class="loan_list_down" style="position: relative;">
+						<div id="mychart"></div>
+						<p class="moth_pay">月供：<span>1442元</span></p>
+						<p class="add_pay">综合月利息：<span>300元</span></p>
+						<p class="money_detial">费用详情</p>
+					</div>
+				</div>
+				<ul class="money_about">
+					<li>
+						<span>利息说明：</span>
+						<span></span>
+					</li>
+					<li>
+						<span>提前还款：</span>
+						<span></span>
+					</li>
+					<li>
+						<span>相关费用：</span>
+						<span></span>
+					</li>
+					<li class="close">收起</li>
+				</ul>
+				<div class="part">
+					<h3>产品简述</h3>
+					<p class="content">这是一个什么什么样的产品，这是一个实例用来凑数的，这个产品有什么优势，它的服务怎么样。</p>
+				</div>
+				<div class="part">
+					<h3>办理流程</h3>
+					<div class="content">
+						<div class="imgs">
+							<img src="img/prodetial/apply.png" />
+							<img class="right" src="img/prodetial/right.png" />
+							<img src="img/prodetial/phone.png" />
+							<img class="right" src="img/prodetial/right.png" />
+							<img src="img/prodetial/shop.png" />
+							<img class="right" src="img/prodetial/right.png" />
+							<img src="img/prodetial/succse.png" />
+						</div>
+						<p class="text">
+							<span>申请贷款</span>
+							<span>电话初审</span>
+							<span>门店办理</span>
+							<span>审批放款</span>
+						</p>
+					</div>
+				</div>
+				<div class="part">
+					<h3>申请条件</h3>
+					<div class="content entrycriteria">
+						<div class="tiaojian">1、这是一个什么什么样的产品，这是一个实例用来。</div>
+						<div class="tiaojian">	2、这个产品有什么优势，它的服务怎么样。</div>
+						<div class="tiaojian">3、这个产品有什么优势，它的服务怎么样。</div>
+					</div>
+				</div>
+				<div class="part">
+					<h3>所需材料</h3>
+					<div class="content applymaterial">
+						<div class="tiaojian">1、身份证</div>
+						<div class="tiaojian">	2、房产证</div>
+						<div class="tiaojian">3、银行流水</div>
+					</div>
+				</div>
+				<!--<div class="part">
+					<h3>成功案例</h3>
+					<div class="content">
+						<p class="name_title">王女士当天放款</p>
+						<dl class="clearfix">
+							<dt>贷款金额：</dt>
+							<dd class="num">85万元</dd>
+							<dt>放款时间：</dt>
+							<dd>1天</dd>
+						</dl>
+						<p class="content_down">客户王女士下午3点需交付的贷款，早上9点在微融帮申请了一笔贷款</p>
+						<p class="name_title">王女士当天放款</p>
+						<dl class="clearfix">
+							<dt>贷款金额：</dt>
+							<dd class="num">85万元</dd>
+							<dt>放款时间：</dt>
+							<dd>1天</dd>
+						</dl>
+						<p class="content_down">客户王女士下午3点需交付的贷款，早上9点在微融帮申请了一笔贷款</p>
+					</div>
+				</div>-->
+				<div class="part">
+					<h3>常见问题</h3>
+					<div class="content problem">
+						<p>问：请问贷款审批时间多久</p>
+						<span>答：一般2-5个工作日。</span>
+						<p>问：请问贷款审批时间多久</p>
+						<span>答：一般2-5个工作日。</span>
+						<p>问：请问贷款审批时间多久</p>
+						<span>答：一般2-5个工作日。</span>
+					</div>
+				</div>
+				<div class="advier">
+					<h3>顾问推荐</h3>
+					<ul class="advier_list">
+						<!--<li>
+							<img src="img/logo/touxiang1.png" />
+							<div class="adviser-right">
+								<div class="adviser-top1">
+									<div class="adviser-top-left">
+										<p>王晓娟</p>
+										<p>xxxx公司|行业经验<span>5</span>年</p>
+									</div>
+									<div class="adviser-top-right">
+										<p>
+											<span>关注量:</span>
+											<span>256</span>
+										</p>
+										<p>
+											<span>咨询量:</span>
+											<span>256</span>
+										</p>
+									</div>
+								</div>
+								<p id="adviser-down">业务范围:工薪贷、公积金贷、租赁贷</p>
+							</div>
+						</li>
+						<li>
+							<img src="img/logo/touxiang1.png" />
+							<div class="adviser-right">
+								<div class="adviser-top1">
+									<div class="adviser-top-left">
+										<p>王晓娟</p>
+										<p>xxxx公司|行业经验<span>5</span>年</p>
+									</div>
+									<div class="adviser-top-right">
+										<p>
+											<span>关注量:</span>
+											<span>256</span>
+										</p>
+										<p>
+											<span>咨询量:</span>
+											<span>256</span>
+										</p>
+									</div>
+								</div>
+								<p id="adviser-down">业务范围:工薪贷、公积金贷、租赁贷</p>
+							</div>
+						</li>
+						<li>
+							<img src="img/logo/touxiang1.png" />
+							<div class="adviser-right">
+								<div class="adviser-top1">
+									<div class="adviser-top-left">
+										<p>王晓娟</p>
+										<p>xxxx公司|行业经验<span>5</span>年</p>
+									</div>
+									<div class="adviser-top-right">
+										<p>
+											<span>关注量:</span>
+											<span>256</span>
+										</p>
+										<p>
+											<span>咨询量:</span>
+											<span>256</span>
+										</p>
+									</div>
+								</div>
+								<p id="adviser-down">业务范围:工薪贷、公积金贷、租赁贷</p>
+							</div>
+						</li>-->
+					</ul>
+				</div>
+			</div>
+		</section>
+		<footer class="footer">立即申请</footer>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/commo.js"></script>
+	<script src="js/echarts.simple.min.js"></script>
+	<script>
+	var myChart = echarts.init(document.getElementById('mychart'));
+	option = {
+		    tooltip: {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b}: {c} ({d}%)"
+		    },
+		    series: [{
+		        name: '访问来源',
+		        type: 'pie',
+		        radius: ['70%', '80%'],
+		        avoidLabelOverlap: false,
+		        label: {
+		            normal: {
+		                show: false,
+		                position: 'center'
+		            },
+		            emphasis: {
+		                show: false,
+		                textStyle: {
+		                    fontSize: '30',
+		                    fontWeight: 'bold'
+		                }
+		            }
+		        },
+		        labelLine: {
+		            normal: {
+		                show: false
+		            }
+		        },
+		        data: [{
+		            value: 335,
+		            name: '月供'
+		        }, {
+		            value: 310,
+		            name: '综合月利息'
+		        } ]
+		    }]
+		};
+		myChart.setOption(option);
+		var id = sessionStorage.getItem('prodetial');
+		var data = {
+			id:id
+		}
+		var header = "http://rk3mvt.natappfree.cc";
+		ajaxProdetial(header+"/productDetailsApi.do",data)
+		function ajaxProdetial(url,data){
+			$.ajax({
+				type:"get",
+				url:url,
+				data:data,
+				dataType:"json",
+				success:function(data){
+					console.log(data);
+					$(".bank_top").find('#name').html(data.name);
+					$(".bank_top").find('img').css("src",''+header+''+data.img+'');
+					var value = '';
+					if(data.ratetype == 0){
+						value = '综合月息'
+					}else if(data.ratetype == 1){
+						value = '月利率'
+					}
+					$(".bank_down").find('p').eq(0).html(value);
+					$(".bank_down").find('p').eq(1).html(data.minrate+'%'+"-"+data.maxrate+'%');
+					$(".money_limit").html(data.minlendinglimit+'-'+data.maxlendinglimit+"万");
+					$('.money_year').html(data.mincreditperiod+'-'+data.maxcreditperiod+"年");
+					$(".pay_money").html(data.repaymentmethod);
+					$('.loan_time').html(data.minapprovalloanday+'-'+data.maxapprovalloanday+"天");
+					var str = '';
+					if(data.tag != ''){
+						var arr1 = [];
+						arr1 = data.tag.split(',');
+						for(var i =0;i<arr1.length;i++){
+							str+="<span>"+arr1[i]+"</span>";
+						}
+						$(".role").html(str);
+					}
+					
+					$('.projs').html(data.intro);
+					//申请条件
+					$(".entrycriteria").html(data.entrycriteria);
+					//所需材料
+					$(".applymaterial").html(data.applymaterial);
+					//常见问题
+					var arr = data.remark.replace(/\n/g,"<br/>");
+					
+					//arr=arr.split("&");
+					var str1 = '';
+					console.log(arr);
+//					for(var i = 0;i<arr.length;i++){
+//						str1+="<p>"+arr[i]+"</p>"
+//					}
+					$('.problem').html(arr);
+					//贷款顾问
+					var str = "";
+					for(var i = 0;i<data.consultantVos.length;i++){
+						str+="<li class= 'clearfix' data-id="+data.consultantVos[i].id+">"
+							str+='<img src="img/logo/touxiang1.png" />'
+							str+="<div class='adviser-right'>"
+								str+="<div class='adviser-top1'>"
+									str+="<div class='adviser-top-left'>"
+										str+="<p>"+data.consultantVos[i].disName+"</p>"
+										str+="<p>"+data.consultantVos[i].campanyName+"|行业经验<span>"+data.consultantVos[i].experience+"</span>年</p>"
+									str+="</div>"
+									str+="<div class='adviser-top-right'>"
+										str+="<p>"
+											str+="<span>关注量:</span>"
+											str+="<span>"+data.consultantVos[i].attentionDegree+"</span>"
+										str+="</p>"
+										str+="<p>"
+											str+="<span>咨询量:</span>"
+											str+="<span>"+data.consultantVos[i].clickNumber+"</span>"
+										str+="</p>"
+									str+="</div>"
+								str+="</div>"
+								str+="<p id='adviser-down'>业务范围:"+data.consultantVos[i].businessscope+"</p>"
+							str+="</div>"
+						str+="</li>"
+					}
+					$(".advier_list").html(str);
+					loaded();
+				},
+				async:true
+			});
+		}
+		$(".money_detial").on('tap',function(e){
+			e.stopPropagation();
+			$(".money_about").slideDown();
+			
+		})
+		$(".close").on("tap",function(e){
+			e.stopPropagation();
+			$(".money_about").slideUp();
+		})
+		//顾问详情
+		$(".advier_list").delegate('li','tap',function(e){
+			e.stopPropagation();
+			var id = $(this).attr('data-id');
+			sessionStorage.setItem('advierditial',id);
+			window.location.href = 'guwendetial.html';
+		})
+		//立即申请
+		$(".footer").on('touchstart',function(e){
+			e.stopPropagation();
+			window.location.href = 'sqdk.html';
+		})
+	</script>
+</html>

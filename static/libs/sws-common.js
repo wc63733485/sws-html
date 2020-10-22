@@ -11,6 +11,23 @@ var deviceUnitUrl = address + ":14029/deviceUnit"
 var companyUrl = address + ":14029/company"
 var projectUrl = address + ":14029/project"
 var postSaleTask = address + ":14029/postSaleTask"
+var weclome = './index.html'
+
+
+// var address = "http://39.96.74.32"
+// var sysUrl = address + ":14029/system"
+// var pumpHouseUrl = address + ":14029"
+// var pumpHouseUrl1 = address + ":14029/pumpHouse"
+// var weChatUserUrl = address + ":14029/weChatUser"
+// var deviceUrl = address + ":14029/device"
+// var deviceWarnUrl = address + ":14029/deviceWarn"
+// var deviceTypeUrl = address + ":14029/deviceType"
+// var deviceDataUrl = address + ":14029/deviceData"
+// var deviceUnitUrl = address + ":14029/deviceUnit"
+// var companyUrl = address + ":14029/company"
+// var projectUrl = address + ":14029/project"
+// var postSaleTask = address + ":14029/postSaleTask"
+// var weclome = '/views/index.html'
 
 function add0(m) {
     return m < 10 ? '0' + m : m

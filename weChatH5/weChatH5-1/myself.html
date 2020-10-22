@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/myself.css" />
+	</head>
+	<body onload="loaded()">
+		<section id="wrap">
+			<div id="scroller">
+					<div class="myself">
+						<div>
+							<p class="edtion_person">
+								<img src="img/sign/person.jpg" />
+							</p>
+							<p>
+								<span>用户名</span>
+								<img src="img/sign/edit.png"/>
+							</p>
+						</div>
+						<ul class="myself1 clearfix">
+							<li>
+								<p>22</p>
+								<p>系统通知</p>
+							</li>
+							<li>
+								<p>888</p>
+								<p>我浏览过的信息</p>
+							</li>
+							<li>
+								<p>深圳</p>
+								<p>所在城市</p>
+							</li>
+						</ul>
+					</div>
+					<ul class="list">
+						<li class="myapply">
+							<span class="my"></span>
+							<span>我的申请</span>
+							<img src="img/sign/right.png" />
+						</li>
+						<li class="mypg">
+							<span class="my"></span>
+							<span>我的评估</span>
+							<img src="img/sign/right.png" />
+						</li>
+						<li class="mymsg">
+							<span class="my"></span>
+							<span>我的消息</span>
+							<img src="img/sign/right.png" />
+						</li>
+						<li class="myshoucang">
+							<span class="my"></span>
+							<span>我的收藏</span>
+							<img src="img/sign/right.png" />
+						</li>
+						<li>
+							<span class="my"></span>
+							<span>我的关注</span>
+							<img src="img/sign/right.png" />
+						</li>
+						<li class="security">
+							<span class="my"></span>
+							<span>安全中心</span>
+							<img src="img/sign/right.png" />
+						</li>
+						<li class="options">
+							<span class="my"></span>
+							<span>意见反馈</span>
+							<img src="img/sign/right.png" />
+						</li>
+					</ul>
+				</div>
+			</section>
+		<div class="exit">退出</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/commo.js"></script>
+	<script>
+		$(".edtion_person").on('click',function(e){
+			e.stopPropagation();
+			window.location.href = 'dataedtion.html';
+		})
+		$(".myapply").on('click',function(e){
+			e.stopPropagation();
+			window.location.href = 'apply.html';
+		})
+		$(".mypg").on('click',function(e){
+			e.stopPropagation();
+			window.location.href = 'dkpg1.html';
+		})
+		$(".mymsg").on('click',function(e){
+			e.stopPropagation();
+			window.location.href = 'msg.html';
+		})
+		$(".myshoucang").on('click',function(e){
+			e.stopPropagation();
+			window.location.href = 'myshoucang.html';
+		})
+		$(".security").on('click',function(e){
+			e.stopPropagation();
+			window.location.href = 'security.html';
+		})
+		$(".options").on('click',function(e){
+			e.stopPropagation();
+			window.location.href = 'opinion.html';
+		})
+	</script>
+</html>

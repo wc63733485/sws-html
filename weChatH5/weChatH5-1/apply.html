@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的申请</title>
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/apply.css" />
+	</head>
+	<body>
+		<section id="wrap">
+			<div id="scroller">
+				<div id="pullDown" class=""><div class="pullDownLabel"></div></div>  
+		        <div class="pulldown-tips"></div>  
+				<ul class="apply_list">
+					<!--<li class="list clearfix">
+						<div class="clearfix">
+							<div class="apply_left">
+								<p>信用额度</p>
+								<p>
+									意向额度:
+									<span>10万</span>
+								</p>
+							</div>
+							<div class="apply_right">
+								<p>
+									<span>某某贷款顾问</span>
+									<span>申请时间：2017-04-22</span>
+								</p>
+								<p>处理中</p>
+							</div>
+							<div class="hidden ">
+								<span class="pen"></span>
+								<span class="del"></span>
+							</div>
+						</div>
+						<p class="edition"></p>
+					</li>
+					<li class="list clearfix">
+						<div class="apply_left">
+							<p>信用额度</p>
+							<p>
+								意向额度:
+								<span>10万</span>
+							</p>
+						</div>
+						<div class="apply_right">
+							<p>
+								<span>某某贷款顾问</span>
+								<span>申请时间：2017-04-22</span>
+							</p>
+							<p>处理中</p>
+						</div>
+						<div class="hidden ">
+							<span class="pen"></span>
+							<span class="del"></span>
+						</div>
+						<p class="edition"></p>
+					</li>
+					<li class="list clearfix">
+						<div class="apply_left">
+							<p>信用额度</p>
+							<p>
+								意向额度:
+								<span>10万</span>
+							</p>
+						</div>
+						<div class="apply_right">
+							<p>
+								<span>某某贷款顾问</span>
+								<span>申请时间：2017-04-22</span>
+							</p>
+							<p>处理中</p>
+						</div>
+						<div class="hidden ">
+							<span class="pen"></span>
+							<span class="del"></span>
+						</div>
+					</li>
+					<li class="list clearfix">
+						<div class="apply_left">
+							<p>信用额度</p>
+							<p>
+								意向额度:
+								<span>10万</span>
+							</p>
+						</div>
+						<div class="apply_right">
+							<p>
+								<span>某某贷款顾问</span>
+								<span>申请时间：2017-04-22</span>
+							</p>
+							<p>处理中</p>
+						</div>
+						<div class="hidden ">
+							<span class="pen"></span>
+							<span class="del"></span>
+						</div>
+					</li>
+					<li class="list clearfix">
+						<div class="apply_left">
+							<p>信用额度</p>
+							<p>
+								意向额度:
+								<span>10万</span>
+							</p>
+						</div>
+						<div class="apply_right">
+							<p>
+								<span>某某贷款顾问</span>
+								<span>申请时间：2017-04-22</span>
+							</p>
+							<p>处理中</p>
+						</div>
+						<div class="hidden ">
+							<span class="pen"></span>
+							<span class="del"></span>
+						</div>
+					</li>-->
+				</ul>
+				<div class="pullUp-tips"></div>  
+				 <div id="pullUp" class="">  
+		        	<div class="pullUpLabel"></div>  
+		        </div>  
+			</div>
+		</section>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/iscroll-probe.js"></script>
+	<script src="js/m.Tween.js"></script>
+	<script>
+		var loginId = sessionStorage.getItem('ordinary_loginId');
+		var currentPage = 1;
+		var totalPage = 1;
+		var applicationId;
+		var loginId;
+		var data_applyid;
+		var data = {
+			"loginId":loginId,
+			"currentPage":currentPage
+		}
+		getAjax("http://192.168.1.128:8888/applicationApi.do",data);
+		function getAjax(url,data){
+			$.ajax({
+				type:"get",
+				url:url,
+				dataType:'json',
+				data:data,
+				success:function(data){
+					totalPage = data.totalPage;
+					currentPage = data.currentPage;
+					console.log(data);
+					var str = '';
+					for(var i = 0;i<data.listData.length;i++){
+						str+="<li data-applyid="+data.listData[i].id+" class='list clearfix' data-loginId="+data.listData[i].loginId+">"
+							str+="<div class='clearfix'>"
+								str+="<div class='apply_left'>"
+									str+="<p>信用额度</p>"
+									str+="<p>"
+										意向额度:
+										str+="<span>"+data.listData[i].amount+"万</span>"
+									str+="</p>"
+								str+="</div>"
+								str+="<div class='apply_right'>"
+									str+="<p>"
+										str+="<span>"+data.listData[i].name+"</span>"
+									str+="<span>申请时间："+data.listData[i].createtime+"</span>"
+									str+="</p>"
+									if(data.listData[i].handleType == 0){
+										str+="<p>处理中</p>"
+									}
+									if(data.listData[i].handleType == 1){
+										str+="<p>已处理</p>"
+									}
+								str+="</div>"
+								str+="<div class='hidden'>"
+									str+="<span class='pen'></span>"
+									str+="<span class='del'></span>"
+								str+="</div>"
+							str+="</div>"
+							if(data.listData[i].remark){
+								str+="<p class='edition'>+data.listData[i].remark+</p>"
+							}
+						str+="</li>"
+					}
+					$(".apply_list").html(str);
+					loaded();
+					slide();
+//					编辑
+					$(".pen").on('tap',function(e){
+						e.stopPropagation();
+						window.location.href = 'shoucangbeizhu.html';
+					})
+					//删除
+					$(".del").on('tap',function(e){
+						data_applyid =$(this).closest('li').attr('data-applyid');
+						var deldata = {
+							id:data_applyid
+						}
+						e.stopPropagation();
+						$.ajax({
+							type:"get",
+							url:"http://192.168.1.128:8888/deleteApplication.do",
+							data:deldata,
+							success:function(data){
+								console.log(data);
+							},
+							async:true
+						});
+						$(this).parents('li').remove();
+					})
+					//查看备注
+					$(".edition").on("click",function(e){
+						loginId =$(this).closest('li').attr('data-loginId');
+						data_applyid =$(this).closest('li').attr('data-applyid');
+						var addData = {
+							loginId:loginId,
+							applicationId:data_applyid
+						}
+						$.ajax({
+							type:"get",
+							url:"http://192.168.1.128:8888/editApplication.do ",
+							data:addData,
+							success:function(data){
+								console.log(data);
+							},
+							async:true
+						});
+						e.stopPropagation();
+						window.location.href = 'shoucangbeizhu.html';
+					})
+				},
+				async:true
+			});
+		}
+		function slide (){
+			var list = document.querySelectorAll('.list');
+			var startPoint = 0;
+			var startEl = 0;
+			for(var i=0;i<list.length;i++){
+				list[i].addEventListener('touchstart', function(e) {
+					var thisA = this;
+					startPoint = e.changedTouches[0].pageX;
+					startEl = css(thisA,"translateX");
+				});
+			}
+			for(var i=0;i<list.length;i++){
+				list[i].addEventListener('touchmove', function(e) {
+					var nowPoint = e.changedTouches[0].pageX;
+					var dis = nowPoint - startPoint;
+					var translateX = startEl + dis;
+					var thisA = this;
+					if(translateX<=-5.76){
+						translateX = -5.76;
+					}
+					if(translateX>=0){
+						translateX = 0;
+					}
+					css(thisA,"translateX",translateX);
+				});
+			}
+		}
+		function loaded () {  
+        			var myScroll,  
+                    pullDown = $("#pullDown"),  
+                    pullUp = $("#pullUp"),  
+                    pullDownLabel = $(".pullDownLabel"),  
+                    pullUpLabel = $(".pullUpLabel"),  
+                    container = $('#list'),  
+                    loadingStep = 0;//加载状态0默认，1显示加载状态，2执行加载数据，只有当为0时才能再次加载，这是防止过快拉动刷新  
+  
+            pullDown.hide();  
+            pullUp.hide();  
+  
+            myScroll = new IScroll("#wrap", {  
+                scrollbars: false,  
+                mouseWheel: false,  
+                interactiveScrollbars: true,  
+                shrinkScrollbars: 'scale',  
+                fadeScrollbars: true,  
+                scrollY:true,  
+                probeType: 2,  
+                bindToWrapper:true  ,
+                mouseWheel: true, 
+                tap: true
+            });  
+            myScroll.on("scroll",function(){  
+                if(loadingStep == 0 && !pullDown.attr("class").match('refresh|loading') && !pullUp.attr("class").match('refresh')){  
+                    if(this.y > 40){//下拉刷新操作  
+                        $(".pulldown-tips").hide();  
+                        pullDown.addClass("refresh").show();  
+                        pullDownLabel.text("松手刷新数据");  
+                        loadingStep = 1;  
+                        myScroll.refresh();  
+                    }else if(this.y < (this.maxScrollY - 14)){//上拉加载更多  
+                        pullUp.addClass("refresh").show();  
+                        loadingStep = 1;  
+                        if(currentPage>=totalPage){
+                        	 pullUpLabel.text("我是有底线的"); 
+                        }else{
+                        	pullUpLabel.text("松手加载数据")
+                        	   pullUpAction();
+                        }
+   						myScroll.refresh();
+                    }  
+                }  
+            });  
+            myScroll.on("scrollEnd",function(){  
+                if(loadingStep == 1){  
+                    if( pullDown.attr("class").match("refresh") ){//下拉刷新操作  
+                        pullDown.removeClass("refresh").addClass("loading");  
+                        pullDownLabel.text("正在刷新");  
+                        loadingStep = 2;  
+                        pullDownAction();  
+                    }
+                }  
+            });  
+        function pullDownAction(){  
+                pullDown.attr('class','').hide();  
+               getAjax("http://192.168.1.128:8888/applicationApi.do",data);
+                myScroll.refresh();  
+                loadingStep = 0;  
+                $(".pulldown-tips").show();  
+        }  
+        function pullUpAction(){
+                currentPage++;
+                if(currentPage >=totalPage ){
+                	return;
+                }
+                getAjax("http://192.168.1.128:8888/applicationApi.do",data);
+                 pullUp.attr('class','').hide();
+                myScroll.refresh();  
+                loadingStep = 0;  
+        }  
+  
+        document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);  
+        }  
+	</script>
+</html>

@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = 0">
+	
+<title>添加银行卡</title>
+
+<link href="../../Theme/css/base.css" rel="stylesheet">
+<link href="../../Theme/css/user.css" rel="stylesheet">
+</head>
+
+<body>
+<header class="header">
+	<div class="header-return">
+	    <a href="javascript:history.go(-1);"></a>
+	</div>
+	
+	<div class="logo">添加银行卡</div>
+</header>
+
+<section class="container">
+	<div class="setting-form">
+		<div class="form-widget bankcard-form">
+			<form action="MyBankcard.html" method="get">
+				<div class="form-box">
+					<div class="form-tips">
+						*请绑定持卡人本人的银行卡，姓名一经保存不可修改！
+					</div>
+					
+					<div class="form-group">
+						<label class="form-label"><i>*</i>持卡人姓名</label>
+
+						<div class="form-control">
+							<input placeholder="请输入持卡人姓名">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label"><i>*</i>开户银行</label>
+
+						<div class="form-control">
+							<div class="select-group" onClick="showpop('#bankcard');">
+								<span>请选择开户银行</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label"><i>*</i>银行卡号</label>
+
+						<div class="form-control">
+							<input placeholder="请输入银行卡号">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="form-label">开户支行</label>
+
+						<div class="form-control">
+							<input placeholder="请输入开户银行的支行">
+						</div>
+					</div>
+				</div>
+				
+				<div class="set-default">
+					<input type="checkbox">
+					<span>设为默认银行卡</span>
+				</div>
+
+				<div class="form-submit">
+					<button type="submit" class="form-submit-btn">确定</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+<div id="bankcard" class="popup">
+    <div class="popup-box">
+        <div class="popup-box-title">开户银行</div>
+        
+        <div class="popup-box-content">
+            <div class="choose-list">
+				<ul>
+					<li>
+						<input type="radio">
+						<label>中国银行</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>建设银行</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>工商银行</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>交通银行</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>中国光大银行</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>农业银行</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>广发银行</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>招商银行</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>中国银行</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>建设银行</label>
+					</li>
+					
+					<li>
+						<input type="radio">
+						<label>工商银行</label>
+					</li>
+				</ul>
+			</div>
+        </div>
+        
+        <div class="popup-submit">
+            <button class="cancle-btn">取消</button>
+			<button type="submit" class="confirm-btn">确认</button>
+        </div>
+    </div>
+</div>
+
+<script src="../../Theme/js/jquery-1.11.2.min.js"></script>
+<script src="../../Theme/js/main.js"></script>
+</body>
+</html>

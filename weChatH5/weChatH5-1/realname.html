@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script>
+			var scale = 1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,initial-scale='+scale+',minimum-scale='+scale+',maximum-scale='+scale+',user-scalable=no" />');
+			var html = document.getElementsByTagName("html")[0];
+		    var iWidth = html.getBoundingClientRect().width;
+			html.style.fontSize = iWidth/15 +"px";
+		</script>
+		<title>js代码(www.jsdaima.com)</title>
+		<meta name="keywords" content="js代码(www.jsdaima.com)" />
+		<meta name="description" content="js代码(www.jsdaima.com)" /> 
+		<meta name="author" content="js代码(www.jsdaima.com)" />
+		<meta name="copyright" content="js代码(www.jsdaima.com)" />
+		<link rel="stylesheet" href="css/reset.css" />
+		<link rel="stylesheet" href="css/realname.css" />
+	</head>
+	<body onload="loaded()">
+		<section id="wrap">
+			<div id="scroller">
+				<dl class="explain">
+					<dt>认证说明：</dt>
+					<dd>您需要上传身份证正面照片，请确保身份证照片信息内容完整且清新可见。</dd>
+				</dl>
+				<div class="pic">
+					<input type="file" id="previewImage1" style="display: none;"/>
+					<input type="file" id="previewImage2" style="display: none;"/>
+					<input type="file" id="previewImage3" style="display: none;"/>
+					<div class="pic-top">
+						<p>
+							<img id="img1" src="img/apply/front.png" />
+						</p>
+						<p>
+							<img id="img2" src="img/apply/behind.png" />
+						</p>
+					</div>
+					<div class="pic-down">
+						<img id="img3" src="img/apply/hold.png" />
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="save">提交</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/iscroll.js"></script>
+	<script src="js/demoUtils.js"></script>
+	<script src="js/commo.js"></script>
+	<script>
+		$("#img1").on('tap',function(e){
+			$("#previewImage1").trigger("click");
+			$("#previewImage1").on('change',function(e){
+				e.stopPropagation();
+				previewImage1(this);
+			})
+		})
+		$("#img2").on('tap',function(e){
+			$("#previewImage2").trigger("click");
+			$("#previewImage2").on('change',function(e){
+				e.stopPropagation();
+				previewImage2(this);
+			})
+		})
+		$("#img3").on('tap',function(e){
+			$("#previewImage3").trigger("click");
+			$("#previewImage3").on('change',function(e){
+				e.stopPropagation();
+				previewImage3(this);
+			})
+		})
+		//提交
+		$(".save").on('touchstart',function(e){
+			e.stopPropagation();
+			window.history.go(-1);
+		})
+		function previewImage1(file){
+			var img1 = document.getElementById("img1");
+			var reader = new FileReader();
+			reader.readAsDataURL(file.files[0]);
+			 reader.onload = function(e){
+              	img1.src = e.target.result;
+             }
+		}
+		function previewImage2(file){
+			var img2 = document.getElementById("img2");
+			var reader = new FileReader();
+			reader.readAsDataURL(file.files[0]);
+			 reader.onload = function(e){
+              	img2.src = e.target.result;
+             }
+		}
+		function previewImage3(file){
+			var img3 = document.getElementById("img3");
+			var reader = new FileReader();
+			reader.readAsDataURL(file.files[0]);
+			 reader.onload = function(e){
+              	img3.src = e.target.result;
+             }
+		}
+	</script>
+</html>
