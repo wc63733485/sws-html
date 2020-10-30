@@ -81,7 +81,7 @@
 }
 .assessment {
   width: 100%;
-  height: 1.6rem;
+  height: 0.6rem;
   margin-top: 0.14rem;
   font-size: 0.52rem;
   color: #000;
@@ -112,11 +112,12 @@
 .find-title {
   height: 1.4rem;
   font-size: 0.52rem;
-  font-weight: bold;
-  line-height: 1.6rem;
+  /*font-weight: bold;*/
+  line-height: 1.45rem;
   background-color: #fff ;
   text-indent: 0.2rem;
   margin-bottom: 1px;
+  margin-top: 10px;
 }
 .find-title span:first-of-type {
   float: left;

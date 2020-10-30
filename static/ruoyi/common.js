@@ -391,10 +391,9 @@ $.ajaxSetup({
         	$.modal.enable();
             $.modal.closeLoading();
         } else if (textStatus == "parsererror" || textStatus == "error") {
-        	$.modal.alertWarning(result.msg);
+        	$.modal.alertWarning("服务器异常");
         	$.modal.enable();
             $.modal.closeLoading();
-			location.href = './login.html';
         }
     }
 });
