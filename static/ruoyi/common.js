@@ -391,9 +391,17 @@ $.ajaxSetup({
         	$.modal.enable();
             $.modal.closeLoading();
         } else if (textStatus == "parsererror" || textStatus == "error") {
-        	$.modal.alertWarning("服务器异常");
-        	$.modal.enable();
-            $.modal.closeLoading();
+        	if (result.code==2001){
+				$.modal.alertWarning(result.msg);
+				$.modal.enable();
+				$.modal.closeLoading();
+				setTimeout(function(){console.info("!@312312")},3000)
+				location.href = './login.html';
+			}else {
+				$.modal.alertWarning("服务器异常");
+				$.modal.enable();
+				$.modal.closeLoading();
+			}
         }
     }
 });
