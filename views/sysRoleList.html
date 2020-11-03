@@ -115,9 +115,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">菜单分配:</label>
                     <div class="layui-btn-container">
-                        <button type="button" class="layui-btn layui-btn-sm" lay-demo="getChecked">全选 / 清空</button>
-                        <button type="button" class="layui-btn layui-btn-sm" lay-demo="setChecked">展开 / 收缩</button>
-                        <button type="button" class="layui-btn layui-btn-sm" lay-demo="reload">重置</button>
+                        <button type="button" class="layui-btn layui-btn-sm" lay-menutree="getChecked">全选 / 清空</button>
+                        <button type="button" class="layui-btn layui-btn-sm" lay-menutree="setChecked">展开 / 收缩</button>
+                        <button type="button" class="layui-btn layui-btn-sm" lay-menutree="reload">重置</button>
                     </div>
                     <div class="layui-input-block">
                         <div id="assMenu" class="demo-tree"></div>
@@ -147,15 +147,14 @@
 <script>
 
 
-    layui.use(['table', 'tree','util'], function () {
+    layui.use(['table', 'tree', 'util'], function () {
         var $ = layui.$
             , table = layui.table
             , tree = layui.tree
             , util = layui.util
 
-        var updateMenuArray;
 
-        window.assignmentsMenu = function(roleId, roleName) {
+        window.assignmentsMenu = function (roleId, roleName) {
 
             var updateAllMenuArray = [];
             var updateCheckedMenuArray = [];
@@ -195,29 +194,27 @@
             //基本演示
             tree.render({
                 elem: '#assMenu'
-                ,data: arrayToJson(updateAllMenuArray, 0)
-                ,showCheckbox: true  //是否显示复选框
-                ,id: 'demoId1'
-                ,isJump: true //是否允许点击节点时弹出新窗口跳转
-                ,click: function(obj){
+                , data: arrayToJson(updateAllMenuArray, 0)
+                , showCheckbox: true  //是否显示复选框
+                , id: 'assMenu'
+                , isJump: true //是否允许点击节点时弹出新窗口跳转
+                , click: function (obj) {
                     var data = obj.data;  //获取当前点击的节点数据
-                    layer.msg('状态：'+ obj.state + '<br>节点数据：' + JSON.stringify(data));
+                    layer.msg('状态：' + obj.state + '<br>节点数据：' + JSON.stringify(data));
                 }
             });
 
             //按钮事件
-            util.event('lay-demo', {
-                getChecked: function(othis){
-                    var checkedData = tree.getChecked('demoId1'); //获取选中节点的数据
+            util.event('lay-menutree', {
+                getChecked: function (othis) {
+                    var checkedData = tree.getChecked('assMenu'); //获取选中节点的数据
 
-                    layer.alert(JSON.stringify(checkedData), {shade:0});
+                    layer.alert(JSON.stringify(checkedData), {shade: 0});
                     console.log(checkedData);
                 }
-                ,reload: function(){
+                , reload: function () {
                     //重载实例
-                    tree.reload('demoId1', {
-
-                    });
+                    tree.reload('assMenu', {});
 
                 }
             });
@@ -234,50 +231,21 @@
                 btn: ['确定', '取消'],
                 btn1: function () {
 
-                    var array = ["code", "dealCode"]
-                    var data = {};
-                    for (var i = 0; i < array.length; i++) {
-                        var value = $("#" + array[i]).val();
-                        if (value == undefined || value == null || value.length < 1) {
-                            alert("error");
-                            return false;
-                        } else {
-                            data[array[i]] = value
-                        }
-                    }
-                    $.ajax({
-                        type: "POST",
-                        contentType: 'application/json; charset=utf-8',
-                        dataType: 'JSON',
-                        url: pumpHouseUrl1 + '/add',
-                        data: JSON.stringify(data),
-                        success: function (r) {
-                            $("#overallDimension").val("");
-                            $("#code").val("");
-                            $("#simCode").val("");
-                            $("#standardNo").val("");
-                            $("#deviceModel").val("");
-                            $("#deviceType").val("");
-                            $("#deviceEdition").val("");
-                            table.reload('reload', {
-                                page: {
-                                    curr: 1 //重新从第 1 页开始
-                                }
-                            }, 'data');
-                        }
-                    });
-                    cleanInput(array);
-                    updateMenuArray = [];
+
+                    var checkedData = tree.getChecked('assMenu');
+                    var res = getCheckMenuIds(checkedData);
+                    console.info(res);
+
                     layer.closeAll();
                 },
                 btn2: function () {
-                    updateMenuArray = [];
+
                     layer.closeAll();
                 },
             })
         }
 
-        window.arrayToJson = function(array, pid) {
+        window.arrayToJson = function (array, pid) {
             var res = [];
             var children = [];
             for (var i = 0; i < array.length; i++) {
@@ -285,6 +253,7 @@
                     var menu = new Object();
                     menu.title = array[i].menuName;
                     menu.id = array[i].menuId;
+                    menu.icon = array[i].icon;
                     if (array[i].checked == true) {
                         menu.checked = true;
                     }
@@ -298,6 +267,18 @@
             return res;
         }
 
+        window.getCheckMenuIds = function (checkedData) {
+            var res = [];
+            var cres = [];
+            for (var i = 0; i < checkedData.length; i++) {
+                res.push(checkedData[i].id)
+                if (checkedData[i].hasOwnProperty("children")) {
+                    cres = getCheckMenuIds(checkedData[i].children);
+                    res = res.concat(cres);
+                }
+            }
+            return res;
+        }
 
         //方法级渲染
         table.render({
