@@ -88,7 +88,7 @@ $(function () {
     $('#side-menu').metisMenu();
     $.ajax({
         type: "GET",
-        url: sysUrl+"/getMenu/" + user.userId,
+        url: sysUrl+"/gbu/" + user.userId,
         headers: {
             'token': sessionStorage.getItem("token"),
         },
