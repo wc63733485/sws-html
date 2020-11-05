@@ -238,7 +238,7 @@
 
 
     $.ajax({
-        url: pumpHouseUrl + "/pumpHouse/listAll",
+        url: pumpHouseUrl + "/listAll",
         type: "GET",
         headers: {
             'token': sessionStorage.getItem("token"),
@@ -265,7 +265,7 @@
             elem: '#demo'
             , height: 312
             , width: 320
-            , url: pumpHouseUrl + '/pumpHouse/list?search=' + document.getElementById("search").value //数据接口
+            , url: pumpHouseUrl + '/list?search=' + document.getElementById("search").value //数据接口
             , headers: {
                 'token': sessionStorage.getItem("token"),
             }
@@ -299,7 +299,7 @@
                 elem: '#demo'
                 , height: 312
                 , width: 340
-                , url: pumpHouseUrl + '/pumpHouse/list?search=' + document.getElementById("search").value //数据接口
+                , url: pumpHouseUrl + '/list?search=' + document.getElementById("search").value //数据接口
                 , headers: {
                     'token': sessionStorage.getItem("token"),
                 }

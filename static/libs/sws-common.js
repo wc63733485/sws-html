@@ -1,7 +1,6 @@
 var address = "http://39.96.74.32"
 var sysUrl = address + ":14029/system"
-var pumpHouseUrl = address + ":14029"
-var pumpHouseUrl1 = address + ":14029/pumpHouse"
+var pumpHouseUrl = address + ":14029/pumpHouse"
 var weChatUserUrl = address + ":14029/weChatUser"
 var deviceUrl = address + ":14029/device"
 var deviceWarnUrl = address + ":14029/deviceWarn"

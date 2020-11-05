@@ -4,14 +4,19 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../static/libs/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/layuiadmin/style/admin.css" media="all">
     <link rel="stylesheet" href="../static/css/font-awesome.min.css" media="all">
-
     <style type="text/css">
-
         html, body {
-            height: 99%;
-            overflow-x: hidden;
-            overflow-y: hidden
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .layui-card-header.layuiadmin-card-header-auto {
+            padding-top: 10px;
+            padding-bottom: 5px;
+            height: auto;
         }
 
         ul.ztree {
@@ -95,325 +100,447 @@
     <script src="../static/libs/jquery.min.js"></script>
     <script src="../static/libs/jquery-ztree/3.5/js/jquery.ztree.all-3.5.js"></script>
     <script src="../static/libs/echarts.min.js"></script>
-    <script src="../static/libs/layui/layui.js"></script>
     <script src="../static/libs/sws-common.js"></script>
     <script src="../static/libs/realChart.js"></script>
-
+    <script src="../static/libs/layui/layui.js"></script>
 </head>
 
-<body style="background-color: #f0f2f5">
-<div class="box">
-    <ul id="treeDemo" class="ztree"></ul>
+<body>
+<div class="layui-fluid" style="float: left;width: 12%;height: 96%;padding-right: 5px;">
+    <div class="layui-card" style="height: 100%">
+        <div class="layui-inline"  style="width: 100%;">
+            <div class="layui-input-block" style="margin-left:10px;margin-top:10px;margin-right: 10px">
+                <legend style="float: left">基本信息修改</legend>
+                <button type="button" style="background-color: white;border-width: 0px" lay-menutree="reload">
+                    <i class="layui-icon layui-icon-ok layuiadmin-button-btn" style="font-size: 16px;"></i>
+                </button>
+                <button type="button" style="background-color: white;border-width: 0px" lay-menutree="reload">
+                    <i class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 16px;"></i>
+                </button>
+                <fieldset class="layui-elem-field layui-field-title">
+                </fieldset>
+            </div>
+        </div>
+
+            <div id="assMenu" class="demo-tree"></div>
+    </div>
 </div>
-<div style="float: right;background-color:white;margin-right:1%;margin-top:1%;border:1px solid #cccccc;border-color: #cccccc;width: 85%;height: 99%;">
-    <div class="layui-tab layui-tab-card" lay-filter="real" style="margin-top:0px;width: 100%;height: 100%;">
-        <ul class="layui-tab-title">
-            <li class="layui-this" style="width: 14%">实时状态</li>
-            <li style="width: 14%">统计数据</li>
-            <li style="width: 14%">远程设置</li>
-            <li style="width: 14%">历史数据</li>
-            <li style="width: 14%">异常信息<span class="layui-badge-dot"></span></li>
-        </ul>
-        <div class="layui-tab-content" style="height: 100%;">
-            <div class="layui-tab-item layui-show" style="height: 100%;width: 100%;">
-                <div style="width: 48%;height:90%;float: left;border: solid 1px #cccccc;box-shadow:1px 2px 3px #3B2E32;overflow-y:auto;">
-                    <table class="myTable" style="width: 100%">
-                        <thead>
-                        <tr>
-                            <th width="8%">编号</th>
-                            <th width="15%">数据项</th>
-                            <th width="10%">数值</th>
-                            <th width="12%">单位</th>
-                            <th width="20%">上传时间</th>
-                            <th width="15%">报警数值</th>
-                            <th width="25%">报警设置</th>
-                        </tr>
-                        </thead>
-                        <tbody id="realTbody">
-                        </tbody>
-                    </table>
-                </div>
-                <div id="realChart"
-                     style="width: 50%;height:41%;float: right;position: relative;margin-right: 12px;border: solid 1px #cccccc;box-shadow:1px 2px 3px #3B2E32;">
-                </div>
-                <div style="width: 50%;height:2%;float: right;position: relative;">
-                </div>
-                <div style="width: 50%;height:46%;float: right;position: relative;margin-right: 12px;border: solid 1px #cccccc;box-shadow:1px 2px 3px #3B2E32;">
-                    <div id="historyClass" style="display:none;" ;>
-                        <div class="layui-inline" style="margin-left: 1%">
-                            <label class="layui-form-label">请选择时间</label>
-                            <div class="layui-input-inline">
-                                <input type="text" class="layui-input" id="dateQuery" style="width: 200%;">
-                            </div>
-                        </div>
-                    </div>
-                    <div id="historyChart" style="height:90%;">
+<div class="layui-fluid" style="float: right;width: 85%;height: 96%;padding-left: 5px;">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="text-align: left;width: 50px;">登录名</label>
+                    <div class="layui-input-block" style="margin-left:80px">
+                        <input type="text" name="username" placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-            </div>
-            <div class="layui-tab-item" style="height: 100%;width: 100%;">
-                <div style="width: 30%;height:90%;float: left;border: solid 1px #cccccc;box-shadow:1px 2px 3px #3B2E32;overflow-y:auto;">
-                    <table class="myTable" style="width: 100%">
-                        <thead>
-                        <tr>
-                            <th width="10%">编号</th>
-                            <th width="50%">数据项</th>
-                            <th width="20%">数值</th>
-                            <th width="20%">单位</th>
-                        </tr>
-                        </thead>
-                        <tbody id="statisTbody">
-                        </tbody>
-                    </table>
-                </div>
-                <div style="width: 68%;height:90%;float: right;position: relative;margin-right: 12px;border: solid 1px #cccccc;box-shadow:1px 2px 3px #3B2E32;">
-                    <div id="asChart"
-                         style="float: right;background-color:white;margin:1%;border-color: #cccccc;width: 97%;height: 96%;">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="text-align: left;width: 50px">手机号</label>
+                    <div class="layui-input-block" style="margin-left:80px">
+                        <input type="text" name="telphone" placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-            </div>
-            <div class="layui-tab-item" style="height: 100%;width: 100%;">
-                <div style="width: 100%;height:90%;float: left;border: solid 1px #cccccc;box-shadow:1px 2px 3px #3B2E32;overflow-y:auto;">
-                    <table class="myTable" style="width: 100%">
-                        <thead>
-                        <tr>
-                            <th width="5%">编号</th>
-                            <th width="10%">数据项</th>
-                            <th width="10%">数值</th>
-                            <th width="10%">单位</th>
-                            <th width="12%">数据接收时间</th>
-                            <th width="10%">参数设置</th>
-                            <th width="43%">参数介绍</th>
-                        </tr>
-                        </thead>
-                        <tbody id="setTbody">
-                        </tbody>
-                    </table>
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="text-align: left;width: 50px">&nbsp;&nbsp;项&nbsp;&nbsp;&nbsp;目</label>
+                    <div class="layui-input-block" style="margin-left:80px">
+                        <input type="text" name="projectId" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin"
+                            style="background-color: #1ab394" lay-submit lay-filter="LAY-user-back-search">
+                        <span style="text-align:center;display:block;"><i
+                                class="layui-icon layui-icon-search layuiadmin-button-btn"
+                                style="font-size: 14px;"> 查 询</i></span>
+                    </button>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin"
+                            style="background-color: #f8ac59" data-type="reload"
+                            style="background-color: orangered;">
+                        <span style="text-align:center;display:block;"><i
+                                class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 14px;"> 重 置</i></span>
+                    </button>
                 </div>
             </div>
-            <div class="layui-tab-item">设备组态</div>
+        </div>
+
+        <div class="layui-card-body">
+            <table class="layui-hide" id="user_table" lay-filter="user_table"></table>
         </div>
     </div>
 </div>
 
-<!--<script src="assets/js/sws-mqtt.js" charset="utf-8"></script>-->
+<!--<div class="box">-->
+<!--    <div class="layui-form-item">-->
+<!--        <div class="layui-inline">-->
+<!--            <div class="layui-input-block" style="margin-left:10px">-->
+<!--                <input type="text" name="projectId" placeholder="请输入" autocomplete="off" class="layui-input">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-inline">-->
+<!--            <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin"-->
+<!--                    style="background-color: #1ab394" lay-submit lay-filter="LAY-user-back-search">-->
+<!--                        <span style="text-align:center;display:block;"><i-->
+<!--                                class="layui-icon layui-icon-search layuiadmin-button-btn"-->
+<!--                                style="font-size: 14px;"> 查 询</i></span>                        <button type="button" class="layui-btn layui-btn-sm" lay-menutree="reload">重置</button>-->
+<!--            </button>-->
+<!--        </div>-->
+<!--        <div class="layui-input-block">-->
+<!--            <div id="assMenu" class="demo-tree"></div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="float: right;background-color:white;margin-right:1%;margin-top:1%;border:1px solid #cccccc;border-color: #cccccc;width: 85%;height: 99%;">-->
+<!--    <div class="layui-tab layui-tab-card" lay-filter="real" style="margin-top:0px;width: 100%;height: 100%;">-->
+<!--        <ul class="layui-tab-title">-->
+<!--            <li class="layui-this" style="width: 14%">实时状态</li>-->
+<!--            <li style="width: 14%">统计数据</li>-->
+<!--            <li style="width: 14%">远程设置</li>-->
+<!--            <li style="width: 14%">历史数据</li>-->
+<!--            <li style="width: 14%">异常信息<span class="layui-badge-dot"></span></li>-->
+<!--        </ul>-->
+<!--        <div class="layui-tab-content" style="height: 100%;">-->
+<!--            <div class="layui-tab-item layui-show" style="height: 100%;width: 100%;">-->
+<!--                <div style="width: 48%;height:90%;float: left;border: solid 1px #cccccc;box-shadow:1px 2px 3px #3B2E32;overflow-y:auto;">-->
+<!--                    <table class="myTable" style="width: 100%">-->
+<!--                        <thead>-->
+<!--                        <tr>-->
+<!--                            <th width="8%">编号</th>-->
+<!--                            <th width="15%">数据项</th>-->
+<!--                            <th width="10%">数值</th>-->
+<!--                            <th width="12%">单位</th>-->
+<!--                            <th width="20%">上传时间</th>-->
+<!--                            <th width="15%">报警数值</th>-->
+<!--                            <th width="25%">报警设置</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody id="realTbody">-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                </div>-->
+<!--                <div id="realChart"-->
+<!--                     style="width: 50%;height:41%;float: right;position: relative;margin-right: 12px;border: solid 1px #cccccc;box-shadow:1px 2px 3px #3B2E32;">-->
+<!--                </div>-->
+<!--                <div style="width: 50%;height:2%;float: right;position: relative;">-->
+<!--                </div>-->
+<!--                <div style="width: 50%;height:46%;float: right;position: relative;margin-right: 12px;border: solid 1px #cccccc;box-shadow:1px 2px 3px #3B2E32;">-->
+<!--                    <div id="historyClass" style="display:none;" ;>-->
+<!--                        <div class="layui-inline" style="margin-left: 1%">-->
+<!--                            <label class="layui-form-label">请选择时间</label>-->
+<!--                            <div class="layui-input-inline">-->
+<!--                                <input type="text" class="layui-input" id="dateQuery" style="width: 200%;">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="historyChart" style="height:90%;">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="layui-tab-item" style="height: 100%;width: 100%;">-->
+<!--                <div style="width: 30%;height:90%;float: left;border: solid 1px #cccccc;box-shadow:1px 2px 3px #3B2E32;overflow-y:auto;">-->
+<!--                    <table class="myTable" style="width: 100%">-->
+<!--                        <thead>-->
+<!--                        <tr>-->
+<!--                            <th width="10%">编号</th>-->
+<!--                            <th width="50%">数据项</th>-->
+<!--                            <th width="20%">数值</th>-->
+<!--                            <th width="20%">单位</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody id="statisTbody">-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                </div>-->
+<!--                <div style="width: 68%;height:90%;float: right;position: relative;margin-right: 12px;border: solid 1px #cccccc;box-shadow:1px 2px 3px #3B2E32;">-->
+<!--                    <div id="asChart"-->
+<!--                         style="float: right;background-color:white;margin:1%;border-color: #cccccc;width: 97%;height: 96%;">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="layui-tab-item" style="height: 100%;width: 100%;">-->
+<!--                <div style="width: 100%;height:90%;float: left;border: solid 1px #cccccc;box-shadow:1px 2px 3px #3B2E32;overflow-y:auto;">-->
+<!--                    <table class="myTable" style="width: 100%">-->
+<!--                        <thead>-->
+<!--                        <tr>-->
+<!--                            <th width="5%">编号</th>-->
+<!--                            <th width="10%">数据项</th>-->
+<!--                            <th width="10%">数值</th>-->
+<!--                            <th width="10%">单位</th>-->
+<!--                            <th width="12%">数据接收时间</th>-->
+<!--                            <th width="10%">参数设置</th>-->
+<!--                            <th width="43%">参数介绍</th>-->
+<!--                        </tr>-->
+<!--                        </thead>-->
+<!--                        <tbody id="setTbody">-->
+<!--                        </tbody>-->
+<!--                    </table>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="layui-tab-item">设备组态</div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <script>
+    $(function () {
 
-    var ptreeId;
-    var ptreeNode;
-    // var mqttRes;
-    // var sendMessage = "";
-    // var oldTopic = "";
-    // var cid = format(new Date());
-    // var client = new Paho.MQTT.Client('//39.107.221.228', 8083, cid);
-    // //建立客户端实例
-    // var options = {
-    //     invocationContext: {
-    //         host: '//39.107.221.228',
-    //         port: 8083,
-    //         path: client.path,
-    //         clientId: cid
-    //     },
-    //     timeout: 50,
-    //     keepAliveInterval: 100,
-    //     cleanSession: true,
-    //     useSSL: false,
-    //     onSuccess: function (e) {
-    //         console.log("连接成功");
-    //     },
-    //     onFailure: function (e) {
-    //         console.log(e);
-    //     }
-    // };
+        assignmentsMenu(1, "312");
+
+        function assignmentsMenu(roleId, roleName) {
+            var updateAllMenuArray = [];
+            var updateCheckedMenuArray = [];
+            $.ajax({
+                type: "GET",
+                url: sysUrl + "/gbr/" + roleId,
+                async: false,
+                headers: {
+                    'token': sessionStorage.getItem("token"),
+                },
+                success: function (r) {
+                    for (var i = 0; i < r.data.length; i++) {
+                        updateCheckedMenuArray.push(r.data[i])
+                    }
+                }
+            });
+            $.ajax({
+                type: "GET",
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'JSON',
+                async: false,
+                url: sysUrl + '/menu/list',
+                headers: {
+                    'token': sessionStorage.getItem("token"),
+                },
+                success: function (r) {
+                    for (var i = 0; i < r.data.length; i++) {
+                        if (updateCheckedMenuArray.includes(r.data[i].menuId)) {
+                            // r.data[i].checked = true;
+                        }
+                        updateAllMenuArray.push(r.data[i])
+                    }
+                    layui.use(['tree', 'util'], function () {
+                        var $ = layui.$
+                            , tree = layui.tree
+                            , util = layui.util
+                        //基本演示
+                        tree.render({
+                            elem: '#assMenu'
+                            , data: arrayToJson(updateAllMenuArray, 0)
+                            // , showCheckbox: true  //是否显示复选框
+                            , id: 'assMenu'
+                            , isJump: true //是否允许点击节点时弹出新窗口跳转
+                            , click: function (obj) {
+                                var data = obj.data;  //获取当前点击的节点数据
+                                // layer.msg('状态：' + obj.state + '<br>节点数据：' + JSON.stringify(data));
+                            }
+                        });
+
+
+                        //按钮事件
+                        util.event('lay-menutree', {
+                            getChecked: function (othis) {
+
+                            },
+                            reload: function () {
+                                //重载实例
+                                tree.reload('assMenu', {});
+
+                            }
+                        });
+                    })
+                }
+            });
+
+        }
+
+        function arrayToJson(array, pid) {
+            var res = [];
+            var children = [];
+            for (var i = 0; i < array.length; i++) {
+                if (array[i].parentId == pid) {
+                    var menu = new Object();
+                    menu.title = array[i].menuName;
+                    menu.id = array[i].menuId;
+                    menu.icon = array[i].icon;
+                    children = arrayToJson(array, array[i].menuId)
+                    if (children.length != 0) {
+                        menu.children = children
+                    } else {
+                        if (array[i].checked == true) {
+                            menu.checked = true;
+                        }
+                    }
+                    res.push(menu)
+                }
+            }
+            return res;
+        }
+
+        function getCheckMenuIds(checkedData) {
+            var res = [];
+            var cres = [];
+            for (var i = 0; i < checkedData.length; i++) {
+                res.push(checkedData[i].id)
+                if (checkedData[i].hasOwnProperty("children")) {
+                    cres = getCheckMenuIds(checkedData[i].children);
+                    res = res.concat(cres);
+                }
+            }
+            return res;
+        }
+    });
+
     //
-    // client.connect(options);
-    // client.onConnectionLost = function (responseObject) {
-    //     console.log(responseObject);
-    //     if (responseObject.errorCode !== 0) {
-    //         console.log("onConnectionLost:" + responseObject.errorMessage);
-    //         console.log("连接已断开");
-    //     }
-    // };
-    // client.onMessageArrived = function (message) {
-    //     if (message.payloadString != sendMessage && message.payloadString != undefined) {
-    //         mqttRes = message.payloadString;
+    //
+    // //点击事件 进入表格
+    // function beforeClick(treeId, treeNode) {
+    //     ptreeId = treeId;
+    //     ptreeNode = treeNode;
+    //     clearInterval(tableRefresh);
+    //     clearInterval(inter1);
+    //
+    //     if (!treeNode.isParent) {
+    //         // $("#historyChart").children().remove();
+    //         // $("#realChart").children().remove();
+    //         // if (oldTopic != '') {
+    //         //     client.unsubscribe('Topic/flexem/fbox/' + oldTopic + '/system/MonitorData');
+    //         //     client.unsubscribe('Topic/flexem/fbox/' + oldTopic + '/system/MDataPubNow');
+    //         // }
+    //         // client.subscribe('Topic/flexem/fbox/' + treeNode.id + '/system/MDataPubNow');
+    //         // client.subscribe('Topic/flexem/fbox/' + treeNode.id + '/system/MonitorData');
+    //         // oldTopic = treeNode.id;
+    //         addTable(treeId, treeNode);
+    //         return false;
+    //     } else {
+    //         return true;
     //     }
     // }
-
-    var setting = {
-        view: {
-            selectedMulti: false
-        },
-        async: {
-            enable: true,
-            url: "http://39.96.74.32:9021/company/getCompanyTree",
-            autoParam: ["id", "name", "level"],
-            dataFilter: filter
-        },
-        callback: {
-            beforeClick: beforeClick,
-            beforeAsync: beforeAsync,
-            onAsyncError: onAsyncError,
-            onAsyncSuccess: onAsyncSuccess
-        }
-    };
-
-    function filter(treeId, parentNode, childNodes) {
-        if (!childNodes) return null;
-        for (var i = 0, l = childNodes.length; i < l; i++) {
-            childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
-        }
-        return childNodes;
-    }
-
-    //点击事件 进入表格
-    function beforeClick(treeId, treeNode) {
-        ptreeId = treeId;
-        ptreeNode = treeNode;
-        clearInterval(tableRefresh);
-        clearInterval(inter1);
-
-        if (!treeNode.isParent) {
-            // $("#historyChart").children().remove();
-            // $("#realChart").children().remove();
-            // if (oldTopic != '') {
-            //     client.unsubscribe('Topic/flexem/fbox/' + oldTopic + '/system/MonitorData');
-            //     client.unsubscribe('Topic/flexem/fbox/' + oldTopic + '/system/MDataPubNow');
-            // }
-            // client.subscribe('Topic/flexem/fbox/' + treeNode.id + '/system/MDataPubNow');
-            // client.subscribe('Topic/flexem/fbox/' + treeNode.id + '/system/MonitorData');
-            // oldTopic = treeNode.id;
-            addTable(treeId, treeNode);
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    var log, className = "dark";
-
-    function beforeAsync(treeId, treeNode) {
-        className = (className === "dark" ? "" : "dark");
-        showLog("[ " + getTime() + " beforeAsync ]&nbsp;&nbsp;&nbsp;&nbsp;" + ((!!treeNode && !!treeNode.name) ? treeNode.name : "root"));
-        return true;
-    }
-
-    function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
-        showLog("[ " + getTime() + " onAsyncError ]&nbsp;&nbsp;&nbsp;&nbsp;" + ((!!treeNode && !!treeNode.name) ? treeNode.name : "root"));
-    }
-
-    function onAsyncSuccess(event, treeId, treeNode, msg) {
-        showLog("[ " + getTime() + " onAsyncSuccess ]&nbsp;&nbsp;&nbsp;&nbsp;" + ((!!treeNode && !!treeNode.name) ? treeNode.name : "root"));
-    }
-
-    function statisData() {
-        $.ajax({
-                url: "http://39.96.74.32:9021/deviceUnit/getDeviceStatisParm?deviceId=" + ptreeNode.id,
-                type: "GET",
-                dataType: 'json',
-                success: function (data) {
-                    var html = "";
-                    for (var a = 0; a < data.count; a++) {
-
-                        html += '<tr onclick=""><td>' + (a + 1)
-                            + '</td><td>' + data.data[a].name
-                            + '</td><td id=s"' + data.data[a].dataName + '">' + '-'
-                            + ' </td><td>' + data.data[a].unit
-                            + '</td></tr>'
-                    }
-                    $("#statisTbody").html(html)
-
-                    getDeviceData2(ptreeNode, data);
-
-                }
-            }
-        );
-    }
-
-    function setData() {
-        $.ajax({
-                url: "http://39.96.74.32:9021/deviceUnit/getDeviceSetParm?deviceId=" + ptreeNode.id,
-                type: "GET",
-                dataType: 'json',
-                success: function (data) {
-                    var html = "";
-                    for (var a = 0; a < data.count; a++) {
-                        var warnbutton = "";
-                        if (data.data[a].isSetData == 1 && data.data[a].isSetData == "1") {
-                            warnbutton = "<button onclick='addzz()' style='height: 22px;line-height: 22px;padding: 0 5px;font-size: 12px;display: inline-block;background-color: #009688;color: #fff;white-space: nowrap;text-align: center;border: none; border-radius: 2px;cursor: pointer;'>设置参数</button>"
-                        }
-
-                        html += '<tr onclick=""><td>' + (a + 1)
-                            + '</td><td>' + data.data[a].name
-                            + '</td><td id="' + data.data[a].dataName + '">' + '-'
-                            + ' </td><td>' + data.data[a].unit
-                            + '</td><td  id="time' + a + '">' + '-'
-                            + '</td><td>' + warnbutton
-                            + '</td><td>' + data.data[a].remake
-                            + '</td></tr>'
-                    }
-                    $("#setTbody").html(html)
-
-                    getDeviceData3(ptreeNode, data);
-
-                }
-            }
-        );
-    }
-
-
-    function refreshNode(e) {
-        var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
-            type = e.data.type,
-            silent = e.data.silent,
-            nodes = zTree.getSelectedNodes();
-        if (nodes.length == 0) {
-            alert("请先选择一个父节点");
-        }
-        for (var i = 0, l = nodes.length; i < l; i++) {
-            zTree.reAsyncChildNodes(nodes[i], type, silent);
-            if (!silent) zTree.selectNode(nodes[i]);
-        }
-    }
-
-    $(document).ready(function () {
-        $.fn.zTree.init($("#treeDemo"), setting);
-        $("#refreshNode").bind("click", {type: "refresh", silent: false}, refreshNode);
-        $("#refreshNodeSilent").bind("click", {type: "refresh", silent: true}, refreshNode);
-        $("#addNode").bind("click", {type: "add", silent: false}, refreshNode);
-        $("#addNodeSilent").bind("click", {type: "add", silent: true}, refreshNode);
-    });
-
-    layui.use(['element', 'laydate'], function () {
-        var $ = layui.jquery
-            , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
-        var laydate = layui.laydate;
-
-        laydate.render({
-            elem: '#dateQuery'
-            , format: 'yyyy年MM月dd日'
-        });
-        //一些事件监听
-        element.on('tab(real)', function (data) {
-            if (data.index == 0) {
-                // task(ptreeId, ptreeNode);
-                var historyChart = echarts.init(document.getElementById('historyChart'));
-                historyChart.clear();
-                var realChart = echarts.init(document.getElementById('realChart'));
-                realChart.clear();
-            } else {
-                clearInterval(tableRefresh);
-                clearInterval(inter1);
-            }
-            if (data.index == 1) {
-                statisData();
-            }
-            if (data.index == 2) {
-                setData();
-            }
-        });
-    });
+    //
+    // var log, className = "dark";
+    //
+    // function beforeAsync(treeId, treeNode) {
+    //     className = (className === "dark" ? "" : "dark");
+    //     showLog("[ " + getTime() + " beforeAsync ]&nbsp;&nbsp;&nbsp;&nbsp;" + ((!!treeNode && !!treeNode.name) ? treeNode.name : "root"));
+    //     return true;
+    // }
+    //
+    // function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
+    //     showLog("[ " + getTime() + " onAsyncError ]&nbsp;&nbsp;&nbsp;&nbsp;" + ((!!treeNode && !!treeNode.name) ? treeNode.name : "root"));
+    // }
+    //
+    // function onAsyncSuccess(event, treeId, treeNode, msg) {
+    //     showLog("[ " + getTime() + " onAsyncSuccess ]&nbsp;&nbsp;&nbsp;&nbsp;" + ((!!treeNode && !!treeNode.name) ? treeNode.name : "root"));
+    // }
+    //
+    // function statisData() {
+    //     $.ajax({
+    //             url: "http://39.96.74.32:14029/deviceUnit/getDeviceStatisParm?deviceId=" + ptreeNode.id,
+    //             type: "GET",
+    //             dataType: 'json',
+    //             success: function (data) {
+    //                 var html = "";
+    //                 for (var a = 0; a < data.count; a++) {
+    //
+    //                     html += '<tr onclick=""><td>' + (a + 1)
+    //                         + '</td><td>' + data.data[a].name
+    //                         + '</td><td id=s"' + data.data[a].dataName + '">' + '-'
+    //                         + ' </td><td>' + data.data[a].unit
+    //                         + '</td></tr>'
+    //                 }
+    //                 $("#statisTbody").html(html)
+    //
+    //                 getDeviceData2(ptreeNode, data);
+    //
+    //             }
+    //         }
+    //     );
+    // }
+    //
+    // function setData() {
+    //     $.ajax({
+    //             url: "http://39.96.74.32:14029/deviceUnit/getDeviceSetParm?deviceId=" + ptreeNode.id,
+    //             type: "GET",
+    //             dataType: 'json',
+    //             success: function (data) {
+    //                 var html = "";
+    //                 for (var a = 0; a < data.count; a++) {
+    //                     var warnbutton = "";
+    //                     if (data.data[a].isSetData == 1 && data.data[a].isSetData == "1") {
+    //                         warnbutton = "<button onclick='addzz()' style='height: 22px;line-height: 22px;padding: 0 5px;font-size: 12px;display: inline-block;background-color: #009688;color: #fff;white-space: nowrap;text-align: center;border: none; border-radius: 2px;cursor: pointer;'>设置参数</button>"
+    //                     }
+    //
+    //                     html += '<tr onclick=""><td>' + (a + 1)
+    //                         + '</td><td>' + data.data[a].name
+    //                         + '</td><td id="' + data.data[a].dataName + '">' + '-'
+    //                         + ' </td><td>' + data.data[a].unit
+    //                         + '</td><td  id="time' + a + '">' + '-'
+    //                         + '</td><td>' + warnbutton
+    //                         + '</td><td>' + data.data[a].remake
+    //                         + '</td></tr>'
+    //                 }
+    //                 $("#setTbody").html(html)
+    //
+    //                 getDeviceData3(ptreeNode, data);
+    //
+    //             }
+    //         }
+    //     );
+    // }
+    //
+    //
+    // function refreshNode(e) {
+    //     var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+    //         type = e.data.type,
+    //         silent = e.data.silent,
+    //         nodes = zTree.getSelectedNodes();
+    //     if (nodes.length == 0) {
+    //         alert("请先选择一个父节点");
+    //     }
+    //     for (var i = 0, l = nodes.length; i < l; i++) {
+    //         zTree.reAsyncChildNodes(nodes[i], type, silent);
+    //         if (!silent) zTree.selectNode(nodes[i]);
+    //     }
+    // }
+    //
+    // $(document).ready(function () {
+    //     $.fn.zTree.init($("#treeDemo"), setting);
+    //     $("#refreshNode").bind("click", {type: "refresh", silent: false}, refreshNode);
+    //     $("#refreshNodeSilent").bind("click", {type: "refresh", silent: true}, refreshNode);
+    //     $("#addNode").bind("click", {type: "add", silent: false}, refreshNode);
+    //     $("#addNodeSilent").bind("click", {type: "add", silent: true}, refreshNode);
+    // });
+    //
+    // layui.use(['element', 'laydate'], function () {
+    //     var $ = layui.jquery
+    //         , element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+    //     var laydate = layui.laydate;
+    //
+    //     laydate.render({
+    //         elem: '#dateQuery'
+    //         , format: 'yyyy年MM月dd日'
+    //     });
+    //     //一些事件监听
+    //     element.on('tab(real)', function (data) {
+    //         if (data.index == 0) {
+    //             // task(ptreeId, ptreeNode);
+    //             var historyChart = echarts.init(document.getElementById('historyChart'));
+    //             historyChart.clear();
+    //             var realChart = echarts.init(document.getElementById('realChart'));
+    //             realChart.clear();
+    //         } else {
+    //             clearInterval(tableRefresh);
+    //             clearInterval(inter1);
+    //         }
+    //         if (data.index == 1) {
+    //             statisData();
+    //         }
+    //         if (data.index == 2) {
+    //             setData();
+    //         }
+    //     });
+    // });
 </script>
 </body>
 </html>
