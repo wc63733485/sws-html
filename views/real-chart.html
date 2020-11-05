@@ -106,26 +106,27 @@
 </head>
 
 <body>
-<div class="layui-fluid" style="float: left;width: 12%;height: 96%;padding-right: 5px;">
+<div class="layui-fluid" style="float: left;width: 15%;height: 96%;padding-right: 5px;">
     <div class="layui-card" style="height: 100%">
         <div class="layui-inline"  style="width: 100%;">
             <div class="layui-input-block" style="margin-left:10px;margin-top:10px;margin-right: 10px">
-                <legend style="float: left">基本信息修改</legend>
-                <button type="button" style="background-color: white;border-width: 0px" lay-menutree="reload">
-                    <i class="layui-icon layui-icon-ok layuiadmin-button-btn" style="font-size: 16px;"></i>
+
+                <input type="text" name="telphone" placeholder="请输入名称" autocomplete="off" class="layui-input" style="margin-left: 0px;width: 60%;float: left">
+
+                <button type="button" class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="margin-left:15px;margin-top:5px;float: left;background-color: #6bd9c2" lay-menutree="search">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn" style="font-size: 20px;"></i>
                 </button>
-                <button type="button" style="background-color: white;border-width: 0px" lay-menutree="reload">
-                    <i class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 16px;"></i>
+                <button type="button"  class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="margin-left:5px;margin-top:5px;float: right;background-color: #23c6c8" lay-menutree="reload">
+                    <i class="layui-icon layui-icon-spread-left layuiadmin-button-btn" style="font-size: 20px;"></i>
                 </button>
-                <fieldset class="layui-elem-field layui-field-title">
-                </fieldset>
             </div>
+            <hr>
         </div>
 
             <div id="assMenu" class="demo-tree"></div>
     </div>
 </div>
-<div class="layui-fluid" style="float: right;width: 85%;height: 96%;padding-left: 5px;">
+<div class="layui-fluid" style="float: right;width: 82%;height: 96%;padding-left: 5px;">
     <div class="layui-card">
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
             <div class="layui-form-item">
@@ -293,7 +294,7 @@
             var updateCheckedMenuArray = [];
             $.ajax({
                 type: "GET",
-                url: sysUrl + "/gbr/" + roleId,
+                url: sysUrl + "/pct/gpt",
                 async: false,
                 headers: {
                     'token': sessionStorage.getItem("token"),
