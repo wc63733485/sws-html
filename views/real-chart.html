@@ -95,6 +95,7 @@
             border: solid 1.5px #CCCCCC;
             text-align: center;
         }
+
     </style>
 
     <script src="../static/libs/jquery.min.js"></script>
@@ -108,22 +109,27 @@
 <body>
 <div class="layui-fluid" style="float: left;width: 15%;height: 96%;padding-right: 5px;">
     <div class="layui-card" style="height: 100%">
-        <div class="layui-inline"  style="width: 100%;">
+        <div class="layui-inline" style="width: 100%;">
             <div class="layui-input-block" style="margin-left:10px;margin-top:10px;margin-right: 10px">
 
-                <input type="text" name="telphone" placeholder="请输入名称" autocomplete="off" class="layui-input" style="margin-left: 0px;width: 60%;float: left">
+                <input type="text" name="search" id="search" placeholder="请输入名称" autocomplete="off" class="layui-input"
+                       style="margin-left: 0px;width: 60%;float: left">
 
-                <button type="button" class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="margin-left:15px;margin-top:5px;float: left;background-color: #6bd9c2" lay-menutree="search">
+                <button type="button" class="layui-btn layui-btn-sm layuiadmin-btn-admin"
+                        style="margin-left:15px;margin-top:5px;float: left;background-color: #6bd9c2"
+                        lay-menutree="search">
                     <i class="layui-icon layui-icon-search layuiadmin-button-btn" style="font-size: 20px;"></i>
                 </button>
-                <button type="button"  class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="margin-left:5px;margin-top:5px;float: right;background-color: #23c6c8" lay-menutree="reload">
+                <button type="button" class="layui-btn layui-btn-sm layuiadmin-btn-admin"
+                        style="margin-left:5px;margin-top:5px;float: right;background-color: #23c6c8"
+                        lay-menutree="reload">
                     <i class="layui-icon layui-icon-spread-left layuiadmin-button-btn" style="font-size: 20px;"></i>
                 </button>
             </div>
             <hr>
         </div>
 
-            <div id="assMenu" class="demo-tree"></div>
+        <div id="assMenu" class="demo-tree"></div>
     </div>
 </div>
 <div class="layui-fluid" style="float: right;width: 82%;height: 96%;padding-left: 5px;">
@@ -287,11 +293,10 @@
 <script>
     $(function () {
 
-        assignmentsMenu(1, "312");
+        assignmentsMenu();
 
-        function assignmentsMenu(roleId, roleName) {
-            var updateAllMenuArray = [];
-            var updateCheckedMenuArray = [];
+        function assignmentsMenu() {
+            var res = [];
             $.ajax({
                 type: "GET",
                 url: sysUrl + "/pct/gpt",
@@ -300,95 +305,109 @@
                     'token': sessionStorage.getItem("token"),
                 },
                 success: function (r) {
+                    var children = [];
                     for (var i = 0; i < r.data.length; i++) {
-                        updateCheckedMenuArray.push(r.data[i])
+                        var project = new Object();
+                        project.title = r.data[i].projectName;
+                        project.id = r.data[i].projectId;
+                        project.icon = "fa fa-bar-chart-o";
+                        children = pumpHouseArrayToJson(r.data[i].projectId)
+                        if (children.length != 0) {
+                            project.children = children
+                        }
+                        res.push(project)
+                    }
+                }
+            })
+            layui.use(['table', 'tree', 'util'], function () {
+                var $ = layui.$
+                    , tree = layui.tree
+                    , util = layui.util
+                //基本演示
+                tree.render({
+                    elem: '#assMenu'
+                    , data: res
+                    , id: 'assMenu'
+                    , isJump: true //是否允许点击节点时弹出新窗口跳转
+                    , click: function (obj) {
+                        var data = obj.data;  //获取当前点击的节点数据
+                        layer.msg('状态：' + obj.state + '<br>节点数据：' + JSON.stringify(data));
+                    }
+                });
+
+                //按钮事件
+                util.event('lay-menutree', {
+                    search: function (othis) {
+                        var search = $("#search").val()
+                        console.info(res)
+                        for (var i=0;i<res.length;i++){
+                            if (res[i].title.indexOf(search)){
+                                res[i].checked = true;
+                            }
+                            var res1 = res[i].children;
+                            for (var i1=0;i1<res1.length;i1++) {
+                                if (res1[i1].title.indexOf(search)){
+                                    res1[i1].checked = true;
+                                }
+                            }
+                        }
+                    },
+                    reload: function () {
+                        tree.reload('assMenu', {});
+                    }
+                });
+            });
+
+        }
+
+        function pumpHouseArrayToJson(projectId) {
+            var res = [];
+            $.ajax({
+                type: "GET",
+                url: pumpHouseUrl + "/pmp/qpbp/" + projectId,
+                async: false,
+                headers: {
+                    'token': sessionStorage.getItem("token"),
+                },
+                success: function (r) {
+                    var children = [];
+                    for (var i = 0; i < r.data.length; i++) {
+                        var pumphouse = new Object();
+                        pumphouse.title = r.data[i].pumphouseName;
+                        pumphouse.id = r.data[i].pumphouseId;
+                        pumphouse.icon = "fa fa-home fa-lg";
+                        children = deviceArrayToJson(r.data[i].pumphouseId)
+                        if (children.length != 0) {
+                            pumphouse.children = children
+                        }
+                        res.push(pumphouse)
                     }
                 }
             });
+            return res;
+        }
+
+
+        function deviceArrayToJson(pumphouseId) {
+            var res = [];
             $.ajax({
                 type: "GET",
-                contentType: 'application/json; charset=utf-8',
-                dataType: 'JSON',
+                url: deviceUrl + "/dce/qdbd/" + pumphouseId,
                 async: false,
-                url: sysUrl + '/menu/list',
                 headers: {
                     'token': sessionStorage.getItem("token"),
                 },
                 success: function (r) {
                     for (var i = 0; i < r.data.length; i++) {
-                        if (updateCheckedMenuArray.includes(r.data[i].menuId)) {
-                            // r.data[i].checked = true;
-                        }
-                        updateAllMenuArray.push(r.data[i])
+                        var pumphouse = new Object();
+                        pumphouse.title = r.data[i].name;
+                        pumphouse.id = r.data[i].deviceId;
+                        pumphouse.bgcolor = "green";
+                        pumphouse.icon = "fa fa-signal";
+                        res.push(pumphouse)
                     }
-                    layui.use(['tree', 'util'], function () {
-                        var $ = layui.$
-                            , tree = layui.tree
-                            , util = layui.util
-                        //基本演示
-                        tree.render({
-                            elem: '#assMenu'
-                            , data: arrayToJson(updateAllMenuArray, 0)
-                            // , showCheckbox: true  //是否显示复选框
-                            , id: 'assMenu'
-                            , isJump: true //是否允许点击节点时弹出新窗口跳转
-                            , click: function (obj) {
-                                var data = obj.data;  //获取当前点击的节点数据
-                                // layer.msg('状态：' + obj.state + '<br>节点数据：' + JSON.stringify(data));
-                            }
-                        });
-
-
-                        //按钮事件
-                        util.event('lay-menutree', {
-                            getChecked: function (othis) {
-
-                            },
-                            reload: function () {
-                                //重载实例
-                                tree.reload('assMenu', {});
-
-                            }
-                        });
-                    })
                 }
             });
-
-        }
-
-        function arrayToJson(array, pid) {
-            var res = [];
-            var children = [];
-            for (var i = 0; i < array.length; i++) {
-                if (array[i].parentId == pid) {
-                    var menu = new Object();
-                    menu.title = array[i].menuName;
-                    menu.id = array[i].menuId;
-                    menu.icon = array[i].icon;
-                    children = arrayToJson(array, array[i].menuId)
-                    if (children.length != 0) {
-                        menu.children = children
-                    } else {
-                        if (array[i].checked == true) {
-                            menu.checked = true;
-                        }
-                    }
-                    res.push(menu)
-                }
-            }
-            return res;
-        }
-
-        function getCheckMenuIds(checkedData) {
-            var res = [];
-            var cres = [];
-            for (var i = 0; i < checkedData.length; i++) {
-                res.push(checkedData[i].id)
-                if (checkedData[i].hasOwnProperty("children")) {
-                    cres = getCheckMenuIds(checkedData[i].children);
-                    res = res.concat(cres);
-                }
-            }
             return res;
         }
     });
