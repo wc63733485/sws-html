@@ -13,89 +13,6 @@
             padding: 0;
         }
 
-        .layui-card-header.layuiadmin-card-header-auto {
-            padding-top: 10px;
-            padding-bottom: 5px;
-            height: auto;
-        }
-
-        ul.ztree {
-            width: 95%;
-            height: 100%;
-            overflow-y: auto;
-            overflow-x: auto;
-        }
-
-        .box {
-            width: 12%;
-            height: 99%;
-            border-color: #cccccc;
-            margin-top: 1%;
-            margin-left: 1%;
-            border: 1px solid #cccccc;
-            float: left;
-            background-color: white;
-        }
-
-        .ztree li span.button.pIcon01_ico_open {
-            margin-right: 2px;
-            background: url(../static/img/gongsi.png) no-repeat scroll 0 0 transparent;
-            vertical-align: top;
-            *vertical-align: middle
-        }
-
-        .ztree li span.button.pIcon01_ico_close {
-            margin-right: 2px;
-            background: url(../static/img/gongsi.png) no-repeat scroll 0 0 transparent;
-            vertical-align: top;
-            *vertical-align: middle
-        }
-
-        .ztree li span.button.pIcon02_ico_open, .ztree li span.button.pIcon02_ico_close {
-            margin-right: 2px;
-            background: url(../static/img/House.png) no-repeat scroll 0 0 transparent;
-            vertical-align: top;
-            *vertical-align: middle
-        }
-
-        .ztree li span.button.icon01_ico_docu {
-            margin-right: 2px;
-            background: url(../static/img/kongzhigui.png) no-repeat scroll 0 0 transparent;
-            vertical-align: top;
-            *vertical-align: middle
-        }
-
-        .layui-table, .layui-table-view {
-            margin: 0px 0;
-        }
-
-        .myTable button {
-            border-width: 0px;
-            background-color: white;
-        }
-
-        .myTable tbody tr:hover {
-            background-color: #f2f2f2;
-        }
-
-        .myTable thead tr {
-            height: 28px;
-        }
-
-        .myTable thead tr th {
-            border: solid 1.5px #CCCCCC;
-            font-size: 12px;
-            font-weight: normal;
-            text-align: center;
-        }
-
-        .myTable tbody tr td {
-            height: 26px;
-            font-size: 12px;
-            border: solid 1.5px #CCCCCC;
-            text-align: center;
-        }
-
     </style>
 
     <script src="../static/libs/jquery.min.js"></script>
@@ -133,27 +50,27 @@
     </div>
 </div>
 <div class="layui-fluid" style="float: right;width: 82%;height: 96%;padding-left: 5px;">
-    <div class="layui-card">
+    <div class="layui-card" >
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label" style="text-align: left;width: 50px;">登录名</label>
-                    <div class="layui-input-block" style="margin-left:80px">
+                    <label class="layui-form-label" style="text-align: left;width: 70px;">开始时间</label>
+                    <div class="layui-input-block" style="margin-left:100px">
                         <input type="text" name="username" placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <label class="layui-form-label" style="text-align: left;width: 50px">手机号</label>
-                    <div class="layui-input-block" style="margin-left:80px">
+                    <label class="layui-form-label" style="text-align: left;width: 70px">结束时间</label>
+                    <div class="layui-input-block" style="margin-left:100px">
                         <input type="text" name="telphone" placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label" style="text-align: left;width: 50px">&nbsp;&nbsp;项&nbsp;&nbsp;&nbsp;目</label>
-                    <div class="layui-input-block" style="margin-left:80px">
-                        <input type="text" name="projectId" placeholder="请输入" autocomplete="off" class="layui-input">
-                    </div>
-                </div>
+                <!--                <div class="layui-inline">-->
+                <!--                    <label class="layui-form-label" style="text-align: left;width: 50px">&nbsp;&nbsp;项&nbsp;&nbsp;&nbsp;目</label>-->
+                <!--                    <div class="layui-input-block" style="margin-left:80px">-->
+                <!--                        <input type="text" name="projectId" placeholder="请输入" autocomplete="off" class="layui-input">-->
+                <!--                    </div>-->
+                <!--                </div>-->
                 <div class="layui-inline">
                     <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin"
                             style="background-color: #1ab394" lay-submit lay-filter="LAY-user-back-search">
@@ -173,10 +90,34 @@
             </div>
         </div>
 
-        <div class="layui-card-body">
-            <table class="layui-hide" id="user_table" lay-filter="user_table"></table>
+        <!--        <div class="layui-card-body" >-->
+        <!--            <table class="layui-hide" id="user_table" lay-filter="user_table"></table>-->
+        <!--        </div>-->
+
+    </div>
+    <div class="layui-tab layui-tab-card" lay-filter="real-tab" style="height: 80%;">
+        <ul class="layui-tab-title">
+            <li class="layui-this" lay-id="real-data" style="width: 22%">实时数据</li>
+            <li lay-id="real-alarm" style="width: 23%">实时报警</li>
+            <li lay-id="send-param" style="width: 23%">远程下参</li>
+            <li lay-id="real-analysis" style="width: 23.9%">实时分析</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 100%;background-color: white">
+            <div class="layui-tab-item layui-show">
+                <div class="layui-card-body" style="width: 50%">
+
+                    <table class="layui-table" id="demo1">
+
+                    </table>
+                </div>
+            </div>
+            <div class="layui-tab-item">2</div>
+            <div class="layui-tab-item">3</div>
+            <div class="layui-tab-item">4</div>
         </div>
     </div>
+
+
 </div>
 
 <!--<div class="box">-->
@@ -311,7 +252,8 @@
                         project.title = r.data[i].projectName;
                         project.id = r.data[i].projectId;
                         project.icon = "fa fa-bar-chart-o";
-                        children = pumpHouseArrayToJson(r.data[i].projectId)
+                        project.spread = true;
+                        children = pumpHouseArrayToJson(r.data[i].projectId, "")
                         if (children.length != 0) {
                             project.children = children
                         }
@@ -319,19 +261,152 @@
                     }
                 }
             })
-            layui.use(['table', 'tree', 'util'], function () {
+
+            layui.use(['table', 'tree', 'util', 'element'], function () {
                 var $ = layui.$
                     , tree = layui.tree
+                    , table = layui.table
                     , util = layui.util
+                    , element = layui.element;
+
+                $('.site-demo-active').on('click', function () {
+                    var othis = $(this), type = othis.data('type');
+                    active[type] ? active[type].call(this, othis) : '';
+                });
+
+
+                //监听Tab切换，以改变地址hash值
+                element.on('tab(real-tab)', function () {
+                    // location.hash = 'real-tab='+ this.getAttribute('lay-id');
+                    // layer.msg("123");
+                });
+
+
+                function realDataInit() {
+                    //展示已知数据
+                    table.render({
+                        elem: '#demo1'
+                        , cols: [[ //标题栏
+                            {field: 'sortId', title: '排序',align:"center", width: 80, sort: true}
+                            , {field: 'name',align:"center", title: '用户名', width: 120}
+                            , {field: 'dataName',align:"center", title: '邮箱', minWidth: 150}
+                            , {field: 'unit',align:"center", title: '签名', minWidth: 160}
+                            , {field: 'time',align:"center", title: '性别', width: 80}
+                            , {field: 'city',align:"center", title: '城市', width: 100}
+                            , {field: 'remark',align:"center", title: '积分', width: 80, sort: true}
+                        ]]
+                        , data: [{
+                            "id": "10001"
+                            , "username": "杜甫"
+                            , "email": "xianxin@layui.com"
+                            , "sex": "男"
+                            , "city": "浙江杭州"
+                            , "sign": "人生恰似一场修行"
+                            , "experience": "116"
+                            , "ip": "192.168.0.8"
+                            , "logins": "108"
+                            , "joinTime": "2016-10-14"
+                        }, {
+                            "id": "10002"
+                            , "username": "李白"
+                            , "email": "xianxin@layui.com"
+                            , "sex": "男"
+                            , "city": "浙江杭州"
+                            , "sign": "人生恰似一场修行"
+                            , "experience": "12"
+                            , "ip": "192.168.0.8"
+                            , "logins": "106"
+                            , "joinTime": "2016-10-14"
+                            , "LAY_CHECKED": true
+                        }, {
+                            "id": "10003"
+                            , "username": "王勃"
+                            , "email": "xianxin@layui.com"
+                            , "sex": "男"
+                            , "city": "浙江杭州"
+                            , "sign": "人生恰似一场修行"
+                            , "experience": "65"
+                            , "ip": "192.168.0.8"
+                            , "logins": "106"
+                            , "joinTime": "2016-10-14"
+                        }, {
+                            "id": "10004"
+                            , "username": "贤心"
+                            , "email": "xianxin@layui.com"
+                            , "sex": "男"
+                            , "city": "浙江杭州"
+                            , "sign": "人生恰似一场修行"
+                            , "experience": "666"
+                            , "ip": "192.168.0.8"
+                            , "logins": "106"
+                            , "joinTime": "2016-10-14"
+                        }, {
+                            "id": "10005"
+                            , "username": "贤心"
+                            , "email": "xianxin@layui.com"
+                            , "sex": "男"
+                            , "city": "浙江杭州"
+                            , "sign": "人生恰似一场修行"
+                            , "experience": "86"
+                            , "ip": "192.168.0.8"
+                            , "logins": "106"
+                            , "joinTime": "2016-10-14"
+                        }, {
+                            "id": "10006"
+                            , "username": "贤心"
+                            , "email": "xianxin@layui.com"
+                            , "sex": "男"
+                            , "city": "浙江杭州"
+                            , "sign": "人生恰似一场修行"
+                            , "experience": "12"
+                            , "ip": "192.168.0.8"
+                            , "logins": "106"
+                            , "joinTime": "2016-10-14"
+                        }, {
+                            "id": "10007"
+                            , "username": "贤心"
+                            , "email": "xianxin@layui.com"
+                            , "sex": "男"
+                            , "city": "浙江杭州"
+                            , "sign": "人生恰似一场修行"
+                            , "experience": "16"
+                            , "ip": "192.168.0.8"
+                            , "logins": "106"
+                            , "joinTime": "2016-10-14"
+                        }, {
+                            "id": "10008"
+                            , "username": "贤心"
+                            , "email": "xianxin@layui.com"
+                            , "sex": "男"
+                            , "city": "浙江杭州"
+                            , "sign": "人生恰似一场修行"
+                            , "experience": "106"
+                            , "ip": "192.168.0.8"
+                            , "logins": "106"
+                            , "joinTime": "2016-10-14"
+                        }]
+                        , skin: 'line' //表格风格
+                        // ,even: true
+                        , size: "sm"
+                        //,page: true //是否显示分页
+                        //,limits: [5, 7, 10]
+                        //,limit: 5 //每页默认显示的数量
+                    });
+                }
+
                 //基本演示
                 tree.render({
                     elem: '#assMenu'
                     , data: res
                     , id: 'assMenu'
-                    , isJump: true //是否允许点击节点时弹出新窗口跳转
+                    , isJump: false //是否允许点击节点时弹出新窗口跳转
                     , click: function (obj) {
                         var data = obj.data;  //获取当前点击的节点数据
-                        layer.msg('状态：' + obj.state + '<br>节点数据：' + JSON.stringify(data));
+                        if (data.isDevice != undefined && data.isDevice == true) {
+                            realDataInit();
+                            element.tabChange('real-tab', 'real-data'); //切换到：用户管理
+                        }
+                        layer.msg('状态：' + data.isDevice + '<br>节点数据：' + JSON.stringify(data));
                     }
                 });
 
@@ -339,28 +414,56 @@
                 util.event('lay-menutree', {
                     search: function (othis) {
                         var search = $("#search").val()
-                        console.info(res)
-                        for (var i=0;i<res.length;i++){
-                            if (res[i].title.indexOf(search)){
-                                res[i].checked = true;
-                            }
-                            var res1 = res[i].children;
-                            for (var i1=0;i1<res1.length;i1++) {
-                                if (res1[i1].title.indexOf(search)){
-                                    res1[i1].checked = true;
+                        res = [];
+                        $.ajax({
+                            type: "GET",
+                            url: sysUrl + "/pct/gpt",
+                            async: false,
+                            headers: {
+                                'token': sessionStorage.getItem("token"),
+                            },
+                            success: function (r) {
+                                var children = [];
+                                for (var i = 0; i < r.data.length; i++) {
+                                    var project = new Object();
+                                    project.title = r.data[i].projectName;
+                                    project.id = r.data[i].projectId;
+                                    project.icon = "fa fa-bar-chart-o";
+                                    project.spread = true;
+                                    children = pumpHouseArrayToJson(r.data[i].projectId, search)
+                                    if (children.length != 0) {
+                                        project.children = children
+                                    }
+                                    if (search != "" && r.data[i].projectName.indexOf(search) != -1) {
+                                        project.textcolor = "red";
+                                    }
+                                    res.push(project)
                                 }
                             }
-                        }
+                        })
+                        tree.render({
+                            elem: '#assMenu'
+                            , data: res
+                            , id: 'assMenu'
+                            , isJump: false //是否允许点击节点时弹出新窗口跳转
+                            , click: function (obj) {
+                                var data = obj.data;  //获取当前点击的节点数据
+                                if (data.isDevice != undefined && data.isDevice == true) {
+                                    realDataInit();
+                                    element.tabChange('real-tab', 'real-data'); //切换到：用户管理
+                                }
+                            }
+                        });
                     },
                     reload: function () {
                         tree.reload('assMenu', {});
                     }
                 });
             });
-
         }
 
-        function pumpHouseArrayToJson(projectId) {
+
+        function pumpHouseArrayToJson(projectId, search) {
             var res = [];
             $.ajax({
                 type: "GET",
@@ -376,9 +479,13 @@
                         pumphouse.title = r.data[i].pumphouseName;
                         pumphouse.id = r.data[i].pumphouseId;
                         pumphouse.icon = "fa fa-home fa-lg";
-                        children = deviceArrayToJson(r.data[i].pumphouseId)
+                        pumphouse.spread = true;
+                        children = deviceArrayToJson(r.data[i].pumphouseId, search)
                         if (children.length != 0) {
                             pumphouse.children = children
+                        }
+                        if (search != "" && r.data[i].pumphouseName.indexOf(search) != -1) {
+                            pumphouse.textcolor = "red";
                         }
                         res.push(pumphouse)
                     }
@@ -388,7 +495,7 @@
         }
 
 
-        function deviceArrayToJson(pumphouseId) {
+        function deviceArrayToJson(pumphouseId, search) {
             var res = [];
             $.ajax({
                 type: "GET",
@@ -399,12 +506,17 @@
                 },
                 success: function (r) {
                     for (var i = 0; i < r.data.length; i++) {
-                        var pumphouse = new Object();
-                        pumphouse.title = r.data[i].name;
-                        pumphouse.id = r.data[i].deviceId;
-                        pumphouse.bgcolor = "green";
-                        pumphouse.icon = "fa fa-signal";
-                        res.push(pumphouse)
+                        var device = new Object();
+                        device.title = r.data[i].name;
+                        device.id = r.data[i].deviceId;
+                        device.bgcolor = "green";
+                        device.icon = "fa fa-signal";
+                        device.spread = true;
+                        device.isDevice = true;
+                        if (search != "" && r.data[i].name.indexOf(search) != -1) {
+                            device.textcolor = "red";
+                        }
+                        res.push(device)
                     }
                 }
             });
