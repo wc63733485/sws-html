@@ -50,19 +50,21 @@
     </div>
 </div>
 <div class="layui-fluid" style="float: right;width: 82%;height: 96%;padding-left: 5px;">
-    <div class="layui-card" >
+    <div class="layui-card">
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label" style="text-align: left;width: 70px;">开始时间</label>
                     <div class="layui-input-block" style="margin-left:100px">
-                        <input type="text" name="username" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="username" placeholder="请输入" id="starTime" class="layui-input"
+                               placeholder="yyyy-MM-dd HH:mm:ss">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label" style="text-align: left;width: 70px">结束时间</label>
                     <div class="layui-input-block" style="margin-left:100px">
-                        <input type="text" name="telphone" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="username" placeholder="请输入" id="endTime" class="layui-input"
+                               placeholder="yyyy-MM-dd HH:mm:ss">
                     </div>
                 </div>
                 <!--                <div class="layui-inline">-->
@@ -98,7 +100,7 @@
     <div class="layui-tab layui-tab-card" lay-filter="real-tab" style="height: 80%;">
         <ul class="layui-tab-title">
             <li class="layui-this" lay-id="real-data" style="width: 22%">实时数据</li>
-            <li lay-id="real-alarm" style="width: 23%">实时报警</li>
+            <li lay-id="real-alarm" style="width: 23%">报警记录</li>
             <li lay-id="send-param" style="width: 23%">远程下参</li>
             <li lay-id="real-analysis" style="width: 23.9%">实时分析</li>
         </ul>
@@ -237,37 +239,30 @@
         assignmentsMenu();
 
         function assignmentsMenu() {
-            var res = [];
-            $.ajax({
-                type: "GET",
-                url: sysUrl + "/pct/gpt",
-                async: false,
-                headers: {
-                    'token': sessionStorage.getItem("token"),
-                },
-                success: function (r) {
-                    var children = [];
-                    for (var i = 0; i < r.data.length; i++) {
-                        var project = new Object();
-                        project.title = r.data[i].projectName;
-                        project.id = r.data[i].projectId;
-                        project.icon = "fa fa-bar-chart-o";
-                        project.spread = true;
-                        children = pumpHouseArrayToJson(r.data[i].projectId, "")
-                        if (children.length != 0) {
-                            project.children = children
-                        }
-                        res.push(project)
-                    }
-                }
-            })
 
-            layui.use(['table', 'tree', 'util', 'element'], function () {
+            layui.use(['table', 'tree', 'util', 'element', 'laydate'], function () {
                 var $ = layui.$
                     , tree = layui.tree
                     , table = layui.table
                     , util = layui.util
-                    , element = layui.element;
+                    , element = layui.element
+                    , laydate = layui.laydate;
+
+                //查询 开始时间
+                laydate.render({
+                    elem: '#starTime'
+                    , type: 'datetime'
+                    , max: format(new Date().getTime())
+                    , theme: 'grid'
+                });
+
+                //查询 结束时间
+                laydate.render({
+                    elem: '#endTime'
+                    , type: 'datetime'
+                    , max: format(new Date().getTime())
+                    , theme: 'grid'
+                });
 
                 $('.site-demo-active').on('click', function () {
                     var othis = $(this), type = othis.data('type');
@@ -275,25 +270,88 @@
                 });
 
 
-                //监听Tab切换，以改变地址hash值
-                element.on('tab(real-tab)', function () {
-                    // location.hash = 'real-tab='+ this.getAttribute('lay-id');
-                    // layer.msg("123");
-                });
+                function realDataInit(deviceId) {
+                    var title1 = ""
+                    var title2 = ""
+                    var deviceTypeId = "";
+                    $.ajax({
+                        type: "GET",
+                        url: deviceUrl + "/dl/qbd/" + deviceId,
+                        async: false,
+                        headers: {
+                            'token': sessionStorage.getItem("token"),
+                        },
+                        success: function (r) {
+                            deviceTypeId = r.data.deviceTypeId
+                        },
+                        error: function (e, t) {
+                            if (e.status == 401) {
+                                layer.msg("请刷新或重新登录", {icon: 0})
+                                return;
+                            }
+                            i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
+                        }
+                    })
 
+                    $.ajax({
+                        type: "GET",
+                        url: deviceTypeUrl + "/dt/qbdd/" + deviceTypeId,
+                        async: false,
+                        headers: {
+                            'token': sessionStorage.getItem("token"),
+                        },
+                        success: function (r) {
+                            title1 = r.data.name
+                            $.ajax({
+                                type: "GET",
+                                url: deviceTypeUrl + "/dt/qbdpd/" + r.data.parentId,
+                                async: false,
+                                headers: {
+                                    'token': sessionStorage.getItem("token"),
+                                },
+                                success: function (r) {
+                                    title2 =  "("+r.data.name+")"
+                                },
+                                error: function (e, t) {
+                                    if (e.status == 401) {
+                                        layer.msg("请刷新或重新登录", {icon: 0})
+                                        return;
+                                    }
+                                }
+                            })
+                        },
+                        error: function (e, t) {
+                            if (e.status == 401) {
+                                layer.msg("请刷新或重新登录", {icon: 0})
+                                return;
+                            }
+                        }
+                    })
 
-                function realDataInit() {
                     //展示已知数据
                     table.render({
                         elem: '#demo1'
-                        , cols: [[ //标题栏
-                            {field: 'sortId', title: '排序',align:"center", width: 80, sort: true}
-                            , {field: 'name',align:"center", title: '用户名', width: 120}
-                            , {field: 'dataName',align:"center", title: '邮箱', minWidth: 150}
-                            , {field: 'unit',align:"center", title: '签名', minWidth: 160}
-                            , {field: 'time',align:"center", title: '性别', width: 80}
-                            , {field: 'city',align:"center", title: '城市', width: 100}
-                            , {field: 'remark',align:"center", title: '积分', width: 80, sort: true}
+                        , url: deviceUnitUrl + "/du/qbdtd/" + r.data.parentId,
+                        , cols: [[{field: 'sortId', title: title1+title2, align: "center", colspan: "7"}], [ //标题栏
+                            {field: 'sortId', title: '排序', align: "center", width: 80, sort: true}
+                            , {field: 'name', align: "center", title: '参数', width: 60}
+                            , {field: 'dataLimits', align: "center", title: '数据常规范围', minWidth: 120}
+                            , {field: 'unit', align: "center", title: '单位', minWidth: 60}
+                            , {field: 'time', align: "center", title: '上报时间', width: 100}
+                            , {
+                                field: 'value', align: "center", title: '数值', width: 60
+                                // ,templet: function (res) {
+                                //     if (res.value == 0) {
+                                //         return '正常';
+                                //     } else if (res.value == 1) {
+                                //         return '停用';
+                                //     } else {
+                                //         return '-';
+                                //     }
+                                // }
+                            }
+                            , {field: 'remark', align: "center", title: '备注'}
+
                         ]]
                         , data: [{
                             "id": "10001"
@@ -397,16 +455,15 @@
                 //基本演示
                 tree.render({
                     elem: '#assMenu'
-                    , data: res
+                    , data: projectArrayToJson("")
                     , id: 'assMenu'
                     , isJump: false //是否允许点击节点时弹出新窗口跳转
                     , click: function (obj) {
                         var data = obj.data;  //获取当前点击的节点数据
                         if (data.isDevice != undefined && data.isDevice == true) {
-                            realDataInit();
+                            realDataInit(data.id);
                             element.tabChange('real-tab', 'real-data'); //切换到：用户管理
                         }
-                        layer.msg('状态：' + data.isDevice + '<br>节点数据：' + JSON.stringify(data));
                     }
                 });
 
@@ -414,54 +471,81 @@
                 util.event('lay-menutree', {
                     search: function (othis) {
                         var search = $("#search").val()
-                        res = [];
-                        $.ajax({
-                            type: "GET",
-                            url: sysUrl + "/pct/gpt",
-                            async: false,
-                            headers: {
-                                'token': sessionStorage.getItem("token"),
-                            },
-                            success: function (r) {
-                                var children = [];
-                                for (var i = 0; i < r.data.length; i++) {
-                                    var project = new Object();
-                                    project.title = r.data[i].projectName;
-                                    project.id = r.data[i].projectId;
-                                    project.icon = "fa fa-bar-chart-o";
-                                    project.spread = true;
-                                    children = pumpHouseArrayToJson(r.data[i].projectId, search)
-                                    if (children.length != 0) {
-                                        project.children = children
-                                    }
-                                    if (search != "" && r.data[i].projectName.indexOf(search) != -1) {
-                                        project.textcolor = "red";
-                                    }
-                                    res.push(project)
-                                }
-                            }
-                        })
+                        layer.load(2);
                         tree.render({
                             elem: '#assMenu'
-                            , data: res
+                            , data: projectArrayToJson(search)
                             , id: 'assMenu'
                             , isJump: false //是否允许点击节点时弹出新窗口跳转
                             , click: function (obj) {
                                 var data = obj.data;  //获取当前点击的节点数据
                                 if (data.isDevice != undefined && data.isDevice == true) {
-                                    realDataInit();
+                                    realDataInit(data.id);
                                     element.tabChange('real-tab', 'real-data'); //切换到：用户管理
                                 }
                             }
                         });
+                        layer.closeAll('loading');
                     },
                     reload: function () {
-                        tree.reload('assMenu', {});
+                        layer.load(2);
+                        $("#search").val("");
+                        tree.render({
+                            elem: '#assMenu'
+                            , data: projectArrayToJson("")
+                            , id: 'assMenu'
+                            , isJump: false //是否允许点击节点时弹出新窗口跳转
+                            , click: function (obj) {
+                                var data = obj.data;  //获取当前点击的节点数据
+                                if (data.isDevice != undefined && data.isDevice == true) {
+                                    realDataInit(data.id);
+                                    element.tabChange('real-tab', 'real-data'); //切换到：用户管理
+                                }
+                            }
+                        });
+                        layer.closeAll('loading');
                     }
                 });
             });
         }
 
+        function projectArrayToJson(search) {
+            var res = [];
+            $.ajax({
+                type: "GET",
+                url: sysUrl + "/pct/gpt",
+                async: false,
+                headers: {
+                    'token': sessionStorage.getItem("token"),
+                },
+                success: function (r) {
+                    var children = [];
+                    for (var i = 0; i < r.data.length; i++) {
+                        var project = new Object();
+                        project.title = r.data[i].projectName;
+                        project.id = r.data[i].projectId;
+                        project.icon = "fa fa-bar-chart-o";
+                        project.spread = true;
+                        children = pumpHouseArrayToJson(r.data[i].projectId, search)
+                        if (children.length != 0) {
+                            project.children = children
+                        }
+                        if (search != "" && r.data[i].projectName.indexOf(search) != -1) {
+                            project.textcolor = "red";
+                        }
+                        res.push(project)
+                    }
+                },
+                error: function (e, t) {
+                    if (e.status == 401) {
+                        layer.msg("请刷新或重新登录", {icon: 0})
+                        return;
+                    }
+                    i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
+                }
+            })
+            return res
+        }
 
         function pumpHouseArrayToJson(projectId, search) {
             var res = [];
@@ -489,11 +573,17 @@
                         }
                         res.push(pumphouse)
                     }
+                },
+                error: function (e, t) {
+                    if (e.status == 401) {
+                        layer.msg("请刷新或重新登录", {icon: 0})
+                        return;
+                    }
+                    i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
                 }
             });
             return res;
         }
-
 
         function deviceArrayToJson(pumphouseId, search) {
             var res = [];
@@ -518,6 +608,13 @@
                         }
                         res.push(device)
                     }
+                },
+                error: function (e, t) {
+                    if (e.status == 401) {
+                        layer.msg("请刷新或重新登录", {icon: 0})
+                        return;
+                    }
+                    i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
                 }
             });
             return res;
