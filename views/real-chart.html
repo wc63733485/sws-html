@@ -13,14 +13,14 @@
             padding: 0;
         }
 
-        thead tr th {
-            border-width: 1px;
-        }
-
         .layui-table[lay-skin="row"] tr th {
             border-width: 1px 1px 1px 1px;
             border-top-width: 1px;
             border-left-width: 1px;
+        }
+        .layui-table-body {
+            overflow-y: auto;
+            overflow-x: hidden;
         }
     </style>
 
@@ -345,10 +345,10 @@
                         }
                         , cols: [[{title: title1 + title2, align: "center", colspan: "7"}], [ //标题栏
                             {field: 'sortId', title: '排序', align: "center", width: 80, sort: true}
-                            , {field: 'name', align: "center", title: '参数', width: 120}
+                            , {field: 'name', align: "center", title: '参数', width: 130}
                             , {field: 'referenceRange', align: "center", title: '参考值范围', minWidth: 120}
                             , {field: 'unit', align: "center", title: '单位', minWidth: 60}
-                            , {field: 'time', align: "center", title: '上报时间', width: 100}
+                            , {field: 'time', align: "center", title: '上报时间', width: 130}
                             , {
                                 field: 'value', align: "center", title: '数值', width: 60
                                 // ,templet: function (res) {
@@ -361,7 +361,7 @@
                                 //     }
                                 // }
                             }
-                            , {field: 'remark', align: "center", title: '备注'}
+                            , {field: 'remark', align: "center", title: '备注', width: 110}
                         ]]
                         , skin: 'row' //表格风格
                         , response: {
