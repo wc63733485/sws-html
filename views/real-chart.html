@@ -13,13 +13,21 @@
             padding: 0;
         }
 
+        thead tr th {
+            border-width: 1px;
+        }
+
+        .layui-table[lay-skin="row"] tr th {
+            border-width: 1px 1px 1px 1px;
+            border-top-width: 1px;
+            border-left-width: 1px;
+        }
     </style>
 
     <script src="../static/libs/jquery.min.js"></script>
-    <script src="../static/libs/jquery-ztree/3.5/js/jquery.ztree.all-3.5.js"></script>
     <script src="../static/libs/echarts.min.js"></script>
     <script src="../static/libs/sws-common.js"></script>
-    <script src="../static/libs/realChart.js"></script>
+<!--    <script src="../static/libs/realChart.js"></script>-->
     <script src="../static/libs/layui/layui.js"></script>
 </head>
 
@@ -105,8 +113,8 @@
             <li lay-id="real-analysis" style="width: 23.9%">实时分析</li>
         </ul>
         <div class="layui-tab-content" style="height: 100%;background-color: white">
-            <div class="layui-tab-item layui-show">
-                <div class="layui-card-body" style="width: 50%">
+            <div class="layui-tab-item layui-show" style="height: 100%">
+                <div class="layui-card-body" id="tt" style="width: 50%;height: 95%;padding: 0px 15px;" >
 
                     <table class="layui-table" id="demo1">
 
@@ -310,7 +318,7 @@
                                     'token': sessionStorage.getItem("token"),
                                 },
                                 success: function (r) {
-                                    title2 =  "("+r.data.name+")"
+                                    title2 = "(" + r.data.name + ")"
                                 },
                                 error: function (e, t) {
                                     if (e.status == 401) {
@@ -327,15 +335,18 @@
                             }
                         }
                     })
-
                     //展示已知数据
                     table.render({
                         elem: '#demo1'
-                        , url: deviceUnitUrl + "/du/qbdtd/" + r.data.parentId,
-                        , cols: [[{field: 'sortId', title: title1+title2, align: "center", colspan: "7"}], [ //标题栏
+                        , url: deviceUnitUrl + "/du/qbdtd/" + deviceTypeId
+                        , height: $("#tt").height()
+                        , headers: {
+                            'token': sessionStorage.getItem("token"),
+                        }
+                        , cols: [[{title: title1 + title2, align: "center", colspan: "7"}], [ //标题栏
                             {field: 'sortId', title: '排序', align: "center", width: 80, sort: true}
-                            , {field: 'name', align: "center", title: '参数', width: 60}
-                            , {field: 'dataLimits', align: "center", title: '数据常规范围', minWidth: 120}
+                            , {field: 'name', align: "center", title: '参数', width: 120}
+                            , {field: 'referenceRange', align: "center", title: '参考值范围', minWidth: 120}
                             , {field: 'unit', align: "center", title: '单位', minWidth: 60}
                             , {field: 'time', align: "center", title: '上报时间', width: 100}
                             , {
@@ -351,104 +362,16 @@
                                 // }
                             }
                             , {field: 'remark', align: "center", title: '备注'}
-
                         ]]
-                        , data: [{
-                            "id": "10001"
-                            , "username": "杜甫"
-                            , "email": "xianxin@layui.com"
-                            , "sex": "男"
-                            , "city": "浙江杭州"
-                            , "sign": "人生恰似一场修行"
-                            , "experience": "116"
-                            , "ip": "192.168.0.8"
-                            , "logins": "108"
-                            , "joinTime": "2016-10-14"
-                        }, {
-                            "id": "10002"
-                            , "username": "李白"
-                            , "email": "xianxin@layui.com"
-                            , "sex": "男"
-                            , "city": "浙江杭州"
-                            , "sign": "人生恰似一场修行"
-                            , "experience": "12"
-                            , "ip": "192.168.0.8"
-                            , "logins": "106"
-                            , "joinTime": "2016-10-14"
-                            , "LAY_CHECKED": true
-                        }, {
-                            "id": "10003"
-                            , "username": "王勃"
-                            , "email": "xianxin@layui.com"
-                            , "sex": "男"
-                            , "city": "浙江杭州"
-                            , "sign": "人生恰似一场修行"
-                            , "experience": "65"
-                            , "ip": "192.168.0.8"
-                            , "logins": "106"
-                            , "joinTime": "2016-10-14"
-                        }, {
-                            "id": "10004"
-                            , "username": "贤心"
-                            , "email": "xianxin@layui.com"
-                            , "sex": "男"
-                            , "city": "浙江杭州"
-                            , "sign": "人生恰似一场修行"
-                            , "experience": "666"
-                            , "ip": "192.168.0.8"
-                            , "logins": "106"
-                            , "joinTime": "2016-10-14"
-                        }, {
-                            "id": "10005"
-                            , "username": "贤心"
-                            , "email": "xianxin@layui.com"
-                            , "sex": "男"
-                            , "city": "浙江杭州"
-                            , "sign": "人生恰似一场修行"
-                            , "experience": "86"
-                            , "ip": "192.168.0.8"
-                            , "logins": "106"
-                            , "joinTime": "2016-10-14"
-                        }, {
-                            "id": "10006"
-                            , "username": "贤心"
-                            , "email": "xianxin@layui.com"
-                            , "sex": "男"
-                            , "city": "浙江杭州"
-                            , "sign": "人生恰似一场修行"
-                            , "experience": "12"
-                            , "ip": "192.168.0.8"
-                            , "logins": "106"
-                            , "joinTime": "2016-10-14"
-                        }, {
-                            "id": "10007"
-                            , "username": "贤心"
-                            , "email": "xianxin@layui.com"
-                            , "sex": "男"
-                            , "city": "浙江杭州"
-                            , "sign": "人生恰似一场修行"
-                            , "experience": "16"
-                            , "ip": "192.168.0.8"
-                            , "logins": "106"
-                            , "joinTime": "2016-10-14"
-                        }, {
-                            "id": "10008"
-                            , "username": "贤心"
-                            , "email": "xianxin@layui.com"
-                            , "sex": "男"
-                            , "city": "浙江杭州"
-                            , "sign": "人生恰似一场修行"
-                            , "experience": "106"
-                            , "ip": "192.168.0.8"
-                            , "logins": "106"
-                            , "joinTime": "2016-10-14"
-                        }]
-                        , skin: 'line' //表格风格
+                        , skin: 'row' //表格风格
+                        , response: {
+                            statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+                        }
                         // ,even: true
                         , size: "sm"
-                        //,page: true //是否显示分页
-                        //,limits: [5, 7, 10]
-                        //,limit: 5 //每页默认显示的数量
+                        // , page: true //是否显示分页
+                        // ,limits: [5]
+                        // ,limit: 5 //每页默认显示的数量
                     });
                 }
 
