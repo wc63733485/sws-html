@@ -29,11 +29,6 @@ if($.common.isNotEmpty(skin)){
     // $("body").addClass([[${skinName}]]);
 }
 
-/* 用户管理-重置密码 */
-function resetPwd() {
-    var url = ctx + 'system/user/profile/resetPwd';
-    $.modal.open("重置密码", url, '770', '380');
-}
 
 /* 切换主题 */
 function switchSkin() {

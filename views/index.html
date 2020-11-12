@@ -150,7 +150,13 @@
     $(function() {
 
     });
-// // 皮肤缓存
+    /* 用户管理-重置密码 */
+    function resetPwd() {
+        // var url = ctx + 'system/user/profile/resetPwd';
+        $.modal.open("重置密码", "./password.html", '700', '410');
+    }
+
+    // // 皮肤缓存
 // var skin = storage.get("skin");
 // // history（表示去掉地址的#）否则地址以"#"形式展示
 // var mode = "history";
