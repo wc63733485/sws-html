@@ -14,22 +14,25 @@
         }
 
         .layui-table[lay-skin="row"] tr th {
-            border-width: 1px 1px 1px 1px;
-            border-top-width: 1px;
-            border-left-width: 1px;
+            border-width: 0px 0px 0px 0px;
+            border-top-width: 0px;
+            border-left-width: 0px;
+            border-top-width: 0px;
+            border-left-width: 0px;
         }
 
         .layui-table-body {
             overflow-y: auto;
             overflow-x: hidden;
         }
+        .layui-table-tool {
+            min-height: 10px;
+            line-height: 10px;
+            border-width: 0 0 0px;
+        }
+
     </style>
 
-    <script src="../static/libs/jquery.min.js"></script>
-    <script src="../static/libs/echarts.min.js"></script>
-    <script src="../static/libs/sws-common.js"></script>
-    <!--    <script src="../static/libs/realChart.js"></script>-->
-    <script src="../static/libs/layui/layui.js"></script>
 </head>
 
 <body>
@@ -123,7 +126,12 @@
                 </div>
                 <!--    实时曲线   -->
                 <div class="layui-card-body" id="chart-1"
-                     style="width: 45%;height: 50%;padding: 0px 15px;float: right;">
+                     style="width: 45%;height: 45%;padding: 0px 15px;float: right;margin-top: 1%">
+
+
+                </div>
+                <div class="layui-card-body" id="chart-2"
+                     style="width: 45%;height: 45%;padding: 0px 15px;float: right;margin-top: 2%">
 
 
                 </div>
@@ -134,16 +142,211 @@
         </div>
     </div>
 </div>
-
+<script src="../static/libs/jquery.min.js"></script>
+<script src="../static/libs/echarts.min.js"></script>
+<script src="../static/libs/sws-common.js"></script>
+<script src="../static/libs/layui/layui.js"></script>
 <script src="../static/libs/mqtt.js" type="text/javascript"></script>
 <script src="../static/libs/sws-mqtt.js"></script>
 
 <script>
+    var iotCode = "";
 
-    $(function () {
+    layui.use(['table', 'tree', 'util', 'element', 'laydate'], function () {
+        var $ = layui.$
+            , tree = layui.tree
+            , table = layui.table
+            , util = layui.util
+            , element = layui.element
+            , laydate = layui.laydate;
+
+        window.assignmentsMenu =  function() {
+
+            //查询 开始时间
+            laydate.render({
+                elem: '#starTime'
+                , type: 'datetime'
+                , max: format(new Date().getTime())
+                , theme: 'grid'
+            });
+
+            //查询 结束时间
+            laydate.render({
+                elem: '#endTime'
+                , type: 'datetime'
+                , max: format(new Date().getTime())
+                , theme: 'grid'
+            });
+
+            $('.site-demo-active').on('click', function () {
+                var othis = $(this), type = othis.data('type');
+                active[type] ? active[type].call(this, othis) : '';
+            });
+
+
+            function realDataInit(deviceId) {
+                var title1 = ""
+                var title2 = ""
+                var deviceTypeId = "";
+                $.ajax({
+                    type: "GET",
+                    url: deviceUrl + "/dl/qbd/" + deviceId,
+                    async: false,
+                    headers: {
+                        'token': sessionStorage.getItem("token"),
+                    },
+                    success: function (r) {
+                        deviceTypeId = r.data.deviceTypeId
+                        if (!iotCode == "") {
+                            Client.unsubscribe('Topic/flexem/fbox/' + iotCode + '/system/MonitorData');
+                        }
+                        iotCode = r.data.iotcode
+                        Client.subscribe('Topic/flexem/fbox/' + iotCode + '/system/MonitorData');
+
+                        setTimeout("", 1000)
+                    },
+                    error: function (e, t) {
+                        if (e.status == 401) {
+                            layer.msg("请刷新或重新登录", {icon: 0})
+                            return;
+                        }
+                        i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
+                    }
+                })
+
+                $.ajax({
+                    type: "GET",
+                    url: deviceTypeUrl + "/dt/qbdd/" + deviceTypeId,
+                    async: false,
+                    headers: {
+                        'token': sessionStorage.getItem("token"),
+                    },
+                    success: function (r) {
+                        title1 = r.data.name
+                        $.ajax({
+                            type: "GET",
+                            url: deviceTypeUrl + "/dt/qbdpd/" + r.data.parentId,
+                            async: false,
+                            headers: {
+                                'token': sessionStorage.getItem("token"),
+                            },
+                            success: function (r) {
+                                title2 = "(" + r.data.name + ")"
+                            },
+                            error: function (e, t) {
+                                if (e.status == 401) {
+                                    layer.msg("请刷新或重新登录", {icon: 0})
+                                    return;
+                                }
+                            }
+                        })
+                    },
+                    error: function (e, t) {
+                        if (e.status == 401) {
+                            layer.msg("请刷新或重新登录", {icon: 0})
+                            return;
+                        }
+                    }
+                })
+                //展示已知数据
+                table.render({
+                    elem: '#demo1'
+                    , url: deviceUnitUrl + "/du/qbdtd/" + deviceTypeId
+                    , height: $("#tt").height()
+                    , toolbar: true
+                    , aaa: "123"
+                    , headers: {
+                        'token': sessionStorage.getItem("token"),
+                    }
+                    , toolbar: "default" //开启头部工具栏，并为其绑定左侧模板
+                    , cols: [[{title: title1 + title2, align: "center", colspan: "7"}], [ //标题栏
+                        {field: 'sortId', title: '排序', align: "center", width: 80, sort: true}
+                        , {field: 'name', align: "center", title: '参数', width: 130}
+                        , {field: 'referenceRange', align: "center", title: '参考值范围', minWidth: 120}
+                        , {
+                            field: 'value', align: "center", title: '数值', width: 60
+                            , templet: function (res) {
+                                return '<span id="value-' + res.dataName + '"></span>';
+                            }
+                        }
+                        , {field: 'unit', align: "center", title: '单位', minWidth: 50}
+                        , {
+                            field: 'time', align: "center", title: '上报时间', width: 150, templet: function (res) {
+                                return '<span id="time-' + res.dataName + '"></span>';
+                            }
+                        }
+                        , {field: 'remark', align: "center", title: '备注', width: 100}
+                    ]]
+                    , skin: 'row' //表格风格
+                    , response: {
+                        statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+                    }
+                    // ,even: true
+                    , size: "sm"
+                    // , page: true //是否显示分页
+                    // ,limits: [5]
+                    // ,limit: 5 //每页默认显示的数量
+                });
+
+            }
+
+            //基本演示
+            tree.render({
+                elem: '#assMenu'
+                , data: projectArrayToJson("")
+                , id: 'assMenu'
+                , isJump: false //是否允许点击节点时弹出新窗口跳转
+                , click: function (obj) {
+                    var data = obj.data;  //获取当前点击的节点数据
+                    if (data.isDevice != undefined && data.isDevice == true) {
+                        realDataInit(data.id);
+                        element.tabChange('real-tab', 'real-data'); //切换到：实时数据
+                    }
+                }
+            });
+
+            //按钮事件
+            util.event('lay-menutree', {
+                search: function (othis) {
+                    var search = $("#search").val()
+                    layer.load(2);
+                    tree.render({
+                        elem: '#assMenu'
+                        , data: projectArrayToJson(search)
+                        , id: 'assMenu'
+                        , isJump: false //是否允许点击节点时弹出新窗口跳转
+                        , click: function (obj) {
+                            var data = obj.data;  //获取当前点击的节点数据
+                            if (data.isDevice != undefined && data.isDevice == true) {
+                                realDataInit(data.id);
+                                element.tabChange('real-tab', 'real-data'); //切换到：用户管理
+                            }
+                        }
+                    });
+                    layer.closeAll('loading');
+                },
+                reload: function () {
+                    layer.load(2);
+                    $("#search").val("");
+                    tree.render({
+                        elem: '#assMenu'
+                        , data: projectArrayToJson("")
+                        , id: 'assMenu'
+                        , isJump: false //是否允许点击节点时弹出新窗口跳转
+                        , click: function (obj) {
+                            var data = obj.data;  //获取当前点击的节点数据
+                            if (data.isDevice != undefined && data.isDevice == true) {
+                                realDataInit(data.id);
+                                element.tabChange('real-tab', 'real-data'); //切换到：用户管理
+                            }
+                        }
+                    });
+                    layer.closeAll('loading');
+                }
+            });
+        }
 
         var mqttMessage = {}
-        var iotCode = "";
         Client = new Paho.MQTT.Client('39.107.221.228', 8083, "USER" + new Date().getTime());
         //建立客户端实例
         var options = {
@@ -154,13 +357,10 @@
             userName: user.loginName,
             password: user.password,
             onSuccess: function (e) {
-
             },
             onFailure: function (e) {
-
             }
         };
-
 
         function onConnectionLost(responseObject) {
             if (responseObject.errorCode !== 0) {
@@ -182,9 +382,9 @@
         function realChartInit(message) {
             mqttMessage = JSON.parse(message);
             for (var i = 0; i < mqttMessage.Data.length; i++) {
-                $("#value-" + mqttMessage.Data[i].name).text(mqttMessage.Data[i].value/move[mqttMessage.Data[i].name])
+                $("#value-" + mqttMessage.Data[i].name).text(mqttMessage.Data[i].value / move[mqttMessage.Data[i].name])
                 $("#time-" + mqttMessage.Data[i].name).text(mqttMessage.time)
-                $("tr[data-index='"+i+"']").attr("onclick","eChartOne('"+mqttMessage.Data[i].dataName+"')")
+                $("tr[data-index='" + i + "']").attr("onclick", "eChartOne('" + mqttMessage.Data[i].dataName + "')")
             }
         }
 
@@ -199,7 +399,7 @@
             },
             success: function (r) {
                 for (var i = 0; i < r.data.length; i++) {
-                    move[r.data[i].dataName]=Math.pow(10,Number(r.data[i].move))
+                    move[r.data[i].dataName] = Math.pow(10, Number(r.data[i].move))
                 }
             },
             error: function (e, t) {
@@ -211,322 +411,124 @@
         })
 
         assignmentsMenu();
-
-        function assignmentsMenu() {
-            layui.use(['table', 'tree', 'util', 'element', 'laydate'], function () {
-                var $ = layui.$
-                    , tree = layui.tree
-                    , table = layui.table
-                    , util = layui.util
-                    , element = layui.element
-                    , laydate = layui.laydate;
-
-                //查询 开始时间
-                laydate.render({
-                    elem: '#starTime'
-                    , type: 'datetime'
-                    , max: format(new Date().getTime())
-                    , theme: 'grid'
-                });
-
-                //查询 结束时间
-                laydate.render({
-                    elem: '#endTime'
-                    , type: 'datetime'
-                    , max: format(new Date().getTime())
-                    , theme: 'grid'
-                });
-
-                $('.site-demo-active').on('click', function () {
-                    var othis = $(this), type = othis.data('type');
-                    active[type] ? active[type].call(this, othis) : '';
-                });
-
-
-                function realDataInit(deviceId) {
-                    var title1 = ""
-                    var title2 = ""
-                    var deviceTypeId = "";
-                    $.ajax({
-                        type: "GET",
-                        url: deviceUrl + "/dl/qbd/" + deviceId,
-                        async: false,
-                        headers: {
-                            'token': sessionStorage.getItem("token"),
-                        },
-                        success: function (r) {
-                            deviceTypeId = r.data.deviceTypeId
-                            if (!iotCode == "") {
-                                Client.unsubscribe('Topic/flexem/fbox/' + iotCode + '/system/MonitorData');
-                            }
-                            iotCode = r.data.iotcode
-                            Client.subscribe('Topic/flexem/fbox/' + iotCode + '/system/MonitorData');
-
-                            setTimeout("",1000)
-                        },
-                        error: function (e, t) {
-                            if (e.status == 401) {
-                                layer.msg("请刷新或重新登录", {icon: 0})
-                                return;
-                            }
-                            i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
-                        }
-                    })
-
-                    $.ajax({
-                        type: "GET",
-                        url: deviceTypeUrl + "/dt/qbdd/" + deviceTypeId,
-                        async: false,
-                        headers: {
-                            'token': sessionStorage.getItem("token"),
-                        },
-                        success: function (r) {
-                            title1 = r.data.name
-                            $.ajax({
-                                type: "GET",
-                                url: deviceTypeUrl + "/dt/qbdpd/" + r.data.parentId,
-                                async: false,
-                                headers: {
-                                    'token': sessionStorage.getItem("token"),
-                                },
-                                success: function (r) {
-                                    title2 = "(" + r.data.name + ")"
-                                },
-                                error: function (e, t) {
-                                    if (e.status == 401) {
-                                        layer.msg("请刷新或重新登录", {icon: 0})
-                                        return;
-                                    }
-                                }
-                            })
-                        },
-                        error: function (e, t) {
-                            if (e.status == 401) {
-                                layer.msg("请刷新或重新登录", {icon: 0})
-                                return;
-                            }
-                        }
-                    })
-                    //展示已知数据
-                    table.render({
-                        elem: '#demo1'
-                        , url: deviceUnitUrl + "/du/qbdtd/" + deviceTypeId
-                        , height: $("#tt").height()
-                        , headers: {
-                            'token': sessionStorage.getItem("token"),
-                        }
-                        , cols: [[{title: title1 + title2+" IOT编号:"+iotCode, align: "center", colspan: "7"}], [ //标题栏
-                            {field: 'sortId', title: '排序', align: "center", width: 80, sort: true}
-                            , {field: 'name', align: "center", title: '参数', width: 130}
-                            , {field: 'referenceRange', align: "center", title: '参考值范围', minWidth: 120}
-                            , {
-                                field: 'value', align: "center", title: '数值', width: 60
-                                , templet: function (res) {
-                                    return '<span id="value-' + res.dataName + '"></span>';
-                                }
-                            }
-                            , {field: 'unit', align: "center", title: '单位', minWidth: 50}
-                            , {
-                                field: 'time', align: "center", title: '上报时间', width: 150, templet: function (res) {
-                                    return '<span id="time-' + res.dataName + '"></span>';
-                                }
-                            }
-                            , {field: 'remark', align: "center", title: '备注', width: 100}
-                        ]]
-                        , skin: 'row' //表格风格
-                        , response: {
-                            statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
-                        }
-                        // ,even: true
-                        , size: "sm"
-                        // , page: true //是否显示分页
-                        // ,limits: [5]
-                        // ,limit: 5 //每页默认显示的数量
-                    });
-                }
-
-                table.on('row(demo1)', function(obj){
-                    var data = obj.data;
-
-                    layer.alert(JSON.stringify(data), {
-                        title: '当前行数据：'
-                    });
-
-                    //标注选中样式
-                    obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
-                });
-
-                //基本演示
-                tree.render({
-                    elem: '#assMenu'
-                    , data: projectArrayToJson("")
-                    , id: 'assMenu'
-                    , isJump: false //是否允许点击节点时弹出新窗口跳转
-                    , click: function (obj) {
-                        var data = obj.data;  //获取当前点击的节点数据
-                        if (data.isDevice != undefined && data.isDevice == true) {
-                            realDataInit(data.id);
-                            element.tabChange('real-tab', 'real-data'); //切换到：实时数据
-                        }
-                    }
-                });
-
-                //按钮事件
-                util.event('lay-menutree', {
-                    search: function (othis) {
-                        var search = $("#search").val()
-                        layer.load(2);
-                        tree.render({
-                            elem: '#assMenu'
-                            , data: projectArrayToJson(search)
-                            , id: 'assMenu'
-                            , isJump: false //是否允许点击节点时弹出新窗口跳转
-                            , click: function (obj) {
-                                var data = obj.data;  //获取当前点击的节点数据
-                                if (data.isDevice != undefined && data.isDevice == true) {
-                                    realDataInit(data.id);
-                                    element.tabChange('real-tab', 'real-data'); //切换到：用户管理
-                                }
-                            }
-                        });
-                        layer.closeAll('loading');
-                    },
-                    reload: function () {
-                        layer.load(2);
-                        $("#search").val("");
-                        tree.render({
-                            elem: '#assMenu'
-                            , data: projectArrayToJson("")
-                            , id: 'assMenu'
-                            , isJump: false //是否允许点击节点时弹出新窗口跳转
-                            , click: function (obj) {
-                                var data = obj.data;  //获取当前点击的节点数据
-                                if (data.isDevice != undefined && data.isDevice == true) {
-                                    realDataInit(data.id);
-                                    element.tabChange('real-tab', 'real-data'); //切换到：用户管理
-                                }
-                            }
-                        });
-                        layer.closeAll('loading');
-                    }
-                });
-            });
-        }
-
-        function projectArrayToJson(search) {
-            var res = [];
-            $.ajax({
-                type: "GET",
-                url: sysUrl + "/pct/gpt",
-                async: false,
-                headers: {
-                    'token': sessionStorage.getItem("token"),
-                },
-                success: function (r) {
-                    var children = [];
-                    for (var i = 0; i < r.data.length; i++) {
-                        var project = new Object();
-                        project.title = r.data[i].projectName;
-                        project.id = r.data[i].projectId;
-                        project.icon = "fa fa-bar-chart-o";
-                        project.spread = true;
-                        children = pumpHouseArrayToJson(r.data[i].projectId, search)
-                        if (children.length != 0) {
-                            project.children = children
-                        }
-                        if (search != "" && r.data[i].projectName.indexOf(search) != -1) {
-                            project.textcolor = "red";
-                        }
-                        res.push(project)
-                    }
-                },
-                error: function (e, t) {
-                    if (e.status == 401) {
-                        layer.msg("请刷新或重新登录", {icon: 0})
-                        return;
-                    }
-                    i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
-                }
-            })
-            return res
-        }
-
-        function pumpHouseArrayToJson(projectId, search) {
-            var res = [];
-            $.ajax({
-                type: "GET",
-                url: pumpHouseUrl + "/pmp/qpbp/" + projectId,
-                async: false,
-                headers: {
-                    'token': sessionStorage.getItem("token"),
-                },
-                success: function (r) {
-                    var children = [];
-                    for (var i = 0; i < r.data.length; i++) {
-                        var pumphouse = new Object();
-                        pumphouse.title = r.data[i].pumphouseName;
-                        pumphouse.id = r.data[i].pumphouseId;
-                        pumphouse.icon = "fa fa-home fa-lg";
-                        pumphouse.spread = true;
-                        children = deviceArrayToJson(r.data[i].pumphouseId, search)
-                        if (children.length != 0) {
-                            pumphouse.children = children
-                        }
-                        if (search != "" && r.data[i].pumphouseName.indexOf(search) != -1) {
-                            pumphouse.textcolor = "red";
-                        }
-                        res.push(pumphouse)
-                    }
-                },
-                error: function (e, t) {
-                    if (e.status == 401) {
-                        layer.msg("请刷新或重新登录", {icon: 0})
-                        return;
-                    }
-                    i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
-                }
-            });
-            return res;
-        }
-
-        function deviceArrayToJson(pumphouseId, search) {
-            var res = [];
-            $.ajax({
-                type: "GET",
-                url: deviceUrl + "/dce/qdbd/" + pumphouseId,
-                async: false,
-                headers: {
-                    'token': sessionStorage.getItem("token"),
-                },
-                success: function (r) {
-                    for (var i = 0; i < r.data.length; i++) {
-                        var device = new Object();
-                        device.title = r.data[i].name;
-                        device.id = r.data[i].deviceId;
-                        device.bgcolor = "green";
-                        device.icon = "fa fa-signal";
-                        device.spread = true;
-                        device.isDevice = true;
-                        if (search != "" && r.data[i].name.indexOf(search) != -1) {
-                            device.textcolor = "red";
-                        }
-                        res.push(device)
-                    }
-                },
-                error: function (e, t) {
-                    if (e.status == 401) {
-                        layer.msg("请刷新或重新登录", {icon: 0})
-                        return;
-                    }
-                    i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
-                }
-            });
-            return res;
-        }
     });
+
+
+
+    function projectArrayToJson(search) {
+        var res = [];
+        $.ajax({
+            type: "GET",
+            url: sysUrl + "/pct/gpt",
+            async: false,
+            headers: {
+                'token': sessionStorage.getItem("token"),
+            },
+            success: function (r) {
+                var children = [];
+                for (var i = 0; i < r.data.length; i++) {
+                    var project = new Object();
+                    project.title = r.data[i].projectName;
+                    project.id = r.data[i].projectId;
+                    project.icon = "fa fa-bar-chart-o";
+                    project.spread = true;
+                    children = pumpHouseArrayToJson(r.data[i].projectId, search)
+                    if (children.length != 0) {
+                        project.children = children
+                    }
+                    if (search != "" && r.data[i].projectName.indexOf(search) != -1) {
+                        project.textcolor = "red";
+                    }
+                    res.push(project)
+                }
+            },
+            error: function (e, t) {
+                if (e.status == 401) {
+                    layer.msg("请刷新或重新登录", {icon: 0})
+                    return;
+                }
+                i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
+            }
+        })
+        return res
+    }
+
+    function pumpHouseArrayToJson(projectId, search) {
+        var res = [];
+        $.ajax({
+            type: "GET",
+            url: pumpHouseUrl + "/pmp/qpbp/" + projectId,
+            async: false,
+            headers: {
+                'token': sessionStorage.getItem("token"),
+            },
+            success: function (r) {
+                var children = [];
+                for (var i = 0; i < r.data.length; i++) {
+                    var pumphouse = new Object();
+                    pumphouse.title = r.data[i].pumphouseName;
+                    pumphouse.id = r.data[i].pumphouseId;
+                    pumphouse.icon = "fa fa-home fa-lg";
+                    pumphouse.spread = true;
+                    children = deviceArrayToJson(r.data[i].pumphouseId, search)
+                    if (children.length != 0) {
+                        pumphouse.children = children
+                    }
+                    if (search != "" && r.data[i].pumphouseName.indexOf(search) != -1) {
+                        pumphouse.textcolor = "red";
+                    }
+                    res.push(pumphouse)
+                }
+            },
+            error: function (e, t) {
+                if (e.status == 401) {
+                    layer.msg("请刷新或重新登录", {icon: 0})
+                    return;
+                }
+                i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
+            }
+        });
+        return res;
+    }
+
+    function deviceArrayToJson(pumphouseId, search) {
+        var res = [];
+        $.ajax({
+            type: "GET",
+            url: deviceUrl + "/dce/qdbd/" + pumphouseId,
+            async: false,
+            headers: {
+                'token': sessionStorage.getItem("token"),
+            },
+            success: function (r) {
+                for (var i = 0; i < r.data.length; i++) {
+                    var device = new Object();
+                    device.title = r.data[i].name;
+                    device.id = r.data[i].deviceId;
+                    device.bgcolor = "green";
+                    device.icon = "fa fa-signal";
+                    device.spread = true;
+                    device.isDevice = true;
+                    if (search != "" && r.data[i].name.indexOf(search) != -1) {
+                        device.textcolor = "red";
+                    }
+                    res.push(device)
+                }
+            },
+            error: function (e, t) {
+                if (e.status == 401) {
+                    layer.msg("请刷新或重新登录", {icon: 0})
+                    return;
+                }
+                i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
+            }
+        });
+        return res;
+    }
 
     function eChartOne(dataName) {
         var realChart = echarts.init(document.getElementById('chart-1'));
+        var realChart2 = echarts.init(document.getElementById('chart-2'));
         // $.ajax({
         //     url: deviceDataUrl + "/getDeviceDataByDataName?deviceId=" + parm1 + "&dataName=" + parm4 + "&beginTime=" + startTime,
         //     type: "GET",
@@ -548,24 +550,18 @@
         realChart.setOption({
             title: {
                 text: dataName + '实时曲线',
-                subtext: "周期 20s",
                 textStyle: {
                     fontSize: 14,
                     fontWeight: 'lighter',
                 },
-                subtextStyle: {
-                    fontSize: 10,
-                    fontWeight: "normal",
-                    color: "blcak",
-                }
             },
             legend: {
                 data: ["实时" + dataName],
             },
             grid: {
-                left: '4%',
-                right: '4%',
-                bottom: '6%',
+                left: '0%',
+                right: '0%',
+                bottom: '0%',
                 containLabel: true,
                 transitionDuration: 0,
             },
@@ -592,17 +588,17 @@
                 boundaryGap: false,
                 minorTick: {
                     show: true,
-                    splitNumber: 10,
+                    splitNumber: 1,
                 },
                 axisLine: {
                     lineStyle: {
-                        color: '#009688',
-                        width: 2
+                        color: 'black',
+                        width: 1
                     },
                 },
                 axisLabel: {
                     textStyle: {
-                        color: '#009688'
+                        color: 'black'
                     }
                 },
                 splitLine: {
@@ -627,23 +623,161 @@
                 axisLabel: {
                     formatter: '{value}' + "parm3",
                     textStyle: {
-                        color: '#009688'
+                        color: 'black'
                     }
 
                 },
                 axisLine: {
                     lineStyle: {
-                        color: '#009688',
-                        width: 2
+                        color: 'black',
+                        width: 1
                     },
                 },
-                splitNumber: 4,
                 axisPointer: {
                     snap: true
                 },
                 minorTick: {
                     show: true,
-                    splitNumber: 10,
+                    splitNumber: 1,
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#eaeaea'
+                    }
+                },
+                minorSplitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#ddd'
+                    }
+                }
+            },
+            series: [{
+                name: "实时" + "parm2",
+                smooth: true,
+                type: 'line',
+                itemStyle: {
+                    color: '#1e9fff',
+                },
+                markPoint: {
+                    itemStyle: {
+                        color: '#1e9fff',
+                    },
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}
+                    ]
+                },
+                lineStyle: {
+                    color: '#1e9fff',
+                },
+                showSymbol: true,
+                // hoverAnimation: false,
+                data: "newData",
+                markLine: {
+                    lineStyle: {
+                        color: '#1e9fff',
+                        width: 1
+                    },
+                    data: [
+                        {type: 'average', name: '平均值1'}
+                    ]
+                }
+            }]
+        });
+        realChart2.setOption({
+            title: {
+                text: dataName + '实时曲线',
+                textStyle: {
+                    fontSize: 14,
+                    fontWeight: 'lighter',
+                },
+            },
+            legend: {
+                data: ["实时" + dataName],
+            },
+            grid: {
+                left: '0%',
+                right: '0%',
+                bottom: '0%',
+                containLabel: true,
+                transitionDuration: 0,
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    animation: false
+                }
+
+            },
+
+            toolbox: {
+                show: true,
+                feature: {
+                    magicType: {type: ['line', 'bar']},
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                data: "timeData",
+                nameTextStyle: {color: '#5b6be8'},
+                boundaryGap: false,
+                minorTick: {
+                    show: true,
+                    splitNumber: 1,
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'black',
+                        width: 1
+                    },
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: 'black'
+                    }
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#eaeaea'
+                    }
+                },
+                minorSplitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#ddd'
+                    }
+                }
+
+            },
+            yAxis: {
+                type: 'value',
+                scale: true,
+                showSymbol: true,
+                nameTextStyle: {color: '#5b6be8'},
+                axisLabel: {
+                    formatter: '{value}' + "parm3",
+                    textStyle: {
+                        color: 'black'
+                    }
+
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'black',
+                        width: 1
+                    },
+                },
+                axisPointer: {
+                    snap: true
+                },
+                minorTick: {
+                    show: true,
+                    splitNumber: 1,
                 },
                 splitLine: {
                     show: true,

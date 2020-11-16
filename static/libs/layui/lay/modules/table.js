@@ -110,6 +110,9 @@
             var o = t(a.toolbar).html() || "";
             o && n.html(i(o).render(a))
         }
+         if (a.aaa=="123"){
+                alert("!@#")
+         };
         var r = {
             filter: {title: "筛选列", layEvent: "LAYTABLE_COLS", icon: "layui-icon-cols",text:"筛选",color:"#23c6c8"},
             exports: {title: "导出", layEvent: "LAYTABLE_EXPORT", icon: "layui-icon-export",text:"导出",color:"#23c6c8"},
