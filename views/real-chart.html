@@ -154,7 +154,7 @@
             userName: user.loginName,
             password: user.password,
             onSuccess: function (e) {
-                console.log("success");
+
             },
             onFailure: function (e) {
 
@@ -170,7 +170,7 @@
         }
 
         function onMessageArrived(message) {
-
+            console.info(message.payloadString)
             realChartInit(message.payloadString)//渲染图表
         }
 
@@ -179,15 +179,36 @@
         Client.onConnectionLost = onConnectionLost;
         Client.onMessageArrived = onMessageArrived;
 
-
         function realChartInit(message) {
             mqttMessage = JSON.parse(message);
             for (var i = 0; i < mqttMessage.Data.length; i++) {
-                console.info(mqttMessage.Data[i].name+"-"+mqttMessage.Data[i].value)
-                $("#value-" + mqttMessage.Data[i].name).text(mqttMessage.Data[i].value)
+                $("#value-" + mqttMessage.Data[i].name).text(mqttMessage.Data[i].value/move[mqttMessage.Data[i].name])
                 $("#time-" + mqttMessage.Data[i].name).text(mqttMessage.time)
+                $("tr[data-index='"+i+"']").attr("onclick","eChartOne('"+mqttMessage.Data[i].dataName+"')")
             }
         }
+
+        var move = {};
+
+        $.ajax({
+            type: "GET",
+            url: deviceUnitUrl + "/du/qa/",
+            async: false,
+            headers: {
+                'token': sessionStorage.getItem("token"),
+            },
+            success: function (r) {
+                for (var i = 0; i < r.data.length; i++) {
+                    move[r.data[i].dataName]=Math.pow(10,Number(r.data[i].move))
+                }
+            },
+            error: function (e, t) {
+                if (e.status == 401) {
+                    layer.msg("请刷新或重新登录", {icon: 0})
+                    return;
+                }
+            }
+        })
 
         assignmentsMenu();
 
@@ -235,12 +256,13 @@
                         },
                         success: function (r) {
                             deviceTypeId = r.data.deviceTypeId
-                            console.info(iotCode)
                             if (!iotCode == "") {
                                 Client.unsubscribe('Topic/flexem/fbox/' + iotCode + '/system/MonitorData');
                             }
                             iotCode = r.data.iotcode
                             Client.subscribe('Topic/flexem/fbox/' + iotCode + '/system/MonitorData');
+
+                            setTimeout("",1000)
                         },
                         error: function (e, t) {
                             if (e.status == 401) {
@@ -322,6 +344,17 @@
                         // ,limit: 5 //每页默认显示的数量
                     });
                 }
+
+                table.on('row(demo1)', function(obj){
+                    var data = obj.data;
+
+                    layer.alert(JSON.stringify(data), {
+                        title: '当前行数据：'
+                    });
+
+                    //标注选中样式
+                    obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
+                });
 
                 //基本演示
                 tree.render({
@@ -492,172 +525,174 @@
         }
     });
 
-    var realChart = echarts.init(document.getElementById('chart-1'));
+    function eChartOne(dataName) {
+        var realChart = echarts.init(document.getElementById('chart-1'));
+        // $.ajax({
+        //     url: deviceDataUrl + "/getDeviceDataByDataName?deviceId=" + parm1 + "&dataName=" + parm4 + "&beginTime=" + startTime,
+        //     type: "GET",
+        //     dataType: 'json',
+        //     success: function (r) {
+        //         if (r.time.length > 0) {
+        //             beginTime = r.time[r.time.length - 1];
+        //             for (var a = 0; a < r.time.length; a++) {
+        //                 var timer = formatNoYear(r.time[a]);
+        //                 timeData.shift();
+        //                 timeData.push(timer);
+        //                 newData.shift();
+        //                 newData.push(r.new[a]);
+        //             }
+        //         }
+        //     }
+        // })
 
-    // $.ajax({
-    //     url: deviceDataUrl + "/getDeviceDataByDataName?deviceId=" + parm1 + "&dataName=" + parm4 + "&beginTime=" + startTime,
-    //     type: "GET",
-    //     dataType: 'json',
-    //     success: function (r) {
-    //         if (r.time.length > 0) {
-    //             beginTime = r.time[r.time.length - 1];
-    //             for (var a = 0; a < r.time.length; a++) {
-    //                 var timer = formatNoYear(r.time[a]);
-    //                 timeData.shift();
-    //                 timeData.push(timer);
-    //                 newData.shift();
-    //                 newData.push(r.new[a]);
-    //             }
-    //         }
-    //     }
-    // })
-
-    realChart.setOption({
-        title: {
-            text: "parm2" + '实时曲线',
-            subtext: "周期 20s",
-            textStyle: {
-                fontSize: 14,
-                fontWeight: 'lighter',
-            },
-            subtextStyle: {
-                fontSize: 10,
-                fontWeight: "normal",
-                color: "blcak",
-            }
-        },
-        legend: {
-            data: ["实时" + "parm2"],
-        },
-        grid: {
-            left: '4%',
-            right: '4%',
-            bottom: '6%',
-            containLabel: true,
-            transitionDuration: 0,
-        },
-        tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-                animation: false
-            }
-
-        },
-
-        toolbox: {
-            show: true,
-            feature: {
-                magicType: {type: ['line', 'bar']},
-                restore: {},
-                saveAsImage: {}
-            }
-        },
-        xAxis: {
-            type: 'category',
-            data: "timeData",
-            nameTextStyle: {color: '#5b6be8'},
-            boundaryGap: false,
-            minorTick: {
-                show: true,
-                splitNumber: 10,
-            },
-            axisLine: {
-                lineStyle: {
-                    color: '#009688',
-                    width: 2
-                },
-            },
-            axisLabel: {
+        realChart.setOption({
+            title: {
+                text: dataName + '实时曲线',
+                subtext: "周期 20s",
                 textStyle: {
-                    color: '#009688'
-                }
-            },
-            splitLine: {
-                show: true,
-                lineStyle: {
-                    color: '#eaeaea'
-                }
-            },
-            minorSplitLine: {
-                show: true,
-                lineStyle: {
-                    color: '#ddd'
-                }
-            }
-
-        },
-        yAxis: {
-            type: 'value',
-            scale: true,
-            showSymbol: true,
-            nameTextStyle: {color: '#5b6be8'},
-            axisLabel: {
-                formatter: '{value}' + "parm3",
-                textStyle: {
-                    color: '#009688'
-                }
-
-            },
-            axisLine: {
-                lineStyle: {
-                    color: '#009688',
-                    width: 2
+                    fontSize: 14,
+                    fontWeight: 'lighter',
                 },
-            },
-            splitNumber: 4,
-            axisPointer: {
-                snap: true
-            },
-            minorTick: {
-                show: true,
-                splitNumber: 10,
-            },
-            splitLine: {
-                show: true,
-                lineStyle: {
-                    color: '#eaeaea'
+                subtextStyle: {
+                    fontSize: 10,
+                    fontWeight: "normal",
+                    color: "blcak",
                 }
             },
-            minorSplitLine: {
-                show: true,
-                lineStyle: {
-                    color: '#ddd'
-                }
-            }
-        },
-        series: [{
-            name: "实时" + "parm2",
-            smooth: true,
-            type: 'line',
-            itemStyle: {
-                color: '#1e9fff',
+            legend: {
+                data: ["实时" + dataName],
             },
-            markPoint: {
+            grid: {
+                left: '4%',
+                right: '4%',
+                bottom: '6%',
+                containLabel: true,
+                transitionDuration: 0,
+            },
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    animation: false
+                }
+
+            },
+
+            toolbox: {
+                show: true,
+                feature: {
+                    magicType: {type: ['line', 'bar']},
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                data: "timeData",
+                nameTextStyle: {color: '#5b6be8'},
+                boundaryGap: false,
+                minorTick: {
+                    show: true,
+                    splitNumber: 10,
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#009688',
+                        width: 2
+                    },
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#009688'
+                    }
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#eaeaea'
+                    }
+                },
+                minorSplitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#ddd'
+                    }
+                }
+
+            },
+            yAxis: {
+                type: 'value',
+                scale: true,
+                showSymbol: true,
+                nameTextStyle: {color: '#5b6be8'},
+                axisLabel: {
+                    formatter: '{value}' + "parm3",
+                    textStyle: {
+                        color: '#009688'
+                    }
+
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#009688',
+                        width: 2
+                    },
+                },
+                splitNumber: 4,
+                axisPointer: {
+                    snap: true
+                },
+                minorTick: {
+                    show: true,
+                    splitNumber: 10,
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#eaeaea'
+                    }
+                },
+                minorSplitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: '#ddd'
+                    }
+                }
+            },
+            series: [{
+                name: "实时" + "parm2",
+                smooth: true,
+                type: 'line',
                 itemStyle: {
                     color: '#1e9fff',
                 },
-                data: [
-                    {type: 'max', name: '最大值'},
-                    {type: 'min', name: '最小值'}
-                ]
-            },
-            lineStyle: {
-                color: '#1e9fff',
-            },
-            showSymbol: true,
-            // hoverAnimation: false,
-            data: "newData",
-            markLine: {
+                markPoint: {
+                    itemStyle: {
+                        color: '#1e9fff',
+                    },
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}
+                    ]
+                },
                 lineStyle: {
                     color: '#1e9fff',
-                    width: 1
                 },
-                data: [
-                    {type: 'average', name: '平均值1'}
-                ]
-            }
-        }]
-    });
+                showSymbol: true,
+                // hoverAnimation: false,
+                data: "newData",
+                markLine: {
+                    lineStyle: {
+                        color: '#1e9fff',
+                        width: 1
+                    },
+                    data: [
+                        {type: 'average', name: '平均值1'}
+                    ]
+                }
+            }]
+        });
+    }
+
 </script>
 </body>
 </html>
