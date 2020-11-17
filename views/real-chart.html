@@ -30,6 +30,9 @@
             line-height: 10px;
             border-width: 0 0 0px;
         }
+        .layui-table-tool-self>.layui-btn-sm {
+            padding: 0 5px;
+        }
 
     </style>
 
@@ -253,18 +256,24 @@
                     elem: '#demo1'
                     , url: deviceUnitUrl + "/du/qbdtd/" + deviceTypeId
                     , height: $("#tt").height()
-                    , toolbar: true
-                    , aaa: "123"
+                    , toolType: "1"
                     , headers: {
                         'token': sessionStorage.getItem("token"),
                     }
-                    , toolbar: "default" //开启头部工具栏，并为其绑定左侧模板
+                    , toolbar: true //开启头部工具栏，并为其绑定左侧模板
+                    , defaultToolbar: ["filter", "exports", "print",{ //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                        title: "设备号："+iotCode
+                        , color: '#f2f2f2'
+                        , text: ''
+                        ,iconColor:"#666"
+                        , icon: 'layui-icon-tips'
+                    }]
                     , cols: [[{title: title1 + title2, align: "center", colspan: "7"}], [ //标题栏
                         {field: 'sortId', title: '排序', align: "center", width: 80, sort: true}
                         , {field: 'name', align: "center", title: '参数', width: 130}
-                        , {field: 'referenceRange', align: "center", title: '参考值范围', minWidth: 120}
+                        , {field: 'referenceRange', align: "center", title: '参考值范围', minWidth: 100}
                         , {
-                            field: 'value', align: "center", title: '数值', width: 60
+                            field: 'value', align: "center", title: '数值', width: 80
                             , templet: function (res) {
                                 return '<span id="value-' + res.dataName + '"></span>';
                             }
@@ -281,11 +290,7 @@
                     , response: {
                         statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
                     }
-                    // ,even: true
                     , size: "sm"
-                    // , page: true //是否显示分页
-                    // ,limits: [5]
-                    // ,limit: 5 //每页默认显示的数量
                 });
 
             }
@@ -370,8 +375,8 @@
         }
 
         function onMessageArrived(message) {
-            console.info(message.payloadString)
             realChartInit(message.payloadString)//渲染图表
+            // console.info(message.payloadString)
         }
 
         Client.connect(options);
@@ -382,9 +387,13 @@
         function realChartInit(message) {
             mqttMessage = JSON.parse(message);
             for (var i = 0; i < mqttMessage.Data.length; i++) {
+                console.info( mqttMessage.Data[i].name+"--"+mqttMessage.Data[i].value)
                 $("#value-" + mqttMessage.Data[i].name).text(mqttMessage.Data[i].value / move[mqttMessage.Data[i].name])
                 $("#time-" + mqttMessage.Data[i].name).text(mqttMessage.time)
-                $("tr[data-index='" + i + "']").attr("onclick", "eChartOne('" + mqttMessage.Data[i].dataName + "')")
+                var tr = $("#value-" + mqttMessage.Data[i].name).parent().parent().parent();
+                tr.attr("onclick", "chartView('" + mqttMessage.Data[i].name + "','"+tr.children("[data-field='name']").children("div").text()+"')")
+                // console.info($("tr[data-index='" + i + "']>td[data-field='name']>div").text())
+
             }
         }
 
@@ -526,37 +535,41 @@
         return res;
     }
 
-    function eChartOne(dataName) {
+    function chartView(dataName,name) {
         var realChart = echarts.init(document.getElementById('chart-1'));
         var realChart2 = echarts.init(document.getElementById('chart-2'));
-        // $.ajax({
-        //     url: deviceDataUrl + "/getDeviceDataByDataName?deviceId=" + parm1 + "&dataName=" + parm4 + "&beginTime=" + startTime,
-        //     type: "GET",
-        //     dataType: 'json',
-        //     success: function (r) {
-        //         if (r.time.length > 0) {
-        //             beginTime = r.time[r.time.length - 1];
-        //             for (var a = 0; a < r.time.length; a++) {
-        //                 var timer = formatNoYear(r.time[a]);
-        //                 timeData.shift();
-        //                 timeData.push(timer);
-        //                 newData.shift();
-        //                 newData.push(r.new[a]);
-        //             }
-        //         }
-        //     }
-        // })
+        $.ajax({
+            url: deviceDataUrl + "/dd/qbdn/" + iotCode + "/" + dataName + "/25",
+            type: "GET",
+            dataType: 'json',
+            async: false,
+            headers: {
+                'token': sessionStorage.getItem("token"),
+            },
+            success: function (r) {
+                // if (r.time.length > 0) {
+                //     beginTime = r.time[r.time.length - 1];
+                //     for (var a = 0; a < r.time.length; a++) {
+                //         var timer = formatNoYear(r.time[a]);
+                //         timeData.shift();
+                //         timeData.push(timer);
+                //         newData.shift();
+                //         newData.push(r.new[a]);
+                //     }
+                // }
+            }
+        })
 
         realChart.setOption({
             title: {
-                text: dataName + '实时曲线',
+                text: name + '实时曲线',
                 textStyle: {
                     fontSize: 14,
                     fontWeight: 'lighter',
                 },
             },
             legend: {
-                data: ["实时" + dataName],
+                data: ["实时" + name],
             },
             grid: {
                 left: '0%',

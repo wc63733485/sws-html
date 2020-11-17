@@ -104,23 +104,30 @@
         })
     }, j.prototype.renderToolbar = function () {
         var e = this, a = e.config,
-            l = ['<div class="layui-inline" lay-event="add"><i class="layui-icon layui-icon-add-1"></i></div>', '<div class="layui-inline" lay-event="update"><i class="layui-icon layui-icon-edit"></i></div>', '<div class="layui-inline" lay-event="delete"><i class="layui-icon layui-icon-delete"></i></div>'].join(""),
+            l = ['<div class="layui-inline" lay-event="add"><i class="layui-icon layui-icon-add-1"></i></div>',
+                '<div class="layui-inline" lay-event="update"><i class="layui-icon layui-icon-edit"></i></div>',
+                '<div class="layui-inline" lay-event="delete"><i class="layui-icon layui-icon-delete"></i></div>'].join(""),
             n = e.layTool.find(".layui-table-tool-temp");
         if ("default" === a.toolbar) n.html(l); else if ("string" == typeof a.toolbar) {
             var o = t(a.toolbar).html() || "";
             o && n.html(i(o).render(a))
         }
-         if (a.aaa=="123"){
-                alert("!@#")
+         if (a.toolType=="1"){
+             var r = {
+                 filter: {title: "筛选列", layEvent: "LAYTABLE_COLS", icon: "layui-icon-cols",text:"",color:"#f2f2f2",iconColor:"#666"},
+                 exports: {title: "导出", layEvent: "LAYTABLE_EXPORT", icon: "layui-icon-export",text:"",color:"#f2f2f2",iconColor:"#666"},
+                 print: {title: "打印", layEvent: "LAYTABLE_PRINT", icon: "layui-icon-print",text:"",color:"#f2f2f2",iconColor:"#666"},
+             }, d = [];
+         }else{
+             var r = {
+                 filter: {title: "筛选列", layEvent: "LAYTABLE_COLS", icon: "layui-icon-cols",text:"筛选",color:"#23c6c8"},
+                 exports: {title: "导出", layEvent: "LAYTABLE_EXPORT", icon: "layui-icon-export",text:"导出",color:"#23c6c8"},
+                 print: {title: "打印", layEvent: "LAYTABLE_PRINT", icon: "layui-icon-print",text:"打印",color:"#23c6c8"}
+             }, d = [];
          };
-        var r = {
-            filter: {title: "筛选列", layEvent: "LAYTABLE_COLS", icon: "layui-icon-cols",text:"筛选",color:"#23c6c8"},
-            exports: {title: "导出", layEvent: "LAYTABLE_EXPORT", icon: "layui-icon-export",text:"导出",color:"#23c6c8"},
-            print: {title: "打印", layEvent: "LAYTABLE_PRINT", icon: "layui-icon-print",text:"打印",color:"#23c6c8"}
-        }, d = [];
         "object" == typeof a.defaultToolbar && layui.each(a.defaultToolbar, function (e, t) {
             var i = "string" == typeof t ? r[t] : t;
-            i && d.push('<div class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="background-color: '+i.color+';" title="' + i.title + '" lay-event="' + i.layEvent + '"><i class="layui-icon ' + i.icon + '"></i>'+i.text+'</div>')
+            i && d.push('<div class="layui-btn layui-btn-sm layuiadmin-btn-admin" style="background-color: '+i.color+';color: '+i.iconColor+';" title="' + i.title + '" lay-event="' + i.layEvent + '"><i class="layui-icon ' + i.icon + '"></i>'+i.text+'</div>')
         }), e.layTool.find(".layui-table-tool-self").html(d.join(""))
     }, j.prototype.setParentCol = function (e, t) {
         var i = this, a = i.config, l = i.layHeader.find('th[data-key="' + a.index + "-" + t + '"]'),
