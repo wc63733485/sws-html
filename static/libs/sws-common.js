@@ -10,7 +10,7 @@ var deviceUnitUrl = address + ":14029/deviceUnit"
 var companyUrl = address + ":14029/company"
 var projectUrl = address + ":14029/project"
 var postSaleTask = address + ":14029/postSaleTask"
-var weclome = './index.html'
+var weclome = '/views/index.html'
 
 
 var user = JSON.parse(sessionStorage.getItem("public_profile"));

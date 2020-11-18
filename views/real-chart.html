@@ -25,12 +25,14 @@
             overflow-y: auto;
             overflow-x: hidden;
         }
+
         .layui-table-tool {
             min-height: 10px;
             line-height: 10px;
             border-width: 0 0 0px;
         }
-        .layui-table-tool-self>.layui-btn-sm {
+
+        .layui-table-tool-self > .layui-btn-sm {
             padding: 0 5px;
         }
 
@@ -154,7 +156,9 @@
 
 <script>
     var iotCode = "";
-
+    var timeData = [];
+    var chartData = [];
+    var mqttChartData = {};
     layui.use(['table', 'tree', 'util', 'element', 'laydate'], function () {
         var $ = layui.$
             , tree = layui.tree
@@ -163,7 +167,7 @@
             , element = layui.element
             , laydate = layui.laydate;
 
-        window.assignmentsMenu =  function() {
+        window.assignmentsMenu = function () {
 
             //查询 开始时间
             laydate.render({
@@ -205,8 +209,6 @@
                         }
                         iotCode = r.data.iotcode
                         Client.subscribe('Topic/flexem/fbox/' + iotCode + '/system/MonitorData');
-
-                        setTimeout("", 1000)
                     },
                     error: function (e, t) {
                         if (e.status == 401) {
@@ -261,11 +263,11 @@
                         'token': sessionStorage.getItem("token"),
                     }
                     , toolbar: true //开启头部工具栏，并为其绑定左侧模板
-                    , defaultToolbar: ["filter", "exports", "print",{ //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
-                        title: "设备号："+iotCode
+                    , defaultToolbar: ["filter", "exports", "print", { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                        title: "设备号：" + iotCode
                         , color: '#f2f2f2'
                         , text: ''
-                        ,iconColor:"#666"
+                        , iconColor: "#666"
                         , icon: 'layui-icon-tips'
                     }]
                     , cols: [[{title: title1 + title2, align: "center", colspan: "7"}], [ //标题栏
@@ -291,8 +293,29 @@
                         statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
                     }
                     , size: "sm"
+                    , done: function () {
+                        //第一次表格数据初始化
+                        $.ajax({
+                            url: deviceDataUrl + "/dd/qa/" + iotCode + "/1",
+                            type: "GET",
+                            dataType: 'json',
+                            async: false,
+                            headers: {
+                                'token': sessionStorage.getItem("token"),
+                            },
+                            success: function (r) {
+                                for (var key in r.data[0]) {
+                                    if (r.data[0].hasOwnProperty(key)) {
+                                        $("#value-" + key).text(r.data[0][key])
+                                        $("#time-" + key).text(r.data[0].time)
+                                        var tr = $("#value-" + key).parent().parent().parent();
+                                        tr.attr("onclick", "chartView('" + key + "','" + tr.children("[data-field='name']").children("div").text() + "','" + tr.children("[data-field='unit']").children("div").text() + "')")
+                                    }
+                                }
+                            }
+                        })
+                    }
                 });
-
             }
 
             //基本演示
@@ -305,6 +328,7 @@
                     var data = obj.data;  //获取当前点击的节点数据
                     if (data.isDevice != undefined && data.isDevice == true) {
                         realDataInit(data.id);
+
                         element.tabChange('real-tab', 'real-data'); //切换到：实时数据
                     }
                 }
@@ -376,7 +400,6 @@
 
         function onMessageArrived(message) {
             realChartInit(message.payloadString)//渲染图表
-            // console.info(message.payloadString)
         }
 
         Client.connect(options);
@@ -387,14 +410,13 @@
         function realChartInit(message) {
             mqttMessage = JSON.parse(message);
             for (var i = 0; i < mqttMessage.Data.length; i++) {
-                console.info( mqttMessage.Data[i].name+"--"+mqttMessage.Data[i].value)
                 $("#value-" + mqttMessage.Data[i].name).text(mqttMessage.Data[i].value / move[mqttMessage.Data[i].name])
                 $("#time-" + mqttMessage.Data[i].name).text(mqttMessage.time)
                 var tr = $("#value-" + mqttMessage.Data[i].name).parent().parent().parent();
-                tr.attr("onclick", "chartView('" + mqttMessage.Data[i].name + "','"+tr.children("[data-field='name']").children("div").text()+"')")
-                // console.info($("tr[data-index='" + i + "']>td[data-field='name']>div").text())
-
+                tr.attr("onclick", "chartView('" + mqttMessage.Data[i].name + "','" + tr.children("[data-field='name']").children("div").text() + "','" + tr.children("[data-field='unit']").children("div").text() + "')")
+                mqttChartData[mqttMessage.Data[i].name] = (mqttMessage.Data[i].value / move[mqttMessage.Data[i].name])
             }
+            mqttChartData.time = (mqttMessage.time);
         }
 
         var move = {};
@@ -421,7 +443,6 @@
 
         assignmentsMenu();
     });
-
 
 
     function projectArrayToJson(search) {
@@ -535,11 +556,16 @@
         return res;
     }
 
-    function chartView(dataName,name) {
+    //表格刷新定时任务
+    var inter1
+
+    function chartView(dataName, name, unit) {
         var realChart = echarts.init(document.getElementById('chart-1'));
         var realChart2 = echarts.init(document.getElementById('chart-2'));
+        timeData = [];
+        chartData = [];
         $.ajax({
-            url: deviceDataUrl + "/dd/qbdn/" + iotCode + "/" + dataName + "/25",
+            url: deviceDataUrl + "/dd/qbdn/" + iotCode + "/" + dataName + "/180",
             type: "GET",
             dataType: 'json',
             async: false,
@@ -547,20 +573,17 @@
                 'token': sessionStorage.getItem("token"),
             },
             success: function (r) {
-                // if (r.time.length > 0) {
-                //     beginTime = r.time[r.time.length - 1];
-                //     for (var a = 0; a < r.time.length; a++) {
-                //         var timer = formatNoYear(r.time[a]);
-                //         timeData.shift();
-                //         timeData.push(timer);
-                //         newData.shift();
-                //         newData.push(r.new[a]);
-                //     }
-                // }
+                for (var a = 0; a < r.data.length; a++) {
+                    var timer = formatNoYear(r.data[a].time);
+                    timeData.push(timer);
+                    chartData.push(r.data[a][dataName]);
+                }
+                timeData.reverse();
+                chartData.reverse();
             }
         })
 
-        realChart.setOption({
+        var optionRealChart = {
             title: {
                 text: name + '实时曲线',
                 textStyle: {
@@ -585,7 +608,6 @@
                 }
 
             },
-
             toolbox: {
                 show: true,
                 feature: {
@@ -596,7 +618,7 @@
             },
             xAxis: {
                 type: 'category',
-                data: "timeData",
+                data: timeData,
                 nameTextStyle: {color: '#5b6be8'},
                 boundaryGap: false,
                 minorTick: {
@@ -634,7 +656,7 @@
                 showSymbol: true,
                 nameTextStyle: {color: '#5b6be8'},
                 axisLabel: {
-                    formatter: '{value}' + "parm3",
+                    formatter: '{value}' + unit,
                     textStyle: {
                         color: 'black'
                     }
@@ -670,35 +692,36 @@
                 name: "实时" + "parm2",
                 smooth: true,
                 type: 'line',
-                itemStyle: {
-                    color: '#1e9fff',
-                },
                 markPoint: {
-                    itemStyle: {
-                        color: '#1e9fff',
-                    },
                     data: [
                         {type: 'max', name: '最大值'},
                         {type: 'min', name: '最小值'}
                     ]
                 },
-                lineStyle: {
-                    color: '#1e9fff',
-                },
                 showSymbol: true,
-                // hoverAnimation: false,
-                data: "newData",
+                hoverAnimation: true,
+                data: chartData,
                 markLine: {
-                    lineStyle: {
-                        color: '#1e9fff',
-                        width: 1
-                    },
                     data: [
                         {type: 'average', name: '平均值1'}
                     ]
                 }
             }]
-        });
+        }
+        realChart.setOption(optionRealChart);
+        clearInterval(inter1);
+        inter1 = setInterval(function () {
+            if (mqttChartData[dataName] != null && mqttChartData.time != null) {
+                timeData.shift();
+                timeData.push(formatNoYear(mqttChartData.time));
+                chartData.shift();
+                chartData.push(mqttChartData[dataName])
+                mqttChartData.time = null;
+                mqttChartData[dataName] = null;
+            }
+            realChart.setOption(optionRealChart);
+        }, 10000);
+
         realChart2.setOption({
             title: {
                 text: dataName + '实时曲线',
@@ -735,7 +758,7 @@
             },
             xAxis: {
                 type: 'category',
-                data: "timeData",
+                data: timeData,
                 nameTextStyle: {color: '#5b6be8'},
                 boundaryGap: false,
                 minorTick: {
@@ -773,7 +796,7 @@
                 showSymbol: true,
                 nameTextStyle: {color: '#5b6be8'},
                 axisLabel: {
-                    formatter: '{value}' + "parm3",
+                    formatter: '{value}' + unit,
                     textStyle: {
                         color: 'black'
                     }
@@ -810,11 +833,11 @@
                 smooth: true,
                 type: 'line',
                 itemStyle: {
-                    color: '#1e9fff',
+                    // color: '#1e9fff',
                 },
                 markPoint: {
                     itemStyle: {
-                        color: '#1e9fff',
+                        // color: '#1e9fff',
                     },
                     data: [
                         {type: 'max', name: '最大值'},
@@ -822,15 +845,15 @@
                     ]
                 },
                 lineStyle: {
-                    color: '#1e9fff',
+                    // color: '#1e9fff',
                 },
                 showSymbol: true,
-                // hoverAnimation: false,
-                data: "newData",
+                hoverAnimation: true,
+                data: chartData,
                 markLine: {
                     lineStyle: {
-                        color: '#1e9fff',
-                        width: 1
+                        // color: '#1e9fff',
+                        // width: 1
                     },
                     data: [
                         {type: 'average', name: '平均值1'}
@@ -839,6 +862,7 @@
             }]
         });
     }
+
 
 </script>
 </body>
