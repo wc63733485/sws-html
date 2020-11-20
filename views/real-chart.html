@@ -159,6 +159,8 @@
     var timeData = [];
     var chartData = [];
     var mqttChartData = {};
+    var todayTimeData = [];
+    var todayChartData = [];
     layui.use(['table', 'tree', 'util', 'element', 'laydate'], function () {
         var $ = layui.$
             , tree = layui.tree
@@ -583,17 +585,38 @@
             }
         })
 
+        todayTimeData = [];
+        todayChartData = [];
+        $.ajax({
+            url: deviceDataUrl + "/dd/qbdn/" + iotCode + "/" + dataName + "/1080",
+            type: "GET",
+            dataType: 'json',
+            async: false,
+            headers: {
+                'token': sessionStorage.getItem("token"),
+            },
+            success: function (r) {
+                for (var a = 0; a < r.data.length; a++) {
+                    var timer = formatNoYear(r.data[a].time);
+                    todayTimeData.push(timer);
+                    todayChartData.push(r.data[a][dataName]);
+                }
+                todayTimeData.reverse();
+                todayChartData.reverse();
+            }
+        })
+
         var optionRealChart = {
             title: {
-                text: name + '实时曲线',
+                text: name + '半小时动态曲线',
                 textStyle: {
                     fontSize: 14,
                     fontWeight: 'lighter',
                 },
             },
-            legend: {
-                data: ["实时" + name],
-            },
+            // legend: {
+            //     data: ["实时" + name],
+            // },
             grid: {
                 left: '0%',
                 right: '0%',
@@ -689,7 +712,7 @@
                 }
             },
             series: [{
-                name: "实时" + "parm2",
+                name: name,
                 smooth: true,
                 type: 'line',
                 markPoint: {
@@ -708,30 +731,13 @@
                 }
             }]
         }
-        realChart.setOption(optionRealChart);
-        clearInterval(inter1);
-        inter1 = setInterval(function () {
-            if (mqttChartData[dataName] != null && mqttChartData.time != null) {
-                timeData.shift();
-                timeData.push(formatNoYear(mqttChartData.time));
-                chartData.shift();
-                chartData.push(mqttChartData[dataName])
-                mqttChartData.time = null;
-                mqttChartData[dataName] = null;
-            }
-            realChart.setOption(optionRealChart);
-        }, 10000);
-
-        realChart2.setOption({
+        var optionTodayChart = {
             title: {
-                text: dataName + '实时曲线',
+                text: name + '三小时累加曲线',
                 textStyle: {
                     fontSize: 14,
                     fontWeight: 'lighter',
                 },
-            },
-            legend: {
-                data: ["实时" + dataName],
             },
             grid: {
                 left: '0%',
@@ -758,7 +764,7 @@
             },
             xAxis: {
                 type: 'category',
-                data: timeData,
+                data: todayTimeData,
                 nameTextStyle: {color: '#5b6be8'},
                 boundaryGap: false,
                 minorTick: {
@@ -829,38 +835,43 @@
                 }
             },
             series: [{
-                name: "实时" + "parm2",
+                name: name,
                 smooth: true,
                 type: 'line',
-                itemStyle: {
-                    // color: '#1e9fff',
-                },
                 markPoint: {
-                    itemStyle: {
-                        // color: '#1e9fff',
-                    },
                     data: [
                         {type: 'max', name: '最大值'},
                         {type: 'min', name: '最小值'}
                     ]
                 },
-                lineStyle: {
-                    // color: '#1e9fff',
-                },
                 showSymbol: true,
-                hoverAnimation: true,
-                data: chartData,
+                data: todayChartData,
                 markLine: {
-                    lineStyle: {
-                        // color: '#1e9fff',
-                        // width: 1
-                    },
                     data: [
-                        {type: 'average', name: '平均值1'}
+                        {type: 'average', name: '平均值'}
                     ]
                 }
             }]
-        });
+        }
+        realChart.setOption(optionRealChart);
+        realChart2.setOption(optionTodayChart);
+        clearInterval(inter1);
+        inter1 = setInterval(function () {
+            if (mqttChartData[dataName] != null && mqttChartData.time != null) {
+                timeData.shift();
+                timeData.push(formatNoYear(mqttChartData.time));
+                chartData.shift();
+                chartData.push(mqttChartData[dataName])
+
+                todayTimeData.push(formatNoYear(mqttChartData.time));
+                todayChartData.push(mqttChartData[dataName])
+                mqttChartData.time = null;
+                mqttChartData[dataName] = null;
+            }
+            realChart.setOption(optionRealChart);
+            realChart2.setOption(optionTodayChart);
+        }, 10000);
+
     }
 
 

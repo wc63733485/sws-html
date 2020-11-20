@@ -7,10 +7,11 @@ var deviceWarnUrl = address + ":14029/deviceWarn"
 var deviceTypeUrl = address + ":14029/deviceType"
 var deviceDataUrl = address + ":14029/deviceData"
 var deviceUnitUrl = address + ":14029/deviceUnit"
+var swsgbsUrl = address + ":14029/surveillanceCamera"
 var companyUrl = address + ":14029/company"
 var projectUrl = address + ":14029/project"
 var postSaleTask = address + ":14029/postSaleTask"
-var weclome = '/views/index.html'
+var weclome = './index.html'
 
 
 var user = JSON.parse(sessionStorage.getItem("public_profile"));
