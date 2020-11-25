@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../static/libs/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="../static/layuiadmin/style/admin.css" media="all">
     <link rel="stylesheet" href="../static/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../static/css/style.css" media="all">
     <style type="text/css">
         html, body {
             height: 100%;
@@ -19,6 +20,20 @@
             border-left-width: 0px;
             border-top-width: 0px;
             border-left-width: 0px;
+        }
+
+        .pull-right {
+            float: right !important;
+        }
+
+        .ibox-title {
+            min-height: 10px;
+            padding: 10px 10px 10px;
+        }
+
+        .ibox-content {
+
+            padding: 15px 20px 10px 20px;
         }
 
         .layui-table-body {
@@ -84,12 +99,6 @@
                                placeholder="yyyy-MM-dd HH:mm:ss">
                     </div>
                 </div>
-                <!--                <div class="layui-inline">-->
-                <!--                    <label class="layui-form-label" style="text-align: left;width: 50px">&nbsp;&nbsp;项&nbsp;&nbsp;&nbsp;目</label>-->
-                <!--                    <div class="layui-input-block" style="margin-left:80px">-->
-                <!--                        <input type="text" name="projectId" placeholder="请输入" autocomplete="off" class="layui-input">-->
-                <!--                    </div>-->
-                <!--                </div>-->
                 <div class="layui-inline">
                     <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin"
                             style="background-color: #1ab394" lay-submit lay-filter="LAY-user-back-search">
@@ -109,36 +118,160 @@
             </div>
         </div>
 
-        <!--        <div class="layui-card-body" >-->
-        <!--            <table class="layui-hide" id="user_table" lay-filter="user_table"></table>-->
-        <!--        </div>-->
-
     </div>
-    <div class="layui-card" style="height: 86.5%;width: 65%;float: left">
-        <div style="height: 100%;width: 100%;">
-            <div style="width: 46.5%;height: 45.5%;margin-top: 2%;margin-left: 2%;float: left">
-                <live-player id="playerN1" aspect="16:9" video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
+    <div class="layui-card" style="height: 88%;width: 65%;float: left">
+        <div style="height: 100%;width: 100%;display:none;" id="monitorVideoByProject">
+            <div style="width: 46.5%;height: 48.5%;margin-top: 2%;margin-left: 3%;float: left">
+                <live-player id="playerN5" aspect="16:12" video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
                              live="true"></live-player>
             </div>
-<!--            <div style="width: 46.5%;height: 45.5%;margin-top: 2%;margin-left: 2%;float: left">-->
-<!--                <iframe src="http://125.40.19.253:10000/play.html?serial=37010200491320000004&code=37010200491320000004&iframe=yes&aspect=fullscreen"-->
-<!--                        width="100%" height="100%" allowfullscreen allow="autoplay; fullscreen"></iframe>-->
-<!--            </div>-->
-<!--            <div style="width: 46.5%;height: 45.5%;margin-top: 2%;margin-left: 2%;float: left">-->
-<!--                <iframe src="http://125.40.19.253:10000/play.html?serial=37010200491320000004&code=37010200491320000004&iframe=yes&aspect=fullscreen"-->
-<!--                        width="100%" height="100%" allowfullscreen allow="autoplay; fullscreen"></iframe>-->
-<!--            </div>-->
-<!--            <div style="width: 46.5%;height: 45.5%;margin-top: 2%;margin-left: 2%;float: left">-->
-<!--                <iframe src="http://125.40.19.253:10000/play.html?serial=37010200491320000004&code=37010200491320000004&iframe=yes&aspect=fullscreen"-->
-<!--                        width="100%" height="100%" allowfullscreen allow="autoplay; fullscreen"></iframe>-->
-<!--            </div>-->
+            <div style="width: 46.5%;height: 48.5%;margin-top: 2%;margin-right: 3%;float: right">
+                <live-player id="playerN2" aspect="16:12" video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
+                             live="true"></live-player>
+            </div>
+            <div style="width: 46.5%;height: 48.5%;margin-bottom: 2%;margin-left: 3%;float: left">
+                <live-player id="playerN3" aspect="16:12" video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
+                             live="true"></live-player>
+            </div>
+            <div style="width: 46.5%;height: 48.5%;margin-bottom: 2%;margin-right: 3%;float: right">
+                <live-player id="playerN4" aspect="16:12" video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
+                             live="true"></live-player>
+            </div>
+        </div>
+        <div style="height: 100%;width: 100%;" id="monitorVideoByDevice">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <span class="label label-primary pull-right">NEW</span>
+                    <h5>视频- 慧水测试</h5>
+                </div>
+                <div class="ibox-content">
+                    <live-player id="playerN1" aspect="16:9" video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
+                                 live="true"></live-player>
+                </div>
+                <!--                <div style="width:40px;height: 120px;margin-right: 40px;float: right">-->
+                <!--                    <div style="width:40px;height: 40px;margin-top: 40px;float: top;background: url('../static/img/vedio/right.png')"></div>-->
+                <!--                </div>-->
+                <!--                <div style="width:40px;height: 120px;float: right">-->
+                <!--                    <div style="width:40px;height: 40px;float: top;background: url('../static/img/vedio/righttop.png')"></div>-->
+                <!--                    <div style="width:40px;height: 40px;margin-top: 40px;float: top;background: url('../static/img/vedio/rightdown.png')"></div>-->
+                <!--                </div>-->
+                <!--                <div style="width:40px;height: 120px;margin-right: 40px;float: right">-->
+                <!--                    <div style="width:40px;height: 40px;float: top;background: url('../static/img/vedio/lefttop.png')"></div>-->
+                <!--                    <div style="width:40px;height: 40px;float: top;background: url('../static/img/vedio/left.png')"></div>-->
+                <!--                    <div style="width:40px;height: 40px;float: top;background: url('../static/img/vedio/leftdown.png')"></div>-->
+                <!--                </div>-->
+                <!--                <div style="width:40px;height: 120px;margin-right: 40px;float: right">-->
+                <!--                    <div style="width:40px;height: 40px;float: top;background: url('../static/img/vedio/lefttop.png')"></div>-->
+                <!--                    <div style="width:40px;height: 40px;float: top;background: url('../static/img/vedio/left.png')"></div>-->
+                <!--                    <div style="width:40px;height: 40px;float: top;background: url('../static/img/vedio/leftdown.png')"></div>-->
+                <!--                </div>-->
+                <!--                <div style="width:40px;height: 120px;margin-right: 40px;float: right">-->
+                <!--                    <div style="width:40px;height: 40px;float: top;background: url('../static/img/vedio/lefttop.png')"></div>-->
+                <!--                    <div style="width:40px;height: 40px;float: top;background: url('../static/img/vedio/left.png')"></div>-->
+                <!--                    <div style="width:40px;height: 40px;float: top;background: url('../static/img/vedio/leftdown.png')"></div>-->
+                <!--                </div>-->
+                <div style="width:120px;height: 120px;margin-right: 20px;float: right">
+                    <div class="layui-fluid" style="padding: 0px">
+                        <div class="layui-row layui-col-space1">
+                            <div class="layui-col-xs4">
+                                <!-- 填充内容 -->
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs4">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs4">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs4">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs4">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs4">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs4">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs4">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs4">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width:80px;height: 120px;margin-right: 20px;float: right">
+                    <div class="layui-fluid" style="padding: 0px">
+                        <div class="layui-row layui-col-space1">
+                            <div class="layui-col-xs6">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs6">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs6">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs6">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs6">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs6">
+                                <div class="layui-card">
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/leftdown.png')"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width:600px;height: 120px;margin-right: 20px;float: left">
+                    <div id="slideTest4" class="demo-slider"></div>
+                    <div id="slideTest5" class="demo-slider"></div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="layui-card" style="height: 86.5%;width: 33.5%;float: right">
+    <div class="layui-card" style="height: 88%;width: 33.5%;float: right">
         <div style="height: 100%;width: 100%;">
-
-            <div class="layui-card-header"><i class="layui-icon layui-icon-tips"></i>泵房门禁进出记录</div>
-            <div class="layui-card-body">
+            <div class="ibox-title">
+                <span class="label label-primary pull-right">!</span>
+                <h5>泵房门禁进出记录</h5>
+            </div>
+            <div class="ibox-content">
                 <table class="layui-table layuiadmin-page-table" lay-skin="line">
                     <thead>
                     <tr>
@@ -225,13 +358,26 @@
         })
     });
 
-    layui.use(['table', 'tree', 'util', 'element', 'laydate'], function () {
+    layui.use(['slider', 'tree', 'util', 'element', 'laydate'], function () {
         var $ = layui.$
             , tree = layui.tree
-            , table = layui.table
             , util = layui.util
-            , element = layui.element
-            , laydate = layui.laydate;
+            , laydate = layui.laydate
+            , slider = layui.slider;
+
+
+        //垂直滑块
+        slider.render({
+            elem: '#slideTest4'
+            ,step: 10 //步长
+            ,showstep: true //开启间隔点
+        });
+        slider.render({
+            elem: '#slideTest5'
+            ,step: 10 //步长
+            ,showstep: true //开启间隔点
+        });
+
 
         window.assignmentsMenu = function () {
 

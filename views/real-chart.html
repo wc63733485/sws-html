@@ -614,9 +614,6 @@
                     fontWeight: 'lighter',
                 },
             },
-            // legend: {
-            //     data: ["实时" + name],
-            // },
             grid: {
                 left: '0%',
                 right: '0%',
@@ -650,13 +647,13 @@
                 },
                 axisLine: {
                     lineStyle: {
-                        color: 'black',
+                        color: '#666',
                         width: 1
                     },
                 },
                 axisLabel: {
                     textStyle: {
-                        color: 'black'
+                        color: '#666'
                     }
                 },
                 splitLine: {
@@ -681,13 +678,13 @@
                 axisLabel: {
                     formatter: '{value}' + unit,
                     textStyle: {
-                        color: 'black'
+                        color: '#666'
                     }
 
                 },
                 axisLine: {
                     lineStyle: {
-                        color: 'black',
+                        color: '#666',
                         width: 1
                     },
                 },
@@ -726,8 +723,23 @@
                 data: chartData,
                 markLine: {
                     data: [
-                        {type: 'average', name: '平均值1'}
-                    ]
+                        {type: 'average', name: '平均值'}
+                    ],
+                    itemStyle: {
+                        normal: {
+                            lineStyle: {
+                                width: 1//设置线条粗细
+                            }
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#6cb041',
+                        lineStyle: {
+                            width: 1//设置线条粗细
+                        }
+                    }
                 }
             }]
         }
@@ -773,13 +785,12 @@
                 },
                 axisLine: {
                     lineStyle: {
-                        color: 'black',
-                        width: 1
+                        color: '#666',
                     },
                 },
                 axisLabel: {
                     textStyle: {
-                        color: 'black'
+                        color: '#666'
                     }
                 },
                 splitLine: {
@@ -804,13 +815,13 @@
                 axisLabel: {
                     formatter: '{value}' + unit,
                     textStyle: {
-                        color: 'black'
+                        color: '#666'
                     }
 
                 },
                 axisLine: {
                     lineStyle: {
-                        color: 'black',
+                        color: '#666',
                         width: 1
                     },
                 },
@@ -849,7 +860,22 @@
                 markLine: {
                     data: [
                         {type: 'average', name: '平均值'}
-                    ]
+                    ],
+                    itemStyle: {
+                        normal: {
+                            lineStyle: {
+                                width: 1//设置线条粗细
+                            }
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#4ea6f3',
+                        lineStyle: {
+                            width: 1//设置线条粗细
+                        }
+                    }
                 }
             }]
         }
