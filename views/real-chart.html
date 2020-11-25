@@ -63,58 +63,12 @@
             <hr>
         </div>
 
-        <div id="assMenu" class="demo-tree"></div>
+        <div id="assMenu" class="demo-tree" style="margin-left: 5px"></div>
     </div>
 </div>
 <div class="layui-fluid" style="float: right;width: 82%;height: 96%;padding-left: 5px;">
-    <div class="layui-card">
-        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
-            <div class="layui-form-item">
-                <div class="layui-inline">
-                    <label class="layui-form-label" style="text-align: left;width: 70px;">开始时间</label>
-                    <div class="layui-input-block" style="margin-left:100px">
-                        <input type="text" name="username" placeholder="请输入" id="starTime" class="layui-input"
-                               placeholder="yyyy-MM-dd HH:mm:ss">
-                    </div>
-                </div>
-                <div class="layui-inline">
-                    <label class="layui-form-label" style="text-align: left;width: 70px">结束时间</label>
-                    <div class="layui-input-block" style="margin-left:100px">
-                        <input type="text" name="username" placeholder="请输入" id="endTime" class="layui-input"
-                               placeholder="yyyy-MM-dd HH:mm:ss">
-                    </div>
-                </div>
-                <!--                <div class="layui-inline">-->
-                <!--                    <label class="layui-form-label" style="text-align: left;width: 50px">&nbsp;&nbsp;项&nbsp;&nbsp;&nbsp;目</label>-->
-                <!--                    <div class="layui-input-block" style="margin-left:80px">-->
-                <!--                        <input type="text" name="projectId" placeholder="请输入" autocomplete="off" class="layui-input">-->
-                <!--                    </div>-->
-                <!--                </div>-->
-                <div class="layui-inline">
-                    <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin"
-                            style="background-color: #1ab394" lay-submit lay-filter="LAY-user-back-search">
-                        <span style="text-align:center;display:block;"><i
-                                class="layui-icon layui-icon-search layuiadmin-button-btn"
-                                style="font-size: 14px;"> 查 询</i></span>
-                    </button>
-                </div>
-                <div class="layui-inline">
-                    <button class="layui-btn layui-btn-sm layui-btn-radius layuiadmin-btn-admin"
-                            style="background-color: #f8ac59" data-type="reload"
-                            style="background-color: orangered;">
-                        <span style="text-align:center;display:block;"><i
-                                class="layui-icon layui-icon-refresh layuiadmin-button-btn" style="font-size: 14px;"> 重 置</i></span>
-                    </button>
-                </div>
-            </div>
-        </div>
 
-        <!--        <div class="layui-card-body" >-->
-        <!--            <table class="layui-hide" id="user_table" lay-filter="user_table"></table>-->
-        <!--        </div>-->
-
-    </div>
-    <div class="layui-tab layui-tab-card" lay-filter="real-tab" style="height: 80%;">
+    <div class="layui-tab layui-tab-card" lay-filter="real-tab" style="height: 92%;padding:0px;margin: 0%">
         <ul class="layui-tab-title">
             <li class="layui-this" lay-id="real-data" style="width: 22%">实时数据</li>
             <li lay-id="real-alarm" style="width: 23%">报警记录</li>
@@ -122,7 +76,9 @@
             <li lay-id="real-analysis" style="width: 23.9%">实时分析</li>
         </ul>
         <div class="layui-tab-content" style="height: 100%;background-color: white">
-            <div class="layui-tab-item layui-show" style="height: 100%">
+            <div class="layui-tab-item layui-show" style="height: 99%">
+                <blockquote id="layuiTips" class="layui-elem-quote">&nbsp;&nbsp;请在右侧菜单中选择需要查看的设备信息<i
+                        class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="float: left"></i></blockquote>
                 <div class="layui-card-body" id="tt" style="width: 50%;height: 95%;padding: 0px 15px;float: left;">
 
                     <table class="layui-table" id="demo1">
@@ -132,8 +88,8 @@
                 <!--    实时曲线   -->
                 <div class="layui-card-body" id="chart-1"
                      style="width: 45%;height: 45%;padding: 0px 15px;float: right;margin-top: 1%">
-
-
+                    <blockquote id="layuiTips2" class="layui-elem-quote" style="display:none;">&nbsp;&nbsp;请点击右侧查看参数的曲线信息<i
+                            class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="float: left"></i></blockquote>
                 </div>
                 <div class="layui-card-body" id="chart-2"
                      style="width: 45%;height: 45%;padding: 0px 15px;float: right;margin-top: 2%">
@@ -141,11 +97,20 @@
 
                 </div>
             </div>
-            <div class="layui-tab-item">2</div>
+            <div class="layui-tab-item">
+                    <blockquote id="layuiTips3" class="layui-elem-quote">&nbsp;&nbsp;请在右侧菜单中选择需要查看的设备信息<i
+                            class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="float: left"></i></blockquote>
+                <div class="layui-card-body" id="tt2" style="width: 98%;height: 95%;padding: 0px 15px;float: left;">
+                <table class="layui-table" id="demo2">
+
+                </table>
+            </div></div>
             <div class="layui-tab-item">3</div>
             <div class="layui-tab-item">4</div>
         </div>
+        <!--</div>-->
     </div>
+
 </div>
 <script src="../static/libs/jquery.min.js"></script>
 <script src="../static/libs/echarts.min.js"></script>
@@ -161,6 +126,7 @@
     var mqttChartData = {};
     var todayTimeData = [];
     var todayChartData = [];
+    var h = $("#tt").height()
     layui.use(['table', 'tree', 'util', 'element', 'laydate'], function () {
         var $ = layui.$
             , tree = layui.tree
@@ -255,11 +221,12 @@
                         }
                     }
                 })
+
                 //展示已知数据
                 table.render({
                     elem: '#demo1'
                     , url: deviceUnitUrl + "/du/qbdtd/" + deviceTypeId
-                    , height: $("#tt").height()
+                    , height: h
                     , toolType: "1"
                     , headers: {
                         'token': sessionStorage.getItem("token"),
@@ -273,7 +240,7 @@
                         , icon: 'layui-icon-tips'
                     }]
                     , cols: [[{title: title1 + title2, align: "center", colspan: "7"}], [ //标题栏
-                        {field: 'sortId', title: '排序', align: "center", width: 80, sort: true}
+                        {field: 'sortId', title: '排序', align: "center", width: 50}
                         , {field: 'name', align: "center", title: '参数', width: 130}
                         , {field: 'referenceRange', align: "center", title: '参考值范围', minWidth: 100}
                         , {
@@ -318,6 +285,68 @@
                         })
                     }
                 });
+
+                table.render({
+                    elem: '#demo2'
+                    , url: deviceUnitUrl + "/du/qbdtd/" + deviceTypeId
+                    , height: h
+                    , toolType: "1"
+                    , headers: {
+                        'token': sessionStorage.getItem("token"),
+                    }
+                    , toolbar: true //开启头部工具栏，并为其绑定左侧模板
+                    , defaultToolbar: ["filter", "exports", "print", { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+                        title: "设备号：" + iotCode
+                        , color: '#f2f2f2'
+                        , text: ''
+                        , iconColor: "#666"
+                        , icon: 'layui-icon-tips'
+                    }]
+                    , cols: [[{title: "报警记录", align: "center", colspan: "7"}], [ //标题栏
+                        {field: 'sortId', title: '排序', align: "center", width: 50}
+                        , {field: 'name', align: "center", title: '参数', width: 130}
+                        , {field: 'referenceRange', align: "center", title: '参考值范围', minWidth: 100}
+                        , {
+                            field: 'value', align: "center", title: '数值', width: 80
+                            , templet: function (res) {
+                                return '<span id="value-' + res.dataName + '"></span>';
+                            }
+                        }
+                        , {field: 'unit', align: "center", title: '单位', minWidth: 50}
+                        , {
+                            field: 'time', align: "center", title: '上报时间', width: 150, templet: function (res) {
+                                return '<span id="time-' + res.dataName + '"></span>';
+                            }
+                        }
+                        , {field: 'remark', align: "center", title: '备注', width: 100}
+                    ]]
+                    , skin: 'line' //表格风格
+                    , response: {
+                        statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+                    }
+                    , done: function () {
+                        //第一次表格数据初始化
+                        $.ajax({
+                            url: deviceDataUrl + "/dd/qa/" + iotCode + "/1",
+                            type: "GET",
+                            dataType: 'json',
+                            async: false,
+                            headers: {
+                                'token': sessionStorage.getItem("token"),
+                            },
+                            success: function (r) {
+                                for (var key in r.data[0]) {
+                                    if (r.data[0].hasOwnProperty(key)) {
+                                        $("#value-" + key).text(r.data[0][key])
+                                        $("#time-" + key).text(r.data[0].time)
+                                        var tr = $("#value-" + key).parent().parent().parent();
+                                        tr.attr("onclick", "chartView('" + key + "','" + tr.children("[data-field='name']").children("div").text() + "','" + tr.children("[data-field='unit']").children("div").text() + "')")
+                                    }
+                                }
+                            }
+                        })
+                    }
+                });
             }
 
             //基本演示
@@ -329,9 +358,10 @@
                 , click: function (obj) {
                     var data = obj.data;  //获取当前点击的节点数据
                     if (data.isDevice != undefined && data.isDevice == true) {
+                        $("#layuiTips").hide()
+                        $("#layuiTips3").hide()
+                        $("#layuiTips2").show()
                         realDataInit(data.id);
-
-                        element.tabChange('real-tab', 'real-data'); //切换到：实时数据
                     }
                 }
             });
@@ -349,8 +379,11 @@
                         , click: function (obj) {
                             var data = obj.data;  //获取当前点击的节点数据
                             if (data.isDevice != undefined && data.isDevice == true) {
+                                $("#layuiTips").hide()
+                                $("#layuiTips3").hide()
+                                $("#layuiTips2").show()
                                 realDataInit(data.id);
-                                element.tabChange('real-tab', 'real-data'); //切换到：用户管理
+                                // element.tabChange('real-tab', 'real-data'); //切换到：用户管理
                             }
                         }
                     });
@@ -367,8 +400,11 @@
                         , click: function (obj) {
                             var data = obj.data;  //获取当前点击的节点数据
                             if (data.isDevice != undefined && data.isDevice == true) {
+                                $("#layuiTips").hide()
+                                $("#layuiTips3").hide()
+                                $("#layuiTips2").show()
                                 realDataInit(data.id);
-                                element.tabChange('real-tab', 'real-data'); //切换到：用户管理
+                                // element.tabChange('real-tab', 'real-data'); //切换到：用户管理
                             }
                         }
                     });
