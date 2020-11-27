@@ -133,25 +133,10 @@
             , tree = layui.tree
             , table = layui.table
             , util = layui.util
-            , laydate = layui.laydate;
 
         window.assignmentsMenu = function () {
 
-            //查询 开始时间
-            laydate.render({
-                elem: '#starTime'
-                , type: 'datetime'
-                , max: format(new Date().getTime())
-                , theme: 'grid'
-            });
 
-            //查询 结束时间
-            laydate.render({
-                elem: '#endTime'
-                , type: 'datetime'
-                , max: format(new Date().getTime())
-                , theme: 'grid'
-            });
 
             $('.site-demo-active').on('click', function () {
                 var othis = $(this), type = othis.data('type');
@@ -509,7 +494,11 @@
                     var device = new Object();
                     device.title = r.data[i].name;
                     device.id = r.data[i].deviceId;
-                    device.bgcolor = "green";
+                    if (r.data[i].online=="1") {
+                        device.bgcolor = "green";
+                    }else {
+                        device.bgcolor = "#666";
+                    }
                     device.icon = "fa fa-signal";
                     device.spread = true;
                     device.isDevice = true;

@@ -109,8 +109,6 @@
     var iotCode = "";
     var pumpName = "";
 
-
-    var h = $("#tt").height()
     layui.use(['table', 'tree', 'util', 'laydate'], function () {
         var $ = layui.$
             , tree = layui.tree
@@ -140,8 +138,8 @@
             , title: '用户数据表'
             , cols: [[
                 {checkbox: true, fixed: true}
-                , {field: 'id', title: 'ID', align: 'center', width: 90,sort:true}
-                , {field: 'date', title: '日期', align: 'center', width: 200,sort:true}
+                , {field: 'id', title: 'ID', align: 'center', width: 90, sort: true}
+                , {field: 'date', title: '日期', align: 'center', width: 200, sort: true}
                 , {field: 'dataName', title: '报警字段', width: 120, align: 'center'}
                 , {field: 'number', title: '当前数值', width: 120, align: 'center'}
                 , {field: 'iotcode', title: '网关编号', align: 'center', width: 150, align: 'center'}
@@ -183,9 +181,9 @@
                 , {field: 'remark', title: '备注', align: 'center'}
             ]]
             , id: 'reload'
-            // , response: {
-            //     statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
-            // }
+            , response: {
+                statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+            }
             , where: {
                 search: ''
             }
@@ -255,7 +253,6 @@
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
-
 
 
         window.assignmentsMenu = function () {
@@ -362,7 +359,7 @@
                         , iconColor: "#666"
                         , icon: 'layui-icon-tips'
                     }]
-                    , cols: [[{title: pumpName+"-"+title1 + title2, align: "center", colspan: "7"}], [ //标题栏
+                    , cols: [[{title: pumpName + "-" + title1 + title2, align: "center", colspan: "7"}], [ //标题栏
                         {field: 'sortId', title: '排序', align: "center", width: 50}
                         , {field: 'name', align: "center", title: '参数', width: 130}
                         , {field: 'referenceRange', align: "center", title: '参考值范围', minWidth: 100}
@@ -566,9 +563,9 @@
                     var device = new Object();
                     device.title = r.data[i].name;
                     device.id = r.data[i].deviceId;
-                    if (r.data[i].online=="1") {
+                    if (r.data[i].online == "1") {
                         device.bgcolor = "green";
-                    }else {
+                    } else {
                         device.bgcolor = "#666";
                     }
                     device.icon = "fa fa-signal";
