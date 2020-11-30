@@ -120,29 +120,57 @@
 
     </div>
     <div class="layui-card" style="height: 88%;width: 65%;float: left">
-        <div style="height: 100%;width: 100%;display:none;" id="monitorVideoByProject">
-            <div style="width: 46.5%;height: 48.5%;margin-top: 2%;margin-left: 3%;float: left">
-                <live-player id="playerN5" aspect="16:12" video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
-                             live="true"></live-player>
-            </div>
-            <div style="width: 46.5%;height: 48.5%;margin-top: 2%;margin-right: 3%;float: right">
-                <live-player id="playerN2" aspect="16:12" video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
-                             live="true"></live-player>
-            </div>
-            <div style="width: 46.5%;height: 48.5%;margin-bottom: 2%;margin-left: 3%;float: left">
-                <live-player id="playerN3" aspect="16:12" video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
-                             live="true"></live-player>
-            </div>
-            <div style="width: 46.5%;height: 48.5%;margin-bottom: 2%;margin-right: 3%;float: right">
-                <live-player id="playerN4" aspect="16:12" video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
-                             live="true"></live-player>
-            </div>
-        </div>
-        <div style="height: 100%;width: 100%;" id="monitorVideoByDevice">
+        <blockquote id="layuiTips" class="layui-elem-quote">&nbsp;&nbsp;请在左侧菜单中选择需要查看的设备或泵房<i
+                class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop"
+                style="float: left"></i></blockquote>
+        <div style="height: 100%;width: 100%;display:none;" id="monitorVideoByPumpHouse">
             <div class="ibox">
                 <div class="ibox-title">
                     <span class="label label-primary pull-right">NEW</span>
-                    <h5>视频- 慧水测试</h5>
+                    <h5 id="title2"></h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="layui-fluid" style="padding: 0px">
+                        <div class="layui-row layui-col-space1" style="margin-top: 5px">
+                            <div class="layui-col-xs6">
+                                <div class="layui-card">
+                                    <live-player id="playerN2" aspect="16:11"
+                                                 video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
+                                                 live="true"></live-player>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs6">
+                                <div class="layui-card">
+                                    <live-player id="playerN3" aspect="16:11"
+                                                 video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
+                                                 live="true"></live-player>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs6">
+                                <div class="layui-card">
+                                    <live-player id="playerN4" aspect="16:11"
+                                                 video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
+                                                 live="true"></live-player>
+                                </div>
+                            </div>
+                            <div class="layui-col-xs6">
+                                <div class="layui-card">
+                                    <live-player id="playerN5" aspect="16:11"
+                                                 video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
+                                                 live="true"></live-player>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="height: 100%;width: 100%;display:none;" id="monitorVideoByDevice">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <span class="label label-primary pull-right">NEW</span>
+                    <h5 id="title"></h5>
                 </div>
                 <div class="ibox-content">
                     <live-player id="playerN1" aspect="16:9" video-url="http://39.102.45.137/rtp/00105003039/hls.m3u8"
@@ -154,7 +182,7 @@
                             <div class="layui-col-xs4">
                                 <!-- 填充内容 -->
                                 <div class="layui-card">
-                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/1.png')"></div>
+                                    <div style="width:40px;height: 40px;background: url('../static/img/vedio/1.png')" onclick="moveVideo(12)"></div>
                                 </div>
                             </div>
                             <div class="layui-col-xs4">
@@ -261,50 +289,53 @@
                     <tr>
                         <th>用户</th>
                         <th>时间</th>
-                        <th>查看</th>
                         <th>进出</th>
+                        <th>查看</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><span class="first">胡歌</span></td>
-                        <td><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></td>
+                        <td><span class="third">王新潮</span></td>
+                        <td><span class="third"><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></span></td>
                         <td><span class="third"><i class="fa fa-sign-in"> 进入</i></span></td>
+                        <td><img src="#"></td>
 
                     </tr>
                     <tr>
-                        <td><span class="second">彭于晏</span></td>
-                        <td><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></td>
+                        <td><span class="second">王九超</span></td>
+                        <td><span class="second"><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></span></td>
+                        <td><span class="second"><i class="fa fa-sign-in"> 进入</i></span></td>
+                        <td><img src="#"></td>
+                    </tr>
+                    <tr>
+                        <td><span class="third">王新潮</span></td>
+                        <td><span class="third"><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></span></td>
                         <td><span class="third"><i class="fa fa-sign-in"> 进入</i></span></td>
+                        <td><img src="#"></td>
                     </tr>
                     <tr>
-                        <td><span class="third">靳东</span></td>
-                        <td><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></td>
-                        <td><span class="first"><i class="fa fa-sign-out"> 离开</i></span></td>
-                    </tr>
-                    <tr>
-                        <td>吴尊</td>
-                        <td><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></td>
+                        <td><span class="first">王新欣</span></td>
+                        <td><span class="first"><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></span></td>
                         <td><span class="first"><i class="fa fa-sign-out"> 离开</i></span></span></td>
-
+                        <td><img src="#"></td>
                     </tr>
                     <tr>
-                        <td>许上进</td>
-                        <td><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></td>
-                        <td><span class="third"><i class="fa fa-sign-in"> 进入</i></span></td>
-
+                        <td><span class="first">王新欣</span></td>
+                        <td><span class="first"><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></span></td>
+                        <td><span class="first"><i class="fa fa-sign-out"> 离开</i></span></span></td>
+                        <td><img src="#"></td>
                     </tr>
                     <tr>
-                        <td>小蚊子</td>
-                        <td><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></td>
-                        <td><span class="third"><i class="fa fa-sign-in"> 进入</i></span></td>
-
+                        <td><span class="first">王新欣</span></td>
+                        <td><span class="first"><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></span></td>
+                        <td><span class="first"><i class="fa fa-sign-out"> 离开</i></span></span></td>
+                        <td><img src="#"></td>
                     </tr>
                     <tr>
-                        <td>贤心</td>
-                        <td><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></td>
-                        <td><span class="third"><i class="fa fa-sign-in"> 进入</i></span></td>
-
+                        <td><span class="first">王新欣</span></td>
+                        <td><span class="first"><i class="layui-icon layui-icon-log"> 2020:11:19 11:20</i></span></td>
+                        <td><span class="first"><i class="fa fa-sign-out"> 离开</i></span></span></td>
+                        <td><img src="#"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -321,52 +352,32 @@
 <script src="../static/libs/element/liveplayer-element.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-
-        $.ajax({
-            url: "http://39.96.74.32:14029/monitor/api/play//41010500201320000001/41010500201320000001",
-            type: "GET",
-            async: false,
-            headers: {
-                'token': sessionStorage.getItem("token"),
-            },
-            success: function (res) {
-                console.info(res)
-                let parse = JSON.parse(res);
-                var player = document.getElementById('playerN1');
-                var num = parse.ssrc;
-                var r = parseInt(num).toString(16);
-
-                player.setAttribute("video-url", "http://39.102.45.137/rtp/0" + r.toUpperCase() + "/hls.m3u8");
-            }
-        })
-    });
 
     layui.use(['slider', 'tree', 'util', 'element', 'laydate'], function () {
         var $ = layui.$
             , tree = layui.tree
             , util = layui.util
             , laydate = layui.laydate
-            , slider = layui.slider;
+            , slider = layui.slider
+            , layer = layui.layer;
 
 
         //垂直滑块
         slider.render({
             elem: '#slideTest8'
-            ,step: 10 //步长
-            ,showstep: true //开启间隔点
-            ,input: true
+            , step: 10 //步长
+            , showstep: true //开启间隔点
+            , input: true
         });
         slider.render({
             elem: '#slideTest5'
-            ,step: 10 //步长
-            ,showstep: true //开启间隔点
-            ,input: true
+            , step: 10 //步长
+            , showstep: true //开启间隔点
+            , input: true
         });
 
 
         window.assignmentsMenu = function () {
-
 
             //查询 开始时间
             laydate.render({
@@ -399,7 +410,64 @@
                 , click: function (obj) {
                     var data = obj.data;  //获取当前点击的节点数据
                     if (data.isDevice != undefined && data.isDevice == true) {
-                        alert("123")
+                        $("#title").html("视频- " + data.title);
+                        $("#layuiTips").hide();
+                        layer.load(2, {shade: [0.5, 'black']})
+                        if ($("#monitorVideoByPumpHouse").css("display") == "block") {
+                            $("#monitorVideoByPumpHouse").hide()
+                            document.getElementById('playerN2').setAttribute("video-url", "");
+                            document.getElementById('playerN3').setAttribute("video-url", "");
+                            document.getElementById('playerN4').setAttribute("video-url", "");
+                            document.getElementById('playerN5').setAttribute("video-url", "");
+                        }
+                        $("#monitorVideoByDevice").show()
+                        $.ajax({
+                            url: "http://39.96.74.32:14029/monitor/api/play//" + data.cameraId + "/" + data.channelId,
+                            type: "GET",
+                            async: false,
+                            headers: {
+                                'token': sessionStorage.getItem("token"),
+                            },
+                            success: function (res) {
+                                let parse = JSON.parse(res);
+                                var player = document.getElementById('playerN1');
+                                var num = parse.ssrc;
+                                var r = parseInt(num).toString(16);
+                                player.setAttribute("live", "true");
+                                player.setAttribute("video-url", "http://39.102.45.137/rtp/0" + r.toUpperCase() + "/hls.m3u8");
+                            }
+                        })
+
+                        layer.closeAll('loading');
+                    }
+                    if (data.isPumpHouse != undefined && data.isPumpHouse == true) {
+                        layer.load(2, {shade: [0.5, 'black']})
+                        $("#title2").html("视频- " + data.title);
+                        $("#layuiTips").hide();
+                        if ($("#monitorVideoByDevice").css("display") == "block") {
+                            $("#monitorVideoByDevice").hide()
+                            document.getElementById('playerN1').setAttribute("video-url", "");
+                        }
+                        $("#monitorVideoByPumpHouse").show()
+                        $.ajax({
+                            url: "http://39.96.74.32:14029/monitor/api/play//41010500201320000001/41010500201320000001",
+                            type: "GET",
+                            async: false,
+                            headers: {
+                                'token': sessionStorage.getItem("token"),
+                            },
+                            success: function (res) {
+                                console.info(res)
+                                let parse = JSON.parse(res);
+                                var player = document.getElementById('playerN2');
+                                var num = parse.ssrc;
+                                var r = parseInt(num).toString(16);
+                                player.setAttribute("video-url", "http://39.102.45.137/rtp/0" + r.toUpperCase() + "/hls.m3u8");
+                            }
+                        })
+
+                        layer.closeAll('loading');
+
                     }
                 }
             });
@@ -419,6 +487,9 @@
                             if (data.isDevice != undefined && data.isDevice == true) {
                                 alert("123")
                             }
+                            if (data.isPumpHouse != undefined && data.isPumpHouse == true) {
+                                alert("1234")
+                            }
                         }
                     });
                     layer.closeAll('loading');
@@ -435,6 +506,9 @@
                             var data = obj.data;  //获取当前点击的节点数据
                             if (data.isDevice != undefined && data.isDevice == true) {
                                 alert("123")
+                            }
+                            if (data.isPumpHouse != undefined && data.isPumpHouse == true) {
+                                alert("1234")
                             }
                         }
                     });
@@ -502,7 +576,7 @@
                     pumphouse.title = r.data[i].pumphouseName;
                     pumphouse.id = r.data[i].pumphouseId;
                     pumphouse.icon = "fa fa-home fa-lg";
-                    pumphouse.spread = true;
+                    pumphouse.isPumpHouse = true;
                     children = swsgbsArrayToJson(r.data[i].pumphouseId, search)
                     if (children.length != 0) {
                         pumphouse.children = children
@@ -538,9 +612,14 @@
                     var device = new Object();
                     device.title = r.data[i].name;
                     device.id = r.data[i].deviceId;
-                    device.bgcolor = "green";
+                    device.cameraId = r.data[i].cameraId
+                    device.channelId = r.data[i].channelId
+                    if (r.data[i].online == "1") {
+                        device.bgcolor = "green";
+                    } else {
+                        device.bgcolor = "#666";
+                    }
                     device.icon = "fa fa-video-camera";
-                    device.spread = true;
                     device.isDevice = true;
                     if (search != "" && r.data[i].name.indexOf(search) != -1) {
                         device.textcolor = "red";
@@ -559,6 +638,28 @@
         return res;
     }
 
+    function moveVideo(id) {
+        var data = {};
+        data.leftRight = 0;
+        data.upDown = 0;
+        data.inOut = 0;
+        data.moveSpeed = 45;
+        data.zoomSpeed = 0;
+        $.ajax({
+            type: "POST",
+            url: "http://39.96.74.32:14029/monitor/api/ptz/41010500201320000001/41010500201320000001",
+            async: false,
+            data: data,
+            headers: {
+                'token': sessionStorage.getItem("token"),
+            },
+            success: function (r) {
+                console.info(r)
+
+            }
+        });
+
+    }
 
 </script>
 </body>

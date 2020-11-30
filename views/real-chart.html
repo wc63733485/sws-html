@@ -77,7 +77,7 @@
         <!--</ul>-->
         <div class="layui-tab-content" style="height: 98%;background-color: white">
             <!--<div class="layui-tab-item layui-show" style="height: 99%">-->
-                <blockquote id="layuiTips" class="layui-elem-quote">&nbsp;&nbsp;请在右侧菜单中选择需要查看的设备信息<i
+                <blockquote id="layuiTips" class="layui-elem-quote">&nbsp;&nbsp;请在左侧菜单中选择需要查看的设备信息<i
                         class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="float: left"></i></blockquote>
                 <div class="layui-card-body" id="tt" style="width: 50%;height: 97%;padding: 0px 10px;float: left;">
 
@@ -88,7 +88,7 @@
                 <!--    实时曲线   -->
                 <div class="layui-card-body" id="chart-1"
                      style="width: 45%;height: 47%;padding: 0px 15px;float: right;margin-top: 1%">
-                    <blockquote id="layuiTips2" class="layui-elem-quote" style="display:none;">&nbsp;&nbsp;请点击右侧查看参数的曲线信息<i
+                    <blockquote id="layuiTips2" class="layui-elem-quote" style="display:none;">&nbsp;&nbsp;请点击左侧查看参数的曲线信息<i
                             class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="float: left"></i></blockquote>
                 </div>
                 <div class="layui-card-body" id="chart-2"
@@ -293,7 +293,7 @@
             util.event('lay-menutree', {
                 search: function (othis) {
                     var search = $("#search").val()
-                    layer.load(2);
+                    layer.load(2,{shade: [0.5,'black']})
                     tree.render({
                         elem: '#assMenu'
                         , data: projectArrayToJson(search)
@@ -312,7 +312,7 @@
                     layer.closeAll('loading');
                 },
                 reload: function () {
-                    layer.load(2);
+                    layer.load(2,{shade: [0.5,'black']})
                     $("#search").val("");
                     tree.render({
                         elem: '#assMenu'
