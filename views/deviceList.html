@@ -58,7 +58,7 @@
         </div>
 
         <div class="layui-card-body">
-            <table class="layui-hide" id="user_table" lay-filter="user_table"></table>
+            <table class="layui-hide" id="deviceTable" lay-filter="deviceTable"></table>
         </div>
     </div>
 </div>
@@ -80,19 +80,19 @@
 
         //方法级渲染
         table.render({
-            elem: '#user_table'
+            elem: '#deviceTable'
             ,text: {
                 none: '暂无相关数据' //默认：无数据
             }
-            , url: sysUrl + '/role/list'
+            , url: deviceUrl + '/dq/qbpg/0'
             , headers: {
                 'token': sessionStorage.getItem("token"),
             }
             ,defaultToolbar: [{ //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
-                title: '新增泵房'
+                title: '新增设备'
                 ,color: '#6bd9c2'
-                ,text: '新增泵房'
-                ,layEvent: 'addPumpHouse'
+                ,text: '新增设备'
+                ,layEvent: 'addDevice'
                 ,icon: 'layui-icon-add-circle'
             },'filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
                 title: '刷新'
@@ -105,12 +105,40 @@
             ,title: '用户数据表'
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'roleId', title: '角色ID', width: 80, align: 'center'}
-                , {field: 'roleName', title: '角色名称', width: 150, align: 'center'}
-                , {field: 'roleSort', title: '显示顺序', width: 120, align: 'center'}
-                , {field: 'dataScope', title: '数据范围', width: 200, align: 'center'}
-                , {field: 'delFlag', title: '删除标志', width: 120, align: 'center'}
-                , {field: 'status', title: '角色状态', width: 120, align: 'center', templet: function (res) {
+                // , {field: 'deviceId', title: '设备ID', width: 80, align: 'center'}
+                , {field: 'code', title: '设备编号', width: 150, align: 'center'}
+                , {field: 'name', title: '设备名称', width: 200, align: 'center'}
+                , {field: 'iotcode', title: '网关编号', width: 200, align: 'center'}
+                , {field: 'online', title: '网关状态', width: 200, align: 'center', templet: function (res) {
+                        if (res.iotcode == null ||res.iotcode == "") {
+                            return ' '
+                        } else {
+                            if (res.online == 1) {
+                                return '<span class="layui-badge-dot layui-bg-green"></span>&nbsp;&nbsp;已连接'
+                            } else {
+                                return '<span class="layui-badge-dot"></span>&nbsp;&nbsp;未连接';
+                            }
+                        }
+                    }}
+                , { title: '水箱信息', width: 120, align: 'center', templet: function (res) {
+                        if (res.waterTankId == null ||res.waterTankId == "") {
+                            return ' '
+                        } else {
+                            return "<a>查看</a>"
+                        }
+                    }}
+                , {field: 'roleSort', title: '泵房信息', width: 120, align: 'center', templet: function (res) {
+                        if (res.iotcode == null ||res.iotcode == "") {
+                            return ' '
+                        } else {
+                            if (res.online == 1) {
+                                return '<span class="layui-badge-dot layui-bg-green"></span>&nbsp;&nbsp;已连接'
+                            } else {
+                                return '<span class="layui-badge-dot"></span>&nbsp;&nbsp;未连接';
+                            }
+                        }
+                    }}
+                , {title: '通知设置', width: 120, align: 'center', templet: function (res) {
                         if (res.status == 0) {
                             return '正常';
                         } else if (res.status == 1) {
@@ -119,20 +147,19 @@
                             return '-';
                         }
                     }}
-                , {field: 'roleKey', title: '角色权限', width: 200, align: 'center'}
                 , {field: 'remark', title: '备注', align: 'center'}
             ]]
-            , id: 'userTable'
-            // , response: {
-            //     statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
-            // }
+            , id: 'deviceTable'
+            , response: {
+                statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+            }
             , page: true
             , limit: 14
             , limits: [10, 20, 50, 100, 200]
             , height: 'full-115'
         });
 
-        table.on('toolbar(user_table)', function(obj){
+        table.on('toolbar(deviceTable)', function(obj){
             var checkStatus = table.checkStatus(obj.config.id);
             switch(obj.event){
                 case 'deleteDatas':
