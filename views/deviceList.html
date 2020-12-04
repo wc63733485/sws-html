@@ -106,10 +106,10 @@
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 // , {field: 'deviceId', title: '设备ID', width: 80, align: 'center'}
-                , {field: 'code', title: '设备编号', width: 150, align: 'center'}
+                , {field: 'code', title: '设备编号', width: 120, align: 'center'}
                 , {field: 'name', title: '设备名称', width: 200, align: 'center'}
-                , {field: 'iotcode', title: '网关编号', width: 200, align: 'center'}
-                , {field: 'online', title: '网关状态', width: 200, align: 'center', templet: function (res) {
+                , {field: 'iotcode', title: '网关编号', width: 150, align: 'center'}
+                , {field: 'online', title: '网关状态', width: 100, align: 'center', templet: function (res) {
                         if (res.iotcode == null ||res.iotcode == "") {
                             return ' '
                         } else {
@@ -120,32 +120,22 @@
                             }
                         }
                     }}
-                , { title: '水箱信息', width: 120, align: 'center', templet: function (res) {
+                , { title: '水箱信息', width: 200, align: 'center', templet: function (res) {
                         if (res.waterTankId == null ||res.waterTankId == "") {
                             return ' '
                         } else {
                             return "<a>查看</a>"
                         }
                     }}
-                , {field: 'roleSort', title: '泵房信息', width: 120, align: 'center', templet: function (res) {
-                        if (res.iotcode == null ||res.iotcode == "") {
+                , { title: '泵房信息', width: 120, align: 'center', templet: function (res) {
+                        if (res.pumphouseId == null ||res.pumphouseId == "") {
                             return ' '
                         } else {
-                            if (res.online == 1) {
-                                return '<span class="layui-badge-dot layui-bg-green"></span>&nbsp;&nbsp;已连接'
-                            } else {
-                                return '<span class="layui-badge-dot"></span>&nbsp;&nbsp;未连接';
-                            }
+                            return "<a>查看</a>"
                         }
                     }}
-                , {title: '通知设置', width: 120, align: 'center', templet: function (res) {
-                        if (res.status == 0) {
-                            return '正常';
-                        } else if (res.status == 1) {
-                            return '停用';
-                        } else {
-                            return '-';
-                        }
+                , {title: '操作', width: 240, align: 'center', templet: function (res) {
+                        return "<a>泵房绑定</a><a>水箱绑定</a><a>通知设置</a>"
                     }}
                 , {field: 'remark', title: '备注', align: 'center'}
             ]]
