@@ -24,17 +24,20 @@
             padding-bottom: 5px;
             height: auto;
         }
+
         .jBox-content {
             padding: 4px 6px;
             border: solid 1px #cccccc;
             border-radius: 6px;
         }
+
         .jBox-Tooltip .jBox-container {
-            box-shadow: 0 0 0 rgba(0,0,0,0);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
         }
+
         .jBox-pointer-bottom::after {
             width: 0px;
-            box-shadow: 0 0 0 rgba(0,0,0,0);
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0);
         }
     </style>
 </head>
@@ -78,110 +81,90 @@
         </div>
 
         <div class="layui-card-body">
-            <!--            <div style="padding-bottom: 10px;">-->
-            <!--                <button class="layui-btn layuiadmin-btn-admin" data-type="batchdel">删除</button>-->
-            <!--                <button class="layui-btn layuiadmin-btn-admin" data-type="add">添加</button>-->
-            <!--            </div>-->
-<!--            <div id="pumpHouseAdd" class="layui-form" style="display: none;padding:10px;border-color: #0a0b0d;border-width: 2px;">-->
-<!--                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">-->
-<!--                    <legend>泵房基本信息</legend>-->
-<!--                </fieldset>-->
-<!--                <div class="layui-form-item" style="width: 640px;">-->
-<!--                    <div class="layui-inline" style="width: 300px;margin-left: -10px">-->
-<!--                        <label class="layui-form-label"  style="width: 90px">档案管理序号:</label>-->
-<!--                        <div class="layui-input-inline" style="width: 170px">-->
-<!--                            <input type="text" id="code"  autocomplete="off" class="layui-input" style="width: 180px">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="layui-inline" style="width: 310px">-->
-<!--                        <label class="layui-form-label" style="width: 80px">受理编号:</label>-->
-<!--                        <div class="layui-input-inline" style="width: 190px">-->
-<!--                            <input type="text" id="dealCode" autocomplete="off" class="layui-input" style="width: 190px">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="layui-form-item" style="width: 640px;">-->
-<!--                    <label class="layui-form-label">项目名称:</label>-->
-<!--                    <div class="layui-input-block" style="width: 495px">-->
-<!--                        <input type="text" id="projectName" autocomplete="off" placeholder="请输入项目名称" class="layui-input" style="width: 495px">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="layui-form-item" style="width: 640px;">-->
-<!--                    <label class="layui-form-label">位置选取:</label>-->
-<!--                    <div id="map" style="height: 200px;width: 495px;">-->
+            <div id="userAdd" class="layui-form"
+                 style="display: none;padding:10px;border-color: #0a0b0d;border-width: 2px;">
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>基本信息修改</legend>
+                </fieldset>
+                <div class="layui-form-item" style="width: 550px;">
+                    <label class="layui-form-label" style="float: left">用户名称:</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="1" autocomplete="off" placeholder="请输入项目名称" class="layui-input"
+                               style="width: 450px">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="width: 550px;">
+                    <label class="layui-form-label" style="float: left">登陆账号:</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="2" autocomplete="off" placeholder="请输入项目名称" class="layui-input"
+                               style="width: 450px">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="width: 550px;">
+                    <label class="layui-form-label" style="float: left">登录密码:</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="3" autocomplete="off" placeholder="请输入项目名称" class="layui-input"
+                               style="width: 450px">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="width: 550px;">
+                    <label class="layui-form-label" style="float: left">密码确认:</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="3" autocomplete="off" placeholder="请输入项目名称" class="layui-input"
+                               style="width: 450px">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="width: 550px;">
+                    <label class="layui-form-label" style="float: left">邮箱地址:</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="3" autocomplete="off" placeholder="请输入项目名称" class="layui-input"
+                               style="width: 450px">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="width: 550px;">
+                    <label class="layui-form-label" style="float: left">手机号码:</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="3" autocomplete="off" placeholder="请输入项目名称" class="layui-input"
+                               style="width: 450px">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="width: 550px;">
+                    <label class="layui-form-label" style="float: left">所属项目:</label>
+                    <div class="layui-input-block">
+                        <select name="modules" lay-verify="required" lay-search="" style="width: 450px">
+                            <option value="">直接选择或搜索选择</option>
+                            <option value="1">layer</option>
+                            <option value="2">form</option>
+                            <option value="3">layim</option>
+                            <option value="4">element</option>
+                            <option value="5">laytpl</option>
+                            <option value="6">upload</option>
+                            <option value="7">laydate</option>
+                            <option value="8">laypage</option>
+                            <option value="9">flow</option>
+                            <option value="10">util</option>
+                            <option value="11">code</option>
+                            <option value="12">tree</option>
+                            <option value="13">layedit</option>
+                            <option value="14">nav</option>
+                            <option value="15">tab</option>
+                            <option value="16">table</option>
+                            <option value="17">select</option>
+                            <option value="18">checkbox</option>
+                            <option value="19">switch</option>
+                            <option value="20">radio</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item" style="width: 550px;">
+                    <label class="layui-form-label">用户状态:</label>
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="close" lay-skin="switch" lay-text="启用|停用">
+                    </div>
+                </div>
 
-<!--                    </div >-->
-<!--                </div>-->
-<!--                <div class="layui-form-item" style="width: 640px;">-->
-<!--                    <div class="layui-inline" style="width: 300px">-->
-<!--                        <label class="layui-form-label"  style="width: 80px">经度:</label>-->
-<!--                        <div class="layui-input-inline" style="width: 180px">-->
-<!--                            <input type="text" id="lat"  readonly="readonly" autocomplete="off" class="layui-input" style="width: 180px">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="layui-inline" style="width: 300px">-->
-<!--                        <label class="layui-form-label" style="width: 80px">纬度:</label>-->
-<!--                        <div class="layui-input-inline" style="width: 180px">-->
-<!--                            <input type="text" id="lng"  readonly="readonly" autocomplete="off" class="layui-input">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="layui-form-item" style="width: 640px;">-->
-<!--                    <label class="layui-form-label">项目地址:</label>-->
-<!--                    <div class="layui-input-block" style="width: 495px">-->
-<!--                        <input type="text" id="projectAddress"  id="projectAddress"  autocomplete="off" placeholder="选取图中地点信息" class="layui-input" style="width: 495px">-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="layui-form-item" style="width: 640px;">-->
-<!--                    <div class="layui-inline" style="width: 300px">-->
-<!--                        <label class="layui-form-label"  style="width: 80px">甲方联系人:</label>-->
-<!--                        <div class="layui-input-inline" style="width: 180px">-->
-<!--                            <input type="tel" id="contactPersonOfPartyA"  autocomplete="off" class="layui-input" style="width: 180px">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="layui-inline" style="width: 300px">-->
-<!--                        <label class="layui-form-label" style="width: 80px">项目经理:</label>-->
-<!--                        <div class="layui-input-inline" style="width: 180px">-->
-<!--                            <input type="text" name="projectManager" autocomplete="off" class="layui-input">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+            </div>
 
-<!--                <div class="layui-form-item" style="width: 640px;">-->
-<!--                    <div class="layui-inline" style="width: 300px">-->
-<!--                        <label class="layui-form-label" style="width: 80px">工程状态:</label>-->
-<!--                        <div class="layui-input-inline" style="width: 180px">-->
-<!--                            <input type="text" id="projectStatus" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="layui-inline" style="width: 300px">-->
-<!--                        <label class="layui-form-label" style="width: 80px">验收日期:</label>-->
-<!--                        <div class="layui-input-inline" style="width: 180px">-->
-<!--                            <input type="text" id="dateOfAcceptance" autocomplete="off" class="layui-input">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div class="layui-form-item" style="width: 640px;">-->
-<!--                    <div class="layui-inline">-->
-<!--                        <label class="layui-form-label">开竣工日期:</label>-->
-<!--                        <div class="layui-input-inline" style="width: 180px;float:left;">-->
-<!--                            <input type="text" name="starProjectDate1" style="width: 180px" id="date2" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">-->
-<!--                        </div>-->
-<!--                        <div  style="width: 30px;float:left;line-height: 30px;margin-top: 2px;margin-left: 3px"> 至 </div>-->
-<!--                        <div class="layui-input-inline" style="width: 180px;float:left;">-->
-<!--                            <input type="text" name="starProjectDate2" style="width: 180px" id="date3" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
-<!--                <div class="layui-form-item layui-form-text" style="width: 640px;">-->
-<!--                    <label class="layui-form-label">工程内容</label>-->
-<!--                    <div class="layui-input-block" style="width: 495px">-->
-<!--                        <textarea  id="projectContent" placeholder="请输入内容" class="layui-textarea" style="width: 495px"></textarea>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
             <table class="layui-hide" id="user_table" lay-filter="user_table"></table>
 
         </div>
@@ -204,13 +187,101 @@
 <script src="../static/libs/jbox/jBox.all.js"></script>
 <script>
 
-    function assignmentsMenu(){
-        alert("123")
-    }
 
-    layui.use(['table'], function () {
+    layui.use(['table','tree','util'], function () {
         var $ = layui.$
             , table = layui.table
+            , tree = layui.tree
+            , util = layui.util
+
+        window.assignmentsMenu = function () {
+
+            var updateAllMenuArray = [];
+            var updateCheckedMenuArray = [];
+            // $.ajax({
+            //     type: "GET",
+            //     url: sysUrl + "/gbr/" + roleId,
+            //     async: false,
+            //     headers: {
+            //         'token': sessionStorage.getItem("token"),
+            //     },
+            //     success: function (r) {
+            //         for (var i = 0; i < r.data.length; i++) {
+            //             updateCheckedMenuArray.push(r.data[i])
+            //         }
+            //     }
+            // });
+            // $.ajax({
+            //     type: "GET",
+            //     contentType: 'application/json; charset=utf-8',
+            //     dataType: 'JSON',
+            //     async: false,
+            //     url: sysUrl + '/menu/list',
+            //     headers: {
+            //         'token': sessionStorage.getItem("token"),
+            //     },
+            //     success: function (r) {
+            //         for (var i = 0; i < r.data.length; i++) {
+            //             if (updateCheckedMenuArray.includes(r.data[i].menuId)) {
+            //                 r.data[i].checked = true;
+            //             }
+            //             updateAllMenuArray.push(r.data[i])
+            //         }
+            //     }
+            // });
+
+
+            // //基本演示
+            // tree.render({
+            //     elem: '#assMenu'
+            //     , data: arrayToJson(updateAllMenuArray, 0)
+            //     , showCheckbox: true  //是否显示复选框
+            //     , id: 'assMenu'
+            //     , isJump: true //是否允许点击节点时弹出新窗口跳转
+            //     , click: function (obj) {
+            //         var data = obj.data;  //获取当前点击的节点数据
+            //         layer.msg('状态：' + obj.state + '<br>节点数据：' + JSON.stringify(data));
+            //     }
+            // });
+
+
+            layer.open({
+                type: 1,
+                offset: '10px',
+                skin: 'layui-layer-lan',
+                title: ["修改"  + "信息", 'font-size:18px;'],
+                area: ['620px', '700px'],
+                shade: 0.4,
+                shadeClose: true,
+                content: jQuery("#userAdd"),
+                btn: ['确定', '取消'],
+                btn1: function () {
+
+
+                    var checkedData = tree.getChecked('assMenu');
+                    var res = getCheckMenuIds(checkedData);
+                    $.ajax({
+                        type: "POST",
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: 'JSON',
+                        data: JSON.stringify(res),
+                        url: sysUrl + '/smr/' + 1,
+                        headers: {
+                            'token': sessionStorage.getItem("token"),
+                        },
+                        success: function (r) {
+
+                        }
+                    });
+
+                    layer.closeAll();
+                },
+                btn2: function () {
+
+                    layer.closeAll();
+                },
+            })
+        }
 
         //方法级渲染
         table.render({
@@ -246,9 +317,9 @@
                 , {
                     field: 'status', title: '帐号状态', width: 100, align: 'center', templet: function (res) {
                         if (res.status == 0) {
-                            return '正常';
+                            return '<input type="checkbox" checked="" lay-skin="switch" disabled="" lay-text="启用|关闭">';
                         } else if (res.status == 1) {
-                            return '停用';
+                            return '<input type="checkbox" lay-skin="switch" disabled="" lay-text="启用|关闭">';
                         } else {
                             return '-';
                         }
@@ -258,12 +329,12 @@
                 , {field: 'projectNames', title: '项目名称', width: 150, align: 'center'}
                 , {
                     title: '操作', align: 'center', width: 215, templet: function (res) {
-                        var result= "";
-                        if (res.userName == "超级账号") {
-                            result =  "<a class='layui-btn layui-btn-xs' lay-event='detail' style='background-color: #f49ba5'><i class='fa fa-trash-o'>删除</i></a>" +
-                                   "<a class='layui-btn layui-btn-xs' lay-event='edit' style='background-color: #23c6c8'><i class='fa fa-edit fa-lg'>修改</i></a>" +
-                                   "<a class='layui-btn layui-btn-xs' id='otherOper' style='background-color: #6bd9c2'><i class='layui-icon layui-icon-add-circle'> 其他</i></a>"
-                        }
+                        var result = "";
+
+                        result = "<a class='layui-btn layui-btn-xs' lay-event='detail' style='background-color: #f49ba5'><i class='fa fa-trash-o'>删除</i></a>" +
+                            "<a class='layui-btn layui-btn-xs' lay-event='edit' style='background-color: #23c6c8'><i class='fa fa-edit fa-lg'>修改</i></a>" +
+                            "<a class='layui-btn layui-btn-xs' id='otherOper' style='background-color: #6bd9c2'><i class='layui-icon layui-icon-add-circle'> 其他</i></a>"
+
                         return result;
                     }
                 }, {field: 'remark', title: '备注', align: 'center'}
@@ -272,20 +343,20 @@
             , response: {
                 statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
             }
-            , skin:"line"
+            , skin: "line"
             , page: true
             , limit: 14
             , limits: [8, 10, 20, 50, 100, 200]
             , height: 'full-115'
             , done: function (res, curr, count) {
-                var w=156
+                var w = 156
                 new jBox('Tooltip', {
                     width: w,
                     position: {
                         x: 'left',//控制tip在target的相对位置
                     },
                     offset: {//控制相对位置
-                        x: w-20,
+                        x: w - 20,
                         y: 40,
                     },
                     height: 32,
@@ -293,11 +364,10 @@
                     animation: 'zoomIn',
                     attach: '#otherOper',
                     content: "<div><a class='layui-btn layui-btn-xs' lay-event='detail' style='background-color: #1e9fff'><i class='layui-icon layui-icon-survey'  style='font-size: 10px !important'> 修改密码</i></a>" +
-                        "<a class='layui-btn layui-btn-xs' lay-event='detail' style='background-color: #1e9fff' onclick='assignmentsMenu()'><i class='layui-icon layui-icon-auz'  style='font-size: 10px !important'> 分配角色</i></a></div>"
+                        "<a class='layui-btn layui-btn-xs' lay-event='detail' style='background-color: #1e9fff' onclick=''><i class='layui-icon layui-icon-auz'  style='font-size: 10px !important'> 分配角色</i></a></div>"
                 });
             }
         });
-
 
 
         table.on('toolbar(user_table)', function (obj) {
@@ -321,6 +391,10 @@
                 //自定义头工具栏右侧图标 - 提示
                 case 'refresh':
                     layer.alert('这是工具栏右侧自定义的一个图标按钮');
+                    break;
+                //自定义头工具栏右侧图标 - 提示
+                case 'addUser':
+                    assignmentsMenu();
                     break;
             }
             ;
