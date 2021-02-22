@@ -80,14 +80,14 @@
     layui.use(['table'], function () {
         var $ = layui.$
             , table = layui.table
-
+        console.info(user)
         //方法级渲染
         table.render({
             elem: '#user_table'
             ,text: {
                 none: '暂无相关数据' //默认：无数据
             }
-            , url: sysUrl + '/role/list'
+            , url: swsgbsUrl+'/dce/qdph/'+'1'
             , headers: {
                 'token': sessionStorage.getItem("token"),
             }
@@ -108,12 +108,13 @@
             ,title: '用户数据表'
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'roleId', title: '设备国标编号', width: 180, align: 'center'}
-                , {field: 'roleName', title: '名称', width: 150, align: 'center'}
+                , {field: 'cameraId', title: '设备国标编号', width: 210, align: 'center'}
+                , {field: 'name', title: '名称', width: 150, align: 'center'}
                 , {field: 'roleSort', title: '信令传输', width: 120, align: 'center'}
-                , {field: 'dataScope', title: '流传输模式', width: 100, align: 'center'}
+                , {field: 'model', title: '流传输模式', width: 100, align: 'center'}
                 , {field: 'delFlag', title: '通道数', width: 100, align: 'center'}
-                , {field: 'status', title: '在线状态', width: 120, align: 'center', templet: function (res) {
+                , {field: 'pumphouseId', title: '泵房名称', width: 100, align: 'center'}
+                , {field: 'online', title: '在线状态', width: 80, align: 'center', templet: function (res) {
                         if (res.status == 0) {
                             return '在线';
                         } else if (res.status == 1) {
@@ -124,15 +125,17 @@
                     }}
                 , {field: 'roleKey', title: '出口ip', width: 150, align: 'center'}
                 , {field: 'roleKey', title: '端口', width: 100, align: 'center'}
-                , {field: 'roleKey', title: '厂家', width: 200, align: 'center'}
-                , {field: 'roleKey', title: '最近心跳', width: 200, align: 'center'}
-                , {field: 'roleKey', title: '最近注册', width: 200, align: 'center'}
-                , {field: 'remark', title: '操作', align: 'center'}
+                , {field: 'roleKey', title: '厂家', width: 100, align: 'center'}
+                , {field: 'roleKey', title: '最近心跳', width: 100, align: 'center'}
+                , {field: 'roleKey', title: '最近注册', width: 100, align: 'center'}
+                , {field: 'remark', title: '操作', align: 'center', templet: function (res) {
+                        return "<a>查看</a>"
+                    }}
             ]]
             , id: 'userTable'
-            // , response: {
-            //     statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
-            // }
+            , response: {
+                statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+            }
             , page: true
             , limit: 14
             , limits: [10, 20, 50, 100, 200]
