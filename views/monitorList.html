@@ -80,14 +80,16 @@
     layui.use(['table'], function () {
         var $ = layui.$
             , table = layui.table
-        console.info(user)
+
         //方法级渲染
         table.render({
             elem: '#user_table'
             ,text: {
                 none: '暂无相关数据' //默认：无数据
             }
-            , url: swsgbsUrl+'/dce/qdph/'+'1'
+            , url: swsgbsUrl+'/dl/qbd'
+            , method:'post'
+            , where:{ids:user["projectIds"].toString()}
             , headers: {
                 'token': sessionStorage.getItem("token"),
             }
@@ -108,7 +110,7 @@
             ,title: '用户数据表'
             , cols: [[
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'cameraId', title: '设备国标编号', width: 210, align: 'center'}
+                , {field: 'deviceId', title: '设备国标编号', width: 210, align: 'center'}
                 , {field: 'name', title: '名称', width: 150, align: 'center'}
                 , {field: 'roleSort', title: '信令传输', width: 120, align: 'center'}
                 , {field: 'model', title: '流传输模式', width: 100, align: 'center'}
