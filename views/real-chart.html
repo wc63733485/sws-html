@@ -70,43 +70,45 @@
 
     <div class="layui-tab layui-tab-card" lay-filter="real-tab" style="height: 99%;padding:0px;margin: 0%">
         <!--<ul class="layui-tab-title">-->
-            <!--<li class="layui-this" lay-id="real-data" style="width: 22%">实时数据</li>-->
-            <!--<li lay-id="real-alarm" style="width: 23%">报警记录</li>-->
-            <!--<li lay-id="send-param" style="width: 23%">远程下参</li>-->
-            <!--<li lay-id="real-analysis" style="width: 23.9%">实时分析</li>-->
+        <!--<li class="layui-this" lay-id="real-data" style="width: 22%">实时数据</li>-->
+        <!--<li lay-id="real-alarm" style="width: 23%">报警记录</li>-->
+        <!--<li lay-id="send-param" style="width: 23%">远程下参</li>-->
+        <!--<li lay-id="real-analysis" style="width: 23.9%">实时分析</li>-->
         <!--</ul>-->
         <div class="layui-tab-content" style="height: 98%;background-color: white">
             <!--<div class="layui-tab-item layui-show" style="height: 99%">-->
-                <blockquote id="layuiTips" class="layui-elem-quote">&nbsp;&nbsp;请在左侧菜单中选择需要查看的设备信息<i
-                        class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="float: left"></i></blockquote>
-                <div class="layui-card-body" id="tt" style="width: 50%;height: 97%;padding: 0px 10px;float: left;">
+            <blockquote id="layuiTips" class="layui-elem-quote">&nbsp;&nbsp;请在左侧菜单中选择需要查看的设备信息<i
+                    class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop"
+                    style="float: left"></i></blockquote>
+            <div class="layui-card-body" id="tt" style="width: 50%;height: 97%;padding: 0px 10px;float: left;">
 
-                    <table class="layui-table" id="demo1">
+                <table class="layui-table" id="demo1">
 
-                    </table>
-                </div>
-                <!--    实时曲线   -->
-                <div class="layui-card-body" id="chart-1"
-                     style="width: 45%;height: 47%;padding: 0px 15px;float: right;margin-top: 1%">
-                    <blockquote id="layuiTips2" class="layui-elem-quote" style="display:none;">&nbsp;&nbsp;请点击左侧查看参数的曲线信息<i
-                            class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="float: left"></i></blockquote>
-                </div>
-                <div class="layui-card-body" id="chart-2"
-                     style="width: 45%;height: 47%;padding: 0px 15px;float: right;margin-top: 2%">
-
-
-                </div>
+                </table>
             </div>
-            <!--<div class="layui-tab-item">-->
-                    <!--<blockquote id="layuiTips3" class="layui-elem-quote">&nbsp;&nbsp;请在右侧菜单中选择需要查看的设备信息<i-->
-                            <!--class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="float: left"></i></blockquote>-->
-                <!--<div class="layui-card-body" id="tt2" style="width: 98%;height: 95%;padding: 0px 15px;float: left;">-->
-                <!--<table class="layui-table" id="demo2">-->
+            <!--    实时曲线   -->
+            <div class="layui-card-body" id="chart-1"
+                 style="width: 45%;height: 47%;padding: 0px 15px;float: right;margin-top: 1%">
+                <blockquote id="layuiTips2" class="layui-elem-quote" style="display:none;">&nbsp;&nbsp;请点击左侧查看参数的曲线信息<i
+                        class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop"
+                        style="float: left"></i></blockquote>
+            </div>
+            <div class="layui-card-body" id="chart-2"
+                 style="width: 45%;height: 47%;padding: 0px 15px;float: right;margin-top: 2%">
 
-                <!--</table>-->
-            <!--</div></div>-->
-            <!--<div class="layui-tab-item">3</div>-->
-            <!--<div class="layui-tab-item">4</div>-->
+
+            </div>
+        </div>
+        <!--<div class="layui-tab-item">-->
+        <!--<blockquote id="layuiTips3" class="layui-elem-quote">&nbsp;&nbsp;请在右侧菜单中选择需要查看的设备信息<i-->
+        <!--class="layui-icon layui-icon-loading layui-icon layui-anim layui-anim-rotate layui-anim-loop" style="float: left"></i></blockquote>-->
+        <!--<div class="layui-card-body" id="tt2" style="width: 98%;height: 95%;padding: 0px 15px;float: left;">-->
+        <!--<table class="layui-table" id="demo2">-->
+
+        <!--</table>-->
+        <!--</div></div>-->
+        <!--<div class="layui-tab-item">3</div>-->
+        <!--<div class="layui-tab-item">4</div>-->
         <!--</div>-->
         <!--</div>-->
     </div>
@@ -117,7 +119,6 @@
 <script src="../static/libs/sws-common.js"></script>
 <script src="../static/libs/layui/layui.js"></script>
 <script src="../static/libs/mqtt.js" type="text/javascript"></script>
-<script src="../static/libs/sws-mqtt.js"></script>
 
 <script>
     var iotCode = "";
@@ -135,7 +136,6 @@
             , util = layui.util
 
         window.assignmentsMenu = function () {
-
 
 
             $('.site-demo-active').on('click', function () {
@@ -224,7 +224,7 @@
                         , iconColor: "#666"
                         , icon: 'layui-icon-tips'
                     }]
-                    , cols: [[{title: pumpName+"-"+title1 + title2, align: "center", colspan: "7"}], [ //标题栏
+                    , cols: [[{title: pumpName + "-" + title1 + title2, align: "center", colspan: "7"}], [ //标题栏
                         {field: 'sortId', title: '排序', align: "center", width: 50}
                         , {field: 'name', align: "center", title: '参数', width: 130}
                         , {field: 'referenceRange', align: "center", title: '参考值范围', minWidth: 100}
@@ -293,7 +293,7 @@
             util.event('lay-menutree', {
                 search: function (othis) {
                     var search = $("#search").val()
-                    layer.load(2,{shade: [0.5,'black']})
+                    layer.load(2, {shade: [0.5, 'black']})
                     tree.render({
                         elem: '#assMenu'
                         , data: projectArrayToJson(search)
@@ -312,7 +312,7 @@
                     layer.closeAll('loading');
                 },
                 reload: function () {
-                    layer.load(2,{shade: [0.5,'black']})
+                    layer.load(2, {shade: [0.5, 'black']})
                     $("#search").val("");
                     tree.render({
                         elem: '#assMenu'
@@ -369,7 +369,11 @@
         function realChartInit(message) {
             mqttMessage = JSON.parse(message);
             for (var i = 0; i < mqttMessage.Data.length; i++) {
-                $("#value-" + mqttMessage.Data[i].name).text(mqttMessage.Data[i].value / move[mqttMessage.Data[i].name])
+                if (mqttMessage.Data[i].value == "timeout") {
+                    $("#value-" + mqttMessage.Data[i].name).text("timeout")
+                } else {
+                    $("#value-" + mqttMessage.Data[i].name).text(mqttMessage.Data[i].value / move[mqttMessage.Data[i].name])
+                }
                 $("#time-" + mqttMessage.Data[i].name).text(mqttMessage.time)
                 var tr = $("#value-" + mqttMessage.Data[i].name).parent().parent().parent();
                 tr.attr("onclick", "chartView('" + mqttMessage.Data[i].name + "','" + tr.children("[data-field='name']").children("div").text() + "','" + tr.children("[data-field='unit']").children("div").text() + "')")
@@ -494,9 +498,9 @@
                     var device = new Object();
                     device.title = r.data[i].name;
                     device.id = r.data[i].deviceId;
-                    if (r.data[i].online=="1") {
+                    if (r.data[i].online == "1") {
                         device.bgcolor = "green";
-                    }else {
+                    } else {
                         device.bgcolor = "#666";
                     }
                     device.icon = "fa fa-signal";
