@@ -442,7 +442,8 @@
                         cameraId = data.cameraId
                         channelId = data.channelId
                         $.ajax({
-                            url: "http://39.96.74.32:14029/monitor/api/play//" + cameraId + "/" + channelId,
+                            url: "http://39.96.74.32:14029/monitor/api/play//41010500201320000001/41010500201320000001",
+                            // url: "http://39.96.74.32:14029/monitor/api/play//" + cameraId + "/" + channelId,
                             type: "GET",
                             async: false,
                             headers: {
@@ -668,7 +669,8 @@
         data.zoomSpeed = zoomSpeed;
         $.ajax({
             type: "POST",
-            url: "http://39.96.74.32:14029/monitor/api/ptz/" + cameraId + "/" + channelId,
+            // url: "http://39.96.74.32:14029/monitor/api/ptz/" + cameraId + "/" + channelId,
+            url: "http://39.96.74.32:14029/monitor/api/ptz/41010500201320000001/41010500201320000001",
             async: false,
             data: data,
             headers: {
