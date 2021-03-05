@@ -411,7 +411,7 @@
     function projectArrayToJson(search) {
         var res = [];
         $.ajax({
-            type: "GET",
+            type: "POST",
             url: sysUrl + "/pct/gpt",
             async: false,
             headers: {
