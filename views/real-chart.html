@@ -411,8 +411,8 @@
     function projectArrayToJson(search) {
         var res = [];
         $.ajax({
-            type: "POST",
-            url: sysUrl + "/pct/gpt",
+            type: "GET",
+            url: sysUrl + "/project/getTree",
             async: false,
             headers: {
                 'token': sessionStorage.getItem("token"),

@@ -139,9 +139,8 @@
             , text: {
                 none: '暂无相关数据' //默认：无数据
             }
-            , url: swsgbsUrl + '/dl/qbd'
-            , method: 'post'
-            , where: {ids: user["projectIds"].toString()}
+            , url: swsgbsUrl + '/device/queryById'
+            , method: 'GET'
             , headers: {
                 'token': sessionStorage.getItem("token"),
             }
