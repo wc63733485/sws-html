@@ -83,11 +83,11 @@ $(function () {
     $('#side-menu').metisMenu();
     $.ajax({
         type: "GET",
-        url: sysUrl+"/gbu/" + user.userId,
+        url: sysUrl+"/menu/getUserTree",
         headers: {
             'token': sessionStorage.getItem("token"),
         },
-        success: function (r) {
+        success: function (r)   {
 
             var html = ""
             for (var i = 0; i < r.data.length; i++) {
