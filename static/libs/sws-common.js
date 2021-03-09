@@ -14,7 +14,6 @@ var postSaleTask = address + ":14029/postSaleTask"
 var weclome = './index.html'
 
 
-var user = JSON.parse(sessionStorage.getItem("public_profile"));
 
 function add0(m) {
     return m < 10 ? '0' + m : m

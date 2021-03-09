@@ -105,7 +105,7 @@
             , text: {
                 none: '暂无相关数据' //默认：无数据
             }
-            , url: sysUrl + '/pct/list'
+            , url: sysUrl + '/project/getList'
             , headers: {
                 'token': sessionStorage.getItem("token"),
             }
@@ -127,14 +127,16 @@
             , cols: [[
                 {type: 'checkbox'}
                 , {field: 'projectId', title: '项目ID', width: 80, align: 'center'}
-                , {field: 'projectName', title: '项目名称', width: 150, align: 'center'}
-                , {field: 'projectAddress', title: '项目地址', width: 240, align: 'center'}
+                , {field: 'dealCode', title: '受理编号', width: 130, align: 'center'}
+                , {field: 'projectName', title: '项目名称', width: 250, align: 'center'}
+                , {field: 'projectAddress', title: '项目地址', width: 280, align: 'center'}
                 , {field: 'projectPerson', title: '负责人', width: 120, align: 'center'}
+                , {field: 'contactPersonOfPartyA', title: '甲方负责人', width: 180, align: 'center'}
                 , {
                     field: 'status', title: '项目状态', width: 120, align: 'center', templet: function (res) {
-                        if (res.status == 0) {
+                        if (res.status == 1) {
                             return '正常';
-                        } else if (res.status == 1) {
+                        } else if (res.status == 0) {
                             return '停止';
                         } else {
                             return '-';

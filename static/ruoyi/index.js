@@ -59,13 +59,7 @@ function applyPath(url) {
 }
 
 $(function () {
-    new Vue({
-        el: '#wrapper',
-        data: {
-            userName: user.userName,
-            loginName: user.loginName
-        }
-    })
+
 
     if($.common.equals("history", mode) && window.performance.navigation.type == 1) {
         var url = localStorage.getItem('publicPath');

@@ -479,7 +479,7 @@
         var res = [];
         $.ajax({
             type: "GET",
-            url: sysUrl + "/pct/gpt",
+            url: sysUrl + "/project/getUserTree",
             async: false,
             headers: {
                 'token': sessionStorage.getItem("token"),
@@ -551,11 +551,11 @@
         return res;
     }
 
-    function deviceArrayToJson(pumphouseId, search) {
+    function deviceArrayToJson(projectId, search) {
         var res = [];
         $.ajax({
             type: "GET",
-            url: deviceUrl + "/dce/qdbd/" + pumphouseId,
+            url: deviceUrl + "/device/queryByProjectId/" + projectId,
             async: false,
             headers: {
                 'token': sessionStorage.getItem("token"),

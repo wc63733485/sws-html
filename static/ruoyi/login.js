@@ -25,7 +25,8 @@ function loginByPassword() {
         },
         success: function (r) {
             if (r.code == 201) {
-                sessionStorage.setItem("public_profile", JSON.stringify(r.data.user));
+                sessionStorage.setItem("avatar", r.data.avatar);
+                sessionStorage.setItem("name", r.data.name);
                 sessionStorage.setItem("token", r.data.token);
                 location.href = weclome;
             } else {

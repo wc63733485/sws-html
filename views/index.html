@@ -45,7 +45,7 @@
 					        </div>
 				        </a>
 				        <div id="userInfo" class="pull-left info">
-				          <p>{{loginName}}</p>
+				          <p id="userName1"></p>
 				          <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
 				          <a th:href="@{logout}" style="padding-left:5px;"><i class="fa fa-sign-out text-danger"></i> 退出</a>
 				        </div>
@@ -74,7 +74,7 @@
                     <li class="dropdown user-menu">
 						<a href="javascript:void(0)" class="dropdown-toggle" data-hover="dropdown">
 							<img id="userAvatarL" src="../static/img/profile.jpg" class="user-image" alt="User Image">
-							<span class="hidden-xs">{{userName}}</span>
+							<span class="hidden-xs" id="userName2"></span>
 						</a>
 						<ul class="dropdown-menu">
 							<li class="mt5">
@@ -141,14 +141,16 @@
 <script src="../static/libs/layer/layer.min.js"></script>
 <script src="../static/ruoyi/ry-ui.js"></script>
 <script src="../static/ruoyi/common.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="../static/libs/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <script src="../static/ruoyi/index.js"></script>
 <script src="../static/libs/layui/layui.js"></script>
 
 <script>
+    // var name = sessionStorage.getItem("name");
+    // var avatar = sessionStorage.getItem("avatar");
     $(function() {
-
+        $("#userName1").text(sessionStorage.getItem("name"))
+        $("#userName2").text(sessionStorage.getItem("name"))
     });
     /* 用户管理-重置密码 */
     function resetPwd() {

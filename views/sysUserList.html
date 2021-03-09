@@ -176,27 +176,26 @@
 
         window.assignmentsMenu = function () {
 
-            $.ajax({
-                type: "GET",
-                url: sysUrl + '/project/listAll',
-                async: false,
-                headers: {
-                    'token': sessionStorage.getItem("token"),
-                },
-                success: function (r) {
-                    console.info(r)
-                    //给一个默认值（‘请选择’）
-                    var opt = '<option value="">直接选择或搜索选择</option>';
-                    //获取返回的数据
-                    var value = data.data;
-                    //循环遍历
-                    for (var i in value) {
-                        // opt += '<option value = "' + value[i].cnkey + '">' + value[i].connectName + '</option>'
-                    }
-                    $("#project").html(opt);
-                    form.render('select');//需要渲染一下
-                }
-            });
+            // $.ajax({
+            //     type: "GET",
+            //     url: sysUrl + '/project/getAll',
+            //     async: false,
+            //     headers: {
+            //         'token': sessionStorage.getItem("token"),
+            //     },
+            //     success: function (r) {
+            //         //给一个默认值（‘请选择’）
+            //         var opt = '<option value="">直接选择或搜索选择</option>';
+            //         //获取返回的数据
+            //         var value = data.data;
+            //         //循环遍历
+            //         for (var i in value) {
+            //             // opt += '<option value = "' + value[i].cnkey + '">' + value[i].connectName + '</option>'
+            //         }
+            //         $("#project").html(opt);
+            //         form.render('select');//需要渲染一下
+            //     }
+            // });
             // $.ajax({
             //     type: "GET",
             //     contentType: 'application/json; charset=utf-8',
@@ -243,7 +242,6 @@
                 btn: ['确定', '取消'],
                 btn1: function () {
 
-
                     var checkedData = tree.getChecked('assMenu');
                     var res = getCheckMenuIds(checkedData);
                     $.ajax({
@@ -251,7 +249,7 @@
                         contentType: 'application/json; charset=utf-8',
                         dataType: 'JSON',
                         data: JSON.stringify(res),
-                        url: sysUrl + '/smr/' + 1,
+                        url: sysUrl + '/menu/saveMenuByRoleId/',
                         headers: {
                             'token': sessionStorage.getItem("token"),
                         },

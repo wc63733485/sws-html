@@ -160,7 +160,7 @@
             var updateCheckedMenuArray = [];
             $.ajax({
                 type: "GET",
-                url: sysUrl + "/gbr/" + roleId,
+                url: sysUrl + "/menu/getMenuIdsByRoleId/"+roleId,
                 async: false,
                 headers: {
                     'token': sessionStorage.getItem("token"),
@@ -176,7 +176,7 @@
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'JSON',
                 async: false,
-                url: sysUrl + '/menu/list',
+                url: sysUrl + '/menu/getList',
                 headers: {
                     'token': sessionStorage.getItem("token"),
                 },

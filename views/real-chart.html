@@ -342,8 +342,8 @@
             keepAliveInterval: 60,
             cleanSession: true,
             useSSL: false,
-            userName: user.loginName,
-            password: user.password,
+            // userName: user.loginName,
+            // password: user.password,
             onSuccess: function (e) {
             },
             onFailure: function (e) {
@@ -425,7 +425,7 @@
                     project.id = r.data[i].projectId;
                     project.icon = "fa fa-bar-chart-o";
                     project.spread = true;
-                    children = pumpHouseArrayToJson(r.data[i].projectId, search)
+                    children = deviceArrayToJson(r.data[i].projectId, search)
                     if (children.length != 0) {
                         project.children = children
                     }
@@ -446,49 +446,49 @@
         return res
     }
 
-    function pumpHouseArrayToJson(projectId, search) {
-        var res = [];
-        $.ajax({
-            type: "GET",
-            url: pumpHouseUrl + "/pmp/qpbp/" + projectId,
-            async: false,
-            headers: {
-                'token': sessionStorage.getItem("token"),
-            },
-            success: function (r) {
-                var children = [];
-                for (var i = 0; i < r.data.length; i++) {
-                    var pumphouse = new Object();
-                    pumphouse.title = r.data[i].pumphouseName;
-                    pumphouse.id = r.data[i].pumphouseId;
-                    pumphouse.icon = "fa fa-home fa-lg";
-                    pumphouse.spread = true;
-                    children = deviceArrayToJson(r.data[i].pumphouseId, search)
-                    if (children.length != 0) {
-                        pumphouse.children = children
-                    }
-                    if (search != "" && r.data[i].pumphouseName.indexOf(search) != -1) {
-                        pumphouse.textcolor = "red";
-                    }
-                    res.push(pumphouse)
-                }
-            },
-            error: function (e, t) {
-                if (e.status == 401) {
-                    layer.msg("请刷新或重新登录", {icon: 0})
-                    return;
-                }
-                i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
-            }
-        });
-        return res;
-    }
+    // function pumpHouseArrayToJson(projectId, search) {
+    //     var res = [];
+    //     $.ajax({
+    //         type: "GET",
+    //         url: pumpHouseUrl + "/pmp/qpbp/" + projectId,
+    //         async: false,
+    //         headers: {
+    //             'token': sessionStorage.getItem("token"),
+    //         },
+    //         success: function (r) {
+    //             var children = [];
+    //             for (var i = 0; i < r.data.length; i++) {
+    //                 var pumphouse = new Object();
+    //                 pumphouse.title = r.data[i].pumphouseName;
+    //                 pumphouse.id = r.data[i].pumphouseId;
+    //                 pumphouse.icon = "fa fa-home fa-lg";
+    //                 pumphouse.spread = true;
+    //                 children = deviceArrayToJson(r.data[i].pumphouseId, search)
+    //                 if (children.length != 0) {
+    //                     pumphouse.children = children
+    //                 }
+    //                 if (search != "" && r.data[i].pumphouseName.indexOf(search) != -1) {
+    //                     pumphouse.textcolor = "red";
+    //                 }
+    //                 res.push(pumphouse)
+    //             }
+    //         },
+    //         error: function (e, t) {
+    //             if (e.status == 401) {
+    //                 layer.msg("请刷新或重新登录", {icon: 0})
+    //                 return;
+    //             }
+    //             i.errorView("接口请求开了小差..." + t), i.renderForm(), i.setColsWidth()
+    //         }
+    //     });
+    //     return res;
+    // }
 
-    function deviceArrayToJson(pumphouseId, search) {
+    function deviceArrayToJson(projectId, search) {
         var res = [];
         $.ajax({
             type: "GET",
-            url: deviceUrl + "/dce/qdbd/" + pumphouseId,
+            url: deviceUrl + "/device/queryByProjectId/" + projectId,
             async: false,
             headers: {
                 'token': sessionStorage.getItem("token"),
