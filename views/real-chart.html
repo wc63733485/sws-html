@@ -210,7 +210,7 @@
                 //展示已知数据
                 table.render({
                     elem: '#demo1'
-                    , url: deviceUnitUrl + "/du/qbdtd/" + deviceTypeId
+                    , url: deviceUnitUrl + "/queryByDeviceTypeId/" + deviceTypeId
                     , height: h
                     , toolType: "1"
                     , headers: {
@@ -488,7 +488,7 @@
         var res = [];
         $.ajax({
             type: "GET",
-            url: deviceUrl + "/device/queryByProjectId/" + projectId,
+            url: deviceUrl + "/queryByProjectId/" + projectId,
             async: false,
             headers: {
                 'token': sessionStorage.getItem("token"),

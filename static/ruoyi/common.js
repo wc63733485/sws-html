@@ -2,12 +2,12 @@
  * 通用方法封装处理
  * Copyright (c) 2019 ruoyi
  */
-var user = JSON.parse(sessionStorage.getItem("public_profile"));
+var token = sessionStorage.getItem("token");
 
 
 
 $(function() {
-	if (user==undefined||user==""||user==null) {
+	if (token==undefined||token==""||token==null) {
 		location.href = './login.html';
 		return;
 	}

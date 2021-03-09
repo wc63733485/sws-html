@@ -9,7 +9,6 @@ layer.config({
 
 var isMobile = false;
 var sidebarHeight = isMobile ? '100%' : '96%';
-var user = JSON.parse(sessionStorage.getItem("public_profile"));
 
 // 皮肤缓存
 var skin = localStorage.getItem("skin");
