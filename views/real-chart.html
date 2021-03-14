@@ -333,38 +333,36 @@
                 }
             });
         }
-
-        var mqttMessage = {}
-        Client = new Paho.MQTT.Client('39.107.221.228', 8083, "USER" + new Date().getTime());
-        //建立客户端实例
-        var options = {
-            timeout: 5,
-            keepAliveInterval: 60,
-            cleanSession: true,
-            useSSL: false,
-            // userName: user.loginName,
-            // password: user.password,
-            onSuccess: function (e) {
-            },
-            onFailure: function (e) {
-            }
-        };
-
-        function onConnectionLost(responseObject) {
-            if (responseObject.errorCode !== 0) {
-                console.log("onConnectionLost:" + responseObject.errorMessage);
-                console.log("连接已断开");
-            }
-        }
-
-        function onMessageArrived(message) {
-            realChartInit(message.payloadString)//渲染图表
-        }
-
-        Client.connect(options);
-
-        Client.onConnectionLost = onConnectionLost;
-        Client.onMessageArrived = onMessageArrived;
+        //
+        // var mqttMessage = {}
+        // Client = new Paho.MQTT.Client('39.107.221.228', 8084, "USER" + new Date().getTime());
+        // //建立客户端实例
+        // var options = {
+        //     timeout: 5,
+        //     keepAliveInterval: 60,
+        //     cleanSession: true,
+        //     useSSL: true,
+        //     onSuccess: function (e) {
+        //     },
+        //     onFailure: function (e) {
+        //     }
+        // };
+        //
+        // function onConnectionLost(responseObject) {
+        //     if (responseObject.errorCode !== 0) {
+        //         console.log("onConnectionLost:" + responseObject.errorMessage);
+        //         console.log("连接已断开");
+        //     }
+        // }
+        //
+        // function onMessageArrived(message) {
+        //     realChartInit(message.payloadString)//渲染图表
+        // }
+        //
+        // Client.connect(options);
+        //
+        // Client.onConnectionLost = onConnectionLost;
+        // Client.onMessageArrived = onMessageArrived;
 
         function realChartInit(message) {
             mqttMessage = JSON.parse(message);
